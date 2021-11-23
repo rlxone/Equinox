@@ -1,7 +1,7 @@
 <div><br></div>
 
 <div align="center">
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/rlxone/Equinox/workspace"> <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/rlxone/Equinox"> <img alt="GitHub" src="https://img.shields.io/github/license/rlxone/Equinox">
+  <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/rlxone/Equinox/CI/main"> <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/rlxone/Equinox"> <img alt="GitHub" src="https://img.shields.io/github/license/rlxone/Equinox">
 </div>
 
 <div><h1></h1></div>
