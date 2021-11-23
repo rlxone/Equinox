@@ -1,0 +1,642 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F3003226213081F0008D1352 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3003225213081F0008D1352 /* AppDelegate.swift */; };
+		F30C86DC26D6CEE600F93E60 /* WallpaperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86DB26D6CEE600F93E60 /* WallpaperType.swift */; };
+		F30C86E626DC761300F93E60 /* RoundedPushButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86E526DC761300F93E60 /* RoundedPushButtonExtensions.swift */; };
+		F3140D052682BB990058EB60 /* WallpaperCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3140D042682BB990058EB60 /* WallpaperCreateViewController.swift */; };
+		F329B3C726F1404B00A31035 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329B3C626F1404B00A31035 /* WelcomeWindowController.swift */; };
+		F329B3C926F1414200A31035 /* WelcomeRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329B3C826F1414200A31035 /* WelcomeRootViewController.swift */; };
+		F329B3CB26F1414B00A31035 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329B3CA26F1414B00A31035 /* WelcomeViewController.swift */; };
+		F329B3D026F177E500A31035 /* WelcomeContentViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329B3CF26F177E500A31035 /* WelcomeContentViewExtensions.swift */; };
+		F329B3D426F53D0F00A31035 /* AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329B3D326F53D0F00A31035 /* AppExtensions.swift */; };
+		F329B3DE26F6838500A31035 /* WallpaperGalleryDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329B3DD26F6838500A31035 /* WallpaperGalleryDataController.swift */; };
+		F32BE0D426DD861B00CF90F8 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F32BE0D326DD861B00CF90F8 /* AppIcon.xcassets */; };
+		F32F3778273AD25400A52762 /* WorkspaceRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F3777273AD25400A52762 /* WorkspaceRunner.swift */; };
+		F337578A26BF533200310E72 /* SolarMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337578926BF533200310E72 /* SolarMainViewController.swift */; };
+		F34E06D5267B86A700F004EF /* WallpaperMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06D4267B86A700F004EF /* WallpaperMainViewController.swift */; };
+		F356C8B1272F78B500E915C6 /* SolarTimezoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8B0272F78B500E915C6 /* SolarTimezoneController.swift */; };
+		F356C8B32734B88D00E915C6 /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8B22734B88D00E915C6 /* TipViewController.swift */; };
+		F356C8B92734C1FA00E915C6 /* TipContentViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8B82734C1FA00E915C6 /* TipContentViewExtensions.swift */; };
+		F36AD5DA26E515C800314A02 /* WallpaperWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD5D926E515C800314A02 /* WallpaperWindowController.swift */; };
+		F36AD5DC26E5171400314A02 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD5DB26E5171400314A02 /* WindowController.swift */; };
+		F36AD5DE26E51BCF00314A02 /* SolarWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD5DD26E51BCF00314A02 /* SolarWindowController.swift */; };
+		F36AD5E026E528C800314A02 /* SolarRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD5DF26E528C800314A02 /* SolarRootViewController.swift */; };
+		F3837F0F2698FFA400671585 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3837F0E2698FFA400671585 /* main.swift */; };
+		F3837F112699003F00671585 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3837F102699003F00671585 /* Application.swift */; };
+		F3893B74273A0D33009FF22E /* WallpaperSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3893B73273A0D33009FF22E /* WallpaperSetViewController.swift */; };
+		F3893B79273A11EF009FF22E /* SetContentViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3893B78273A11EF009FF22E /* SetContentViewExtensions.swift */; };
+		F392E78026D5A3FB008F27A3 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392E77F26D5A3FB008F27A3 /* NavigationController.swift */; };
+		F3AC40FF26D15625000A7253 /* WallpaperGalleryDragController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC40FE26D15625000A7253 /* WallpaperGalleryDragController.swift */; };
+		F3AC410E26D57AA1000A7253 /* WallpaperRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC410D26D57AA1000A7253 /* WallpaperRootViewController.swift */; };
+		F3BD018426C2D2600090D864 /* SolarContentViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD018326C2D2600090D864 /* SolarContentViewExtensions.swift */; };
+		F3C88A21267F801900A51A1A /* EquinoxAssets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C88A20267F801900A51A1A /* EquinoxAssets.framework */; };
+		F3C88A22267F801900A51A1A /* EquinoxAssets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3C88A20267F801900A51A1A /* EquinoxAssets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F3D2EE39267DE914009704C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2EE38267DE914009704C5 /* ViewController.swift */; };
+		F3D2EE49267DF3EB009704C5 /* StoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2EE48267DF3EB009704C5 /* StoriesController.swift */; };
+		F3D2EE4B267EDA18009704C5 /* ApplicationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2EE4A267EDA18009704C5 /* ApplicationMenu.swift */; };
+		F3D2EE50267EE774009704C5 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2EE4F267EE774009704C5 /* MenuItem.swift */; };
+		F3D2EE51267EE774009704C5 /* EquinoxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D2EE3F267DED37009704C5 /* EquinoxCore.framework */; };
+		F3D2EE52267EE774009704C5 /* EquinoxCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D2EE3F267DED37009704C5 /* EquinoxCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F3D2EE53267EE774009704C5 /* EquinoxUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D2EE41267DED37009704C5 /* EquinoxUI.framework */; };
+		F3D2EE54267EE774009704C5 /* EquinoxUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D2EE41267DED37009704C5 /* EquinoxUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F3D2EE5B267EE774009704C5 /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2EE5A267EE774009704C5 /* WindowViewController.swift */; };
+		F3E14A642742049400D986B6 /* DockMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E14A632742049400D986B6 /* DockMenu.swift */; };
+		F3E7B04126A4EAB700287C60 /* WallpaperAppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7B04026A4EAB700287C60 /* WallpaperAppearanceViewController.swift */; };
+		F3E7B04626A5DA8100287C60 /* MainContentViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7B04526A5DA8100287C60 /* MainContentViewExtensions.swift */; };
+		F3E7B04826A5DC8F00287C60 /* PushButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7B04726A5DC8F00287C60 /* PushButtonExtensions.swift */; };
+		F3E7B05926ADACC300287C60 /* WallpaperGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7B05826ADACC300287C60 /* WallpaperGalleryViewController.swift */; };
+		F3E7B05E26ADE71100287C60 /* GalleryContentViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7B05D26ADE71100287C60 /* GalleryContentViewExtensions.swift */; };
+		F3E7B06026AE17E500287C60 /* AppearanceContentViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7B05F26AE17E500287C60 /* AppearanceContentViewExtensions.swift */; };
+		F3E7B06226AE1A1C00287C60 /* CreateContentViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7B06126AE1A1C00287C60 /* CreateContentViewExtensions.swift */; };
+		F3E7B06426AE2DAC00287C60 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7B06326AE2DAC00287C60 /* ImageProvider.swift */; };
+		F3EC93A926C993870032FA39 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EC93A826C993870032FA39 /* MapKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F3D2EE55267EE774009704C5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F3C88A22267F801900A51A1A /* EquinoxAssets.framework in Embed Frameworks */,
+				F3D2EE54267EE774009704C5 /* EquinoxUI.framework in Embed Frameworks */,
+				F3D2EE52267EE774009704C5 /* EquinoxCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F3003222213081F0008D1352 /* Equinox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equinox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3003225213081F0008D1352 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F300322C213081F0008D1352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F300322D213081F0008D1352 /* Equinox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Equinox.entitlements; sourceTree = "<group>"; };
+		F30C86DB26D6CEE600F93E60 /* WallpaperType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperType.swift; sourceTree = "<group>"; };
+		F30C86E526DC761300F93E60 /* RoundedPushButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedPushButtonExtensions.swift; sourceTree = "<group>"; };
+		F3140D042682BB990058EB60 /* WallpaperCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperCreateViewController.swift; sourceTree = "<group>"; };
+		F329B3C626F1404B00A31035 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeWindowController.swift; sourceTree = "<group>"; };
+		F329B3C826F1414200A31035 /* WelcomeRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRootViewController.swift; sourceTree = "<group>"; };
+		F329B3CA26F1414B00A31035 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		F329B3CF26F177E500A31035 /* WelcomeContentViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeContentViewExtensions.swift; sourceTree = "<group>"; };
+		F329B3D326F53D0F00A31035 /* AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExtensions.swift; sourceTree = "<group>"; };
+		F329B3DD26F6838500A31035 /* WallpaperGalleryDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperGalleryDataController.swift; sourceTree = "<group>"; };
+		F32BE0D326DD861B00CF90F8 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		F32F3777273AD25400A52762 /* WorkspaceRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceRunner.swift; sourceTree = "<group>"; };
+		F337578926BF533200310E72 /* SolarMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarMainViewController.swift; sourceTree = "<group>"; };
+		F34E06D4267B86A700F004EF /* WallpaperMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperMainViewController.swift; sourceTree = "<group>"; };
+		F356C8B0272F78B500E915C6 /* SolarTimezoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarTimezoneController.swift; sourceTree = "<group>"; };
+		F356C8B22734B88D00E915C6 /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
+		F356C8B82734C1FA00E915C6 /* TipContentViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipContentViewExtensions.swift; sourceTree = "<group>"; };
+		F36AD5D926E515C800314A02 /* WallpaperWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperWindowController.swift; sourceTree = "<group>"; };
+		F36AD5DB26E5171400314A02 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		F36AD5DD26E51BCF00314A02 /* SolarWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarWindowController.swift; sourceTree = "<group>"; };
+		F36AD5DF26E528C800314A02 /* SolarRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarRootViewController.swift; sourceTree = "<group>"; };
+		F3837F0E2698FFA400671585 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F3837F102699003F00671585 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		F3893B73273A0D33009FF22E /* WallpaperSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperSetViewController.swift; sourceTree = "<group>"; };
+		F3893B78273A11EF009FF22E /* SetContentViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetContentViewExtensions.swift; sourceTree = "<group>"; };
+		F392E77F26D5A3FB008F27A3 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		F3AC40FE26D15625000A7253 /* WallpaperGalleryDragController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperGalleryDragController.swift; sourceTree = "<group>"; };
+		F3AC410D26D57AA1000A7253 /* WallpaperRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperRootViewController.swift; sourceTree = "<group>"; };
+		F3BD018326C2D2600090D864 /* SolarContentViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarContentViewExtensions.swift; sourceTree = "<group>"; };
+		F3C88A20267F801900A51A1A /* EquinoxAssets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EquinoxAssets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3D2EE38267DE914009704C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F3D2EE3F267DED37009704C5 /* EquinoxCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EquinoxCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3D2EE41267DED37009704C5 /* EquinoxUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EquinoxUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3D2EE48267DF3EB009704C5 /* StoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesController.swift; sourceTree = "<group>"; };
+		F3D2EE4A267EDA18009704C5 /* ApplicationMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMenu.swift; sourceTree = "<group>"; };
+		F3D2EE4F267EE774009704C5 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		F3D2EE5A267EE774009704C5 /* WindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowViewController.swift; sourceTree = "<group>"; };
+		F3E14A632742049400D986B6 /* DockMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockMenu.swift; sourceTree = "<group>"; };
+		F3E7B04026A4EAB700287C60 /* WallpaperAppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperAppearanceViewController.swift; sourceTree = "<group>"; };
+		F3E7B04526A5DA8100287C60 /* MainContentViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentViewExtensions.swift; sourceTree = "<group>"; };
+		F3E7B04726A5DC8F00287C60 /* PushButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButtonExtensions.swift; sourceTree = "<group>"; };
+		F3E7B05826ADACC300287C60 /* WallpaperGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperGalleryViewController.swift; sourceTree = "<group>"; };
+		F3E7B05D26ADE71100287C60 /* GalleryContentViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryContentViewExtensions.swift; sourceTree = "<group>"; };
+		F3E7B05F26AE17E500287C60 /* AppearanceContentViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceContentViewExtensions.swift; sourceTree = "<group>"; };
+		F3E7B06126AE1A1C00287C60 /* CreateContentViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContentViewExtensions.swift; sourceTree = "<group>"; };
+		F3E7B06326AE2DAC00287C60 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
+		F3EC93A826C993870032FA39 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F300321F213081F0008D1352 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3C88A21267F801900A51A1A /* EquinoxAssets.framework in Frameworks */,
+				F3D2EE53267EE774009704C5 /* EquinoxUI.framework in Frameworks */,
+				F3EC93A926C993870032FA39 /* MapKit.framework in Frameworks */,
+				F3D2EE51267EE774009704C5 /* EquinoxCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F3003219213081F0008D1352 = {
+			isa = PBXGroup;
+			children = (
+				F3003224213081F0008D1352 /* Equinox */,
+				F3003223213081F0008D1352 /* Products */,
+				F3D2EE3E267DED37009704C5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F3003223213081F0008D1352 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F3003222213081F0008D1352 /* Equinox.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3003224213081F0008D1352 /* Equinox */ = {
+			isa = PBXGroup;
+			children = (
+				F300324421308C3F008D1352 /* Application */,
+				F3D2EE4E267EE764009704C5 /* Menu */,
+				F300324121308A6A008D1352 /* Extensions */,
+				F30C86DA26D6CE8900F93E60 /* Models */,
+				F300324821308CE8008D1352 /* Stories */,
+				F36AD5EB26E587F700314A02 /* Resources */,
+			);
+			path = Equinox;
+			sourceTree = "<group>";
+		};
+		F300324121308A6A008D1352 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F329B3D326F53D0F00A31035 /* AppExtensions.swift */,
+				F3E7B04526A5DA8100287C60 /* MainContentViewExtensions.swift */,
+				F3E7B05D26ADE71100287C60 /* GalleryContentViewExtensions.swift */,
+				F3E7B05F26AE17E500287C60 /* AppearanceContentViewExtensions.swift */,
+				F3E7B06126AE1A1C00287C60 /* CreateContentViewExtensions.swift */,
+				F3E7B04726A5DC8F00287C60 /* PushButtonExtensions.swift */,
+				F30C86E526DC761300F93E60 /* RoundedPushButtonExtensions.swift */,
+				F3BD018326C2D2600090D864 /* SolarContentViewExtensions.swift */,
+				F329B3CF26F177E500A31035 /* WelcomeContentViewExtensions.swift */,
+				F356C8B82734C1FA00E915C6 /* TipContentViewExtensions.swift */,
+				F3893B78273A11EF009FF22E /* SetContentViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F300324421308C3F008D1352 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				F3837F0E2698FFA400671585 /* main.swift */,
+				F3837F102699003F00671585 /* Application.swift */,
+				F3003225213081F0008D1352 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		F300324821308CE8008D1352 /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				F3D2EE48267DF3EB009704C5 /* StoriesController.swift */,
+				F356C8B42734B92700E915C6 /* Common */,
+				F329B3C526F13FCC00A31035 /* Welcome */,
+				F300324921308CFF008D1352 /* Wallpaper */,
+				F337578826BF532100310E72 /* Solar */,
+			);
+			path = Stories;
+			sourceTree = "<group>";
+		};
+		F300324921308CFF008D1352 /* Wallpaper */ = {
+			isa = PBXGroup;
+			children = (
+				F36AD5D926E515C800314A02 /* WallpaperWindowController.swift */,
+				F3AC410D26D57AA1000A7253 /* WallpaperRootViewController.swift */,
+				F34E06D4267B86A700F004EF /* WallpaperMainViewController.swift */,
+				F3E7B05826ADACC300287C60 /* WallpaperGalleryViewController.swift */,
+				F329B3DD26F6838500A31035 /* WallpaperGalleryDataController.swift */,
+				F3AC40FE26D15625000A7253 /* WallpaperGalleryDragController.swift */,
+				F3E7B04026A4EAB700287C60 /* WallpaperAppearanceViewController.swift */,
+				F3140D042682BB990058EB60 /* WallpaperCreateViewController.swift */,
+				F3893B73273A0D33009FF22E /* WallpaperSetViewController.swift */,
+			);
+			path = Wallpaper;
+			sourceTree = "<group>";
+		};
+		F30C86DA26D6CE8900F93E60 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F30C86DB26D6CEE600F93E60 /* WallpaperType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F329B3C526F13FCC00A31035 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				F329B3C626F1404B00A31035 /* WelcomeWindowController.swift */,
+				F329B3C826F1414200A31035 /* WelcomeRootViewController.swift */,
+				F329B3CA26F1414B00A31035 /* WelcomeViewController.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		F337578826BF532100310E72 /* Solar */ = {
+			isa = PBXGroup;
+			children = (
+				F36AD5DD26E51BCF00314A02 /* SolarWindowController.swift */,
+				F36AD5DF26E528C800314A02 /* SolarRootViewController.swift */,
+				F337578926BF533200310E72 /* SolarMainViewController.swift */,
+				F356C8B0272F78B500E915C6 /* SolarTimezoneController.swift */,
+			);
+			path = Solar;
+			sourceTree = "<group>";
+		};
+		F356C8B42734B92700E915C6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F36AD5DB26E5171400314A02 /* WindowController.swift */,
+				F3D2EE38267DE914009704C5 /* ViewController.swift */,
+				F3D2EE5A267EE774009704C5 /* WindowViewController.swift */,
+				F392E77F26D5A3FB008F27A3 /* NavigationController.swift */,
+				F356C8B22734B88D00E915C6 /* TipViewController.swift */,
+				F3E7B06326AE2DAC00287C60 /* ImageProvider.swift */,
+				F32F3777273AD25400A52762 /* WorkspaceRunner.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		F36AD5EB26E587F700314A02 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F32BE0D326DD861B00CF90F8 /* AppIcon.xcassets */,
+				F300322C213081F0008D1352 /* Info.plist */,
+				F300322D213081F0008D1352 /* Equinox.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F3D2EE3E267DED37009704C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3EC93A826C993870032FA39 /* MapKit.framework */,
+				F3C88A20267F801900A51A1A /* EquinoxAssets.framework */,
+				F3D2EE3F267DED37009704C5 /* EquinoxCore.framework */,
+				F3D2EE41267DED37009704C5 /* EquinoxUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F3D2EE4E267EE764009704C5 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				F3D2EE4A267EDA18009704C5 /* ApplicationMenu.swift */,
+				F3E14A632742049400D986B6 /* DockMenu.swift */,
+				F3D2EE4F267EE774009704C5 /* MenuItem.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F3003221213081F0008D1352 /* Equinox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F300323B213081F0008D1352 /* Build configuration list for PBXNativeTarget "Equinox" */;
+			buildPhases = (
+				F31A9E2926E9701B00135E49 /* Lint */,
+				F300321E213081F0008D1352 /* Sources */,
+				F300321F213081F0008D1352 /* Frameworks */,
+				F3003220213081F0008D1352 /* Resources */,
+				F3D2EE55267EE774009704C5 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Equinox;
+			packageProductDependencies = (
+			);
+			productName = Equinox;
+			productReference = F3003222213081F0008D1352 /* Equinox.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F300321A213081F0008D1352 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = rlxone;
+				TargetAttributes = {
+					F3003221213081F0008D1352 = {
+						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = F300321D213081F0008D1352 /* Build configuration list for PBXProject "Equinox" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F3003219213081F0008D1352;
+			packageReferences = (
+			);
+			productRefGroup = F3003223213081F0008D1352 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F3003221213081F0008D1352 /* Equinox */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F3003220213081F0008D1352 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F32BE0D426DD861B00CF90F8 /* AppIcon.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F31A9E2926E9701B00135E49 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  cd ..\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F300321E213081F0008D1352 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F329B3C726F1404B00A31035 /* WelcomeWindowController.swift in Sources */,
+				F3D2EE4B267EDA18009704C5 /* ApplicationMenu.swift in Sources */,
+				F36AD5DE26E51BCF00314A02 /* SolarWindowController.swift in Sources */,
+				F329B3D426F53D0F00A31035 /* AppExtensions.swift in Sources */,
+				F3D2EE50267EE774009704C5 /* MenuItem.swift in Sources */,
+				F34E06D5267B86A700F004EF /* WallpaperMainViewController.swift in Sources */,
+				F329B3CB26F1414B00A31035 /* WelcomeViewController.swift in Sources */,
+				F3E14A642742049400D986B6 /* DockMenu.swift in Sources */,
+				F3E7B04126A4EAB700287C60 /* WallpaperAppearanceViewController.swift in Sources */,
+				F356C8B32734B88D00E915C6 /* TipViewController.swift in Sources */,
+				F3E7B04826A5DC8F00287C60 /* PushButtonExtensions.swift in Sources */,
+				F3003226213081F0008D1352 /* AppDelegate.swift in Sources */,
+				F36AD5E026E528C800314A02 /* SolarRootViewController.swift in Sources */,
+				F36AD5DC26E5171400314A02 /* WindowController.swift in Sources */,
+				F30C86E626DC761300F93E60 /* RoundedPushButtonExtensions.swift in Sources */,
+				F3837F112699003F00671585 /* Application.swift in Sources */,
+				F3AC40FF26D15625000A7253 /* WallpaperGalleryDragController.swift in Sources */,
+				F3D2EE39267DE914009704C5 /* ViewController.swift in Sources */,
+				F3893B74273A0D33009FF22E /* WallpaperSetViewController.swift in Sources */,
+				F3E7B04626A5DA8100287C60 /* MainContentViewExtensions.swift in Sources */,
+				F356C8B92734C1FA00E915C6 /* TipContentViewExtensions.swift in Sources */,
+				F337578A26BF533200310E72 /* SolarMainViewController.swift in Sources */,
+				F329B3C926F1414200A31035 /* WelcomeRootViewController.swift in Sources */,
+				F3837F0F2698FFA400671585 /* main.swift in Sources */,
+				F3E7B06026AE17E500287C60 /* AppearanceContentViewExtensions.swift in Sources */,
+				F329B3DE26F6838500A31035 /* WallpaperGalleryDataController.swift in Sources */,
+				F356C8B1272F78B500E915C6 /* SolarTimezoneController.swift in Sources */,
+				F30C86DC26D6CEE600F93E60 /* WallpaperType.swift in Sources */,
+				F3E7B05E26ADE71100287C60 /* GalleryContentViewExtensions.swift in Sources */,
+				F32F3778273AD25400A52762 /* WorkspaceRunner.swift in Sources */,
+				F3AC410E26D57AA1000A7253 /* WallpaperRootViewController.swift in Sources */,
+				F3893B79273A11EF009FF22E /* SetContentViewExtensions.swift in Sources */,
+				F36AD5DA26E515C800314A02 /* WallpaperWindowController.swift in Sources */,
+				F3140D052682BB990058EB60 /* WallpaperCreateViewController.swift in Sources */,
+				F3E7B05926ADACC300287C60 /* WallpaperGalleryViewController.swift in Sources */,
+				F3D2EE5B267EE774009704C5 /* WindowViewController.swift in Sources */,
+				F329B3D026F177E500A31035 /* WelcomeContentViewExtensions.swift in Sources */,
+				F3E7B06226AE1A1C00287C60 /* CreateContentViewExtensions.swift in Sources */,
+				F392E78026D5A3FB008F27A3 /* NavigationController.swift in Sources */,
+				F3E7B06426AE2DAC00287C60 /* ImageProvider.swift in Sources */,
+				F3BD018426C2D2600090D864 /* SolarContentViewExtensions.swift in Sources */,
+				F3D2EE49267DF3EB009704C5 /* StoriesController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F3003239213081F0008D1352 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F300323A213081F0008D1352 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		F300323C213081F0008D1352 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = Equinox/Resources/Equinox.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Equinox/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rlxone.equinox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		F300323D213081F0008D1352 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = Equinox/Resources/Equinox.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Equinox/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rlxone.equinox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F300321D213081F0008D1352 /* Build configuration list for PBXProject "Equinox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3003239213081F0008D1352 /* Debug */,
+				F300323A213081F0008D1352 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F300323B213081F0008D1352 /* Build configuration list for PBXNativeTarget "Equinox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F300323C213081F0008D1352 /* Debug */,
+				F300323D213081F0008D1352 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F300321A213081F0008D1352 /* Project object */;
+}

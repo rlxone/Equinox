@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Test
+        run: sh build/test.sh
+
+      - name: Build
+        run: sh build/build.sh

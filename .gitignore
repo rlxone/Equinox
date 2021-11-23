@@ -1,0 +1,8 @@
+.DS_Store
+
+xcuserdata/
+xcshareddata/
+
+!*/xcshareddata/
+*/xcshareddata/*
+!*/xcshareddata/IDETemplateMacros.plist
