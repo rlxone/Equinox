@@ -86,7 +86,7 @@
 "wallpaper.create.repeat.title" = "Repeat";
 "wallpaper.create.set.error" = "Can't save the wallpaper.";
 "wallpaper.create.set.success" = "You successfully set up the wallpaper";
-"wallpaper.create.share" = "Can't share the wallpaper!";
+"wallpaper.create.cant.share" = "Can't share the wallpaper!";
 
 "wallpaper.set.title" = "Set up before set";
 "wallpaper.set.description.title" = "You need to set «Dynamic» type in your «Desktop & Screen Saver» macOS Preferences before you set the wallpaper.";

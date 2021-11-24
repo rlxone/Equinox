@@ -161,7 +161,7 @@ public enum Localization {
             public static let `repeat` = Localization.localizedString(key: "wallpaper.create.repeat.title")
             public static let setError = Localization.localizedString(key: "wallpaper.create.set.error")
             public static let setSuccess = Localization.localizedString(key: "wallpaper.create.set.success")
-            public static let cantShare = Localization.localizedString(key: "wallpaper.create.share")
+            public static let cantShare = Localization.localizedString(key: "wallpaper.create.cant.share")
         }
         
         public enum Set {
