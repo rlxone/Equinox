@@ -28,5 +28,7 @@
 	<string>public.app-category.utilities</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
 </dict>
 </plist>
