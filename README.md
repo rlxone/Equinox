@@ -17,7 +17,7 @@
     <img src="repo/mac_store_button.png" height="48" />
   </a>
   <img width="4" />
-  <a href="https://apps.apple.com/us/app/equinox-create-wallpaper/id1591510203">
+  <a href="https://github.com/rlxone/Equinox/releases">
     <img src="repo/github_button.png" height="48" />
   </a>
   <img width="4" />
