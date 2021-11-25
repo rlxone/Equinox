@@ -88,7 +88,7 @@ extension RoundedPushButton {
 
 // MARK: - Class
 
-public class RoundedPushButton: Button {
+public final class RoundedPushButton: Button {
     private var isMouseDown = false
     private lazy var titleLabel = Label()
     private lazy var imageView = ImageView()

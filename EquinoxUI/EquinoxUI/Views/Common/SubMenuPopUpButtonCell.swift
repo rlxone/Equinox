@@ -28,7 +28,7 @@
 
 import AppKit
 
-public class SubMenuPopUpButtonCell: NSPopUpButtonCell {
+public final class SubMenuPopUpButtonCell: NSPopUpButtonCell {
     public var selectedTitle: String?
     
     public override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {

@@ -87,7 +87,7 @@ extension TipContentView {
 
 // MARK: - Class
 
-public class TipContentView: View {
+public final class TipContentView: View {
     private lazy var titleLabel = StyledLabel()
     private lazy var descriptionLabel = StyledLabel()
     private lazy var imageView = ImageView()

@@ -115,7 +115,7 @@ extension SetContentView {
 
 // MARK: - Class
 
-public class SetContentView: View {
+public final class SetContentView: View {
     private lazy var titleLabel = StyledLabel()
     private lazy var descriptionLabel = StyledLabel()
     private lazy var imageView = ImageView()
