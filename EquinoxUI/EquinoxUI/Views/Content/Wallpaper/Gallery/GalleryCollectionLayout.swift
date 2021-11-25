@@ -94,7 +94,7 @@ public final class GalleryCollectionLayout: NSCollectionViewFlowLayout {
         let usefulWidth = CGFloat(width - inset) - padding
         let width = usefulWidth / CGFloat(itemsPerRow)
 
-        return width
+        return floor(width)
     }
 
     private func calculateItemHeight(for width: CGFloat) -> CGFloat {
@@ -115,7 +115,7 @@ public final class GalleryCollectionLayout: NSCollectionViewFlowLayout {
             height = width * Constants.imageAspect
         }
 
-        return height
+        return ceil(height)
     }
 
     private func calculateRowItemsCount(for count: Int) -> Int {
