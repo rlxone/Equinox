@@ -46,7 +46,7 @@ extension SubMenuPopUpButton {
 
 // MARK: - Class
 
-public class SubMenuPopUpButton: NSPopUpButton {
+public final class SubMenuPopUpButton: NSPopUpButton {
     public override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setup()

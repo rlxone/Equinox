@@ -90,7 +90,7 @@ extension PushButton {
 
 // MARK: - Class
 
-public class PushButton: Button {
+public final class PushButton: Button {
     private var isMouseDown = false
     private lazy var titleLabel = Label()
     private lazy var imageView = ImageView()

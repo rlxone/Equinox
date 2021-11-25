@@ -48,7 +48,7 @@ extension CreateAnimatedImageView {
 
 // MARK: - Class
 
-public class CreateAnimatedImageView: View {
+public final class CreateAnimatedImageView: View {
     private lazy var animatedImageView = DragAnimatedImageView()
     
     private lazy var borderView: BorderProgressView = {

@@ -38,7 +38,7 @@ public protocol StorageCore {
 
 // MARK: - Class
 
-public class StorageCoreImpl: StorageCore {
+public final class StorageCoreImpl: StorageCore {
     private let userDefaults: UserDefaults
     
     // MARK: - Initializer

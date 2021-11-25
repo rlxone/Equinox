@@ -57,7 +57,7 @@ extension TooltipWindow {
 
 // MARK: - Class
 
-public class TooltipWindow: NSWindow {
+public final class TooltipWindow: NSWindow {
     public init() {
         super.init(
             contentRect: .zero,

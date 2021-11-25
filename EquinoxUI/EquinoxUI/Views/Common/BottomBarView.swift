@@ -52,7 +52,7 @@ extension BottomBarView {
 
 // MARK: - Class
 
-public class BottomBarView: VisualEffectView {
+public final class BottomBarView: VisualEffectView {
     private lazy var button = PushButton()
     private lazy var lineView = LineView()
     
