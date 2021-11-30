@@ -24,6 +24,8 @@
   <a href="https://equinoxmac.com">
     <img src="repo/website_button.png" height="48" />
   </a>
+  <img width="4" />
+  <a href="https://www.producthunt.com/posts/equinox-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-equinox-2" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=320600&theme=dark" alt="Equinox - Create dynamic wallpapers for macOS | Product Hunt" style="width: 222px; height: 48px;" width="222" height="48" /></a>
 </div>
 
 <div><h1></h1></div>
