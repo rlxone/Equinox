@@ -9,7 +9,7 @@
 <div align="center">
   <img src="repo/logo.png" width="200" height="200"/>
   <h1>Equinox</h1>
-  <p>Create dynamic wallpapers for macOS.</p>
+  <p>Create dynamic wallpapers for macOS</p>
   <br>
 </div>
 <div align="center">
