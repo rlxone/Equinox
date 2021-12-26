@@ -96,6 +96,9 @@ It will help you to calculate the position of the sun in the sky.
 - Q: How to test that my wallpaper works correctly?
 - A: Open `«Preferences»` -> `«Date & Time»`, change the time to see how wallpaper works over time.
 
+## Requirements
+- macOS 10.14 (Mojave) and later
+
 ## Libraries
 - **[SolarNOAA](https://github.com/rlxone/SolarNOAA)**
 
