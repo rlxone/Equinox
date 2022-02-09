@@ -35,7 +35,7 @@ import EquinoxUI
 
 extension SolarWindowController {
     private enum Constants {
-        static let minSize = NSSize(width: 650, height: 680)
+        static let minSize = NSSize(width: 600, height: 680)
         static let regularSize = NSSize(width: 650, height: 880)
     }
 }
