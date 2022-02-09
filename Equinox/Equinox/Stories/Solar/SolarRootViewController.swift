@@ -120,7 +120,7 @@ final class SolarRootViewController: ViewController {
 
 // MARK: - SolarViewControllerDelegate
 
-extension SolarRootViewController: SolarMainViewControllerDelegatae {
+extension SolarRootViewController: SolarMainViewControllerDelegate {
     func solarViewControllerShouldNotify(_ text: String) {
         delegate?.rootViewControllerShouldNotify(text)
     }
