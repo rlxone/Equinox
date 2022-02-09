@@ -42,7 +42,8 @@ protocol WallpaperWindowControllerDelegate: AnyObject {
 
 extension WallpaperWindowController {
     private enum Constants {
-        static let minSize = NSSize(width: 930, height: 756)
+        static let regularSize = NSSize(width: 930, height: 756)
+        static let minSize = NSSize(width: 800, height: 650)
     }
 }
 
@@ -100,6 +101,7 @@ final class WallpaperWindowController: WindowController {
         )
 
         window = contentWindow
+        window?.setContentSize(Constants.regularSize)
         setWindowTitle(appName: title)
         window?.makeKeyAndOrderFront(self)
         window?.center()
