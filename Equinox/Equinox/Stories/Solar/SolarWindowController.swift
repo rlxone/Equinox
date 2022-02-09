@@ -35,7 +35,8 @@ import EquinoxUI
 
 extension SolarWindowController {
     private enum Constants {
-        static let minSize = NSSize(width: 650, height: 880)
+        static let minCompactSize = NSSize(width: 650, height: 756)
+        static let minRegularSize = NSSize(width: 650, height: 880)
     }
 }
 
@@ -63,13 +64,14 @@ final class SolarWindowController: WindowController {
         let rootController = SolarRootViewController(solarService: solarService, settingsService: settingsService)
         rootController.delegate = self
         let title = Localization.Solar.Main.title
+        let size = getMinSize()
         
         let windowController = WindowViewController(contentViewController: rootController, windowTitle: title)
         contentController = windowController
 
         contentWindow = Window(
             contentViewController: windowController,
-            minSize: Constants.minSize
+            minSize: size
         )
 
         window = contentWindow
@@ -77,6 +79,16 @@ final class SolarWindowController: WindowController {
         window?.miniwindowTitle = title
         window?.makeKeyAndOrderFront(self)
         window?.center()
+    }
+    
+    private func getMinSize() -> NSSize {
+        guard let screen = NSScreen.main else {
+            return Constants.minRegularSize
+        }
+        if screen.frame.height < Constants.minRegularSize.height {
+            return Constants.minCompactSize
+        }
+        return Constants.minRegularSize
     }
 }
 
