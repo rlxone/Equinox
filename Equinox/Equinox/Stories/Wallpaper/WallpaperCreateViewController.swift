@@ -336,10 +336,24 @@ extension WallpaperCreateViewController: AnimatedImageViewDelegate {
     func numberOfImages() -> Int {
         return imageAttributes.count
     }
-
-    func image(for index: Int, completion: @escaping (NSImage?) -> Void) {
+    
+    func image(for index: Int, initial: Bool, completion: @escaping (NSImage?) -> Void) {
         let url = imageAttributes[index].url
-        imageProvider.loadImage(url: url, resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true)) { image in
+        let cacheMode: ImageCacheMode
+        
+        switch initial {
+        case true:
+            cacheMode = .processInMain
+            
+        case false:
+            cacheMode = .processInBackground
+        }
+        
+        imageProvider.loadImage(
+            url: url,
+            resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true),
+            cacheMode: cacheMode
+        ) { image in
             completion(image)
         }
     }
@@ -357,7 +371,11 @@ extension WallpaperCreateViewController: DragAnimatedImageViewDelegate {
             return
         }
         
-        imageProvider.loadImage(url: url, resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true)) { image in
+        imageProvider.loadImage(
+            url: url,
+            resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true),
+            cacheMode: .processInBackground
+        ) { image in
             let provider = NSFilePromiseProvider(fileType: kUTTypeImage as String, delegate: self)
             let draggingItem = NSDraggingItem(pasteboardWriter: provider)
             draggingItem.setDraggingFrame(dragAnimatedImageView.bounds, contents: image)

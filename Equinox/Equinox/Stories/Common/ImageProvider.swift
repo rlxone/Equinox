@@ -35,6 +35,7 @@ protocol ImageProvider {
     func loadImage(
         url: URL,
         resizeMode: ImageResizeMode,
+        cacheMode: ImageCacheMode,
         completion: @escaping (NSImage?) -> Void
     )
     func removeCachedImage(_ url: URL)
@@ -47,6 +48,11 @@ protocol ImageProvider {
 enum ImageResizeMode {
     case source
     case resized(size: NSSize, respectAspect: Bool)
+}
+
+enum ImageCacheMode {
+    case processInMain
+    case processInBackground
 }
 
 // MARK: - Class
@@ -66,15 +72,39 @@ final class ImageProviderImpl: ImageProvider {
     }
     
     // MARK: - Public
-
-    func loadImage(url: URL, resizeMode: ImageResizeMode, completion: @escaping (NSImage?) -> Void) {
-        if let cachedImage = imageService.retrieveCachedImage(url: url) {
-            completion(cachedImage)
-            return
+    
+    func loadImage(
+        url: URL,
+        resizeMode: ImageResizeMode,
+        cacheMode: ImageCacheMode = .processInBackground,
+        completion: @escaping (NSImage?) -> Void
+    ) {
+        switch cacheMode {
+        case .processInMain:
+            if let cachedImage = self.imageService.retrieveCachedImage(url: url) {
+                completion(cachedImage)
+                return
+            }
+            
+        case .processInBackground:
+            break
         }
+        
         operationQueue.addOperation { [weak self] in
             guard let self = self else {
                 return
+            }
+            switch cacheMode {
+            case .processInMain:
+                break
+                
+            case .processInBackground:
+                if let cachedImage = self.imageService.retrieveCachedImage(url: url) {
+                    OperationQueue.main.addOperation {
+                        completion(cachedImage)
+                    }
+                    return
+                }
             }
             guard let image = NSImage(contentsOf: url) else {
                 OperationQueue.main.addOperation {
@@ -82,31 +112,11 @@ final class ImageProviderImpl: ImageProvider {
                 }
                 return
             }
-
-            let size: NSSize
-
-            switch resizeMode {
-            case .source:
-                size = image.size
-
-            case .resized(let newSize, let respectAspect):
-                if respectAspect {
-                    let imageAspect = image.size.width / image.size.height
-                    let resizeAspect = newSize.width / newSize.height
-
-                    if imageAspect < resizeAspect {
-                        size = .init(width: newSize.width, height: newSize.width / imageAspect)
-                    } else {
-                        size = .init(width: newSize.width / imageAspect, height: newSize.height)
-                    }
-                } else {
-                    size = newSize
-                }
-            }
-
+            
+            let size = self.getImageSize(image: image, resizeMode: resizeMode)
             let resizedImage = self.imageService.resizeImage(image: image, size: size)
             self.imageService.cacheImage(url: url, image: resizedImage)
-
+            
             OperationQueue.main.addOperation {
                 completion(resizedImage)
             }
@@ -134,5 +144,32 @@ final class ImageProviderImpl: ImageProvider {
         } catch {
             return nil
         }
+    }
+    
+    // MARK: - Private
+    
+    private func getImageSize(image: NSImage, resizeMode: ImageResizeMode) -> NSSize {
+        let size: NSSize
+
+        switch resizeMode {
+        case .source:
+            size = image.size
+
+        case .resized(let newSize, let respectAspect):
+            if respectAspect {
+                let imageAspect = image.size.width / image.size.height
+                let resizeAspect = newSize.width / newSize.height
+
+                if imageAspect < resizeAspect {
+                    size = .init(width: newSize.width, height: newSize.width / imageAspect)
+                } else {
+                    size = .init(width: newSize.width / imageAspect, height: newSize.height)
+                }
+            } else {
+                size = newSize
+            }
+        }
+        
+        return size
     }
 }

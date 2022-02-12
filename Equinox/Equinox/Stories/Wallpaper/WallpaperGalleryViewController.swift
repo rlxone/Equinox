@@ -358,7 +358,7 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
     
     func loadImage(url: URL, completion: @escaping (NSImage?) -> Void) {
         let resizeMode = ImageResizeMode.resized(size: Constants.thumbnailSize, respectAspect: true)
-        imageProvider.loadImage(url: url, resizeMode: resizeMode, completion: completion)
+        imageProvider.loadImage(url: url, resizeMode: resizeMode, cacheMode: .processInMain, completion: completion)
     }
 
     func collectionDidScroll() {
