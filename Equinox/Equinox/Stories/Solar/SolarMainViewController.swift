@@ -34,7 +34,7 @@ import EquinoxUI
 
 // MARK: - Protocols
 
-protocol SolarMainViewControllerDelegatae: AnyObject {
+protocol SolarMainViewControllerDelegate: AnyObject {
     func solarViewControllerShouldNotify(_ text: String)
     func solarViewControllerHelpWasInteracted()
 }
@@ -72,7 +72,14 @@ final class SolarMainViewController: ViewController {
     private lazy var latestTimezoneContainer = timezoneController.currentContainer
     
     private var shouldIgnoreCoordinateChanges = false
-
+    
+    private let operationQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.qualityOfService = .userInitiated
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+    
     private lazy var contentView: SolarMainContentView = {
         let view = SolarMainContentView()
         view.style = .default
@@ -166,9 +173,9 @@ final class SolarMainViewController: ViewController {
     }
     
     // MARK: - Public
-
-    public weak var delegate: SolarMainViewControllerDelegatae?
-
+    
+    public weak var delegate: SolarMainViewControllerDelegate?
+    
     // MARK: - Private
     
     private func coordinateChangeAction(_ coordinate: CLLocationCoordinate2D) {
@@ -180,24 +187,24 @@ final class SolarMainViewController: ViewController {
         latestCoordinate.longitude = String(coordinate.longitude)
         makeResult(needUpdateCoordinateFields: true, needRoundCoordinateValues: true)
     }
-
+    
     private func latitudeChangeAction(_ latitude: String) {
         shouldIgnoreCoordinateChanges = true
         latestCoordinate.latitude = latitude
         makeResult(needUpdateCoordinateFields: false, needRoundCoordinateValues: false)
         setMapLocation(animated: false)
     }
-
+    
     private func longitudeChangeAction(_ longitude: String) {
         shouldIgnoreCoordinateChanges = true
         latestCoordinate.longitude = longitude
         makeResult(needUpdateCoordinateFields: false, needRoundCoordinateValues: false)
         setMapLocation(animated: false)
     }
-
+    
     private func dateChangeAction(_ date: Date) {
         latestDate = date
-        makeResult(needUpdateCoordinateFields: true, needRoundCoordinateValues: true)
+        makeResult(needUpdateCoordinateFields: true, needRoundCoordinateValues: true, async: false)
     }
     
     private func copyAction() {
@@ -219,7 +226,7 @@ final class SolarMainViewController: ViewController {
         }
     }
     
-    private func makeResult(needUpdateCoordinateFields: Bool, needRoundCoordinateValues: Bool) {
+    private func makeResult(needUpdateCoordinateFields: Bool, needRoundCoordinateValues: Bool, async: Bool = false) {
         guard
             let latitudeString = latestCoordinate.latitude,
             let longitudeString = latestCoordinate.longitude,
@@ -237,53 +244,84 @@ final class SolarMainViewController: ViewController {
         }
         
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-
+        
         if needUpdateCoordinateFields {
-            if needRoundCoordinateValues {
-                let roundedLatitude = roundDouble(coordinate.latitude, places: Constants.coordinatePrecision)
-                let roundedLongitude = roundDouble(coordinate.longitude, places: Constants.coordinatePrecision)
-
-                contentView.latitude = String(roundedLatitude)
-                contentView.longitude = String(roundedLongitude)
-            } else {
-                contentView.latitude = String(coordinate.latitude)
-                contentView.longitude = String(coordinate.longitude)
+            makeLocationResult(for: coordinate, needRoundCoordinateValues: needRoundCoordinateValues)
+        }
+        
+        makeSolarResult(for: coordinate, async: async)
+    }
+    
+    private func makeLocationResult(for coordinate: CLLocationCoordinate2D, needRoundCoordinateValues: Bool) {
+        var latitude: Double
+        var longitude: Double
+        
+        if needRoundCoordinateValues {
+            latitude = roundDouble(coordinate.latitude, places: Constants.coordinatePrecision)
+            longitude = roundDouble(coordinate.longitude, places: Constants.coordinatePrecision)
+        } else {
+            latitude = coordinate.latitude
+            longitude = coordinate.longitude
+        }
+        
+        contentView.latitude = String(latitude)
+        contentView.longitude = String(longitude)
+    }
+    
+    private func makeSolarResult(for coordinate: CLLocationCoordinate2D, async: Bool) {
+        let calculation: () -> ((azimuth: Double, altitude: Double)?) = { [weak self] in
+            guard let self = self, let solarCoordinate = self.calculateSolarCoordinates(from: coordinate) else {
+                return nil
             }
+            let azimuth = self.roundDouble(solarCoordinate.azimuth, places: Constants.resultPrecision)
+            let altitude = self.roundDouble(solarCoordinate.altitude, places: Constants.resultPrecision)
+            return (azimuth, altitude)
         }
-        
-        guard let solarCoordinate = calculateSolarCoordinates(from: coordinate) else {
-            return
+        let reload: (Double, Double) -> Void = { [weak self] azimuth, altitude in
+            self?.contentView.azimuth = String(azimuth)
+            self?.contentView.altitude = String(altitude)
+            self?.reloadChartData()
         }
-        
-        let azimuth = roundDouble(solarCoordinate.azimuth, places: Constants.resultPrecision)
-        let altitude = roundDouble(solarCoordinate.altitude, places: Constants.resultPrecision)
-        
-        contentView.azimuth = String(azimuth)
-        contentView.altitude = String(altitude)
-        
-        reloadChartData()
+        if async {
+            operationQueue.cancelAllOperations()
+            let operation = BlockOperation()
+            operation.addExecutionBlock { [weak operation] in
+                guard
+                    let operation = operation, !operation.isCancelled,
+                    let solarCoordinate = calculation()
+                else {
+                    return
+                }
+                OperationQueue.main.addOperation {
+                    reload(solarCoordinate.azimuth, solarCoordinate.altitude)
+                }
+            }
+            operationQueue.addOperation(operation)
+        } else {
+            guard let solarCoordinates = calculation() else {
+                return
+            }
+            reload(solarCoordinates.azimuth, solarCoordinates.altitude)
+        }
     }
     
     private func setMapLocation(animated: Bool) {
         guard
-            let latitudeString = latestCoordinate.latitude,
-            let longitudeString = latestCoordinate.longitude,
-            let latitude = Double(latitudeString),
-            let longitude = Double(longitudeString),
-            isLatitudeValid(latitude),
-            isLongitudeValid(longitude)
+            let latitudeString = latestCoordinate.latitude, let longitudeString = latestCoordinate.longitude,
+            let latitude = Double(latitudeString), let longitude = Double(longitudeString),
+            isLatitudeValid(latitude), isLongitudeValid(longitude)
         else {
             return
         }
         let location = CLLocation(latitude: latitude, longitude: longitude)
         contentView.setMapLocation(location, animated: false)
     }
-
+    
     private func isLatitudeValid(_ latitude: Double) -> Bool {
         let lowerbound: Double = 90
         return latitude <= lowerbound && latitude >= -lowerbound
     }
-
+    
     private func isLongitudeValid(_ longitude: Double) -> Bool {
         let lowerbound: Double = 180
         return longitude <= lowerbound && longitude >= -lowerbound
@@ -432,7 +470,7 @@ extension SolarMainViewController: NSDraggingSource {
 extension SolarMainViewController: InteractiveLineChartDelegate {
     func progressDidChange(progress: CGFloat) {
         latestTimeProgress = Float(progress)
-        makeResult(needUpdateCoordinateFields: false, needRoundCoordinateValues: false)
+        makeResult(needUpdateCoordinateFields: false, needRoundCoordinateValues: false, async: true)
     }
     
     func progressTitle(progress: CGFloat) -> String {

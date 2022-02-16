@@ -59,9 +59,15 @@ final class WallpaperCreateViewController: ViewController {
     private let wallpaperService: WallpaperService
     private let imageProvider: ImageProvider
     
-    private let operationQueue: OperationQueue = {
+    private let taskOperationQueue: OperationQueue = {
         let queue = OperationQueue()
-        queue.qualityOfService = .background
+        queue.qualityOfService = .utility
+        return queue
+    }()
+    
+    private let fileOperationQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.qualityOfService = .userInteractive
         return queue
     }()
 
@@ -182,13 +188,13 @@ final class WallpaperCreateViewController: ViewController {
                     }
                 }
             }
-            self?.operationQueue.addOperation(operation)
+            self?.taskOperationQueue.addOperation(operation)
         }
     }
     
     private func shareWallpaper(relativeTo view: NSView) {
         contentView.isUserInteractionsEnabled = false
-        operationQueue.addOperation { [weak self] in
+        taskOperationQueue.addOperation { [weak self] in
             do {
                 let temporaryDirectoryUrl = FileManager.default.temporaryDirectory
                 let filename = Constants.imageFilename
@@ -336,10 +342,24 @@ extension WallpaperCreateViewController: AnimatedImageViewDelegate {
     func numberOfImages() -> Int {
         return imageAttributes.count
     }
-
-    func image(for index: Int, completion: @escaping (NSImage?) -> Void) {
+    
+    func image(for index: Int, initial: Bool, completion: @escaping (NSImage?) -> Void) {
         let url = imageAttributes[index].url
-        imageProvider.loadImage(url: url, resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true)) { image in
+        let cacheMode: ImageCacheMode
+        
+        switch initial {
+        case true:
+            cacheMode = .processInMain
+            
+        case false:
+            cacheMode = .processInBackground
+        }
+        
+        imageProvider.loadImage(
+            url: url,
+            resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true),
+            cacheMode: cacheMode
+        ) { image in
             completion(image)
         }
     }
@@ -357,7 +377,11 @@ extension WallpaperCreateViewController: DragAnimatedImageViewDelegate {
             return
         }
         
-        imageProvider.loadImage(url: url, resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true)) { image in
+        imageProvider.loadImage(
+            url: url,
+            resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true),
+            cacheMode: .processInBackground
+        ) { image in
             let provider = NSFilePromiseProvider(fileType: kUTTypeImage as String, delegate: self)
             let draggingItem = NSDraggingItem(pasteboardWriter: provider)
             draggingItem.setDraggingFrame(dragAnimatedImageView.bounds, contents: image)
@@ -388,7 +412,7 @@ extension WallpaperCreateViewController: NSFilePromiseProviderDelegate {
     }
 
     func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
-        return operationQueue
+        return fileOperationQueue
     }
 
     func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL, completionHandler: @escaping (Error?) -> Void) {

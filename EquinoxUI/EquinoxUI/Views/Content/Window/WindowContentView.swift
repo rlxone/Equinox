@@ -55,10 +55,16 @@ extension WindowContentView {
 public final class WindowContentView: VisualEffectView {
     private lazy var titleBarView = TitleBarView()
     private lazy var notificationView = NotificationView()
-    private lazy var notificationQueue = OperationQueue()
-    private lazy var notificationSemaphore = DispatchSemaphore(value: 0)
     private weak var notificationTopConstraint: NSLayoutConstraint?
     public lazy var containerView = NSView()
+    
+    private lazy var notificationQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        queue.qualityOfService = .userInitiated
+        return queue
+    }()
+    private lazy var notificationSemaphore = DispatchSemaphore(value: 0)
 
     // MARK: - Initializer
 
@@ -148,25 +154,25 @@ public final class WindowContentView: VisualEffectView {
         notificationQueue.cancelAllOperations()
         let operation = BlockOperation()
 
-        operation.addExecutionBlock { [weak self, weak operation] in
+        operation.addExecutionBlock { [weak operation] in
             guard let operation = operation, !operation.isCancelled else {
                 return
             }
             
             OperationQueue.main.addOperation {
-                self?.animatePresent()
+                self.animatePresent()
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Constants.notificationDelay)) { [weak operation] in
                 guard let operation = operation, !operation.isCancelled else {
-                    self?.notificationSemaphore.signal()
+                    self.notificationSemaphore.signal()
                     return
                 }
-                self?.animateDismiss()
-                self?.notificationSemaphore.signal()
+                self.animateDismiss()
+                self.notificationSemaphore.signal()
             }
             
-            self?.notificationSemaphore.wait()
+            self.notificationSemaphore.wait()
         }
 
         notificationQueue.addOperation(operation)

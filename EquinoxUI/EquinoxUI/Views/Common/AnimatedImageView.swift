@@ -32,7 +32,7 @@ import AppKit
 
 public protocol AnimatedImageViewDelegate: AnyObject {
     func numberOfImages() -> Int
-    func image(for index: Int, completion: @escaping (NSImage?) -> Void)
+    func image(for index: Int, initial: Bool, completion: @escaping (NSImage?) -> Void)
 }
 
 // MARK: - Enums, Structs
@@ -46,6 +46,8 @@ extension AnimatedImageView {
 // MARK: - Class
 
 public class AnimatedImageView: View {
+    private var initial = true
+    
     private lazy var foregroundImageView: ImageView = {
         let imageView = ImageView()
         imageView.imageContentsGravity = .resizeAspectFill
@@ -145,12 +147,18 @@ public class AnimatedImageView: View {
         let foregroundImageIndex = currentIndex
         let backgroundImageIndex = currentIndex == numberOfImages - 1 ? 0 : currentIndex + 1
         
-        delegate?.image(for: foregroundImageIndex) { [weak self] image in
+        foregroundImageView.image = nil
+        
+        delegate?.image(for: foregroundImageIndex, initial: initial) { [weak self] image in
             self?.foregroundImageView.image = image
         }
         
-        delegate?.image(for: backgroundImageIndex) { [weak self] image in
+        delegate?.image(for: backgroundImageIndex, initial: initial) { [weak self] image in
             self?.backgroundImageView.image = image
+        }
+        
+        if initial {
+            initial = false
         }
         
         animateTransition { [weak self] in
@@ -174,9 +182,8 @@ public class AnimatedImageView: View {
         animation.toValue = 0
         animation.duration = Constants.animationDuration
         animation.timingFunction = .init(name: .easeInEaseOut)
-        animation.fillMode = .forwards
-        animation.isRemovedOnCompletion = false
         foregroundImageView.layer?.add(animation, forKey: nil)
+        foregroundImageView.layer?.opacity = 0
         
         CATransaction.commit()
     }

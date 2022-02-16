@@ -55,7 +55,12 @@ public class Button: NSButton {
     private var tooltipWindow: TooltipWindow?
     private var isTooltipVisible = false
     private var isMouseEntered = false
-    private var operationQueue = OperationQueue()
+    private var operationQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.qualityOfService = .userInitiated
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
     private var semaphore = DispatchSemaphore(value: 0)
     
     // MARK: - Initializer
@@ -145,22 +150,22 @@ public class Button: NSButton {
         operationQueue.cancelAllOperations()
         let operation = BlockOperation()
 
-        operation.addExecutionBlock { [weak self, weak operation] in
+        operation.addExecutionBlock { [weak operation] in
             guard let operation = operation, !operation.isCancelled else {
                 return
             }
             let deadline: DispatchTime = .now() + .milliseconds(Constants.presentDelayMilliseconds)
-            DispatchQueue.main.asyncAfter(deadline: deadline) { [weak self, weak operation] in
+            DispatchQueue.main.asyncAfter(deadline: deadline) { [weak operation] in
                 guard let operation = operation, !operation.isCancelled else {
-                    self?.semaphore.signal()
+                    self.semaphore.signal()
                     return
                 }
-                self?.showTooltip()
-                self?.semaphore.signal()
+                self.showTooltip()
+                self.semaphore.signal()
             }
-            self?.semaphore.wait()
+            self.semaphore.wait()
         }
-
+        
         operationQueue.addOperation(operation)
     }
     
