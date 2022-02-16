@@ -113,6 +113,7 @@ public final class GalleryCollectionView: NSScrollView {
     
     private lazy var operationQueue: OperationQueue = {
         let queue = OperationQueue()
+        queue.qualityOfService = .userInitiated
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
@@ -273,19 +274,19 @@ public final class GalleryCollectionView: NSScrollView {
 
         if offset < collectionLayout.collectionViewContentSize.height - Constants.pinFooterOffset {
             let operation = BlockOperation()
-            operation.addExecutionBlock { [weak self, weak operation] in
+            operation.addExecutionBlock { [weak operation] in
                 guard let operation = operation, !operation.isCancelled else {
                     return
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + Constants.footerAnimationDelay) { [weak self, weak operation] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + Constants.footerAnimationDelay) { [weak operation] in
                     guard let operation = operation, !operation.isCancelled else {
-                        self?.semaphore.signal()
+                        self.semaphore.signal()
                         return
                     }
                     footerView.animate(isHidden: true)
-                    self?.semaphore.signal()
+                    self.semaphore.signal()
                 }
-                self?.semaphore.wait()
+                self.semaphore.wait()
             }
             operationQueue.addOperation(operation)
         }

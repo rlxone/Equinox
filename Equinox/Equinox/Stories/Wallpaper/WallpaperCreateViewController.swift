@@ -59,9 +59,15 @@ final class WallpaperCreateViewController: ViewController {
     private let wallpaperService: WallpaperService
     private let imageProvider: ImageProvider
     
-    private let operationQueue: OperationQueue = {
+    private let taskOperationQueue: OperationQueue = {
         let queue = OperationQueue()
-        queue.qualityOfService = .background
+        queue.qualityOfService = .utility
+        return queue
+    }()
+    
+    private let fileOperationQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.qualityOfService = .userInteractive
         return queue
     }()
 
@@ -182,13 +188,13 @@ final class WallpaperCreateViewController: ViewController {
                     }
                 }
             }
-            self?.operationQueue.addOperation(operation)
+            self?.taskOperationQueue.addOperation(operation)
         }
     }
     
     private func shareWallpaper(relativeTo view: NSView) {
         contentView.isUserInteractionsEnabled = false
-        operationQueue.addOperation { [weak self] in
+        taskOperationQueue.addOperation { [weak self] in
             do {
                 let temporaryDirectoryUrl = FileManager.default.temporaryDirectory
                 let filename = Constants.imageFilename
@@ -406,7 +412,7 @@ extension WallpaperCreateViewController: NSFilePromiseProviderDelegate {
     }
 
     func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
-        return operationQueue
+        return fileOperationQueue
     }
 
     func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL, completionHandler: @escaping (Error?) -> Void) {

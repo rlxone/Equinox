@@ -61,7 +61,7 @@ final class ImageProviderImpl: ImageProvider {
     private let imageService: ImageService
     private let operationQueue: OperationQueue = {
         let queue = OperationQueue()
-        queue.qualityOfService = .userInitiated
+        queue.qualityOfService = .utility
         return queue
     }()
     
