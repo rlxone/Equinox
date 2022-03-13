@@ -48,6 +48,7 @@ public protocol GalleryCollectionViewDelegate: GalleryCollectionViewItemDelegate
     func draggingExited(_ sender: NSDraggingInfo?)
     func didDeleteBackward(for collectionView: NSCollectionView)
     func didScroll(_ scrollView: NSScrollView)
+    func menuNeedsUpdate(_ menu: NSMenu)
 }
 
 // MARK: - Enums, Structs
@@ -143,16 +144,23 @@ public final class GalleryCollectionView: NSScrollView {
 
     private func setup() {
         setupView()
+        setupMenu()
         setupNotifications()
     }
 
     private func setupView() {
         collectionView.collectionViewLayout = collectionLayout
         collectionView.dataSource = dataSource
-
+        
         verticalScroller = InvisibleScroller()
         documentView = collectionView
         contentView.postsBoundsChangedNotifications = true
+    }
+    
+    private func setupMenu() {
+        let menu = NSMenu()
+        collectionView.menu = menu
+        menu.delegate = self
     }
 
     private func setupNotifications() {
@@ -198,6 +206,15 @@ public final class GalleryCollectionView: NSScrollView {
         }
         set {
             collectionView.isSelectable = newValue
+        }
+    }
+    
+    public var selectedIndexPaths: Set<IndexPath> {
+        get {
+            return collectionView.selectionIndexPaths
+        }
+        set {
+            collectionView.selectionIndexPaths = newValue
         }
     }
     
@@ -290,7 +307,7 @@ public final class GalleryCollectionView: NSScrollView {
             operationQueue.addOperation(operation)
         }
     }
-
+    
     @objc
     private func scrollViewDidScroll(_ notification: Notification) {
         delegate?.didScroll(self)
@@ -299,7 +316,7 @@ public final class GalleryCollectionView: NSScrollView {
         }
         updateFooterPin()
     }
-
+    
     private func updateTrackingAreas(view: NSView) {
         for subview in view.subviews {
             subview.updateTrackingAreas()
@@ -403,5 +420,13 @@ extension GalleryCollectionView: NSCollectionViewDelegateFlowLayout {
 extension GalleryCollectionView: GalleryCollectionDataSourceDelegate {
     public func updateFooter() {
         updateFooterPin()
+    }
+}
+
+// MARK: - NSMenuDelegate
+
+extension GalleryCollectionView: NSMenuDelegate {
+    public func menuNeedsUpdate(_ menu: NSMenu) {
+        delegate?.menuNeedsUpdate(menu)
     }
 }

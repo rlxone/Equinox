@@ -188,6 +188,15 @@ public final class GalleryContentView: View {
             galleryCollectionView.isSelectionEnabled = newValue
         }
     }
+    
+    public var selectedIndexPaths: Set<IndexPath> {
+        get {
+            return galleryCollectionView.selectedIndexPaths
+        }
+        set {
+            galleryCollectionView.selectedIndexPaths = newValue
+        }
+    }
 
     public func setCollectionVisibility(_ isVisible: Bool, animated: Bool) {
         galleryCollectionView.setCollectionVisibility(isVisible, animated: animated)

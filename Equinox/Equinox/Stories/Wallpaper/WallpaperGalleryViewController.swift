@@ -225,6 +225,11 @@ final class WallpaperGalleryViewController: ViewController {
         contentView.isDragHighlighted = false
         contentView.isSelectionEnabled = !isEmpty
     }
+    
+    @objc
+    func collectionMenuDeleteItems(_ sender: Any) {
+        deleteCollectionItems()
+    }
 }
 
 // MARK: - Drag and Drop
@@ -295,7 +300,11 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
         })
     }
 
-    func deleteCollectionItems(_ indexPaths: [IndexPath]) {
+    func deleteCollectionItems() {
+        let indexPaths = contentView
+            .selectedIndexPaths
+            .sorted(by: >)
+        
         for indexPath in indexPaths {
             dataController.remove(at: indexPath.item)
         }
@@ -363,5 +372,18 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
 
     func collectionDidScroll() {
         delegate?.closePopover()
+    }
+    
+    func collectionMenuNeedsUpdate(_ menu: NSMenu) {
+        let count = contentView.selectedIndexPaths.count
+        
+        menu.removeAllItems()
+        let item = NSMenuItem(
+            title: Localization.Wallpaper.Gallery.menuDelete(param1: count),
+            action: #selector(collectionMenuDeleteItems(_:)),
+            keyEquivalent: String()
+        )
+        item.target = self
+        menu.addItem(item)
     }
 }
