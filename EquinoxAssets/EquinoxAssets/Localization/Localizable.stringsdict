@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Delete item</string>
+			<string>Delete image</string>
 			<key>other</key>
-			<string>Delete items (%d items)</string>
+			<string>Delete images (%d items)</string>
 		</dict>
 	</dict>
 </dict>
