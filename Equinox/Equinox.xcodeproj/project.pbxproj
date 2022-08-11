@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D8467CE2899BB0C00D19E32 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D8467CC2899BB0C00D19E32 /* InfoPlist.strings */; };
 		F3003226213081F0008D1352 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3003225213081F0008D1352 /* AppDelegate.swift */; };
 		F30C86DC26D6CEE600F93E60 /* WallpaperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86DB26D6CEE600F93E60 /* WallpaperType.swift */; };
 		F30C86E626DC761300F93E60 /* RoundedPushButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86E526DC761300F93E60 /* RoundedPushButtonExtensions.swift */; };
@@ -76,6 +77,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D8467CD2899BB0C00D19E32 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D8467CF2899BCDA00D19E32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F3003222213081F0008D1352 /* Equinox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equinox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3003225213081F0008D1352 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F300322C213081F0008D1352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -278,6 +281,7 @@
 				F32BE0D326DD861B00CF90F8 /* AppIcon.xcassets */,
 				F300322C213081F0008D1352 /* Info.plist */,
 				F300322D213081F0008D1352 /* Equinox.entitlements */,
+				3D8467CC2899BB0C00D19E32 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -374,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F32BE0D426DD861B00CF90F8 /* AppIcon.xcassets in Resources */,
+				3D8467CE2899BB0C00D19E32 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +456,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3D8467CC2899BB0C00D19E32 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D8467CD2899BB0C00D19E32 /* fr */,
+				3D8467CF2899BCDA00D19E32 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F3003239213081F0008D1352 /* Debug */ = {
