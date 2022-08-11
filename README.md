@@ -110,11 +110,11 @@ Many thanks to the macOS community and special thanks to [mczachurski](https://g
 
 ## Translation
 
-Equinox is translated to `«English»` & `«French»`. To translate Equinox to another language:
-- Make a fork of the main branch 
-- Make a branch for the new translation: `«translation-xx»` where xx is the language code (ex: en, fr, es, de, ...)
-- Add the new language to the Xcode `«Equinox»` & `«EquinoxAssets»` projects
-- Add the new language to `«Localizable.strings»` localization languages in `«EquinoxAssets»`
-- Update `«Localizable.strings»` for the new language with your translated strings
-- Update this part of the README 
-- Make a pull request on GitHub
+Equinox is translated to `English` & `French`. To translate Equinox to another language:
+- Fork the main branch 
+- Make a branch for the new translation as follows: `translation-xx` where xx is the language code (ex: en, fr, es, de, ...)
+- Add the new language to the Xcode `Equinox` & `EquinoxAssets` projects
+- Add the new language to `Localizable.strings` localization languages in `EquinoxAssets`
+- Update `Localizable.strings` for the new language with your translated strings
+- Update this part of the README with the new language
+- Write a pull request on GitHub
