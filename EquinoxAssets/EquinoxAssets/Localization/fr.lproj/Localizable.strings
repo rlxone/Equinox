@@ -108,18 +108,18 @@
 "solar.main.copied" = "Copié";
 "solar.main.sun.timeline" = "Chronologie soleil";
 "solar.main.timezone" = "Fuseau horaire :";
-"solar.main.location.error" = "Oups ! Une eurreur s'est produite durant la géolocalisation. Merci, de réessayer";
+"solar.main.location.error" = "Oups ! Une eurreur s'est produite durant la géolocalisation. Merci de réessayer.";
 
 "tip.tips" = "ASTUCES";
 "tip.started" = "Commencer";
 "tip.ok" = "Compris";
 "tip.solar.title" = "Fond d'écran solaire";
-"tip.solar.description" = "The main feature of this type of wallpaper is that it takes the position of the sun into account. Depending on the time of year you will see the most relevant image on your desktop.\nDon't worry about calculations. With the help of the «Solar calculator» you only need to know where and when you took a photo.";
+"tip.solar.description" = "Ce type de fond d'écran prends en compte la position du soleil. Suivant le moment de l'année vous verez l'image la plus adapté sur votre bureau. \nNe vous inquietez pas des calculs, avec l'aide de la «Calculatrice Solaire» vous avez seulement besoin de savoir quand et où vous avez pris la photo.";
 "tip.time.title" = "Fond d'écran temps";
-"tip.time.description" = "Time is the key to this type of wallpaper. The desktop picture changes throughout the day, based on the time you choose.";
+"tip.time.description" = "Le temps est essentiel pour ce type de fond d'écran. L'image de votre bureau change tout au long de la journée suivant les heures choisies.";
 "tip.appearance.title" = "Fond d'écran apparence";
-"tip.appearance.description" = "This type of wallpaper is as simple as it is. The desktop picture changes throughout the day, based on system appearance change. You need two images: one for light and one for dark mode.";
+"tip.appearance.description" = "Le type de fond d'écran le plus simple. L'image de votre bureau change dans la journée suivant le changement d'apparence système. Il faut deux images : une clair et une autre pour le mode sombre.";
 "tip.calculator.title" = "Calculatrice solaire";
-"tip.calculator.description" = "It will help you to calculate the position of the sun in the sky.\n1. Choose the place, date, and time on the sun timeline when you took a photo. If you don't know the exact time you can use the sun timeline to see how high or low the position of the sun in the sky is and match it with the photos you have.\n2. Drag and drop or copy the result over your image.";
+"tip.calculator.description" = "Cela vous aide à calculer la position du soleil dans le ciel.\n1. Indiquez le lieu, la date et l'heure où la photo a été prise sur le graphique chronologique du soleil. Si vous ne connaissez pas l'heure exacte vous pouvez utiliser le graphique chronologique pour voir la hauteur du soleil dans le ciel afin de le caler en fonction de la photo.\n2. Glisser et déposer ou copier le résultat par dessus votre image.";
 
 "dock.new" = "Nouveau";
