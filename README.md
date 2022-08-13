@@ -112,7 +112,7 @@ Many thanks to the macOS community and special thanks to [mczachurski](https://g
 
 Equinox is translated to:
 - English
-- French, by @W1W1-M
+- French, by [W1W1-M](https://github.com/W1W1-M)
 
 To translate Equinox to another language:
 - Fork the main branch 
