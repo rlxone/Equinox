@@ -217,62 +217,45 @@ final class ApplicationMenu: NSMenu {
     private var helpMenu: MenuItem {
         let menu = MenuItem()
         menu.submenu = NSMenu(title: Localization.Menu.Help.help)
-        menu.submenu?.items = [
-            MenuItem.separator(),
-            MenuItem(
-                title: "GitHub project",
+        helpMenuLinks.allCases.enumerated().forEach { helpMenuIndex, helpLink in
+            let menuItem = MenuItem(
+                title: helpLink.linkInfo.title,
                 keyEquivalent: "",
                 keyModifier: .command,
-                action: #selector(openGitHubProjectURL),
-                target: self
-            ),
-            MenuItem(
-                title: "Frequently Asked Questions",
-                keyEquivalent: "",
-                keyModifier: .command,
-                action: #selector(openGitHubFAQURL),
-                target: self
-            ),
-            MenuItem(
-                title: "Report an issue",
-                keyEquivalent: "",
-                keyModifier: .command,
-                action: #selector(openGitHubIssueURL),
-                target: self
-            ),
-            MenuItem.separator(),
-            MenuItem(
-                title: "Equinox website",
-                keyEquivalent: "",
-                keyModifier: .command,
-                action: #selector(openEquinoxWebsiteURL),
-                target: self
-            ),
-            MenuItem(
-                title: "Rate Equinox on the Mac App Store",
-                keyEquivalent: "",
-                keyModifier: .command,
-                action: #selector(openMacAppStoreReviewURL),
-                target: self
-            ),
-            MenuItem(
-                title: "Equinox on Product Hunt",
-                keyEquivalent: "",
-                keyModifier: .command,
-                action: #selector(openProductHuntURL),
+                action: #selector(openURL(_:)),
                 target: self
             )
-        ]
+            menu.submenu?.items.append(menuItem)
+            if helpMenuIndex == 2 {
+                menu.submenu?.items.append(MenuItem.separator())
+            }
+        }
         return menu
     }
     
-    private enum helpURLs: String {
-        case githubProjectURL = "https://github.com/rlxone/Equinox"
-        case githubFAQURL = "https://github.com/rlxone/Equinox#faq"
-        case githubIssueURL = "https://github.com/rlxone/Equinox/issues"
-        case equinoxWebsiteURL = "https://equinoxmac.com"
-        case macAppStoreReviewURL = "https://apps.apple.com/us/app/equinox-create-wallpaper/id1591510203?action=write-review"
-        case productHuntURL = "https://www.producthunt.com/products/equinox"
+    private enum helpMenuLinks: CaseIterable {
+        case githubProject
+        case githubFAQ
+        case githubIssue
+        case equinoxWebsite
+        case macAppStoreReview
+        case productHunt
+        var linkInfo: (title: String, url: URL?) {
+            switch self {
+            case .githubProject:
+                return ("GitHub project", URL(string: "https://github.com/rlxone/Equinox"))
+            case .githubFAQ:
+                return ("Frequently Asked Questions", URL(string: "https://github.com/rlxone/Equinox#faq"))
+            case .githubIssue:
+                return ("Report an issue", URL(string: "https://github.com/rlxone/Equinox/issues"))
+            case .equinoxWebsite:
+                return ("Equinox website", URL(string: "https://equinoxmac.com"))
+            case .macAppStoreReview:
+                return ("Rate Equinox on the Mac App Store", URL(string: "https://apps.apple.com/us/app/equinox-create-wallpaper/id1591510203?action=write-review"))
+            case .productHunt:
+                return ("Equinox on Product Hunt", URL(string: "https://www.producthunt.com/products/equinox"))
+            }
+        }
     }
     
     @objc
@@ -287,22 +270,22 @@ final class ApplicationMenu: NSMenu {
         NSWorkspace.shared.open(url)
     }
     
-    @objc func openGitHubProjectURL() {
-        unwrapOpenURL(URL(string: helpURLs.githubProjectURL.rawValue))
-    }
-    @objc func openGitHubFAQURL() {
-        unwrapOpenURL(URL(string: helpURLs.githubFAQURL.rawValue))
-    }
-    @objc func openGitHubIssueURL() {
-        unwrapOpenURL(URL(string: helpURLs.githubIssueURL.rawValue))
-    }
-    @objc func openEquinoxWebsiteURL() {
-        unwrapOpenURL(URL(string: helpURLs.equinoxWebsiteURL.rawValue))
-    }
-    @objc func openMacAppStoreReviewURL() {
-        unwrapOpenURL(URL(string: helpURLs.macAppStoreReviewURL.rawValue))
-    }
-    @objc func openProductHuntURL() {
-        unwrapOpenURL(URL(string: helpURLs.productHuntURL.rawValue))
+    @objc func openURL(_ sender: NSMenuItem) {
+        switch sender.title {
+        case "GitHub project":
+            unwrapOpenURL(helpMenuLinks.githubProject.linkInfo.url)
+        case "Frequently Asked Questions":
+            unwrapOpenURL(helpMenuLinks.githubFAQ.linkInfo.url)
+        case "Report an issue":
+            unwrapOpenURL(helpMenuLinks.githubIssue.linkInfo.url)
+        case "Equinox website":
+            unwrapOpenURL(helpMenuLinks.equinoxWebsite.linkInfo.url)
+        case "Rate Equinox on the Mac App Store":
+            unwrapOpenURL(helpMenuLinks.macAppStoreReview.linkInfo.url)
+        case "Equinox on Product Hunt":
+            unwrapOpenURL(helpMenuLinks.productHunt.linkInfo.url)
+        default:
+            return
+        }
     }
 }
