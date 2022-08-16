@@ -217,7 +217,7 @@ final class ApplicationMenu: NSMenu {
     private var helpMenu: MenuItem {
         let menu = MenuItem()
         menu.submenu = NSMenu(title: Localization.Menu.Help.help)
-        helpMenuLinks.allCases.enumerated().forEach { helpMenuIndex, helpLink in
+        helpMenuLinks.allCases.forEach { helpLink in
             let menuItem = MenuItem(
                 title: helpLink.linkInfo.title,
                 keyEquivalent: "",
@@ -226,10 +226,8 @@ final class ApplicationMenu: NSMenu {
                 target: self
             )
             menu.submenu?.items.append(menuItem)
-            if helpMenuIndex == 2 {
-                menu.submenu?.items.append(MenuItem.separator())
-            }
         }
+        menu.submenu?.items.insert(MenuItem.separator(), at: 3)
         return menu
     }
     
@@ -263,29 +261,27 @@ final class ApplicationMenu: NSMenu {
         applicationDelegate?.applicationMenuNew(sender)
     }
     
-    @objc func unwrapOpenURL(_ url: URL?) {
-        guard let url = url else {
-            return
-        }
-        NSWorkspace.shared.open(url)
-    }
-    
     @objc func openURL(_ sender: NSMenuItem) {
-        switch sender.title {
+        var url: URL?
+        switch sender.title { // TODO : use an id instead of MenuItem title 
         case "GitHub project":
-            unwrapOpenURL(helpMenuLinks.githubProject.linkInfo.url)
+            url = helpMenuLinks.githubProject.linkInfo.url
         case "Frequently Asked Questions":
-            unwrapOpenURL(helpMenuLinks.githubFAQ.linkInfo.url)
+            url = helpMenuLinks.githubFAQ.linkInfo.url
         case "Report an issue":
-            unwrapOpenURL(helpMenuLinks.githubIssue.linkInfo.url)
+            url = helpMenuLinks.githubIssue.linkInfo.url
         case "Equinox website":
-            unwrapOpenURL(helpMenuLinks.equinoxWebsite.linkInfo.url)
+            url = helpMenuLinks.equinoxWebsite.linkInfo.url
         case "Rate Equinox on the Mac App Store":
-            unwrapOpenURL(helpMenuLinks.macAppStoreReview.linkInfo.url)
+            url = helpMenuLinks.macAppStoreReview.linkInfo.url
         case "Equinox on Product Hunt":
-            unwrapOpenURL(helpMenuLinks.productHunt.linkInfo.url)
+            url = helpMenuLinks.productHunt.linkInfo.url
         default:
             return
         }
+        guard let unwrappedURL = url else {
+            return
+        }
+        NSWorkspace.shared.open(unwrappedURL)
     }
 }
