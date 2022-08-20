@@ -38,7 +38,7 @@ final class MenuItem: NSMenuItem {
         keyEquivalent charCode: String,
         keyModifier: NSEvent.ModifierFlags,
         action selector: Selector?,
-        target: AnyObject = MenuItem.self as AnyObject,
+        target: AnyObject = self as AnyObject,
         isEnabled: Bool = true
     ) {
         super.init(title: string, action: selector, keyEquivalent: charCode)
