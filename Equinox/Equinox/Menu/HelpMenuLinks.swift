@@ -27,6 +27,7 @@
 // THE SOFTWARE.
 
 import Foundation
+import EquinoxAssets
 
 internal enum helpMenuLinks: CaseIterable {
     case githubProject
@@ -38,17 +39,17 @@ internal enum helpMenuLinks: CaseIterable {
     var linkInfo: (title: String, url: URL?) {
         switch self {
         case .githubProject:
-            return ("GitHub project", URL(string: "https://github.com/rlxone/Equinox"))
+            return (Localization.Menu.Help.githubProject, URL(string: "https://github.com/rlxone/Equinox"))
         case .githubFAQ:
-            return ("Frequently Asked Questions", URL(string: "https://github.com/rlxone/Equinox#faq"))
+            return (Localization.Menu.Help.githubFAQ, URL(string: "https://github.com/rlxone/Equinox#faq"))
         case .githubIssue:
-            return ("Report an issue", URL(string: "https://github.com/rlxone/Equinox/issues"))
+            return (Localization.Menu.Help.githubIssue, URL(string: "https://github.com/rlxone/Equinox/issues"))
         case .equinoxWebsite:
-            return ("Equinox website", URL(string: "https://equinoxmac.com"))
+            return (Localization.Menu.Help.equinoxWebsite, URL(string: "https://equinoxmac.com"))
         case .macAppStoreReview:
-            return ("Rate Equinox on the Mac App Store", URL(string: "https://apps.apple.com/us/app/equinox-create-wallpaper/id1591510203?action=write-review"))
+            return (Localization.Menu.Help.macAppStoreReview, URL(string: "https://apps.apple.com/us/app/equinox-create-wallpaper/id1591510203?action=write-review"))
         case .productHunt:
-            return ("Equinox on Product Hunt", URL(string: "https://www.producthunt.com/products/equinox"))
+            return (Localization.Menu.Help.productHunt, URL(string: "https://www.producthunt.com/products/equinox"))
         }
     }
 }
