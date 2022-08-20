@@ -23,6 +23,12 @@
 "menu.window.show.all" = "Afficher tout";
 
 "menu.help" = "Aide";
+"menu.help.githubProject" = "Projet sur GitHub";
+"menu.help.githubFAQ" = "Foire Aux Questions";
+"menu.help.githubIssue" = "Signaler un problème";
+"menu.help.equinoxWebsite" = "Site Equinox";
+"menu.help.macAppStoreReview" = "Noter Equinox sur le Mac App Store";
+"menu.help.productHunt" = "Equinox sur Product Hunt";
 
 "welcome.title" = "Bienvenue dans Equinox";
 "welcome.welcome" = "Bienvenue dans %@";
