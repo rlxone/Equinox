@@ -225,6 +225,7 @@ final class ApplicationMenu: NSMenu {
                 action: #selector(openURL(_:)),
                 target: self
             )
+            menuItem.representedObject = helpLink.linkInfo.url
             menu.submenu?.items.append(menuItem)
         }
         menu.submenu?.items.insert(MenuItem.separator(), at: 3)
@@ -237,24 +238,7 @@ final class ApplicationMenu: NSMenu {
     }
     
     @objc func openURL(_ sender: NSMenuItem) {
-        var url: URL?
-        switch sender.title { // TODO : use an id instead of MenuItem title 
-        case "GitHub project":
-            url = helpMenuLinks.githubProject.linkInfo.url
-        case "Frequently Asked Questions":
-            url = helpMenuLinks.githubFAQ.linkInfo.url
-        case "Report an issue":
-            url = helpMenuLinks.githubIssue.linkInfo.url
-        case "Equinox website":
-            url = helpMenuLinks.equinoxWebsite.linkInfo.url
-        case "Rate Equinox on the Mac App Store":
-            url = helpMenuLinks.macAppStoreReview.linkInfo.url
-        case "Equinox on Product Hunt":
-            url = helpMenuLinks.productHunt.linkInfo.url
-        default:
-            return
-        }
-        guard let unwrappedURL = url else {
+        guard let unwrappedURL = sender.representedObject as? URL else {
             return
         }
         NSWorkspace.shared.open(unwrappedURL)
