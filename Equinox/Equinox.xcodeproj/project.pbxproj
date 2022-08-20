@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D916CE428B1682700D29FFF /* HelpMenuLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D916CE328B1682700D29FFF /* HelpMenuLinks.swift */; };
 		F3003226213081F0008D1352 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3003225213081F0008D1352 /* AppDelegate.swift */; };
 		F30C86DC26D6CEE600F93E60 /* WallpaperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86DB26D6CEE600F93E60 /* WallpaperType.swift */; };
 		F30C86E626DC761300F93E60 /* RoundedPushButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86E526DC761300F93E60 /* RoundedPushButtonExtensions.swift */; };
@@ -76,6 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D916CE328B1682700D29FFF /* HelpMenuLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpMenuLinks.swift; sourceTree = "<group>"; };
 		F3003222213081F0008D1352 /* Equinox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equinox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3003225213081F0008D1352 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F300322C213081F0008D1352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				F3D2EE4A267EDA18009704C5 /* ApplicationMenu.swift */,
 				F3E14A632742049400D986B6 /* DockMenu.swift */,
 				F3D2EE4F267EE774009704C5 /* MenuItem.swift */,
+				3D916CE328B1682700D29FFF /* HelpMenuLinks.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				F329B3DE26F6838500A31035 /* WallpaperGalleryDataController.swift in Sources */,
 				F356C8B1272F78B500E915C6 /* SolarTimezoneController.swift in Sources */,
 				F30C86DC26D6CEE600F93E60 /* WallpaperType.swift in Sources */,
+				3D916CE428B1682700D29FFF /* HelpMenuLinks.swift in Sources */,
 				F3E7B05E26ADE71100287C60 /* GalleryContentViewExtensions.swift in Sources */,
 				F32F3778273AD25400A52762 /* WorkspaceRunner.swift in Sources */,
 				F3AC410E26D57AA1000A7253 /* WallpaperRootViewController.swift in Sources */,

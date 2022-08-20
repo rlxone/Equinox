@@ -231,31 +231,6 @@ final class ApplicationMenu: NSMenu {
         return menu
     }
     
-    private enum helpMenuLinks: CaseIterable {
-        case githubProject
-        case githubFAQ
-        case githubIssue
-        case equinoxWebsite
-        case macAppStoreReview
-        case productHunt
-        var linkInfo: (title: String, url: URL?) {
-            switch self {
-            case .githubProject:
-                return ("GitHub project", URL(string: "https://github.com/rlxone/Equinox"))
-            case .githubFAQ:
-                return ("Frequently Asked Questions", URL(string: "https://github.com/rlxone/Equinox#faq"))
-            case .githubIssue:
-                return ("Report an issue", URL(string: "https://github.com/rlxone/Equinox/issues"))
-            case .equinoxWebsite:
-                return ("Equinox website", URL(string: "https://equinoxmac.com"))
-            case .macAppStoreReview:
-                return ("Rate Equinox on the Mac App Store", URL(string: "https://apps.apple.com/us/app/equinox-create-wallpaper/id1591510203?action=write-review"))
-            case .productHunt:
-                return ("Equinox on Product Hunt", URL(string: "https://www.producthunt.com/products/equinox"))
-            }
-        }
-    }
-    
     @objc
     private func new(_ sender: Any?) {
         applicationDelegate?.applicationMenuNew(sender)
