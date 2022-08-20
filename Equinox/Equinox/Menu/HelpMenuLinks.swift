@@ -26,30 +26,49 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
 import EquinoxAssets
+import Foundation
 
-internal enum helpMenuLinks: CaseIterable {
+internal enum HelpMenuLinks: CaseIterable {
     case githubProject
     case githubFAQ
     case githubIssue
     case equinoxWebsite
     case macAppStoreReview
     case productHunt
+    
     var linkInfo: (title: String, url: URL?) {
         switch self {
         case .githubProject:
-            return (Localization.Menu.Help.githubProject, URL(string: "https://github.com/rlxone/Equinox"))
+            return (
+                Localization.Menu.Help.githubProject,
+                URL(string: "https://github.com/rlxone/Equinox")
+            )
         case .githubFAQ:
-            return (Localization.Menu.Help.githubFAQ, URL(string: "https://github.com/rlxone/Equinox#faq"))
+            return (
+                Localization.Menu.Help.githubFAQ,
+                URL(string: "https://github.com/rlxone/Equinox#faq")
+            )
         case .githubIssue:
-            return (Localization.Menu.Help.githubIssue, URL(string: "https://github.com/rlxone/Equinox/issues"))
+            return (
+                Localization.Menu.Help.githubIssue,
+                URL(string: "https://github.com/rlxone/Equinox/issues")
+            )
         case .equinoxWebsite:
-            return (Localization.Menu.Help.equinoxWebsite, URL(string: "https://equinoxmac.com"))
+            return (
+                Localization.Menu.Help.equinoxWebsite,
+                URL(string: "https://equinoxmac.com")
+            )
         case .macAppStoreReview:
-            return (Localization.Menu.Help.macAppStoreReview, URL(string: "https://apps.apple.com/us/app/equinox-create-wallpaper/id1591510203?action=write-review"))
+            return (
+                Localization.Menu.Help.macAppStoreReview,
+                URL(string: "https://apps.apple.com/us/app/equinox-create-wallpaper/id1591510203?action=write-review")
+            )
         case .productHunt:
-            return (Localization.Menu.Help.productHunt, URL(string: "https://www.producthunt.com/products/equinox"))
+            return (
+                Localization.Menu.Help.productHunt,
+                URL(string: "https://www.producthunt.com/products/equinox")
+            )
         }
     }
 }

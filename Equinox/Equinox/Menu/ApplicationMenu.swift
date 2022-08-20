@@ -217,7 +217,7 @@ final class ApplicationMenu: NSMenu {
     private var helpMenu: MenuItem {
         let menu = MenuItem()
         menu.submenu = NSMenu(title: Localization.Menu.Help.help)
-        helpMenuLinks.allCases.forEach { helpLink in
+        HelpMenuLinks.allCases.forEach { helpLink in
             let menuItem = MenuItem(
                 title: helpLink.linkInfo.title,
                 keyEquivalent: "",
@@ -237,7 +237,8 @@ final class ApplicationMenu: NSMenu {
         applicationDelegate?.applicationMenuNew(sender)
     }
     
-    @objc func openURL(_ sender: NSMenuItem) {
+    @objc
+    private func openURL(_ sender: NSMenuItem) {
         guard let unwrappedURL = sender.representedObject as? URL else {
             return
         }
