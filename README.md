@@ -7,7 +7,9 @@
 <div><h1></h1></div>
 
 <div align="center">
-  <img src="repo/logo.png" width="200" height="200"/>
+  <a href="https://equinoxmac.com/">
+    <img src="repo/logo.png" width="200" height="200"/>
+  </a>
   <h1>Equinox</h1>
   <p>Create dynamic wallpapers for macOS</p>
   <br>
