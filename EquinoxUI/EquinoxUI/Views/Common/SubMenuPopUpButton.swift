@@ -32,11 +32,11 @@ import AppKit
 
 extension SubMenuPopUpButton {
     public typealias ChangeAction = (String) -> Void
-    
+
     public struct MenuData {
         var items: [String: [String]]
         var selectedItem: String
-        
+
         public init(items: [String: [String]], selectedItem: String) {
             self.items = items
             self.selectedItem = selectedItem
@@ -51,48 +51,48 @@ public final class SubMenuPopUpButton: NSPopUpButton {
         super.init(frame: frameRect)
         setup()
     }
-    
+
     public override init(frame buttonFrame: NSRect, pullsDown flag: Bool) {
         super.init(frame: buttonFrame, pullsDown: flag)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         cell = SubMenuPopUpButtonCell()
     }
-    
+
     // MARK: - Public
-    
+
     public var data: MenuData? {
         didSet {
             reloadData()
         }
     }
-    
+
     public var changeAction: ChangeAction?
-    
+
     // MARK: - Private
-    
+
     private func reloadData() {
         guard let data = data else {
             return
         }
-        
+
         let menu = NSMenu()
         setAlternativeTitle(data.selectedItem)
         let sortedItems = data.items.sorted { $0.key < $1.key }
-        
+
         for item in sortedItems {
             let itemMenu = NSMenu()
             let menuItem = NSMenuItem(title: item.key, action: nil, keyEquivalent: String())
             let sortedSubItems = item.value.sorted { $0 < $1 }
-            
+
             for subItem in sortedSubItems {
                 let subMenuItem = NSMenuItem(
                     title: subItem,
@@ -109,17 +109,17 @@ public final class SubMenuPopUpButton: NSPopUpButton {
             menuItem.submenu = itemMenu
             menu.addItem(menuItem)
         }
-        
+
         self.menu = menu
     }
-    
+
     private func setAlternativeTitle(_ title: String) {
         guard let cell = cell as? SubMenuPopUpButtonCell else {
             return
         }
         cell.selectedTitle = title
     }
-    
+
     @objc
     private func menuItemAction(_ item: NSMenuItem) {
         setAlternativeTitle(item.title)

@@ -35,14 +35,14 @@ extension CreateBottomView {
         let tagStyle: TagItemView.Style
         let buttonsStyle: CreateButtonsView.Style
         let lineStyle: LineView.Style
-        
+
         public init(tagStyle: TagItemView.Style, buttonsStyle: CreateButtonsView.Style, lineStyle: LineView.Style) {
             self.tagStyle = tagStyle
             self.buttonsStyle = buttonsStyle
             self.lineStyle = lineStyle
         }
     }
-    
+
     private enum Constants {
         static let lineHeight: CGFloat = 1
         static let lineBottomOffset: CGFloat = 32
@@ -58,27 +58,27 @@ public final class CreateBottomView: View {
     private lazy var tagView = TagView()
     private lazy var lineView = LineView()
     private lazy var buttonsView = CreateButtonsView()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupConstraints()
     }
-    
+
     private func setupView() {
         addSubview(tagView)
         addSubview(lineView)
         addSubview(buttonsView)
     }
-    
+
     private func setupConstraints() {
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
         lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -88,20 +88,20 @@ public final class CreateBottomView: View {
             tagView.topAnchor.constraint(equalTo: topAnchor),
             tagView.centerXAnchor.constraint(equalTo: centerXAnchor),
             tagView.heightAnchor.constraint(equalToConstant: Constants.tagHeight),
-            
+
             lineView.topAnchor.constraint(equalTo: tagView.bottomAnchor, constant: Constants.tagBottomOffset),
             lineView.leadingAnchor.constraint(equalTo: leadingAnchor),
             lineView.trailingAnchor.constraint(equalTo: trailingAnchor),
             lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
-            
+
             buttonsView.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: Constants.lineBottomOffset),
             buttonsView.centerXAnchor.constraint(equalTo: centerXAnchor),
             buttonsView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.buttonsBottomOffset)
         ])
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -109,25 +109,25 @@ public final class CreateBottomView: View {
             }
         }
     }
-    
+
     public var saveButtonTitle: String? {
         didSet {
             buttonsView.saveButtonTitle = saveButtonTitle
         }
     }
-    
+
     public var setButtonTitle: String? {
         didSet {
             buttonsView.setButtonTitle = setButtonTitle
         }
     }
-    
+
     public var createButtonTitle: String? {
         didSet {
             buttonsView.createButtonTitle = createButtonTitle
         }
     }
-    
+
     public var cancelButtonTitle: String? {
         didSet {
             buttonsView.cancelButtonTitle = cancelButtonTitle
@@ -151,25 +151,25 @@ public final class CreateBottomView: View {
             buttonsView.setButtonAction = setButtonAction
         }
     }
-    
+
     public var createButtonAction: Button.Action? {
         didSet {
             buttonsView.createButtonAction = createButtonAction
         }
     }
-    
+
     public var shareButtonTitle: String? {
         didSet {
             buttonsView.shareButtonTitle = shareButtonTitle
         }
     }
-    
+
     public var shareButtonAction: Button.Action? {
         didSet {
             buttonsView.shareButtonAction = shareButtonAction
         }
     }
-    
+
     public var tags: [String] = [] {
         didSet {
             tagView.arrangedSubviews.forEach {
@@ -180,13 +180,13 @@ public final class CreateBottomView: View {
             }
         }
     }
-    
+
     public func showButtons(success: Bool) {
         buttonsView.showButtons(success: success)
     }
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         tagView.style = style?.tagStyle
         buttonsView.style = style?.buttonsStyle

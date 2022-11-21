@@ -44,12 +44,12 @@ extension SolarTimelineView {
                 self.contentBackgroundBorderColor = contentBackgroundBorderColor
             }
         }
-        
+
         let ownStyle: OwnStyle
         let interactiveLineChartStyle: InteractiveLineChart.Style
         let titleStyle: StyledLabel.Style
         let timelineStyle: StyledLabel.Style
-        
+
         public init(
             ownStyle: SolarTimelineView.Style.OwnStyle,
             interactiveLineChartStyle: InteractiveLineChart.Style,
@@ -62,7 +62,7 @@ extension SolarTimelineView {
             self.timelineStyle = timelineStyle
         }
     }
-    
+
     private enum Constants {
         static let contentCornerRadius: CGFloat = 8
         static let contentBorderWidth: CGFloat = 1
@@ -90,59 +90,59 @@ public final class SolarTimelineView: View {
     private lazy var titleLabel = StyledLabel()
     private lazy var timezoneLabel = StyledLabel()
     private lazy var timezoneButton = SubMenuPopUpButton()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupConstraints()
     }
-    
+
     private func setupView() {
         wantsLayer = true
         layer?.cornerRadius = Constants.contentCornerRadius
         layer?.borderWidth = Constants.contentBorderWidth
-        
+
         addSubview(titleLabel)
         addSubview(timezoneLabel)
         addSubview(interactiveLineChart)
         addSubview(timezoneButton)
     }
-    
+
     private func setupConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         timezoneLabel.translatesAutoresizingMaskIntoConstraints = false
         interactiveLineChart.translatesAutoresizingMaskIntoConstraints = false
         timezoneButton.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.titleLeadingOffset),
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.titleTopOffset),
-            
+
             interactiveLineChart.leadingAnchor.constraint(equalTo: leadingAnchor),
             interactiveLineChart.trailingAnchor.constraint(equalTo: trailingAnchor),
             interactiveLineChart.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.chartTopOffset),
             interactiveLineChart.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.chartBottomOffset),
             interactiveLineChart.heightAnchor.constraint(equalToConstant: Constants.chartHeightOffset),
-            
+
             timezoneButton.topAnchor.constraint(equalTo: topAnchor, constant: Constants.timezoneButtonTopOffset),
             timezoneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.timezoneButtonTrailingOffset),
             timezoneButton.widthAnchor.constraint(equalToConstant: Constants.timezoneButtonWidth),
-            
+
             timezoneLabel.trailingAnchor.constraint(equalTo: timezoneButton.leadingAnchor, constant: -Constants.timezoneLabelTrailingOffset),
             timezoneLabel.centerYAnchor.constraint(equalTo: timezoneButton.centerYAnchor)
         ])
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -150,56 +150,56 @@ public final class SolarTimelineView: View {
             }
         }
     }
-    
-    public var chartDelegate: InteractiveLineChartDelegate? {
+
+    public weak var chartDelegate: InteractiveLineChartDelegate? {
         didSet {
             interactiveLineChart.delegate = chartDelegate
         }
     }
-    
+
     public var chartData: [InteractiveLineChart.ChartData]? {
         didSet {
             interactiveLineChart.chartData = chartData
         }
     }
-    
+
     public var chartProgress: CGFloat? {
         didSet {
             interactiveLineChart.progress = chartProgress ?? 0
         }
     }
-    
+
     public var timelineHeaderTitle: String? {
         didSet {
             titleLabel.stringValue = timelineHeaderTitle ?? String()
         }
     }
-    
+
     public var timezoneHeaderTitle: String? {
         didSet {
             timezoneLabel.stringValue = timezoneHeaderTitle ?? String()
         }
     }
-    
+
     public var timezoneData: SubMenuPopUpButton.MenuData? {
         didSet {
             timezoneButton.data = timezoneData
         }
     }
-    
+
     public var timezoneChangeAction: SubMenuPopUpButton.ChangeAction? {
         didSet {
             timezoneButton.changeAction = timezoneChangeAction
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         interactiveLineChart.style = style?.interactiveLineChartStyle
         titleLabel.style = style?.titleStyle
         timezoneLabel.style = style?.timelineStyle
-        
+
         layer?.backgroundColor = style?.ownStyle.contentBackgroundColor.cgColor
         layer?.borderColor = style?.ownStyle.contentBackgroundBorderColor.cgColor
     }

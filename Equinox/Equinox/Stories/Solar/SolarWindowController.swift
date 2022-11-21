@@ -47,23 +47,23 @@ final class SolarWindowController: WindowController {
 
     private var contentWindow: Window?
     private var contentController: WindowViewController?
-    
+
     // MARK: - Initializer
-    
+
     init(solarService: SolarService, settingsService: SettingsService) {
         self.solarService = solarService
         self.settingsService = settingsService
         super.init(window: nil)
         setupWindow()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setupWindow() {
         let rootController = SolarRootViewController(solarService: solarService, settingsService: settingsService)
         rootController.delegate = self
         let title = Localization.Solar.Main.title
-        
+
         let windowController = WindowViewController(contentViewController: rootController, windowTitle: title)
         contentController = windowController
 

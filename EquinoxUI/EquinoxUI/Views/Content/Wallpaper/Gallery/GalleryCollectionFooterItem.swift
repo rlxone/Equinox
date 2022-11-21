@@ -38,7 +38,7 @@ extension GalleryCollectionFooterItem {
             self.footerStyle = footerStyle
         }
     }
-    
+
     private enum Constants {
         static let infoHorizontalOffset: CGFloat = 12
         static let infoVerticalOffset: CGFloat = 8
@@ -51,7 +51,7 @@ extension GalleryCollectionFooterItem {
 public final class GalleryCollectionFooterItem: NSView {
     private lazy var footerView = GalleryCollectionFooterView()
     private var isUserInteractionsEnabled = true
-    
+
     // MARK: - Initializer
 
     public override init(frame frameRect: NSRect) {
@@ -62,15 +62,15 @@ public final class GalleryCollectionFooterItem: NSView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Life Cycle
-    
+
     public override func hitTest(_ point: NSPoint) -> NSView? {
         return isUserInteractionsEnabled ? super.hitTest(point) : nil
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupConstraints()
@@ -88,7 +88,7 @@ public final class GalleryCollectionFooterItem: NSView {
             footerView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -104,7 +104,7 @@ public final class GalleryCollectionFooterItem: NSView {
             footerView.info = info
         }
     }
-    
+
     public var action: GalleryCollectionFooterView.Action? {
         didSet {
             footerView.action = action
@@ -115,7 +115,7 @@ public final class GalleryCollectionFooterItem: NSView {
         isUserInteractionsEnabled = !isHidden
         footerView.animate(isHidden: isHidden)
     }
-    
+
     // MARK: - Private
 
     private func stylize() {

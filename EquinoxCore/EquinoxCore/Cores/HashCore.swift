@@ -41,9 +41,9 @@ public protocol HashCore {
 public final class HashCoreImpl: HashCore {
     public init() {
     }
-    
+
     // MARK: - Public
-    
+
     public func hash(data: Data) -> String {
         if #available(macOS 10.15, *) {
             return hex(SHA256.hash(data: data).makeIterator())
@@ -55,7 +55,7 @@ public final class HashCoreImpl: HashCore {
             return hex(digest.makeIterator())
         }
     }
-    
+
     private func hex(_ iterator: Array<UInt8>.Iterator) -> String {
         return iterator
             .map { String(format: "%02x", $0) }

@@ -32,13 +32,13 @@ final class MenuItem: NSMenuItem {
     override init(title string: String, action selector: Selector?, keyEquivalent charCode: String) {
         super.init(title: string, action: selector, keyEquivalent: charCode)
     }
-    
+
     init(
         title string: String,
         keyEquivalent charCode: String,
         keyModifier: NSEvent.ModifierFlags,
         action selector: Selector?,
-        target: AnyObject = self as AnyObject,
+        target: AnyObject = MenuItem.self as AnyObject,
         isEnabled: Bool = true
     ) {
         super.init(title: string, action: selector, keyEquivalent: charCode)
@@ -46,16 +46,16 @@ final class MenuItem: NSMenuItem {
         self.isEnabled = isEnabled
         self.target = target
     }
-    
+
     init(title string: String, submenuItems: [NSMenuItem]) {
         super.init(title: string, action: nil, keyEquivalent: String())
         self.submenu = NSMenu()
         self.submenu?.items = submenuItems
     }
-    
+
     required init(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     weak var holdingObject: AnyObject?
 }

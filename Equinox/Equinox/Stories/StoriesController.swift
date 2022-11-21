@@ -60,11 +60,11 @@ extension StoriesControllerImpl: StoriesController {
     func start() {
         presentWelcome()
     }
-    
+
     func new() {
         presentWelcome()
     }
-    
+
     private func presentWelcome() {
         if let welcomeWindowController = welcomeWindowController {
             welcomeWindowController.window?.makeKeyAndOrderFront(self)
@@ -75,7 +75,7 @@ extension StoriesControllerImpl: StoriesController {
             self.welcomeWindowController = welcomeWindowController
         }
     }
-    
+
     private func presentWallpaper(selectedType: WallpaperType) {
         let imageCore = ImageCoreImpl()
         let imageCacheCore = ImageCacheCoreImpl(totalCostLimit: Constants.imageCacheLimit)
@@ -83,7 +83,7 @@ extension StoriesControllerImpl: StoriesController {
         let metadataCore = MetadataCoreImpl()
         let solarCore = SolarCoreImpl()
         let storageCore = StorageCoreImpl(userDefaults: .standard)
-        
+
         let windowController = WallpaperWindowController(
             type: selectedType,
             fileService: FileServiceImpl(
@@ -141,7 +141,7 @@ extension StoriesControllerImpl: NSWindowDelegate {
         if closeWindow == welcomeWindowController?.window {
             welcomeWindowController = nil
         }
-        
+
         return true
     }
 }
@@ -162,7 +162,7 @@ extension StoriesControllerImpl: WallpaperWindowControllerDelegate {
     func wallpaperWindowControllerNewWasInteracted() {
         start()
     }
-    
+
     func wallpaperWindowControllerCalculatorWasInteracted() {
         presentSolar()
     }

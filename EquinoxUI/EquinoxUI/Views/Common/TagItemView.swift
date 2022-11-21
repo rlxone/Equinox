@@ -48,7 +48,7 @@ extension TagItemView {
             self.titleStyle = titleStyle
         }
     }
-    
+
     private enum Constants {
         static let horizontalPadding: CGFloat = 12
         static let verticalPadding: CGFloat = 8
@@ -102,7 +102,7 @@ public final class TagItemView: View {
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.verticalPadding)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -118,7 +118,7 @@ public final class TagItemView: View {
             label.stringValue = title ?? String()
         }
     }
-    
+
     // MARK: - Private
 
     private func stylize() {

@@ -59,7 +59,7 @@ final class WallpaperMainViewController: ViewController {
     private let wallpaperService: WallpaperService
     private let solarService: SolarService
     private let imageProvider: ImageProvider
-    
+
     private weak var appearancePopover: NSPopover?
     private weak var appearancePopoverView: NSView?
     private weak var galleryController: WallpaperGalleryViewController?
@@ -107,7 +107,7 @@ final class WallpaperMainViewController: ViewController {
 
     private func setupView() {
         addGalleryController()
-        
+
         switch type {
         case .solar:
             contentView.toolBarTitle = Localization.Wallpaper.Main.solar
@@ -148,7 +148,7 @@ final class WallpaperMainViewController: ViewController {
         contentView.toolBarBackButtonAction = { [weak self] _ in
             self?.delegate?.mainViewControllerBackWasInteracted()
         }
-        
+
         contentView.helpAction = { [weak self] in
             self?.delegate?.mainViewControllerHelpWasInteracted()
         }
@@ -204,12 +204,12 @@ final class WallpaperMainViewController: ViewController {
 
         return imageAttributes
     }
-    
+
     private func validateData() -> Set<IndexPath>? {
         guard let data = galleryController?.data else {
             return nil
         }
-        
+
         switch type {
         case .solar:
             var errorIndexPaths = Set<IndexPath>()
@@ -217,12 +217,12 @@ final class WallpaperMainViewController: ViewController {
                 errorIndexPaths.insert(IndexPath(item: item.number - 1, section: 0))
             }
             return errorIndexPaths.isEmpty ? nil : errorIndexPaths
-            
+
         case .time, .appearance:
             return nil
         }
     }
-    
+
     private func addGalleryController() {
         let controller = WallpaperGalleryViewController(
             type: type,
@@ -234,7 +234,7 @@ final class WallpaperMainViewController: ViewController {
         controller.delegate = self
         addChildController(controller, container: contentView.containerView)
     }
-    
+
     private var canCreateWallpaper: Bool {
         guard let count = galleryController?.data.items.count else {
             return false
@@ -249,7 +249,7 @@ final class WallpaperMainViewController: ViewController {
         case .appearance:
             minItemsCount = Constants.minimumAppearanceItemsCount
         }
-        
+
         return count >= minItemsCount
     }
 }
@@ -261,14 +261,14 @@ extension WallpaperMainViewController: WallpaperGalleryViewControllerDelegate {
         guard let window = view.window else {
             return
         }
-        
+
         let openPanel = NSOpenPanel()
         openPanel.title = Localization.Wallpaper.Main.browse
         openPanel.showsResizeIndicator = true
         openPanel.showsHiddenFiles = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
-        
+
         openPanel.beginSheetModal(for: window) { [weak self] result in
             guard let self = self, result == .OK else {
                 return
@@ -276,7 +276,7 @@ extension WallpaperMainViewController: WallpaperGalleryViewControllerDelegate {
             self.galleryController?.didBrowse(openPanel.urls)
         }
     }
-    
+
     func presentAppearancePopover(relativeTo view: NSView, selectedType: EquinoxUI.AppearanceType) {
         guard appearancePopover == nil || view != appearancePopoverView else {
             return
@@ -306,12 +306,12 @@ extension WallpaperMainViewController: WallpaperGalleryViewControllerDelegate {
         appearancePopover = popover
         appearancePopoverView = view
     }
-    
+
     func closePopover() {
         appearancePopover?.close()
         appearancePopoverView = nil
     }
-    
+
     func dataWasChanged() {
         contentView.isCreateButtonEnabled = canCreateWallpaper
     }

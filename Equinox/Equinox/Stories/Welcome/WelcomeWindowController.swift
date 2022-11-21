@@ -54,25 +54,25 @@ final class WelcomeWindowController: WindowController {
         super.init(window: nil)
         setupWindow()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setupWindow() {
         let controller = WelcomeRootViewController()
         controller.delegate = self
-        
+
         contentWindow = Window(contentViewController: controller, minSize: Constants.minSize)
         contentWindow?.styleMask.remove(.resizable)
-        
+
         window = contentWindow
         window?.title = Localization.Welcome.title
         window?.miniwindowTitle = Localization.Welcome.title
         window?.makeKeyAndOrderFront(self)
         window?.center()
     }
-    
+
     // MARK: - Public
-    
+
     weak var delegate: WelcomeWindowControllerDelegate?
 }
 

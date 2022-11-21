@@ -37,28 +37,28 @@ public class TextView: NSTextView {
         super.init(frame: frame)
         setup()
     }
-    
+
     public override init(frame frameRect: NSRect, textContainer container: NSTextContainer?) {
         super.init(frame: frameRect, textContainer: container)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         delegate = self
         textContainerInset = .zero
         textContainer?.lineFragmentPadding = 0
     }
-    
+
     // MARK: - Public
-    
+
     public var clickAction: ClickAction?
-    
+
     public override var intrinsicContentSize: NSSize {
         guard let container = textContainer, let manager = container.layoutManager else {
             return super.intrinsicContentSize
@@ -66,7 +66,7 @@ public class TextView: NSTextView {
         manager.ensureLayout(for: container)
         return manager.usedRect(for: container).size
     }
-    
+
     public func setAttributedString(_ string: NSAttributedString) {
         textStorage?.setAttributedString(string)
         invalidateIntrinsicContentSize()
@@ -79,7 +79,7 @@ extension TextView: NSTextViewDelegate {
     public func textDidChange(_ notification: Notification) {
         invalidateIntrinsicContentSize()
     }
-    
+
     public override func clicked(onLink link: Any, at charIndex: Int) {
         clickAction?(link)
     }

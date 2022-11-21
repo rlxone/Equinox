@@ -34,13 +34,13 @@ extension CreateHeaderView {
     public struct Style {
         let statusStyle: StyledLabel.Style
         let descriptionStyle: StyledLabel.Style
-        
+
         public init(statusStyle: StyledLabel.Style, descriptionStyle: StyledLabel.Style) {
             self.statusStyle = statusStyle
             self.descriptionStyle = descriptionStyle
         }
     }
-    
+
     private enum Constants {
         static let descriptionLabelTopOffset: CGFloat = 4
     }
@@ -54,32 +54,32 @@ public final class CreateHeaderView: View {
         label.alignment = .center
         return label
     }()
-    
+
     private lazy var descriptionLabel: StyledLabel = {
         let label = StyledLabel()
         label.alignment = .center
         return label
     }()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupConstraints()
     }
-    
+
     private func setupView() {
         addSubview(statusLabel)
         addSubview(descriptionLabel)
     }
-    
+
     private func setupConstraints() {
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -88,16 +88,16 @@ public final class CreateHeaderView: View {
             statusLabel.topAnchor.constraint(equalTo: topAnchor),
             statusLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
+
             descriptionLabel.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: Constants.descriptionLabelTopOffset),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -105,7 +105,7 @@ public final class CreateHeaderView: View {
             }
         }
     }
-    
+
     public var statusText: String? {
         didSet {
             statusLabel.stringValue = statusText ?? String()
@@ -117,9 +117,9 @@ public final class CreateHeaderView: View {
             descriptionLabel.stringValue = descriptionText ?? String()
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         statusLabel.style = style?.statusStyle
         descriptionLabel.style = style?.descriptionStyle

@@ -31,58 +31,58 @@ import XCTest
 
 class ImageCacheCoreTests: XCTestCase {
     private var imageCacheCore: ImageCacheCoreImpl!
-    
+
     override func setUpWithError() throws {
         imageCacheCore = ImageCacheCoreImpl(totalCostLimit: 512 * 1_024 * 1_024)
     }
-    
+
     func testCache() {
         // Given
         let retrieveKey = "test"
         let image = NSImage(size: .init(width: 300, height: 300))
-        
+
         // When
         imageCacheCore.cache(key: retrieveKey, data: image)
         let retrievedImage = imageCacheCore.retrieve(key: retrieveKey)
-        
+
         // Then
         XCTAssertNotNil(retrievedImage)
     }
-    
+
     func testRetrieve() {
         // Given
         let testKey = "test"
         let dummyKey = "dummy"
         let image = NSImage(size: .init(width: 300, height: 300))
-        
+
         // When
         imageCacheCore.cache(key: testKey, data: image)
         let testImage = imageCacheCore.retrieve(key: testKey)
         let dummyImage = imageCacheCore.retrieve(key: dummyKey)
-        
+
         // Then
         XCTAssertNotNil(testImage)
         XCTAssertNil(dummyImage)
     }
-    
+
     func testRemove() {
         // Given
         let testKey = "test"
         let dummyKey = "dummy"
         let image = NSImage(size: .init(width: 300, height: 300))
-        
+
         // When
         imageCacheCore.cache(key: testKey, data: image)
         imageCacheCore.remove(key: testKey)
         imageCacheCore.remove(key: dummyKey)
         let testImage = imageCacheCore.retrieve(key: testKey)
         let dummyImage = imageCacheCore.retrieve(key: dummyKey)
-        
+
         // Then
         XCTAssertNil(testImage)
         XCTAssertNil(dummyImage)
     }
-    
+
     func testClear() {
         // Given
         let testKey1 = "test1"
@@ -91,7 +91,7 @@ class ImageCacheCoreTests: XCTestCase {
         let image1 = NSImage(size: .init(width: 300, height: 300))
         let image2 = NSImage(size: .init(width: 400, height: 400))
         let image3 = NSImage(size: .init(width: 500, height: 500))
-        
+
         // When
         imageCacheCore.cache(key: testKey1, data: image1)
         imageCacheCore.cache(key: testKey2, data: image2)
@@ -100,7 +100,7 @@ class ImageCacheCoreTests: XCTestCase {
         let retrievedImage1 = imageCacheCore.retrieve(key: testKey1)
         let retrievedImage2 = imageCacheCore.retrieve(key: testKey2)
         let retrievedImage3 = imageCacheCore.retrieve(key: testKey3)
-        
+
         // Then
         XCTAssertNil(retrievedImage1)
         XCTAssertNil(retrievedImage2)

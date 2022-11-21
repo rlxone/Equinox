@@ -44,31 +44,31 @@ extension TypeItemView {
             self.description = description
         }
     }
-    
+
     public struct Style {
         public struct OwnStyle {
             let imageColor: NSColor
             let selectedTintColor: NSColor
             let selectedBackgroundColor: NSColor
-            
+
             public init(imageColor: NSColor, selectedTintColor: NSColor, selectedBackgroundColor: NSColor) {
                 self.imageColor = imageColor
                 self.selectedTintColor = selectedTintColor
                 self.selectedBackgroundColor = selectedBackgroundColor
             }
         }
-        
+
         let ownStyle: OwnStyle
         let titleStyle: StyledLabel.Style
         let descriptionStyle: StyledLabel.Style
-        
+
         public init(ownStyle: TypeItemView.Style.OwnStyle, titleStyle: StyledLabel.Style, descriptionStyle: StyledLabel.Style) {
             self.ownStyle = ownStyle
             self.titleStyle = titleStyle
             self.descriptionStyle = descriptionStyle
         }
     }
-    
+
     private enum Constants {
         static let descriptionLabelLayoutWidth: CGFloat = 300
         static let cornerRadius: CGFloat = 8
@@ -90,7 +90,7 @@ extension TypeItemView {
 
 public final class TypeItemView: View {
     private lazy var imageView = ImageView()
-    
+
     private lazy var titleLabel: StyledLabel = {
         let label = StyledLabel()
         label.cell?.usesSingleLineMode = false
@@ -98,7 +98,7 @@ public final class TypeItemView: View {
         label.cell?.lineBreakMode = .byWordWrapping
         return label
     }()
-    
+
     private lazy var descriptionLabel: StyledLabel = {
         let label = StyledLabel()
         label.preferredMaxLayoutWidth = Constants.descriptionLabelLayoutWidth
@@ -107,14 +107,14 @@ public final class TypeItemView: View {
         label.cell?.lineBreakMode = .byWordWrapping
         return label
     }()
-    
+
     // MARK: - Initializer
 
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Life Cycle
 
     public override var wantsUpdateLayer: Bool {
@@ -125,7 +125,7 @@ public final class TypeItemView: View {
         super.updateLayer()
         stylize()
     }
-    
+
     public override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
         selectionAction?(self)
@@ -133,7 +133,7 @@ public final class TypeItemView: View {
             action?(self)
         }
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -149,29 +149,29 @@ public final class TypeItemView: View {
         addSubview(titleLabel)
         addSubview(descriptionLabel)
     }
-    
+
     private func setupConstraints() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.imageViewLeadingOffset),
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.imageViewTopOffset),
             imageView.widthAnchor.constraint(equalToConstant: Constants.imageViewWidth),
             imageView.heightAnchor.constraint(equalToConstant: Constants.imageViewHeight),
-            
+
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.titleLabelTopOffset),
             titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: Constants.titleLabelLeadingOffset),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.titleLabelTrailingOffset),
-            
+
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.descriptionLabelTopOffset),
             descriptionLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: Constants.descriptionLabelLeadingOffset),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.descriptionLabelTrailingOffset),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.descriptionLabelBottomOffset)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -197,20 +197,20 @@ public final class TypeItemView: View {
             }
         }
     }
-    
+
     public var index: Int?
-    
+
     public var action: Action?
-    
+
     public var selectionAction: Action?
 
     // MARK: - Private
-    
+
     private func stylize() {
         guard let style = style else {
             return
         }
-        
+
         titleLabel.style = style.titleStyle
         descriptionLabel.style = style.descriptionStyle
 

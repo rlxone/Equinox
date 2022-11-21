@@ -49,7 +49,7 @@ extension PrimaryButton {
             self.borderColor = borderColor
         }
     }
-    
+
     private enum Constants {
         static let borderWidth: CGFloat = 1
         static let cornerRadius: CGFloat = 12
@@ -103,7 +103,7 @@ public final class PrimaryButton: Button {
     }
 
     // MARK: - Private
-    
+
     private func stylize() {
         if isSelected {
             if NSColor.currentControlTint == .graphiteControlTint {

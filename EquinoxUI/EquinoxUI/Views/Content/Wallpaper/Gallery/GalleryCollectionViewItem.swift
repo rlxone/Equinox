@@ -105,21 +105,21 @@ public final class GalleryCollectionViewItem: NSCollectionViewItem {
         self.model = model
         configure(model, animated: animated)
     }
-    
+
     public func flash() {
         contentView.flash()
     }
 
     // MARK: - Private
-    
+
     private func shouldBeHighlighted() -> Bool {
         let isForSelection = highlightState == .forSelection
         let isAsDropTarget = highlightState == .asDropTarget
         let isNotForDeselection = isSelected && highlightState != .forDeselection
-        
+
         return isForSelection || isAsDropTarget || isNotForDeselection
     }
-    
+
     private func configure(_ model: GalleryModel, animated: Bool) {
         configureActions(for: model)
 
@@ -163,7 +163,7 @@ public final class GalleryCollectionViewItem: NSCollectionViewItem {
             self?.contentView.image = image
         }
     }
-    
+
     private func configureActions(for model: GalleryModel) {
         contentView.onAzimuthChange = { [weak model, weak self] textField in
             guard let model = model, let collectionView = self?.collectionView else {
@@ -197,7 +197,7 @@ public final class GalleryCollectionViewItem: NSCollectionViewItem {
             guard let model = model, let collectionView = self?.collectionView else {
                 return
             }
-            
+
             let appearanceType: AppearanceType
 
             switch button.getType() {
@@ -214,7 +214,7 @@ public final class GalleryCollectionViewItem: NSCollectionViewItem {
             self?.delegate?.mutate(collectionView, model: model, field: .appearance(appearanceType), sender: button)
         }
     }
-    
+
     private func configure(_ textList: GalleryTextList) {
         contentView.azimuthText = textList.azimuthText
         contentView.azimuthPlaceholder = textList.azimuthPlaceholder

@@ -103,7 +103,7 @@ public final class GalleryCollectionButtonsView: View {
         stackView.layer?.borderWidth = Constants.borderWidth
         return stackView
     }()
-    
+
     // MARK: - Initializer
 
     public override init() {
@@ -121,7 +121,7 @@ public final class GalleryCollectionButtonsView: View {
         super.updateLayer()
         stylize()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -179,7 +179,7 @@ public final class GalleryCollectionButtonsView: View {
             self?.onPrimaryChange?(button)
         }
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -245,9 +245,9 @@ public final class GalleryCollectionButtonsView: View {
     public var onPrimaryChange: GalleryCollectionButtonsView.PrimaryChangeAction?
 
     public var onAppearanceTypeChange: GalleryCollectionButtonsView.AppearanceTypeChangeAction?
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         dynamicButton.style = style?.dynamicStyle
         primaryButton.style = style?.primaryStyle

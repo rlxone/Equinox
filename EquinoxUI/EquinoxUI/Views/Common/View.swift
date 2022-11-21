@@ -37,21 +37,21 @@ public class View: NSView {
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Life Cycle
-    
+
     public override func mouseDown(with event: NSEvent) {
         if isUserInteractionsEnabled {
             super.mouseDown(with: event)
         }
     }
-    
+
     public override func mouseUp(with event: NSEvent) {
         if isUserInteractionsEnabled {
             super.mouseUp(with: event)
         }
     }
-    
+
     // MARK: - Public
 
     public var isUserInteractionsEnabled = true

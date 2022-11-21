@@ -32,7 +32,7 @@ import AppKit
 
 extension BottomBarView {
     public typealias HelpAction = () -> Void
-    
+
     public struct Style {
         let buttonStyle: PushButton.Style
         let lineStyle: LineView.Style
@@ -42,7 +42,7 @@ extension BottomBarView {
             self.lineStyle = lineStyle
         }
     }
-    
+
     private enum Constants {
         static let buttonWidth: CGFloat = 100
         static let buttonHeight: CGFloat = 32
@@ -55,7 +55,7 @@ extension BottomBarView {
 public final class BottomBarView: VisualEffectView {
     private lazy var button = PushButton()
     private lazy var lineView = LineView()
-    
+
     private lazy var helpButton: NSButton = {
         let button = NSButton()
         button.bezelStyle = .helpButton
@@ -84,7 +84,7 @@ public final class BottomBarView: VisualEffectView {
         addSubview(lineView)
         addSubview(helpButton)
     }
-    
+
     private func setupConstraints() {
         button.translatesAutoresizingMaskIntoConstraints = false
         lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -100,7 +100,7 @@ public final class BottomBarView: VisualEffectView {
             lineView.leadingAnchor.constraint(equalTo: leadingAnchor),
             lineView.trailingAnchor.constraint(equalTo: trailingAnchor),
             lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
-            
+
             helpButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             helpButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32)
         ])
@@ -138,11 +138,11 @@ public final class BottomBarView: VisualEffectView {
             button.isEnabled = newValue
         }
     }
-    
+
     public var helpAction: HelpAction?
-    
+
     // MARK: - Private
-    
+
     @objc
     private func helpButtonAction(_ sender: NSButton) {
         helpAction?()

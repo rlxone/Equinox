@@ -41,13 +41,13 @@ extension InteractiveLineChart {
     public struct ChartData {
         let bottomText: String
         let value: CGFloat
-        
+
         public init(bottomText: String, value: CGFloat) {
             self.bottomText = bottomText
             self.value = value
         }
     }
-    
+
     public struct Style {
         let lineColor: NSColor
         let chartColor: NSColor
@@ -56,7 +56,7 @@ extension InteractiveLineChart {
         let progressFont: NSFont
         let progressColor: NSColor
         let progressLineColor: NSColor
-        
+
         public init(
             lineColor: NSColor,
             chartColor: NSColor,
@@ -75,7 +75,7 @@ extension InteractiveLineChart {
             self.progressLineColor = progressLineColor
         }
     }
-    
+
     private enum Constants {
         static let lineWidth: CGFloat = 1
         static let progressLineWidth: CGFloat = 3
@@ -92,14 +92,14 @@ public final class InteractiveLineChart: View {
         super.init()
         setup()
     }
-    
+
     // MARK: - Life Cycle
-    
+
     public override func draw(_ dirtyRect: NSRect) {
         guard let context = NSGraphicsContext.current?.cgContext else {
             return
         }
-        
+
         drawVerticalLines(for: context)
         drawHorizontalLine(for: context)
         drawBottomText(for: context)
@@ -107,59 +107,59 @@ public final class InteractiveLineChart: View {
         drawProgressLine(for: context)
         drawProgressText(for: context)
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupGestureRecognizers()
     }
-    
+
     private func setupGestureRecognizers() {
         let clickRecognizer = NSClickGestureRecognizer()
         clickRecognizer.numberOfClicksRequired = 1
         clickRecognizer.numberOfTouchesRequired = 1
         clickRecognizer.target = self
         clickRecognizer.action = #selector(handleClickRecognizer(_:))
-        
+
         let panRecognizer = NSPanGestureRecognizer()
         panRecognizer.numberOfTouchesRequired = 1
         panRecognizer.target = self
         panRecognizer.action = #selector(handlePanRecognizer(_:))
-        
+
         addGestureRecognizer(clickRecognizer)
         addGestureRecognizer(panRecognizer)
     }
-    
+
     // MARK: - Public
-    
+
     public weak var delegate: InteractiveLineChartDelegate?
-    
+
     public var chartData: [ChartData]? {
         didSet {
             needsDisplay = true
         }
     }
-    
+
     public var style: Style? {
         didSet {
             needsDisplay = true
         }
     }
-    
+
     public var chartInsets: NSEdgeInsets = NSEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
         didSet {
             needsDisplay = true
         }
     }
-    
+
     public var progress: CGFloat = 0 {
         didSet {
             needsDisplay = true
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func drawVerticalLines(for context: CGContext) {
         guard
             let chartData = chartData,
@@ -167,22 +167,22 @@ public final class InteractiveLineChart: View {
         else {
             return
         }
-        
+
         let chartParts = chartData.count
         let usefulWidth = bounds.width - chartInsets.left - chartInsets.right
         let partWidth = usefulWidth / CGFloat(chartParts - 1)
         let verticalLinesCount = chartParts
         let lineHeight = bounds.height - chartInsets.top - chartInsets.bottom
-        
+
         context.setLineJoin(.round)
         context.setLineCap(.round)
         context.setLineWidth(Constants.lineWidth)
         context.setFillColor(style.lineColor.cgColor)
-        
+
         for index in 0..<verticalLinesCount {
             let offsetX = chartInsets.left + CGFloat(index) * partWidth
             let offsetY = chartInsets.top
-            
+
             let linePath = NSBezierPath(
                 roundedRect: .init(
                     x: offsetX,
@@ -195,16 +195,16 @@ public final class InteractiveLineChart: View {
             )
             context.addPath(linePath.cgPath)
             context.fillPath()
-            
+
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
-            
+
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: style.bottomFont,
                 .foregroundColor: style.bottomColor,
                 .paragraphStyle: paragraphStyle
             ]
-            
+
             let bottomText = chartData[index].bottomText as NSString
             let bottomTextRect = NSRect(
                 x: offsetX - partWidth,
@@ -215,7 +215,7 @@ public final class InteractiveLineChart: View {
             bottomText.draw(in: bottomTextRect, withAttributes: attributes)
         }
     }
-    
+
     private func drawHorizontalLine(for context: CGContext) {
         guard
             let chartData = chartData,
@@ -223,21 +223,21 @@ public final class InteractiveLineChart: View {
         else {
             return
         }
-        
+
         let usefulWidth = bounds.width - chartInsets.left - chartInsets.right
         let fullLineHeight = bounds.height - chartInsets.top - chartInsets.bottom
         let lineHeight = fullLineHeight - fullLineHeight * Constants.chartOffset
-        
+
         context.setLineJoin(.round)
         context.setLineCap(.round)
         context.setLineWidth(Constants.lineWidth)
         context.setFillColor(style.lineColor.cgColor)
-        
+
         let maxChartValue = chartData.max { $0.value < $1.value }?.value ?? 0
         let minChartValue = chartData.min { $0.value < $1.value }?.value ?? 0
-        
+
         let offsetPercent = 1 - abs(maxChartValue) / (abs(maxChartValue) + abs(minChartValue))
-        
+
         let linePath = NSBezierPath(
             roundedRect: .init(
                 x: chartInsets.left,
@@ -251,7 +251,7 @@ public final class InteractiveLineChart: View {
         context.addPath(linePath.cgPath)
         context.fillPath()
     }
-    
+
     private func drawBottomText(for context: CGContext) {
         guard
             let chartData = chartData,
@@ -259,29 +259,29 @@ public final class InteractiveLineChart: View {
         else {
             return
         }
-        
+
         let chartParts = chartData.count
         let usefulWidth = bounds.width - chartInsets.left - chartInsets.right
         let partWidth = usefulWidth / CGFloat(chartParts - 1)
         let verticalLinesCount = chartParts
-        
+
         context.setLineJoin(.round)
         context.setLineCap(.round)
         context.setLineWidth(Constants.lineWidth)
         context.setFillColor(style.lineColor.cgColor)
-        
+
         for index in 0..<verticalLinesCount {
             let offsetX = chartInsets.left + CGFloat(index) * partWidth
-            
+
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
-            
+
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: style.bottomFont,
                 .foregroundColor: style.bottomColor,
                 .paragraphStyle: paragraphStyle
             ]
-            
+
             let bottomText = chartData[index].bottomText as NSString
             let bottomTextRect = NSRect(
                 x: offsetX - partWidth,
@@ -292,20 +292,20 @@ public final class InteractiveLineChart: View {
             bottomText.draw(in: bottomTextRect, withAttributes: attributes)
         }
     }
-    
+
     private func drawProgressLine(for context: CGContext) {
         guard let style = style else {
             return
         }
-        
+
         let lineHeight = bounds.height - chartInsets.top - chartInsets.bottom
-        
+
         context.setLineWidth(Constants.progressLineWidth)
         context.setFillColor(style.progressLineColor.cgColor)
-        
+
         let usefulWidth = bounds.width - chartInsets.left - chartInsets.right
         let lineOffsetX = chartInsets.left + usefulWidth * progress - Constants.progressLineWidth / 2
-        
+
         let linePath = NSBezierPath(
             roundedRect: .init(
                 x: lineOffsetX,
@@ -316,11 +316,11 @@ public final class InteractiveLineChart: View {
             xRadius: Constants.progressLineWidth / 2,
             yRadius: Constants.progressLineWidth / 2
         )
-        
+
         context.addPath(linePath.cgPath)
         context.fillPath()
     }
-    
+
     private func drawProgressText(for context: CGContext) {
         guard
             let delegate = delegate,
@@ -328,21 +328,21 @@ public final class InteractiveLineChart: View {
         else {
             return
         }
-        
+
         let usefulWidth = bounds.width - chartInsets.left - chartInsets.right
         let lineOffsetX = chartInsets.left + usefulWidth * progress - Constants.progressLineWidth / 2
-        
+
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
-        
+
         let attributes: [NSAttributedString.Key: Any] = [
             .font: style.progressFont,
             .foregroundColor: style.progressColor,
             .paragraphStyle: paragraphStyle
         ]
-        
+
         let progressTextOffsetY = bounds.height - chartInsets.bottom + 4
-        
+
         let progressTextRect = NSRect(
             x: lineOffsetX - Constants.progressLineTextWidth / 2 + Constants.lineWidth / 2,
             y: progressTextOffsetY,
@@ -352,7 +352,7 @@ public final class InteractiveLineChart: View {
         let progressText = delegate.progressTitle(progress: progress) as NSString
         progressText.draw(in: progressTextRect, withAttributes: attributes)
     }
-    
+
     private func drawChartCurve(for context: CGContext) {
         guard
             let style = style,
@@ -360,38 +360,38 @@ public final class InteractiveLineChart: View {
         else {
             return
         }
-        
+
         var points: [CGPoint] = []
-        
+
         context.setLineJoin(.round)
         context.setLineCap(.round)
         context.setLineWidth(Constants.chartLineWidth)
         context.setStrokeColor(style.chartColor.cgColor)
-        
+
         let chartParts = chartData.count
         let usefulWidth = bounds.width - chartInsets.left - chartInsets.right
         let partWidth = usefulWidth / CGFloat(chartParts - 1)
         let lineHeight = bounds.height - chartInsets.top - chartInsets.bottom
-        
+
         let maxChartValue = chartData.max { $0.value < $1.value }?.value ?? 0
         let minChartValue = chartData.min { $0.value < $1.value }?.value ?? 0
-        
+
         for (index, data) in chartData.enumerated() {
             let offsetX = chartInsets.left + CGFloat(index) * partWidth
             let totalLength = abs(maxChartValue) + abs(minChartValue)
             let offsetPercent = 1 - abs(data.value / totalLength - abs(maxChartValue) / totalLength)
             let chartHeightWithOffset = lineHeight * (1 - Constants.chartOffset)
             let offsetY = chartInsets.top + lineHeight * Constants.chartOffset / 2 + offsetPercent * (chartHeightWithOffset)
-            
+
             points.append(.init(x: offsetX, y: offsetY))
         }
-        
+
         let path = InteractiveLineChartCurve(points: points).bezierPath
         context.addPath(path.cgPath)
-        
+
         context.strokePath()
     }
-    
+
     private func handleProgress(for recognizer: NSGestureRecognizer) {
         let location = recognizer.location(in: self)
         if location.x <= chartInsets.left {
@@ -405,22 +405,22 @@ public final class InteractiveLineChart: View {
         }
         delegate?.progressDidChange(progress: progress)
     }
-    
+
     @objc
     private func handleClickRecognizer(_ recognizer: NSClickGestureRecognizer) {
         handleProgress(for: recognizer)
     }
-    
+
     @objc
     private func handlePanRecognizer(_ recognizer: NSPanGestureRecognizer) {
         switch recognizer.state {
         case .began:
             NSCursor.resizeLeftRight.set()
-        
+
         case .changed:
             NSCursor.resizeLeftRight.set()
             handleProgress(for: recognizer)
-            
+
         default:
             NSCursor.arrow.set()
         }

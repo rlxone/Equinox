@@ -77,7 +77,7 @@ extension GalleryCollectionImageView {
             self.smallNumberStyle = smallNumberStyle
         }
     }
-    
+
     private enum Constants {
         static let lineWidth: CGFloat = 1
         static let highlightLineWidth: CGFloat = 4

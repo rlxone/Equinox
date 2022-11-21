@@ -133,7 +133,7 @@ public final class PushButton: Button {
         layer.backgroundColor = Constants.borderBackgroundColor
         return layer
     }()
-    
+
     private lazy var innerShadowLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.anchorPoint = .zero

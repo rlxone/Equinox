@@ -52,32 +52,32 @@ final class WelcomeViewController: ViewController {
         view.style = .default
         return view
     }()
-    
+
     // MARK: - Life Cycle
-    
+
     override func loadView() {
         view = contentView
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupActions()
     }
-    
+
     private func setupView() {
         contentView.welcomeText = Localization.Welcome.welcome(param1: NSApplication.appName)
         contentView.versionText = Localization.Welcome.version(param1: NSApplication.appVersion)
         contentView.githubText = Localization.Welcome.github
         contentView.typeHeaderText = Localization.Welcome.choose
         contentView.typeDescriptionText = Localization.Welcome.select
-        
+
         contentView.types = WallpaperType.allCases.map {
             switch $0 {
             case .solar:
@@ -105,7 +105,7 @@ final class WelcomeViewController: ViewController {
 
         contentView.selectedTypeIndex = WallpaperType.solar.rawValue
     }
-    
+
     private func setupActions() {
         contentView.typeAction = { [weak self] selectedIndex in
             guard let type = WallpaperType(rawValue: selectedIndex) else {
@@ -120,8 +120,8 @@ final class WelcomeViewController: ViewController {
             NSWorkspace.shared.open(url)
         }
     }
-    
+
     // MARK: - Public
-    
+
     weak var delegate: WelcomeViewControllerDelegate?
 }

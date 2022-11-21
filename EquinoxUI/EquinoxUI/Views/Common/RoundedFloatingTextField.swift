@@ -73,7 +73,7 @@ extension RoundedFloatingTextField {
             self.pushButtonStyle = pushButtonStyle
         }
     }
-    
+
     private enum Constants {
         static let stackViewSpacing: CGFloat = 6
         static let copyButtonWidth: CGFloat = 23
@@ -102,14 +102,14 @@ public final class RoundedFloatingTextField: View {
         stackView.spacing = Constants.stackViewSpacing
         return stackView
     }()
-    
+
     // MARK: - Initializer
 
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -141,7 +141,7 @@ public final class RoundedFloatingTextField: View {
             copyButton.heightAnchor.constraint(equalToConstant: Constants.copyButtonHeight)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -225,7 +225,7 @@ public final class RoundedFloatingTextField: View {
             }
         }
     }
-    
+
     // MARK: - Private
 
     private func stylize() {
@@ -261,10 +261,10 @@ extension RoundedFloatingTextField: FloatingTextFieldDelegate {
     public func textDidChange(_ textField: FloatingTextField) {
         delegate?.textDidChange(self)
     }
-    
+
     public func textDidTab(for view: NSView) {
     }
-    
+
     public func textDidBackTab(for view: NSView) {
     }
 }

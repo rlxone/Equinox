@@ -42,13 +42,13 @@ final class DockMenu: NSMenu {
         super.init(title: title)
         setup()
     }
-    
+
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         for window in NSApp.windows {
             let windowMenuItem = getWindowMenuItem(title: window.miniwindowTitle)
@@ -58,25 +58,25 @@ final class DockMenu: NSMenu {
             }
             addItem(windowMenuItem)
         }
-        
+
         if !NSApp.windows.isEmpty {
             addItem(.separator())
         }
-        
+
         addItem(newMenuItem)
     }
-    
+
     // MARK: - Public
-    
+
     weak var dockDelegate: DockMenuDelegate?
-    
+
     // MARK: - Private
-    
+
     @objc
     private func new(_ sender: Any?) {
         dockDelegate?.dockMenuNew(sender)
     }
-    
+
     @objc
     private func openWindow(_ sender: Any?) {
         guard
@@ -88,7 +88,7 @@ final class DockMenu: NSMenu {
         NSApp.activate(ignoringOtherApps: true)
         window.makeKeyAndOrderFront(self)
     }
-    
+
     private var newMenuItem: MenuItem {
         let menuItem = MenuItem(
             title: Localization.Dock.new,
@@ -100,7 +100,7 @@ final class DockMenu: NSMenu {
         )
         return menuItem
     }
-    
+
     private func getWindowMenuItem(title: String) -> MenuItem {
         let menuItem = MenuItem(
             title: title,

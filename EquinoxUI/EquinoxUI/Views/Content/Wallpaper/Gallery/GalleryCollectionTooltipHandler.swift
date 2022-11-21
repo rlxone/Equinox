@@ -30,7 +30,7 @@ import AppKit
 
 public final class GalleryCollectionTooltipHandler {
     public var style: TooltipWindow.Style?
-    
+
     public var appearanceToopltipTitle: String?
     public var appearanceToopltipDescription: String?
     public var primaryToopltipTitle: String?
@@ -56,7 +56,7 @@ extension GalleryCollectionTooltipHandler: TooltipDelegate {
 
         return title
     }
-    
+
     public func tooltipDescription(_ sender: Any?) -> String {
         var description: String
 
@@ -80,7 +80,7 @@ extension GalleryCollectionTooltipHandler: TooltipDelegate {
 
     public func tooltipWillDisplayView(_ sender: Any?, view: NSView) {
     }
-    
+
     public func tooltipStyle(_ sender: Any?) -> TooltipWindow.Style? {
         return style
     }

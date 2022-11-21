@@ -54,7 +54,7 @@ extension TooltipView {
             self.descriptionStyle = descriptionStyle
         }
     }
-    
+
     private enum Constants {
         static let cornerRadius: CGFloat = 8
         static let borderWidth: CGFloat = 1
@@ -72,7 +72,7 @@ extension TooltipView {
 public final class TooltipView: VisualEffectView {
     private lazy var titleLabel = StyledLabel()
     private lazy var descriptionLabel = StyledLabel()
-    
+
     private lazy var stackView: StackView = {
         let stackView = StackView()
         stackView.orientation = .vertical
@@ -80,24 +80,24 @@ public final class TooltipView: VisualEffectView {
         stackView.spacing = Constants.stackViewSpacing
         return stackView
     }()
-    
+
     private var footerConstraints: [NSLayoutConstraint]?
     private var stackViewFooterConstraints: [NSLayoutConstraint] = []
-    
+
     // MARK: - Initializer
-    
+
     public init() {
         super.init(material: .toolTip, blendingMode: .withinWindow)
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupConstraints()
     }
-    
+
     private func setupView() {
         wantsLayer = true
         layer?.cornerRadius = Constants.cornerRadius
@@ -108,7 +108,7 @@ public final class TooltipView: VisualEffectView {
 
         contentView.addSubview(stackView)
     }
-    
+
     private func setupConstraints() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -124,9 +124,9 @@ public final class TooltipView: VisualEffectView {
         ]
         NSLayoutConstraint.activate(stackViewFooterConstraints)
     }
-    
+
     // MARK: Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -134,7 +134,7 @@ public final class TooltipView: VisualEffectView {
             }
         }
     }
-    
+
     public func setText(title: String, description: String) {
         titleText = title
         descriptionText = description
@@ -149,7 +149,7 @@ public final class TooltipView: VisualEffectView {
             titleLabel.sizeToFit()
         }
     }
-    
+
     public var descriptionText: String {
         get {
             return descriptionLabel.stringValue
@@ -159,7 +159,7 @@ public final class TooltipView: VisualEffectView {
             descriptionLabel.sizeToFit()
         }
     }
-    
+
     public var footerView: NSView? {
         didSet {
             oldValue?.removeFromSuperview()
@@ -188,9 +188,9 @@ public final class TooltipView: VisualEffectView {
             }
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         layer?.borderColor = style?.ownStyle.borderColor.cgColor
         titleLabel.style = style?.titleStyle

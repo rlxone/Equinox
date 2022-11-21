@@ -58,13 +58,13 @@ final class ImageProviderImpl: ImageProvider {
         queue.qualityOfService = .userInitiated
         return queue
     }()
-    
+
     // MARK: - Initializer
 
     init(imageService: ImageService) {
         self.imageService = imageService
     }
-    
+
     // MARK: - Public
 
     func loadImage(url: URL, resizeMode: ImageResizeMode, completion: @escaping (NSImage?) -> Void) {

@@ -42,7 +42,7 @@ extension AnimatedImageView {
         static let animationDuration: TimeInterval = 1.5
     }
 }
- 
+
 // MARK: - Class
 
 public class AnimatedImageView: View {
@@ -117,42 +117,42 @@ public class AnimatedImageView: View {
     }
 
     // MARK: - Public
-    
+
     public weak var delegate: AnimatedImageViewDelegate?
-    
+
     public var cornerRadius: CGFloat = 0 {
         didSet {
             needsLayout = true
         }
     }
-    
+
     public func beginAnimation() {
         currentIndex = 0
         startAnimation()
     }
-    
+
     public var isEnabled: Bool {
         return foregroundImageView.isEnabled && backgroundImageView.isEnabled
     }
-    
+
     // MARK: - Private
-    
+
     private func startAnimation() {
         guard let numberOfImages = delegate?.numberOfImages(), numberOfImages > 0 else {
             return
         }
-        
+
         let foregroundImageIndex = currentIndex
         let backgroundImageIndex = currentIndex == numberOfImages - 1 ? 0 : currentIndex + 1
-        
+
         delegate?.image(for: foregroundImageIndex) { [weak self] image in
             self?.foregroundImageView.image = image
         }
-        
+
         delegate?.image(for: backgroundImageIndex) { [weak self] image in
             self?.backgroundImageView.image = image
         }
-        
+
         animateTransition { [weak self] in
             if self?.currentIndex == numberOfImages - 1 {
                 self?.currentIndex = 0
@@ -162,13 +162,13 @@ public class AnimatedImageView: View {
             self?.startAnimation()
         }
     }
-    
+
     private func animateTransition(completion: @escaping () -> Void) {
         CATransaction.begin()
         CATransaction.setCompletionBlock {
             completion()
         }
-        
+
         let animation = CABasicAnimation(keyPath: "opacity")
         animation.fromValue = 1
         animation.toValue = 0
@@ -177,7 +177,7 @@ public class AnimatedImageView: View {
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false
         foregroundImageView.layer?.add(animation, forKey: nil)
-        
+
         CATransaction.commit()
     }
 }

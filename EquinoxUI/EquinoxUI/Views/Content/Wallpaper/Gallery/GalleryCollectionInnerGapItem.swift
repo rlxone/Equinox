@@ -38,7 +38,7 @@ extension GalleryCollectionInnerGapItem {
             self.backgroundColor = backgroundColor
         }
     }
-    
+
     private enum Constants {
         static let gapWidth: CGFloat = 3
         static let gapTopOffset: CGFloat = 8
@@ -54,7 +54,7 @@ public final class GalleryCollectionInnerGapItem: NSView {
         view.wantsLayer = true
         return view
     }()
-    
+
     // MARK: - Initializer
 
     public override init(frame frameRect: NSRect) {
@@ -65,14 +65,14 @@ public final class GalleryCollectionInnerGapItem: NSView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Life Cycle
 
     public override func layout() {
         super.layout()
         gapView.layer?.cornerRadius = gapView.bounds.width / 2
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -94,7 +94,7 @@ public final class GalleryCollectionInnerGapItem: NSView {
             gapView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -104,7 +104,7 @@ public final class GalleryCollectionInnerGapItem: NSView {
             }
         }
     }
-    
+
     // MARK: - Private
 
     private func stylize() {

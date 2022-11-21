@@ -46,7 +46,7 @@ public final class GalleryInternalCollectionView: NSCollectionView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Life Cycle
 
     public override func draggingExited(_ sender: NSDraggingInfo?) {
@@ -57,9 +57,9 @@ public final class GalleryInternalCollectionView: NSCollectionView {
     public override func deleteBackward(_ sender: Any?) {
         internalDelegate?.didDeleteBackward(sender)
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         backgroundColors = [.clear]
     }

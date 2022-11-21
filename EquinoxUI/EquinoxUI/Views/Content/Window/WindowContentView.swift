@@ -106,7 +106,7 @@ public final class WindowContentView: VisualEffectView {
         )
         notificationTopConstraint?.isActive = true
     }
-    
+
     private func setupActions() {
         notificationView.action = { [weak self] in
             self?.notificationQueue.cancelAllOperations()
@@ -115,14 +115,14 @@ public final class WindowContentView: VisualEffectView {
     }
 
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             titleBarView.style = style?.titleBarStyle
             notificationView.style = style?.notificationStyle
         }
     }
-    
+
     public override var active: Bool {
         get {
             return super.active
@@ -152,11 +152,11 @@ public final class WindowContentView: VisualEffectView {
             guard let operation = operation, !operation.isCancelled else {
                 return
             }
-            
+
             OperationQueue.main.addOperation {
                 self?.animatePresent()
             }
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Constants.notificationDelay)) { [weak operation] in
                 guard let operation = operation, !operation.isCancelled else {
                     self?.notificationSemaphore.signal()
@@ -165,15 +165,15 @@ public final class WindowContentView: VisualEffectView {
                 self?.animateDismiss()
                 self?.notificationSemaphore.signal()
             }
-            
+
             self?.notificationSemaphore.wait()
         }
 
         notificationQueue.addOperation(operation)
     }
-    
+
     // MARK: - Private
-    
+
     private func animatePresent() {
         NSAnimationContext.runAnimationGroup { context in
             context.duration = Constants.presentAnimationDuration
@@ -182,7 +182,7 @@ public final class WindowContentView: VisualEffectView {
             self.notificationTopConstraint?.animator().constant = Constants.hiddenNotificationTopOffset
         }
     }
-    
+
     private func animateDismiss() {
         NSAnimationContext.runAnimationGroup { context in
             context.duration = Constants.presentAnimationDuration

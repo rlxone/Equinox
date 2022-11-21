@@ -40,9 +40,9 @@ public protocol FileCore {
 public final class FileCoreImpl: FileCore {
     public init() {
     }
-    
+
     // MARK: - Public
-    
+
     public func getDirectoryContent(from directoryUrl: URL) throws -> [URL] {
         do {
             let items = try FileManager.default.contentsOfDirectory(
@@ -55,7 +55,7 @@ public final class FileCoreImpl: FileCore {
             throw FileError.contentNotObtained
         }
     }
-    
+
     public func getFilesize(_ url: URL) throws -> UInt64 {
         let allocatedSizeResourceKeys: Set<URLResourceKey> = [
             .isRegularFileKey,

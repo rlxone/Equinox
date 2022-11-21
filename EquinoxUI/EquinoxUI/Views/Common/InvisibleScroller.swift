@@ -37,13 +37,13 @@ public final class InvisibleScroller: NSScroller {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Life Cycle
-    
+
     public override class func scrollerWidth(for controlSize: NSControl.ControlSize, scrollerStyle: NSScroller.Style) -> CGFloat {
         return .leastNormalMagnitude
     }
-    
+
     // MARK: - Setup
 
     private func setup() {

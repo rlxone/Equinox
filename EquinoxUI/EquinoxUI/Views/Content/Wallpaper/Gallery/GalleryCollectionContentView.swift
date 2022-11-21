@@ -60,7 +60,7 @@ extension GalleryCollectionContentView {
             self.tooltipStyle = tooltipStyle
         }
     }
-    
+
     static let imageAspect: CGFloat = 9 / 16
 
     private enum Constants {
@@ -78,13 +78,13 @@ public final class GalleryCollectionContentView: View {
     private lazy var imageView = GalleryCollectionImageView()
     private weak var dataView: View?
     private lazy var tooltipHandler = GalleryCollectionTooltipHandler()
-    
+
     private lazy var buttonsView: GalleryCollectionButtonsView = {
         let view = GalleryCollectionButtonsView()
         view.tooltipDelegate = tooltipHandler
         return view
     }()
-    
+
     // MARK: - Life Cycle
 
     public override var wantsUpdateLayer: Bool {
@@ -108,7 +108,7 @@ public final class GalleryCollectionContentView: View {
     public override func draggingEnded(_ sender: NSDraggingInfo) {
         isHiglighted = false
     }
-    
+
     public override func draggingExited(_ sender: NSDraggingInfo?) {
         isHiglighted = false
     }
@@ -165,12 +165,12 @@ public final class GalleryCollectionContentView: View {
         imageView.size = .normal
         imageView.position = .topLeft
     }
-    
+
     private func setupConstraints() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
         dataView?.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -207,7 +207,7 @@ public final class GalleryCollectionContentView: View {
             ])
         }
     }
-    
+
     private func setupTimeConstraints() {
         NSLayoutConstraint.activate([
             buttonsView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Constants.defaultPadding),
@@ -225,7 +225,7 @@ public final class GalleryCollectionContentView: View {
             ])
         }
     }
-    
+
     private func setupAppearanceConstraints() {
         NSLayoutConstraint.activate([
             buttonsView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -Constants.appearancePadding),
@@ -234,9 +234,9 @@ public final class GalleryCollectionContentView: View {
             buttonsView.heightAnchor.constraint(equalToConstant: Constants.buttonStackHeight)
         ])
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -244,13 +244,13 @@ public final class GalleryCollectionContentView: View {
             }
         }
     }
-    
+
     public weak var delegate: GalleryCollectionContentViewDelegate? {
         didSet {
             delegate?.registerForDraggedTypes(self)
         }
     }
-    
+
     public var collectionType: GalleryCollectionView.CollectionType? {
         didSet {
             guard oldValue != collectionType else {
@@ -262,7 +262,7 @@ public final class GalleryCollectionContentView: View {
             setup()
         }
     }
-    
+
     public var number: Int? {
         didSet {
             imageView.number = number
@@ -286,21 +286,21 @@ public final class GalleryCollectionContentView: View {
             buttonsView.isPrimary = newValue
         }
     }
-    
+
     public var image: NSImage? {
         didSet {
             imageView.image = image
         }
     }
-    
+
     public func setAppearanceType(_ appearanceType: AppearanceType, animated: Bool) {
         buttonsView.setAppearanceType(appearanceType, animated: animated)
     }
-    
+
     public func flash() {
         coordinatesDataView?.flash()
     }
-    
+
     public var azimuth: String? {
         didSet {
             coordinatesDataView?.azimuth = azimuth
@@ -312,7 +312,7 @@ public final class GalleryCollectionContentView: View {
             coordinatesDataView?.altitude = altitude
         }
     }
-    
+
     public var time: Date? {
         didSet {
             timeDataView?.time = time
@@ -354,7 +354,7 @@ public final class GalleryCollectionContentView: View {
             coordinatesDataView?.onAzimuthChange = onAzimuthChange
         }
     }
-    
+
     public var onAltitudeChange: GalleryCollectionCoordinatesView.FloatingChangeAction? {
         didSet {
             coordinatesDataView?.onAltitudeChange = onAltitudeChange
@@ -366,58 +366,58 @@ public final class GalleryCollectionContentView: View {
             timeDataView?.onTimeChange = onTimeChange
         }
     }
-    
+
     public var onPrimaryChange: GalleryCollectionButtonsView.PrimaryChangeAction? {
         didSet {
             buttonsView.onPrimaryChange = onPrimaryChange
         }
     }
-    
+
     public var onAppearanceTypeChange: GalleryCollectionButtonsView.AppearanceTypeChangeAction? {
         didSet {
             buttonsView.onAppearanceTypeChange = onAppearanceTypeChange
         }
     }
-    
+
     public var appearanceToopltipTitle: String? {
         didSet {
             tooltipHandler.appearanceToopltipTitle = appearanceToopltipTitle
         }
     }
-    
+
     public var appearanceToopltipDescription: String? {
         didSet {
             tooltipHandler.appearanceToopltipDescription = appearanceToopltipDescription
         }
     }
-    
+
     public var primaryToopltipTitle: String? {
         didSet {
             tooltipHandler.primaryToopltipTitle = primaryToopltipTitle
         }
     }
-    
+
     public var primaryToopltipDescription: String? {
         didSet {
             tooltipHandler.primaryToopltipDescription = primaryToopltipDescription
         }
     }
-    
+
     // MARK: - Private
-    
+
     private var coordinatesDataView: GalleryCollectionCoordinatesView? {
         return dataView as? GalleryCollectionCoordinatesView
     }
-    
+
     private var timeDataView: GalleryCollectionTimeView? {
         return dataView as? GalleryCollectionTimeView
     }
-    
+
     private func stylize() {
         imageView.style = style?.galleryDragStyle
         buttonsView.style = style?.buttonsStyle
         tooltipHandler.style = style?.tooltipStyle
-        
+
         guard let collectionType = collectionType else {
             return
         }
@@ -425,7 +425,7 @@ public final class GalleryCollectionContentView: View {
         switch collectionType {
         case .solar:
             coordinatesDataView?.style = style?.coordinatesStyle
-            
+
         case .time:
             timeDataView?.style = style?.timeStyle
 

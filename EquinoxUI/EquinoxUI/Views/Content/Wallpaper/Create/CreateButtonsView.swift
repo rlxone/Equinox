@@ -38,7 +38,7 @@ extension CreateButtonsView {
             let fileImage: NSImage
             let cancelImage: NSImage
             let shareImage: NSImage
-            
+
             public init(
                 saveImage: NSImage,
                 setImage: NSImage,
@@ -53,16 +53,16 @@ extension CreateButtonsView {
                 self.shareImage = shareImage
             }
         }
-        
+
         let ownStyle: OwnStyle
         let pushStyle: RoundedPushButton.Style
-        
+
         public init(ownStyle: OwnStyle, pushStyle: RoundedPushButton.Style) {
             self.ownStyle = ownStyle
             self.pushStyle = pushStyle
         }
     }
-    
+
     private enum Constants {
         static let spacing: CGFloat = 25
         static let buttonWidth: CGFloat = 48
@@ -78,42 +78,42 @@ public final class CreateButtonsView: StackView {
     private lazy var shareButton = RoundedPushButton()
     private lazy var setButton = RoundedPushButton()
     private lazy var cancelButton = RoundedPushButton()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupConstraints()
     }
-    
+
     private func setupView() {
         spacing = Constants.spacing
-        
+
         addArrangedSubview(saveButton)
         addArrangedSubview(setButton)
         addArrangedSubview(shareButton)
         addArrangedSubview(createButton)
         addArrangedSubview(cancelButton)
-        
+
         arrangedSubviews.forEach {
             $0.isHidden = true
         }
     }
-    
+
     private func setupConstraints() {
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         createButton.translatesAutoresizingMaskIntoConstraints = false
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         setButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             saveButton.widthAnchor.constraint(equalToConstant: Constants.buttonWidth),
             saveButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
@@ -127,9 +127,9 @@ public final class CreateButtonsView: StackView {
             cancelButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight)
         ])
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -137,7 +137,7 @@ public final class CreateButtonsView: StackView {
             }
         }
     }
-    
+
     public func showButtons(success: Bool) {
         if success {
             saveButton.isHidden = false
@@ -147,37 +147,37 @@ public final class CreateButtonsView: StackView {
         createButton.isHidden = false
         cancelButton.isHidden = false
     }
-    
+
     public var saveButtonTitle: String? {
         didSet {
             saveButton.title = saveButtonTitle ?? String()
         }
     }
-    
+
     public var setButtonTitle: String? {
         didSet {
             setButton.title = setButtonTitle ?? String()
         }
     }
-    
+
     public var createButtonTitle: String? {
         didSet {
             createButton.title = createButtonTitle ?? String()
         }
     }
-    
+
     public var cancelButtonTitle: String? {
         didSet {
             cancelButton.title = cancelButtonTitle ?? String()
         }
     }
-    
+
     public var shareButtonTitle: String? {
         didSet {
             shareButton.title = shareButtonTitle ?? String()
         }
     }
-    
+
     public var cancelButtonAction: Button.Action? {
         didSet {
             cancelButton.onAction = cancelButtonAction
@@ -201,15 +201,15 @@ public final class CreateButtonsView: StackView {
             createButton.onAction = createButtonAction
         }
     }
-    
+
     public var shareButtonAction: Button.Action? {
         didSet {
             shareButton.onAction = shareButtonAction
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         saveButton.image = style?.ownStyle.saveImage
         setButton.image = style?.ownStyle.setImage

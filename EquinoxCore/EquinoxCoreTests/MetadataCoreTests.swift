@@ -34,11 +34,11 @@ import XCTest
 class MetadataCoreTests: XCTestCase {
     private var metadataCore: MetadataCoreImpl!
     private lazy var testBundle = Bundle(for: type(of: self))
-    
+
     override func setUpWithError() throws {
         metadataCore = MetadataCoreImpl()
     }
-    
+
     func testGenerateSolarMetadata() throws {
         // Given
         let path = testBundle.path(forResource: "image", ofType: "heic")!
@@ -60,20 +60,20 @@ class MetadataCoreTests: XCTestCase {
             )
         ]
         let result = "YnBsaXN0MDDSAQIDCFJhcFJzadIEBQYHUWxRZBAAEAGiCQ7TCgsMBg0NUWlRYVF6I0BLgAAAAAAA0woLDAcPDyNARgAAAAAAAAgNEBMYGhweI" +
-        "CMqLC4wOUAAAAAAAAABAQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAASQ=="
-        
+            "CMqLC4wOUAAAAAAAAABAQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAASQ=="
+
         // When
         let metadata = try metadataCore.generate(from: imageAttributes)
         let tags = CGImageMetadataCopyTags(metadata) as? [CGImageMetadataTag]
         let solarTag = tags?.first { CGImageMetadataTagCopyName($0) == ImageMetadataType.solar.rawValue as CFString }
         let tag = try XCTUnwrap(solarTag)
         let tagValue = try XCTUnwrap(CGImageMetadataTagCopyValue(tag) as? String)
-        
+
         // Then
         XCTAssertNotNil(metadata)
         XCTAssertEqual(tagValue, result)
     }
-    
+
     func testGenerateTimeMetadata() throws {
         // Given
         let path = testBundle.path(forResource: "image", ofType: "heic")!
@@ -95,20 +95,20 @@ class MetadataCoreTests: XCTestCase {
             )
         ]
         let result = "YnBsaXN0MDDSAQIDDFJ0aVJhcKIECdIFBgcIUWlRdBAAIz/gAAAAAAAA0gUGCgsQASM/4VVVVVVVVdINDgcKUWxRZAgNEBMWGx0fISovMTo/" +
-        "QQAAAAAAAAEBAAAAAAAAAA8AAAAAAAAAAAAAAAAAAABD"
-        
+            "QQAAAAAAAAEBAAAAAAAAAA8AAAAAAAAAAAAAAAAAAABD"
+
         // When
         let metadata = try metadataCore.generate(from: imageAttributes)
         let tags = CGImageMetadataCopyTags(metadata) as? [CGImageMetadataTag]
         let timeTag = tags?.first { CGImageMetadataTagCopyName($0) == ImageMetadataType.time.rawValue as CFString }
         let tag = try XCTUnwrap(timeTag)
         let tagValue = try XCTUnwrap(CGImageMetadataTagCopyValue(tag) as? String)
-        
+
         // Then
         XCTAssertNotNil(metadata)
         XCTAssertEqual(tagValue, result)
     }
-    
+
     func testGenerateAppearanceMetadata() throws {
         // Given
         let path = testBundle.path(forResource: "image", ofType: "heic")!
@@ -130,39 +130,39 @@ class MetadataCoreTests: XCTestCase {
             )
         ]
         let result = "YnBsaXN0MDDSAQIDBFFsUWQQABABCA0PERMAAAAAAAABAQAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAFQ=="
-        
+
         // When
         let metadata = try metadataCore.generate(from: imageAttributes)
         let tags = CGImageMetadataCopyTags(metadata) as? [CGImageMetadataTag]
         let appearanceTag = tags?.first { CGImageMetadataTagCopyName($0) == ImageMetadataType.appearance.rawValue as CFString }
         let tag = try XCTUnwrap(appearanceTag)
         let tagValue = try XCTUnwrap(CGImageMetadataTagCopyValue(tag) as? String)
-        
+
         // Then
         XCTAssertNotNil(metadata)
         XCTAssertEqual(tagValue, result)
     }
-    
+
     func testImageMetadata() {
         // Given
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
-        
+
         // When
         let metadata = try? metadataCore.getImageMetadata(for: url)
-        
+
         // Then
         XCTAssertNotNil(metadata)
         XCTAssertNotNil(metadata?.longitude)
         XCTAssertNotNil(metadata?.latitude)
         XCTAssertNotNil(metadata?.createDate)
     }
-    
+
     private func getDate(day: Int, month: Int, year: Int, hour: Int, minute: Int, second: Int) throws -> Date {
         guard let timezone = TimeZone(abbreviation: "GMT") else {
             throw SolarError.wrongTimezone
         }
-        
+
         var dateComponents = DateComponents()
         dateComponents.day = day
         dateComponents.month = month
@@ -171,10 +171,10 @@ class MetadataCoreTests: XCTestCase {
         dateComponents.minute = minute
         dateComponents.second = second
         dateComponents.timeZone = timezone
-        
+
         var calendar = Calendar.current
         calendar.timeZone = timezone
-        
+
         let date = calendar.date(from: dateComponents)!
         return date
     }

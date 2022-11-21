@@ -38,7 +38,7 @@ class ViewController: NSViewController {
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Public
 
     func addChildController(_ controller: NSViewController, container: NSView) {

@@ -34,18 +34,18 @@ extension WelcomeContentView {
     public struct Style {
         public struct OwnStyle {
             let icon: NSImage
-            
+
             public init(icon: NSImage) {
                 self.icon = icon
             }
         }
-        
+
         let ownStyle: OwnStyle
         let typeStyle: TypeView.Style
         let welcomeStyle: StyledLabel.Style
         let versionStyle: StyledLabel.Style
         let githubStyle: StyledLabel.Style
-        
+
         public init(
             ownStyle: WelcomeContentView.Style.OwnStyle,
             typeStyle: TypeView.Style,
@@ -60,7 +60,7 @@ extension WelcomeContentView {
             self.githubStyle = githubStyle
         }
     }
-    
+
     private enum Constants {
         static let welcomeVisualEffectViewWidth: CGFloat = 444
         static let iconImageViewTopOffset: CGFloat = 64
@@ -78,29 +78,29 @@ extension WelcomeContentView {
 public final class WelcomeContentView: View {
     private lazy var welcomeVisualEffectView = VisualEffectView(material: .windowBackground, blendingMode: .behindWindow)
     private lazy var sidebarVisualEffectView = VisualEffectView(material: .sidebar, blendingMode: .behindWindow)
-    
+
     private lazy var iconImageView = ImageView()
     private lazy var welcomeLabel = StyledLabel()
     private lazy var versionLabel = StyledLabel()
     private lazy var typeView = TypeView()
-    
+
     private lazy var githubLabel = StyledLabel()
     private lazy var githubButton = ContainerButton()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupConstraints()
     }
-    
+
     private func setupView() {
         addSubview(welcomeVisualEffectView)
         welcomeVisualEffectView.contentView.addSubview(iconImageView)
@@ -108,66 +108,66 @@ public final class WelcomeContentView: View {
         welcomeVisualEffectView.contentView.addSubview(versionLabel)
         welcomeVisualEffectView.contentView.addSubview(githubButton)
         githubButton.addSubview(githubLabel)
-        
+
         addSubview(sidebarVisualEffectView)
         sidebarVisualEffectView.contentView.addSubview(typeView)
     }
-    
+
     private func setupConstraints() {
         setupContainerConstraints()
         setupWelcomeConstraints()
         setupTypeConstraints()
     }
-    
+
     private func setupContainerConstraints() {
         welcomeVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
         sidebarVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             welcomeVisualEffectView.leadingAnchor.constraint(equalTo: leadingAnchor),
             welcomeVisualEffectView.topAnchor.constraint(equalTo: topAnchor),
             welcomeVisualEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
             welcomeVisualEffectView.widthAnchor.constraint(equalToConstant: Constants.welcomeVisualEffectViewWidth),
-            
+
             sidebarVisualEffectView.leadingAnchor.constraint(equalTo: welcomeVisualEffectView.trailingAnchor),
             sidebarVisualEffectView.topAnchor.constraint(equalTo: topAnchor),
             sidebarVisualEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
             sidebarVisualEffectView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
-    
+
     private func setupWelcomeConstraints() {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         versionLabel.translatesAutoresizingMaskIntoConstraints = false
         githubButton.translatesAutoresizingMaskIntoConstraints = false
         githubLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             iconImageView.centerXAnchor.constraint(equalTo: welcomeVisualEffectView.contentView.centerXAnchor),
             iconImageView.topAnchor.constraint(equalTo: welcomeVisualEffectView.contentView.topAnchor, constant: Constants.iconImageViewTopOffset),
             iconImageView.widthAnchor.constraint(equalToConstant: Constants.iconImageViewWidth),
             iconImageView.heightAnchor.constraint(equalToConstant: Constants.iconImageViewHeight),
-            
+
             welcomeLabel.centerXAnchor.constraint(equalTo: welcomeVisualEffectView.contentView.centerXAnchor),
             welcomeLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: Constants.welcomeLabelTopOffset),
-            
+
             versionLabel.centerXAnchor.constraint(equalTo: welcomeVisualEffectView.contentView.centerXAnchor),
             versionLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: Constants.versionLabelTopOffset),
-            
+
             githubButton.centerXAnchor.constraint(equalTo: welcomeVisualEffectView.contentView.centerXAnchor),
             githubButton.topAnchor.constraint(equalTo: versionLabel.bottomAnchor, constant: Constants.githubButtonTopOffset),
-            
+
             githubLabel.leadingAnchor.constraint(equalTo: githubButton.leadingAnchor, constant: Constants.githubLabelContainerOffset),
             githubLabel.trailingAnchor.constraint(equalTo: githubButton.trailingAnchor, constant: -Constants.githubLabelContainerOffset),
             githubLabel.topAnchor.constraint(equalTo: githubButton.topAnchor, constant: Constants.githubLabelContainerOffset),
             githubLabel.bottomAnchor.constraint(equalTo: githubButton.bottomAnchor, constant: -Constants.githubLabelContainerOffset)
         ])
     }
-    
+
     private func setupTypeConstraints() {
         typeView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             typeView.leadingAnchor.constraint(equalTo: sidebarVisualEffectView.contentView.leadingAnchor),
             typeView.trailingAnchor.constraint(equalTo: sidebarVisualEffectView.contentView.trailingAnchor),
@@ -175,9 +175,9 @@ public final class WelcomeContentView: View {
             typeView.bottomAnchor.constraint(equalTo: sidebarVisualEffectView.contentView.bottomAnchor)
         ])
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -185,63 +185,63 @@ public final class WelcomeContentView: View {
             }
         }
     }
-    
+
     public var types: [TypeItemView.Item] = [] {
         didSet {
             typeView.items = types
         }
     }
-    
+
     public var selectedTypeIndex: Int? {
         didSet {
             typeView.selectedIndex = selectedTypeIndex
         }
     }
-    
+
     public var welcomeText: String? {
         didSet {
             welcomeLabel.stringValue = welcomeText ?? String()
         }
     }
-    
+
     public var versionText: String? {
         didSet {
             versionLabel.stringValue = versionText ?? String()
         }
     }
-    
+
     public var githubText: String? {
         didSet {
             githubLabel.stringValue = githubText ?? String()
         }
     }
-    
+
     public var typeHeaderText: String? {
         didSet {
             typeView.headerText = typeHeaderText ?? String()
         }
     }
-    
+
     public var typeDescriptionText: String? {
         didSet {
             typeView.descriptionText = typeDescriptionText ?? String()
         }
     }
-    
+
     public var githubAction: Button.Action? {
         didSet {
             githubButton.onAction = githubAction
         }
     }
-    
+
     public var typeAction: TypeView.Action? {
         didSet {
             typeView.action = typeAction
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         iconImageView.image = style?.ownStyle.icon
         typeView.style = style?.typeStyle

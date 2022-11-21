@@ -34,19 +34,19 @@ extension TipContentView {
     public struct Style {
         public struct OwnStyle {
             let backgroundColor: NSColor
-            
+
             public init(backgroundColor: NSColor) {
                 self.backgroundColor = backgroundColor
             }
         }
-        
+
         let ownStyle: OwnStyle
         let titleStyle: StyledLabel.Style
         let descriptionStyle: StyledLabel.Style
         let statusStyle: StyledLabel.Style
         let lineStyle: LineView.Style
         let pushButtonStyle: PushButton.Style
-        
+
         public init(
             ownStyle: OwnStyle,
             titleStyle: StyledLabel.Style,
@@ -63,7 +63,7 @@ extension TipContentView {
             self.pushButtonStyle = pushButtonStyle
         }
     }
-    
+
     private enum Constants {
         static let cornerRadius: CGFloat = 20
         static let viewWidth: CGFloat = 500
@@ -94,40 +94,40 @@ public final class TipContentView: View {
     private lazy var statusLabel = StyledLabel()
     private lazy var lineView = LineView()
     private lazy var button = PushButton()
-    
+
     private lazy var overlayView: OverlayView = {
         let view = OverlayView()
         view.wantsLayer = true
         return view
     }()
-    
+
     private lazy var visualEffectView: VisualEffectView = {
         let view = VisualEffectView(material: .contentBackground, blendingMode: .behindWindow)
         view.wantsLayer = true
         view.layer?.cornerRadius = Constants.cornerRadius
         return view
     }()
-    
+
     private lazy var statusVisualEffectView: VisualEffectView = {
         let view = VisualEffectView(material: .hudWindow, blendingMode: .withinWindow)
         view.wantsLayer = true
         return view
     }()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Life Cycle
-    
+
     public override func layout() {
         super.layout()
         statusVisualEffectView.layer?.cornerRadius = statusVisualEffectView.frame.height / 2
     }
-    
+
     public override var wantsUpdateLayer: Bool {
         return true
     }
@@ -136,18 +136,18 @@ public final class TipContentView: View {
         super.updateLayer()
         stylize()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupConstraints()
     }
-    
+
     private func setupView() {
         addSubview(overlayView)
         overlayView.addSubview(visualEffectView)
-        
+
         visualEffectView.contentView.addSubview(titleLabel)
         visualEffectView.contentView.addSubview(descriptionLabel)
         visualEffectView.contentView.addSubview(imageView)
@@ -156,7 +156,7 @@ public final class TipContentView: View {
         visualEffectView.contentView.addSubview(lineView)
         visualEffectView.contentView.addSubview(button)
     }
-    
+
     private func setupConstraints() {
         setupContainerConstraints()
         setupStatusConstraints()
@@ -164,34 +164,34 @@ public final class TipContentView: View {
         setupTextConstraints()
         setupButtonConstraints()
     }
-    
+
     private func setupContainerConstraints() {
         overlayView.translatesAutoresizingMaskIntoConstraints = false
         visualEffectView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             overlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
             overlayView.topAnchor.constraint(equalTo: topAnchor),
             overlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
             overlayView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
+
             visualEffectView.widthAnchor.constraint(equalToConstant: Constants.viewWidth),
             visualEffectView.centerXAnchor.constraint(equalTo: centerXAnchor),
             visualEffectView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
-    
+
     private func setupStatusConstraints() {
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         statusVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             statusVisualEffectView.leadingAnchor.constraint(
                 equalTo: visualEffectView.contentView.leadingAnchor,
                 constant: Constants.statusViewLeadingOffset
             ),
             statusVisualEffectView.topAnchor.constraint(equalTo: visualEffectView.contentView.topAnchor, constant: Constants.statusViewTopOffset),
-            
+
             statusLabel.leadingAnchor.constraint(
                 equalTo: statusVisualEffectView.contentView.leadingAnchor,
                 constant: Constants.statusLabelHorizontalOffset
@@ -210,10 +210,10 @@ public final class TipContentView: View {
             )
         ])
     }
-    
+
     private func setupImageConstraints() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: visualEffectView.contentView.leadingAnchor),
             imageView.topAnchor.constraint(equalTo: visualEffectView.contentView.topAnchor),
@@ -221,16 +221,16 @@ public final class TipContentView: View {
             imageView.heightAnchor.constraint(equalTo: visualEffectView.widthAnchor, multiplier: Constants.imageAspect)
         ])
     }
-    
+
     private func setupTextConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Constants.titleTopOffset),
             titleLabel.leadingAnchor.constraint(equalTo: visualEffectView.contentView.leadingAnchor, constant: Constants.textHorizontalOffset),
             titleLabel.trailingAnchor.constraint(equalTo: visualEffectView.contentView.trailingAnchor, constant: -Constants.textHorizontalOffset),
-            
+
             descriptionLabel.leadingAnchor.constraint(equalTo: visualEffectView.contentView.leadingAnchor, constant: Constants.textHorizontalOffset),
             descriptionLabel.trailingAnchor.constraint(
                 equalTo: visualEffectView.contentView.trailingAnchor,
@@ -239,17 +239,17 @@ public final class TipContentView: View {
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.descriptionTopOffset)
         ])
     }
-    
+
     private func setupButtonConstraints() {
         lineView.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             lineView.leadingAnchor.constraint(equalTo: visualEffectView.contentView.leadingAnchor),
             lineView.trailingAnchor.constraint(equalTo: visualEffectView.contentView.trailingAnchor),
             lineView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Constants.lineTopOffset),
             lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
-            
+
             button.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: Constants.buttonTopOffset),
             button.centerXAnchor.constraint(equalTo: visualEffectView.contentView.centerXAnchor),
             button.widthAnchor.constraint(equalToConstant: Constants.buttonWidth),
@@ -257,9 +257,9 @@ public final class TipContentView: View {
             button.bottomAnchor.constraint(equalTo: visualEffectView.contentView.bottomAnchor, constant: -Constants.buttonBottomOffset)
         ])
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -267,69 +267,69 @@ public final class TipContentView: View {
             }
         }
     }
-    
+
     public var title: String? {
         didSet {
             titleLabel.stringValue = title ?? String()
         }
     }
-    
+
     public var descriptionTitle: String? {
         didSet {
             descriptionLabel.attributedStringValue = makeDescriptionAttributedString()
         }
     }
-    
+
     public var status: String? {
         didSet {
             statusLabel.stringValue = status ?? String()
         }
     }
-    
+
     public var buttonTitle: String? {
         didSet {
             button.title = buttonTitle ?? String()
         }
     }
-    
+
     public var image: NSImage? {
         didSet {
             imageView.image = image
         }
     }
-    
+
     public var action: Button.Action? {
         didSet {
             button.onAction = action
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         visualEffectView.layer?.borderWidth = 1
         visualEffectView.layer?.borderColor = style?.lineStyle.color.cgColor
         overlayView.layer?.backgroundColor = style?.ownStyle.backgroundColor.cgColor
-        
+
         titleLabel.style = style?.titleStyle
         descriptionLabel.style = style?.descriptionStyle
         statusLabel.style = style?.statusStyle
         lineView.style = style?.lineStyle
         button.style = style?.pushButtonStyle
-        
+
         descriptionLabel.attributedStringValue = makeDescriptionAttributedString()
     }
-    
+
     private func makeDescriptionAttributedString() -> NSAttributedString {
         let description = descriptionTitle ?? String()
-        
+
         guard let style = style else {
             return NSAttributedString(string: description)
         }
-        
+
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = Constants.lineSpacing
-        
+
         let string = NSAttributedString(
             string: description,
             attributes: [
@@ -338,7 +338,7 @@ public final class TipContentView: View {
                 .paragraphStyle: paragraphStyle
             ]
         )
-        
+
         return string
     }
 }

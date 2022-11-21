@@ -117,7 +117,7 @@ extension FloatingTextField: NSTextFieldDelegate {
         mutateStringValue()
         floatingDelegate?.textDidChange(self)
     }
-    
+
     public func controlTextDidEndEditing(_ obj: Notification) {
         guard
             let view = obj.object as? NSView,
@@ -126,14 +126,14 @@ extension FloatingTextField: NSTextFieldDelegate {
         else {
             return
         }
-        
+
         switch textMovement {
         case .tab:
             floatingDelegate?.textDidTab(for: view)
-            
+
         case .backtab:
             floatingDelegate?.textDidBackTab(for: view)
-            
+
         default:
             break
         }

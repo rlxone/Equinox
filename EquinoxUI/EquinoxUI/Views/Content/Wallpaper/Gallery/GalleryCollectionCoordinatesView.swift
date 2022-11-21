@@ -84,7 +84,7 @@ public final class GalleryCollectionCoordinatesView: View {
     private lazy var separatorView = LineView()
     private lazy var altitudeContainer = View()
     private lazy var azimuthContainer = View()
-    
+
     private lazy var altitudeTextField: FloatingTextField = {
         let textField = FloatingTextField()
         textField.floatingDelegate = self
@@ -102,7 +102,7 @@ public final class GalleryCollectionCoordinatesView: View {
         textField.focusRingType = .none
         return textField
     }()
-    
+
     // MARK: - Initializer
 
     public override init() {
@@ -120,9 +120,9 @@ public final class GalleryCollectionCoordinatesView: View {
         super.updateLayer()
         stylize()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupConstraints()
@@ -132,16 +132,16 @@ public final class GalleryCollectionCoordinatesView: View {
         wantsLayer = true
         layer?.cornerRadius = Constants.cornerRadius
         layer?.borderWidth = Constants.borderWidth
-        
+
         altitudeContainer.addSubview(altitudeLabel)
         altitudeContainer.addSubview(altitudeTextField)
         azimuthContainer.addSubview(azimuthLabel)
         azimuthContainer.addSubview(azimuthTextField)
-        
+
         addSubview(altitudeContainer)
         addSubview(azimuthContainer)
         addSubview(separatorView)
-        
+
         altitudeTextField.nextKeyView = azimuthTextField
         azimuthTextField.nextKeyView = altitudeTextField
     }
@@ -155,39 +155,39 @@ public final class GalleryCollectionCoordinatesView: View {
         altitudeTextField.translatesAutoresizingMaskIntoConstraints = false
         azimuthLabel.translatesAutoresizingMaskIntoConstraints = false
         azimuthTextField.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             separatorView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.separatorOffset),
             separatorView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.separatorOffset),
             separatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
             separatorView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
+
             altitudeContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
             altitudeContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
             altitudeContainer.topAnchor.constraint(equalTo: topAnchor),
             altitudeContainer.bottomAnchor.constraint(equalTo: separatorView.topAnchor),
-            
+
             azimuthContainer.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
             azimuthContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
             azimuthContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
             azimuthContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
+
             altitudeLabel.leadingAnchor.constraint(equalTo: altitudeContainer.leadingAnchor, constant: Constants.edgeInsets.left),
             altitudeLabel.centerYAnchor.constraint(equalTo: altitudeContainer.centerYAnchor),
-            
+
             altitudeTextField.leadingAnchor.constraint(equalTo: altitudeLabel.trailingAnchor, constant: Constants.stackSpacing),
             altitudeTextField.centerYAnchor.constraint(equalTo: altitudeContainer.centerYAnchor),
             altitudeTextField.trailingAnchor.constraint(equalTo: altitudeContainer.trailingAnchor, constant: -Constants.edgeInsets.right),
-            
+
             azimuthLabel.leadingAnchor.constraint(equalTo: azimuthContainer.leadingAnchor, constant: Constants.edgeInsets.left),
             azimuthLabel.centerYAnchor.constraint(equalTo: azimuthContainer.centerYAnchor),
-            
+
             azimuthTextField.leadingAnchor.constraint(equalTo: azimuthLabel.trailingAnchor, constant: Constants.stackSpacing),
             azimuthTextField.centerYAnchor.constraint(equalTo: azimuthContainer.centerYAnchor),
             azimuthTextField.trailingAnchor.constraint(equalTo: azimuthContainer.trailingAnchor, constant: -Constants.edgeInsets.right)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -197,34 +197,34 @@ public final class GalleryCollectionCoordinatesView: View {
             }
         }
     }
-    
+
     public func flash() {
         guard let style = style, let currentBorderColor = layer?.borderColor else {
             return
         }
-        
+
         let borderColorAnimation = CABasicAnimation(keyPath: "borderColor")
         borderColorAnimation.duration = Constants.flashAnimationDuration
         borderColorAnimation.autoreverses = true
         borderColorAnimation.timingFunction = .init(name: .linear)
         borderColorAnimation.fromValue = currentBorderColor
         borderColorAnimation.toValue = style.ownStyle.flashColor.cgColor
-        
+
         layer?.add(borderColorAnimation, forKey: nil)
     }
-    
+
     public var azimuth: String? {
         didSet {
             azimuthTextField.stringValue = azimuth ?? String()
         }
     }
-    
+
     public var altitude: String? {
         didSet {
             altitudeTextField.stringValue = altitude ?? String()
         }
     }
-    
+
     public var altitudeText: String? {
         didSet {
             altitudeLabel.stringValue = altitudeText ?? String()
@@ -252,17 +252,17 @@ public final class GalleryCollectionCoordinatesView: View {
     public var onAzimuthChange: FloatingChangeAction?
 
     public var onAltitudeChange: FloatingChangeAction?
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         separatorView.style = style?.separatorStyle
         altitudeLabel.style = style?.altitudeStyle
         azimuthLabel.style = style?.azimuthStyle
-        
+
         layer?.backgroundColor = style?.ownStyle.stackBackgroundColor.cgColor
         layer?.borderColor = style?.ownStyle.stackBorderColor.cgColor
-        
+
         altitudeTextField.font = style?.altitudeStyle.font
         azimuthTextField.font = style?.azimuthStyle.font
     }
@@ -278,10 +278,10 @@ extension GalleryCollectionCoordinatesView: FloatingTextFieldDelegate {
             onAltitudeChange?(altitudeTextField)
         }
     }
-    
+
     public func textDidTab(for view: NSView) {
     }
-    
+
     public func textDidBackTab(for view: NSView) {
     }
 }

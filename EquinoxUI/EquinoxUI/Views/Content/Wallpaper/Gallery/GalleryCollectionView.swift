@@ -104,13 +104,13 @@ public final class GalleryCollectionView: NSScrollView {
     }()
     private lazy var collectionLayout = GalleryCollectionLayout()
     private lazy var semaphore = DispatchSemaphore(value: 0)
-    
+
     private lazy var dataSource: GalleryCollectionDataSource = {
         let dataSource = GalleryCollectionDataSource(collectionView: collectionView)
         dataSource.delegate = self
         return dataSource
     }()
-    
+
     private lazy var operationQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
@@ -200,11 +200,11 @@ public final class GalleryCollectionView: NSScrollView {
             collectionView.isSelectable = newValue
         }
     }
-    
+
     public func setCollectionVisibility(_ isVisible: Bool, animated: Bool) {
         NSAnimationContext.runAnimationGroup { context in
             context.duration = Constants.visibilityAnimationDuration
-            
+
             self.animator().alphaValue = isVisible ? 1 : 0
         }
     }
@@ -245,7 +245,7 @@ public final class GalleryCollectionView: NSScrollView {
     public func updateItem(at index: Int, model: GalleryModel, animated: Bool) {
         dataSource.updateItem(at: index, model: model, animated: animated)
     }
-    
+
     public func flashItems(at indexPaths: Set<IndexPath>) {
         let visibleIndexPaths = collectionView.indexPathsForVisibleItems()
         let flashIndexPaths = visibleIndexPaths.intersection(indexPaths)

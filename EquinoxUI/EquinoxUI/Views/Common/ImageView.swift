@@ -32,7 +32,7 @@ public class ImageView: NSImageView {
     public override func hitTest(_ point: NSPoint) -> NSView? {
         return isUserInteractionsEnabled ? super.hitTest(point) : nil
     }
-    
+
     // MARK: - Public
 
     public override var image: NSImage? {

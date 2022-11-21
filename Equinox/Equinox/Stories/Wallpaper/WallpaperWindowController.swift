@@ -76,9 +76,9 @@ final class WallpaperWindowController: WindowController {
         super.init(window: nil)
         setupWindow()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setupWindow() {
         let title = NSApplication.appName
         let controller = WallpaperRootViewController(
@@ -104,27 +104,27 @@ final class WallpaperWindowController: WindowController {
         window?.makeKeyAndOrderFront(self)
         window?.center()
     }
-    
+
     private func setWindowTitle(appName: String) {
         var title: String
-        
+
         switch type {
         case .solar:
             title = "\(appName) - \(Localization.Wallpaper.Main.solar)"
-            
+
         case .time:
             title = "\(appName) - \(Localization.Wallpaper.Main.time)"
-            
+
         case .appearance:
             title = "\(appName) - \(Localization.Wallpaper.Main.appearance)"
         }
-        
+
         window?.title = title
         window?.miniwindowTitle = title
     }
-    
+
     // MARK: - Public
-    
+
     weak var delegate: WallpaperWindowControllerDelegate?
 }
 
@@ -134,7 +134,7 @@ extension WallpaperWindowController: WallpaperRootViewControllerDelegate {
     func rootViewControllerNewWasInteracted() {
         delegate?.wallpaperWindowControllerNewWasInteracted()
     }
-    
+
     func rootViewControllerCalculatorWasInteracted() {
         delegate?.wallpaperWindowControllerCalculatorWasInteracted()
     }

@@ -90,14 +90,16 @@ opt_in_rules:
     - void_return
     - weak_delegate
     - type_body_length
-disabled_rules:
-    - trailing_whitespace
 analyzer_rules:
     - explicit_self
     - unused_declaration
     - unused_import
 
 line_length: 150
+
+type_name:
+    min_length: 2
+    max_length: 50
 
 type_body_length:
     warning: 300

@@ -53,7 +53,7 @@ extension GalleryCollectionDataSource {
 public final class GalleryCollectionDataSource: NSObject {
     private weak var collectionView: GalleryInternalCollectionView?
     private var data: GalleryData?
-    
+
     // MARK: - Initializer
 
     public init(collectionView: GalleryInternalCollectionView) {
@@ -61,7 +61,7 @@ public final class GalleryCollectionDataSource: NSObject {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -80,7 +80,7 @@ public final class GalleryCollectionDataSource: NSObject {
             withIdentifier: Identifier.innerGap.identifier
         )
     }
-    
+
     // MARK: - Public
 
     public var style: GalleryCollectionView.Style? {
@@ -94,7 +94,7 @@ public final class GalleryCollectionDataSource: NSObject {
             collectionView?.reloadData()
         }
     }
-    
+
     public weak var delegate: GalleryCollectionDataSourceDelegate?
 
     public var textList: GalleryTextList? {
@@ -153,7 +153,7 @@ public final class GalleryCollectionDataSource: NSObject {
         }
         view.setModel(model, animated: animated)
     }
-    
+
     // MARK: - Private
 
     private func configure(_ item: GalleryCollectionViewItem, model: GalleryModel) {
@@ -163,7 +163,7 @@ public final class GalleryCollectionDataSource: NSObject {
         item.setModel(model, animated: false)
         item.textList = textList
     }
-    
+
     private func reloadVisibleCells() {
         guard let data = data else {
             return
@@ -185,7 +185,7 @@ extension GalleryCollectionDataSource: NSCollectionViewDataSource {
     public func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         return data?.items.count ?? 0
     }
-    
+
     public func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         guard
             let item = collectionView.makeItem(
@@ -201,7 +201,7 @@ extension GalleryCollectionDataSource: NSCollectionViewDataSource {
         }
         return item
     }
-    
+
     public func collectionView(
         _ collectionView: NSCollectionView,
         viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind,

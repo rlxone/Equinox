@@ -48,11 +48,11 @@ extension DragAnimatedImageView {
 public final class DragAnimatedImageView: AnimatedImageView {
     public override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
-        
+
         guard isEnabled else {
             return
         }
-        
+
         guard let delegate = dragDelegate, delegate.canBeDragged(self) else {
             return
         }
@@ -81,7 +81,7 @@ public final class DragAnimatedImageView: AnimatedImageView {
             }
         }
     }
-    
+
     // MARK: - Public
 
     public weak var dragDelegate: DragAnimatedImageViewDelegate?

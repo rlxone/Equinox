@@ -46,14 +46,14 @@ final class WallpaperAppearanceViewController: ViewController {
         view.style = .default
         return view
     }()
-    
+
     // MARK: - Initializer
 
     init(type: WallpaperType) {
         self.type = type
         super.init()
     }
-    
+
     // MARK: - Life Cycle
 
     override func loadView() {
@@ -64,7 +64,7 @@ final class WallpaperAppearanceViewController: ViewController {
         super.viewDidLoad()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -89,7 +89,7 @@ final class WallpaperAppearanceViewController: ViewController {
                     appearanceType: .dark
                 )
             ]
-            
+
         case .appearance:
             data = [
                 .init(
@@ -113,7 +113,7 @@ final class WallpaperAppearanceViewController: ViewController {
 
         updateSelectedAppearanceType()
     }
-    
+
     // MARK: - Public
 
     weak var delegate: WallpaperAppearanceViewControllerDelegate?
@@ -123,7 +123,7 @@ final class WallpaperAppearanceViewController: ViewController {
             updateSelectedAppearanceType()
         }
     }
-    
+
     // MARK: - Private
 
     private func updateSelectedAppearanceType() {

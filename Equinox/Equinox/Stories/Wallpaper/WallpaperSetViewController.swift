@@ -54,7 +54,7 @@ final class WallpaperSetViewController: ViewController {
         view.style = .default
         return view
     }()
-    
+
     // MARK: - Life Cycle
 
     override func loadView() {
@@ -65,14 +65,14 @@ final class WallpaperSetViewController: ViewController {
         super.viewDidLoad()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
         setupView()
         setupActions()
     }
-    
+
     private func setupView() {
         contentView.title = Localization.Wallpaper.Set.title
         contentView.descriptionTitle = Localization.Wallpaper.Set.descriptionTitle
@@ -84,12 +84,12 @@ final class WallpaperSetViewController: ViewController {
             .init(text: Localization.Wallpaper.Set.todoLink, tag: Constants.desktopLinkTag)
         ]
     }
-    
+
     private func setupActions() {
         contentView.action = { [weak self] skip in
             self?.delegate?.setViewControllerContinueWasInteracted(skip: skip)
         }
-        
+
         contentView.todoClickAction = { [weak self] link in
             guard
                 let tag = (link as? URL)?.absoluteString,
@@ -100,13 +100,13 @@ final class WallpaperSetViewController: ViewController {
             self?.openDesktopPreferencesPane()
         }
     }
-    
+
     // MARK: - Public
-    
+
     weak var delegate: WallpaperSetViewControllerDelegate?
-    
+
     // MARK: - Private
-    
+
     private func openDesktopPreferencesPane() {
         WorkspaceRunner.shell("open -b \(Constants.preferencesIdentifer) \(Constants.desktopPreferencesPanePath)")
     }

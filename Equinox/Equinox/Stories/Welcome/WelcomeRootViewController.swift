@@ -39,28 +39,28 @@ protocol WelcomeRootViewControllerDelegate: AnyObject {
 
 final class WelcomeRootViewController: ViewController {
     private lazy var contentView = View()
-    
+
     // MARK: - Life Cycle
-    
+
     override func loadView() {
         view = contentView
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    
+
     private func setup() {
         presentWelcomeController()
     }
-    
+
     // MARK: - Public
-    
+
     weak var delegate: WelcomeRootViewControllerDelegate?
-    
+
     // MARK: - Private
-    
+
     private func presentWelcomeController() {
         let controller = WelcomeViewController()
         controller.delegate = self

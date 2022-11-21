@@ -34,13 +34,13 @@ import XCTest
 class StorageCoreTests: XCTestCase {
     private var storageCore: StorageCore!
     private var userDefaults: UserDefaults!
-    
+
     override func setUpWithError() throws {
         userDefaults = UserDefaults(suiteName: #file)!
         userDefaults.removePersistentDomain(forName: #file)
         storageCore = StorageCoreImpl(userDefaults: userDefaults)
     }
-    
+
     func testSetGet() throws {
         // Given
         let key1 = "key1"
@@ -49,22 +49,22 @@ class StorageCoreTests: XCTestCase {
         let value1 = "data1"
         let value2 = "data2"
         let value3 = "data3"
-        
+
         // When
         storageCore.set(key: key1, value: value1)
         storageCore.set(key: key2, value: value2)
         storageCore.set(key: key3, value: value3)
-        
+
         let result1: String = try XCTUnwrap(try? storageCore.get(key: key1))
         let result2: String = try XCTUnwrap(try? storageCore.get(key: key2))
         let result3: String = try XCTUnwrap(try? storageCore.get(key: key3))
-        
+
         // Then
         XCTAssertEqual(value1, result1)
         XCTAssertEqual(value2, result2)
         XCTAssertEqual(value3, result3)
     }
-    
+
     func testRemove() {
         // Given
         let key1 = "key1"
@@ -73,20 +73,20 @@ class StorageCoreTests: XCTestCase {
         let value1 = "data1"
         let value2 = "data2"
         let value3 = "data3"
-        
+
         // When
         storageCore.set(key: key1, value: value1)
         storageCore.set(key: key2, value: value2)
         storageCore.set(key: key3, value: value3)
-        
+
         storageCore.remove(key: key1)
         storageCore.remove(key: key2)
         storageCore.remove(key: key3)
-        
+
         let result1: String? = try? storageCore.get(key: key1)
         let result2: String? = try? storageCore.get(key: key2)
         let result3: String? = try? storageCore.get(key: key3)
-        
+
         // Then
         XCTAssertNil(result1)
         XCTAssertNil(result2)

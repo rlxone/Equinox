@@ -80,14 +80,14 @@ public final class GalleryCollectionTimeView: View {
         picker.calendar = nil
         return picker
     }()
-    
+
     // MARK: - Initializer
 
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -100,7 +100,7 @@ public final class GalleryCollectionTimeView: View {
         wantsLayer = true
         layer?.borderWidth = Constants.borderWidth
         layer?.cornerRadius = Constants.cornerRadius
-        
+
         addSubview(timeLabel)
         addSubview(timePicker)
     }
@@ -112,7 +112,7 @@ public final class GalleryCollectionTimeView: View {
         NSLayoutConstraint.activate([
             timeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.timeLabelLeadingOffset),
             timeLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
+
             timePicker.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor, constant: Constants.timePickerLeadingOffset),
             timePicker.centerYAnchor.constraint(equalTo: centerYAnchor, constant: Constants.timePickerCenterYOffset)
         ])
@@ -122,7 +122,7 @@ public final class GalleryCollectionTimeView: View {
         timePicker.target = self
         timePicker.action = #selector(timeAction)
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -146,9 +146,9 @@ public final class GalleryCollectionTimeView: View {
     }
 
     public var onTimeChange: TimeChangeAction?
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         timeLabel.style = style?.timeStyle
         timePicker.font = style?.timeStyle.font

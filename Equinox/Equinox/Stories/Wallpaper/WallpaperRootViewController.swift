@@ -55,9 +55,9 @@ final class WallpaperRootViewController: ViewController {
     private weak var createViewController: WallpaperCreateViewController?
     private weak var tipViewController: TipViewController?
     private weak var setViewController: WallpaperSetViewController?
-    
+
     // MARK: - Initializer
-    
+
     init(
         type: WallpaperType,
         fileService: FileService,
@@ -74,29 +74,29 @@ final class WallpaperRootViewController: ViewController {
         self.imageProvider = imageProvider
         super.init()
     }
-    
+
     // MARK: - Life Cycle
 
     override func loadView() {
         view = contentView
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
         presentMainController()
         presentTipControllerIfNeeded(animated: false)
     }
-    
+
     // MARK: - Public
 
     weak var delegate: WallpaperRootViewControllerDelegate?
-    
+
     // MARK: - Private
 
     private func presentMainController() {
@@ -112,51 +112,51 @@ final class WallpaperRootViewController: ViewController {
         self.navigationController = navigationController
         addChildController(navigationController, container: view)
     }
-    
+
     private func presentTipControllerIfNeeded(animated: Bool) {
         let hasWalkthrough: Bool
-        
+
         switch type {
         case .solar:
             hasWalkthrough = settingsService.hasWalkthrough(type: .solarWallpaper)
-            
+
         case .time:
             hasWalkthrough = settingsService.hasWalkthrough(type: .timeWallpaper)
-            
+
         case .appearance:
             hasWalkthrough = settingsService.hasWalkthrough(type: .appearanceWallpaper)
         }
-        
+
         if !hasWalkthrough {
             presentTipController(firstPresent: true, animated: animated)
         }
     }
-    
+
     private func presentTipController(firstPresent: Bool, animated: Bool) {
         var title: String
         var description: String
         var image: NSImage
-        
+
         let status = Localization.Tip.Shared.tips
         let buttonTitle = firstPresent ? Localization.Tip.Shared.started : Localization.Tip.Shared.ok
-        
+
         switch type {
         case .solar:
             title = Localization.Tip.Solar.title
             description = Localization.Tip.Solar.description
             image = Image.solarTip
-            
+
         case .time:
             title = Localization.Tip.Time.title
             description = Localization.Tip.Time.description
             image = Image.timeTip
-            
+
         case .appearance:
             title = Localization.Tip.Appearance.title
             description = Localization.Tip.Appearance.description
             image = Image.appearanceTip
         }
-        
+
         let controller = TipViewController(
             model: .init(
                 title: title,
@@ -168,10 +168,10 @@ final class WallpaperRootViewController: ViewController {
         )
         controller.delegate = self
         tipViewController = controller
-        
+
         self.navigationController?.present(controller, animated: animated)
     }
-    
+
     private func presentSetController() {
         let controller = WallpaperSetViewController()
         controller.delegate = self
@@ -217,11 +217,11 @@ extension WallpaperRootViewController: WallpaperMainViewControllerDelegate {
     func mainViewControllerBackWasInteracted() {
         navigationController?.popBack()
     }
-    
+
     func mainViewControllerShouldNotify(_ text: String) {
         delegate?.rootViewControllerShouldNotify(text)
     }
-    
+
     func mainViewControllerHelpWasInteracted() {
         presentTipController(firstPresent: false, animated: true)
     }
@@ -240,7 +240,7 @@ extension WallpaperRootViewController: WallpaperCreateViewControllerDelegate {
     func createViewControllerNewWasInteracted() {
         delegate?.rootViewControllerNewWasInteracted()
     }
-    
+
     func createViewControllerSetWasInteracted() {
         let hasWalkthrough = settingsService.hasWalkthrough(type: .setWallpaper)
         if hasWalkthrough {
@@ -270,18 +270,18 @@ extension WallpaperRootViewController: TipViewControllerDelegate {
         guard let tipViewController = tipViewController else {
             return
         }
-        
+
         switch type {
         case .solar:
             settingsService.setWalkthrough(type: .solarWallpaper)
-            
+
         case .time:
             settingsService.setWalkthrough(type: .timeWallpaper)
-            
+
         case .appearance:
             settingsService.setWalkthrough(type: .appearanceWallpaper)
         }
-        
+
         navigationController?.dismiss(tipViewController, animated: true)
     }
 }

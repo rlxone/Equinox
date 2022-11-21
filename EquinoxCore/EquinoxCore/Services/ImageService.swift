@@ -45,15 +45,15 @@ public final class ImageServiceImpl: ImageService {
     private let metadataCore: MetadataCore
     private let imageCore: ImageCore
     private let imageCacheCore: ImageCacheCore
-    
+
     // MARK: - Initializer
-    
+
     public init(metadataCore: MetadataCore, imageCore: ImageCore, imageCacheCore: ImageCacheCore) {
         self.metadataCore = metadataCore
         self.imageCore = imageCore
         self.imageCacheCore = imageCacheCore
     }
-    
+
     // MARK: - Public
 
     public func resizeImage(image: NSImage, size: NSSize) -> NSImage {

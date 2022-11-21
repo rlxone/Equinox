@@ -46,7 +46,7 @@ public final class Window: NSWindow {
         self.contentViewController = contentViewController
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {

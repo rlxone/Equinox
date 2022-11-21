@@ -41,13 +41,13 @@ public protocol ImageCacheCore {
 
 public final class ImageCacheCoreImpl: ImageCacheCore {
     private let cache = NSCache<NSString, NSImage>()
-    
+
     // MARK: - Initializer
-    
+
     public init(totalCostLimit: Int) {
         cache.totalCostLimit = totalCostLimit
     }
-    
+
     // MARK: - Public
 
     public func cache(key: String, data: NSImage) {

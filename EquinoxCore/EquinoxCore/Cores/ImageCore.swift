@@ -65,7 +65,7 @@ extension ImageCoreImpl {
 public final class ImageCoreImpl: ImageCore {
     public init() {
     }
-    
+
     // MARK: - Public
 
     public func createImage(
@@ -80,7 +80,7 @@ public final class ImageCoreImpl: ImageCore {
         guard let destination = CGImageDestinationCreateWithData(mutableData, destinationType, attributes.count, nil) else {
             throw ImageError.destinationNotCreated
         }
-        
+
         let steps = attributes.count + 1
 
         for (index, attribute) in attributes.enumerated() {
@@ -104,7 +104,7 @@ public final class ImageCoreImpl: ImageCore {
 
         return mutableData as Data
     }
-        
+
     public func resizeImage(image: NSImage, size: NSSize) -> NSImage {
         let newImage = NSImage(size: size)
         newImage.lockFocus()
@@ -118,7 +118,7 @@ public final class ImageCoreImpl: ImageCore {
         newImage.unlockFocus()
         return newImage
     }
-    
+
     public func getImageFormat(for url: URL) throws -> ImageFormatType {
         var data: Data
         let signatureLength = 1
@@ -167,9 +167,9 @@ public final class ImageCoreImpl: ImageCore {
             return false
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func readImage(from url: URL) throws -> CGImage {
         guard let image = NSImage(contentsOf: url) else {
             throw ImageError.invalidImageFormat

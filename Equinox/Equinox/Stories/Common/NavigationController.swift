@@ -35,12 +35,12 @@ import Foundation
 extension NavigationController {
     private class ControlState {
         let isEnabled: Bool
-        
+
         init(isEnabled: Bool) {
             self.isEnabled = isEnabled
         }
     }
-    
+
     private enum Constants {
         static let defaultAnimationTimeInterval: TimeInterval = 0.35
         static let pushAnimationPreviousShiftAspect: CGFloat = 3
@@ -56,14 +56,14 @@ extension NavigationController {
 class NavigationController: ViewController {
     private var rootViewController: ViewController
     private var controlsState = NSMapTable<NSView, ControlState>(keyOptions: [.weakMemory])
-    
+
     // MARK: - Initializer
-    
+
     init(rootViewController: ViewController) {
         self.rootViewController = rootViewController
         super.init()
     }
-    
+
     // MARK: - Life Cycle
 
     override func loadView() {
@@ -74,7 +74,7 @@ class NavigationController: ViewController {
         super.viewDidLoad()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -83,7 +83,7 @@ class NavigationController: ViewController {
         rootViewController.view.autoresizingMask = [.width, .height]
         rootViewController.view.frame = view.frame
     }
-    
+
     // MARK: - Public
 
     func push(_ controller: ViewController, animated: Bool = true) {
@@ -154,7 +154,7 @@ class NavigationController: ViewController {
             controller.removeFromParent()
         }
     }
-    
+
     func present(_ controller: ViewController, animated: Bool = true) {
         addChild(controller)
         view.addSubview(controller.view)
@@ -173,7 +173,7 @@ class NavigationController: ViewController {
             controller.view.alphaValue = 1
         }
     }
-    
+
     func dismiss(_ controller: ViewController, animated: Bool = true) {
         if animated {
             NSAnimationContext.runAnimationGroup({ context in
@@ -181,11 +181,10 @@ class NavigationController: ViewController {
                 context.timingFunction = .init(name: .easeInEaseOut)
 
                 controller.view.animator().alphaValue = 0
-                }, completionHandler: {
-                    controller.view.removeFromSuperview()
-                    controller.removeFromParent()
-                }
-            )
+            }, completionHandler: {
+                controller.view.removeFromSuperview()
+                controller.removeFromParent()
+            })
         } else {
             controller.view.removeFromSuperview()
             controller.removeFromParent()

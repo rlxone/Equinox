@@ -58,7 +58,7 @@ final class WallpaperCreateViewController: ViewController {
     private let imageAttributes: [ImageAttributes]
     private let wallpaperService: WallpaperService
     private let imageProvider: ImageProvider
-    
+
     private let operationQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.qualityOfService = .background
@@ -72,7 +72,7 @@ final class WallpaperCreateViewController: ViewController {
         view.dragAnimatedImageDelegate = self
         return view
     }()
-    
+
     private var createdImage: Data?
     private var savedUrl: URL?
 
@@ -110,16 +110,16 @@ final class WallpaperCreateViewController: ViewController {
         setupActions()
     }
 
-    private func setupView() {        
+    private func setupView() {
         contentView.saveButtonTitle = Localization.Wallpaper.Create.save
         contentView.setButtonTitle = Localization.Wallpaper.Create.set
         contentView.shareButtonTitle = Localization.Wallpaper.Create.share
         contentView.createButtonTitle = Localization.Wallpaper.Create.new
         contentView.cancelButtonTitle = Localization.Wallpaper.Create.cancel
-        
+
         contentView.startProcessAnimation()
     }
-    
+
     private func setupActions() {
         contentView.saveButtonAction = { [weak self] _ in
             self?.saveImage(notify: true)
@@ -137,11 +137,11 @@ final class WallpaperCreateViewController: ViewController {
             self?.shareWallpaper(relativeTo: button)
         }
     }
-    
+
     // MARK: - Public
-    
+
     public weak var delegate: WallpaperCreateViewControllerDelegate?
-    
+
     public func continueSaveImage() {
         saveImage(notify: false) { [weak self] savedUrl in
             guard let mainScreen = NSScreen.main, let url = savedUrl else {
@@ -156,9 +156,9 @@ final class WallpaperCreateViewController: ViewController {
             }
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func createWallpaper() {
         DispatchQueue.global().asyncAfter(deadline: .now() + Constants.defaultDelay) { [weak self] in
             let operation = BlockOperation()
@@ -185,7 +185,7 @@ final class WallpaperCreateViewController: ViewController {
             self?.operationQueue.addOperation(operation)
         }
     }
-    
+
     private func shareWallpaper(relativeTo view: NSView) {
         contentView.isUserInteractionsEnabled = false
         operationQueue.addOperation { [weak self] in
@@ -208,10 +208,10 @@ final class WallpaperCreateViewController: ViewController {
             }
         }
     }
-    
+
     private func completeWallpaperCreation() {
         let localizedType = getLocalizedWallpaperType()
-        
+
         var tags: [String] = [
             localizedType,
             Localization.Shared.images(param1: imageAttributes.count)
@@ -221,28 +221,28 @@ final class WallpaperCreateViewController: ViewController {
             let formattedFilesize = getFormattedFilesize(filesize: UInt64(createdImage.count))
             tags.append(formattedFilesize)
         }
-        
+
         contentView.statusText = Localization.Wallpaper.Create.success
         contentView.descriptionText = Localization.Wallpaper.Create.successDescription
         contentView.tags = tags
         contentView.completeProcessAnimation(with: .success)
         contentView.isProgressHidden = true
-        
+
         NSApp.requestUserAttention(.informationalRequest)
     }
-    
+
     private func failureWallpaperCreation() {
         let localizedType = getLocalizedWallpaperType()
-        
+
         contentView.tags = [localizedType]
         contentView.statusText = Localization.Wallpaper.Create.failure
         contentView.descriptionText = Localization.Wallpaper.Create.failureDescription
         contentView.completeProcessAnimation(with: .failure)
         contentView.isProgressHidden = true
-        
+
         NSApp.requestUserAttention(.criticalRequest)
     }
-    
+
     private func saveImage(notify: Bool, completion: ((URL?) -> Void)? = nil) {
         guard let window = view.window else {
             return
@@ -272,7 +272,7 @@ final class WallpaperCreateViewController: ViewController {
             }
         }
     }
-    
+
     private func createNew() {
         guard let window = view.window else {
             return
@@ -301,29 +301,29 @@ final class WallpaperCreateViewController: ViewController {
 
         alert.window.center()
     }
-    
+
     private func setWallpaper() {
         switch type {
         case .solar, .time:
             delegate?.createViewControllerSetWasInteracted()
-            
+
         case .appearance:
             continueSaveImage()
         }
     }
-    
+
     private func getFormattedFilesize(filesize: UInt64) -> String {
         return ByteCountFormatter.string(fromByteCount: Int64(filesize), countStyle: .file)
     }
-    
+
     private func getLocalizedWallpaperType() -> String {
         switch type {
         case .solar:
             return Localization.Wallpaper.Create.solarBased
-            
+
         case .time:
             return Localization.Wallpaper.Create.timeBased
-            
+
         case .appearance:
             return Localization.Wallpaper.Create.appearanceBased
         }
@@ -356,7 +356,7 @@ extension WallpaperCreateViewController: DragAnimatedImageViewDelegate {
         guard let url = imageAttributes.first(where: { $0.primary })?.url else {
             return
         }
-        
+
         imageProvider.loadImage(url: url, resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true)) { image in
             let provider = NSFilePromiseProvider(fileType: kUTTypeImage as String, delegate: self)
             let draggingItem = NSDraggingItem(pasteboardWriter: provider)
@@ -375,6 +375,9 @@ extension WallpaperCreateViewController: NSDraggingSource {
             return .copy
 
         case .withinApplication:
+            return []
+
+        @unknown default:
             return []
         }
     }

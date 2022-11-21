@@ -57,7 +57,7 @@ extension TabItemView {
             self.backgroundColor = backgroundColor
         }
     }
-    
+
     private enum Constants {
         static let titleHorizontalOffset: CGFloat = 20
     }
@@ -68,16 +68,16 @@ extension TabItemView {
 public final class TabItemView: View {
     private var isSelected = false
     private lazy var titleLabel = StyledLabel()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Life Cycle
-    
+
     public override func layout() {
         super.layout()
         layer?.cornerRadius = bounds.height / 2 - 1
@@ -100,7 +100,7 @@ public final class TabItemView: View {
             stylize()
         }
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -123,7 +123,7 @@ public final class TabItemView: View {
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {

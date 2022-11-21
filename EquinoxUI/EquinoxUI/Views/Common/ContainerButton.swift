@@ -44,9 +44,9 @@ public final class ContainerButton: Button {
         super.init()
         setup()
     }
-    
+
     // MARK: - Life Cycle
-    
+
     public override func mouseUp(with event: NSEvent) {
         super.mouseUp(with: event)
         animateInteractions(isMouseDown: false)
@@ -60,7 +60,7 @@ public final class ContainerButton: Button {
     public override func hitTest(_ point: NSPoint) -> NSView? {
         return isInteractionsEnabled ? super.hitTest(point) : nil
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -69,13 +69,13 @@ public final class ContainerButton: Button {
         isBordered = false
         title = String()
     }
-    
+
     // MARK: - Public
-    
+
     public var isInteractionsEnabled = true
-    
+
     // MARK: - Private
-    
+
     private func animateInteractions(isMouseDown: Bool) {
         NSAnimationContext.runAnimationGroup { context in
             context.duration = Constants.interactionAnimationDuration

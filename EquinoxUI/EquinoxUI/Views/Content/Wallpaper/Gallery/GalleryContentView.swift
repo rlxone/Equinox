@@ -50,14 +50,14 @@ extension GalleryContentView {
 public final class GalleryContentView: View {
     private lazy var dragView = DragView()
     private lazy var galleryCollectionView = GalleryCollectionView()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -69,7 +69,7 @@ public final class GalleryContentView: View {
         addSubview(galleryCollectionView)
         addSubview(dragView)
     }
-    
+
     private func setupConstraints() {
         dragView.translatesAutoresizingMaskIntoConstraints = false
         galleryCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +86,7 @@ public final class GalleryContentView: View {
             galleryCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -223,7 +223,7 @@ public final class GalleryContentView: View {
     public func updateItem(at index: Int, model: GalleryModel, animated: Bool) {
         galleryCollectionView.updateItem(at: index, model: model, animated: animated)
     }
-    
+
     public func flashItems(at indexPaths: Set<IndexPath>) {
         galleryCollectionView.flashItems(at: indexPaths)
     }

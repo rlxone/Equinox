@@ -59,7 +59,7 @@ extension ToolBarView {
             self.lineView = lineView
         }
     }
-    
+
     private enum Constants {
         static let stackViewSpacing: CGFloat = 12
         static let backButtonLeadingOffset: CGFloat = 40
@@ -197,9 +197,9 @@ public final class ToolBarView: VisualEffectView {
             menuView.items = newValue
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         titleLabel.style = style?.titleStyle
         menuView.style = style?.menuStyle

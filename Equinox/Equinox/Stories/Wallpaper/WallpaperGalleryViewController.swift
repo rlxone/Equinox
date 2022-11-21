@@ -68,13 +68,13 @@ final class WallpaperGalleryViewController: ViewController {
         imageProvider: imageProvider
     )
     private weak var mutatingModel: GalleryModel?
-    
+
     private lazy var contentView: GalleryContentView = {
         let view = GalleryContentView()
         view.style = .default
         return view
     }()
-    
+
     // MARK: - Initializer
 
     init(type: WallpaperType, solarService: SolarService, fileService: FileService, imageProvider: ImageProvider) {
@@ -84,7 +84,7 @@ final class WallpaperGalleryViewController: ViewController {
         self.imageProvider = imageProvider
         super.init()
     }
-    
+
     // MARK: - Life Cycle
 
     override func loadView() {
@@ -95,14 +95,14 @@ final class WallpaperGalleryViewController: ViewController {
         super.viewDidLoad()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
         setupView()
         setupActions()
     }
-    
+
     private func setupView() {
         switch type {
         case .solar:
@@ -134,7 +134,7 @@ final class WallpaperGalleryViewController: ViewController {
             primaryToopltipDescription: Localization.Wallpaper.Gallery.tooltipPrimaryDescription
         )
     }
-    
+
     private func setupActions() {
         contentView.dragBrowseAction = { [weak self] _ in
             self?.delegate?.openBrowseDialog()
@@ -142,13 +142,13 @@ final class WallpaperGalleryViewController: ViewController {
     }
 
     // MARK: - Public
-    
+
     var data: GalleryData {
         return dataController.data
     }
-    
+
     weak var delegate: WallpaperGalleryViewControllerDelegate?
-    
+
     var isDragHighlighted: Bool {
         get {
             return contentView.isDragHighlighted
@@ -176,7 +176,7 @@ final class WallpaperGalleryViewController: ViewController {
                     appearanceType = .light
                 }
             }
-            
+
             findedModel.appearance = appearanceType
             contentView.updateItem(at: findedModel.number - 1, model: findedModel, animated: true)
         }
@@ -195,31 +195,31 @@ final class WallpaperGalleryViewController: ViewController {
 
             contentView.updateItem(at: mutatingModel.number - 1, model: mutatingModel, animated: true)
         }
-        
+
         contentView.reloadCollection(dataController.data, type: .soft)
     }
-    
+
     func didBrowse(_ urls: [URL]) {
         let insertIndexPath = IndexPath(item: dataController.data.items.count, section: 0)
         processExternalCollectionItems(urls, insertIndexPath: insertIndexPath)
     }
-    
+
     func flashItems(_ indexPaths: Set<IndexPath>) {
         contentView.flashItems(at: indexPaths)
     }
-    
+
     // MARK: - Private
-    
+
     private func refreshData() {
         dataController.refreshData()
         contentView.reloadCollection(dataController.data, type: .soft)
         delegate?.dataWasChanged()
         refreshState()
     }
-    
+
     private func refreshState() {
         let isEmpty = dataController.data.items.isEmpty
-        
+
         contentView.setCollectionVisibility(!isEmpty, animated: true)
         contentView.isDragHidden = !isEmpty
         contentView.isDragHighlighted = false
@@ -270,19 +270,19 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
         switch type {
         case .solar, .time:
             break
-            
+
         case .appearance:
             let distance = min(Constants.maxAppearanceItemsCount - dataController.data.items.count, urls.count)
             urls = Array(urls[0..<distance])
         }
-        
+
         let items = dataController.make(urls, insertIndexPath: insertIndexPath)
         let models = items.map { $0.model }
         let indexPaths = items.map { $0.indexPath }
-        
+
         dataController.insert(models, at: insertIndexPath.item)
         refreshData()
-        
+
         contentView.performCollectionUpdates({ [weak self] in
             let indexPathsSet = Set(indexPaths)
             self?.contentView.insertCollectionItems(at: indexPathsSet)
@@ -299,9 +299,9 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
         for indexPath in indexPaths {
             dataController.remove(at: indexPath.item)
         }
-        
+
         refreshData()
-        
+
         contentView.performCollectionUpdates({ [weak self] in
             let indexPathsSet = Set(indexPaths)
             self?.contentView.deleteCollectionItems(at: indexPathsSet)
@@ -313,7 +313,7 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
             self.contentView.reloadCollection(self.dataController.data, type: .hard)
         })
     }
-    
+
     func canValidateCollectionDrag() -> Bool {
         switch type {
         case .solar, .time:
@@ -355,7 +355,7 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
             model.time = time
         }
     }
-    
+
     func loadImage(url: URL, completion: @escaping (NSImage?) -> Void) {
         let resizeMode = ImageResizeMode.resized(size: Constants.thumbnailSize, respectAspect: true)
         imageProvider.loadImage(url: url, resizeMode: resizeMode, completion: completion)

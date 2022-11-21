@@ -124,21 +124,21 @@ public final class SolarLocationView: View {
         view.isCopyButtonHidden = true
         return view
     }()
-    
+
     private lazy var datePicker: RoundedDatePicker = {
         let view = RoundedDatePicker()
         view.cornerRadius = Constants.fieldCornerRadius
         view.edgeInsets = Constants.defaultEdgeInsets
         return view
     }()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Life Cycle
 
     public override var wantsUpdateLayer: Bool {
@@ -149,7 +149,7 @@ public final class SolarLocationView: View {
         super.updateLayer()
         stylize()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -191,18 +191,18 @@ public final class SolarLocationView: View {
 
             dateHeaderLabel.leadingAnchor.constraint(equalTo: locationButton.trailingAnchor, constant: Constants.dateHeaderLabelLeadingOffset),
             dateHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.dateHeaderLabelTopOffset),
-            
+
             locationButton.topAnchor.constraint(equalTo: topAnchor, constant: Constants.locationButtonTopOffset),
             locationButton.trailingAnchor.constraint(equalTo: longitudeTextField.trailingAnchor),
             locationButton.widthAnchor.constraint(equalToConstant: Constants.locationButtonWidth),
             locationButton.heightAnchor.constraint(equalToConstant: Constants.locationButtonHeight),
-            
+
             latitudeTextField.topAnchor.constraint(equalTo: locationHeaderLabel.bottomAnchor, constant: Constants.latitudeTextFieldTopOffset),
             latitudeTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.latitudeTextFieldLeadingOffset),
             latitudeTextField.heightAnchor.constraint(equalToConstant: Constants.latitudeTextFieldHeight),
             latitudeTextField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: Constants.latitudeTextFieldWidthMultiplier),
             latitudeTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.latitudeTextFieldBottomOffset),
-            
+
             longitudeTextField.topAnchor.constraint(equalTo: locationHeaderLabel.bottomAnchor, constant: Constants.longitudeTextFieldTopOffset),
             longitudeTextField.leadingAnchor.constraint(
                 equalTo: latitudeTextField.trailingAnchor,
@@ -217,7 +217,7 @@ public final class SolarLocationView: View {
             datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.datePickerTrailingOffset)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {

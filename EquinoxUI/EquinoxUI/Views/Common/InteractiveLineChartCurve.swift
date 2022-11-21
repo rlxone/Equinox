@@ -39,28 +39,28 @@ extension InteractiveLineChartCurve {
 public struct InteractiveLineChartCurve {
     private let points: [CGPoint]
     private var preparedBezierPath: NSBezierPath?
-    
+
     // MARK: - Initializer
-    
+
     public init(points: [CGPoint]) {
         self.points = points
         prepareBezierPath()
     }
-    
+
     // MARK: - Public
-    
+
     public var bezierPath: NSBezierPath {
         return preparedBezierPath ?? NSBezierPath()
     }
-    
+
     // MARK: - Private
-    
+
     private mutating func prepareBezierPath() {
         let controlPoints = calculateControlPoints(from: points)
-        
+
         preparedBezierPath = NSBezierPath()
         preparedBezierPath?.move(to: points[0])
-        
+
         for index in 1..<points.count {
             preparedBezierPath?.curve(
                 to: points[index],
@@ -69,11 +69,11 @@ public struct InteractiveLineChartCurve {
             )
         }
     }
-    
+
     private func calculateControlPoints(from points: [CGPoint]) -> [PointPair] {
         var result: [PointPair] = []
         let delta: CGFloat = 0.3
-        
+
         for index in 1..<points.count {
             let point1 = points[index - 1]
             let point2 = points[index]
@@ -87,12 +87,12 @@ public struct InteractiveLineChartCurve {
             )
             result.append((controlPoint1, controlPoint2))
         }
-        
+
         for index in 1..<points.count - 1 {
             let tempControlPoint1 = result[index - 1].1
             let tempControlPoint2 = result[index].0
             let centerPoint = points[index]
-            
+
             let reflectedControlPoint1 = CGPoint(
                 x: 2 * centerPoint.x - tempControlPoint1.x,
                 y: 2 * centerPoint.y - tempControlPoint1.y
@@ -101,7 +101,7 @@ public struct InteractiveLineChartCurve {
                 x: 2 * centerPoint.x - tempControlPoint2.x,
                 y: 2 * centerPoint.y - tempControlPoint2.y
             )
-            
+
             result[index].0 = CGPoint(
                 x: (reflectedControlPoint1.x + tempControlPoint2.x) / 2,
                 y: (reflectedControlPoint1.y + tempControlPoint2.y) / 2
@@ -111,7 +111,7 @@ public struct InteractiveLineChartCurve {
                 y: (reflectedControlPoint2.y + tempControlPoint1.y) / 2
             )
         }
-        
+
         return result
     }
 }

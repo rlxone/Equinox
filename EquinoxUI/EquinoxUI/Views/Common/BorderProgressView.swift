@@ -191,7 +191,7 @@ public final class BorderProgressView: View {
         path.closeSubpath()
         return path
     }
-    
+
     private func stylize() {
         borderLayer.strokeColor = strokeColor?.cgColor
         borderLayer.shadowColor = strokeColor?.cgColor

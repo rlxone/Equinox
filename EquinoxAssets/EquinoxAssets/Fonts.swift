@@ -52,7 +52,7 @@ public enum Font {
     public static func callout(_ weight: NSFont.Weight) -> NSFont {
         return NSFont.systemFont(ofSize: 12, weight: weight)
     }
-    
+
     public static func small(_ weight: NSFont.Weight) -> NSFont {
         return NSFont.systemFont(ofSize: 8, weight: weight)
     }

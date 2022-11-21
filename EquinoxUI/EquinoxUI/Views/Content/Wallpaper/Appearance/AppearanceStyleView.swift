@@ -42,7 +42,7 @@ extension AppearanceStyleView {
             self.borderColor = borderColor
         }
     }
-    
+
     private enum Constants {
         static let borderWidth: CGFloat = 1
         static let leftLocation: [NSNumber] = [0, 0]
@@ -63,7 +63,7 @@ public final class AppearanceStyleView: View {
         layer.endPoint = Constants.endPoint
         return layer
     }()
-    
+
     private lazy var innerGradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
         layer.locations = Constants.centerLocation
@@ -80,7 +80,7 @@ public final class AppearanceStyleView: View {
     }
 
     // MARK: - Life Cycle
-    
+
     public override func layout() {
         super.layout()
         outerGradientLayer.frame = bounds
@@ -93,7 +93,7 @@ public final class AppearanceStyleView: View {
         layer?.cornerRadius = bounds.height / 2
         innerGradientLayer.cornerRadius = bounds.height / 4
     }
-    
+
     public override var wantsUpdateLayer: Bool {
         return true
     }
@@ -114,7 +114,7 @@ public final class AppearanceStyleView: View {
         wantsLayer = true
         layer?.borderWidth = Constants.borderWidth
     }
-    
+
     private func setupGradientLayers() {
         layer?.addSublayer(outerGradientLayer)
         layer?.addSublayer(innerGradientLayer)

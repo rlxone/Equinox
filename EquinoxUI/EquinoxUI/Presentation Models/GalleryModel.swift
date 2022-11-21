@@ -44,7 +44,7 @@ public final class GalleryModel {
     public var azimuth: Double?
     public var altitude: Double?
     public var time: Date?
-    
+
     public init(
         number: Int,
         url: URL,

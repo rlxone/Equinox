@@ -32,7 +32,7 @@ import AppKit
 
 extension GalleryCollectionFooterView {
     public typealias Action = () -> Void
-    
+
     public struct Style {
         public struct OwnStyle {
             let backgroundColor: NSColor
@@ -41,7 +41,7 @@ extension GalleryCollectionFooterView {
                 self.backgroundColor = backgroundColor
             }
         }
-        
+
         let ownStyle: OwnStyle
         let infoStyle: StyledLabel.Style
 
@@ -50,7 +50,7 @@ extension GalleryCollectionFooterView {
             self.infoStyle = infoStyle
         }
     }
-    
+
     private enum Constants {
         static let infoHorizontalOffset: CGFloat = 12
         static let infoVerticalOffset: CGFloat = 8
@@ -68,9 +68,9 @@ public final class GalleryCollectionFooterView: VisualEffectView {
         view.wantsLayer = true
         return view
     }()
-    
+
     // MARK: - Initializer
-    
+
     public init() {
         super.init(material: .toolTip, blendingMode: .withinWindow)
         setup()
@@ -84,7 +84,7 @@ public final class GalleryCollectionFooterView: VisualEffectView {
         layer?.cornerRadius = cornerRadius
         backgroundView.layer?.cornerRadius = cornerRadius
     }
-    
+
     public override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
         if !isHidden {
@@ -100,7 +100,7 @@ public final class GalleryCollectionFooterView: VisualEffectView {
         super.updateLayer()
         stylize()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -110,7 +110,7 @@ public final class GalleryCollectionFooterView: VisualEffectView {
 
     private func setupView() {
         wantsLayer = true
-        
+
         contentView.addSubview(backgroundView)
         backgroundView.addSubview(infoLabel)
     }
@@ -124,7 +124,7 @@ public final class GalleryCollectionFooterView: VisualEffectView {
             backgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             backgroundView.topAnchor.constraint(equalTo: contentView.topAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
+
             infoLabel.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
                 constant: Constants.infoHorizontalOffset
@@ -137,9 +137,9 @@ public final class GalleryCollectionFooterView: VisualEffectView {
             infoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.infoVerticalOffset)
         ])
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -153,19 +153,19 @@ public final class GalleryCollectionFooterView: VisualEffectView {
             infoLabel.stringValue = info ?? String()
         }
     }
-    
+
     public var action: Action?
 
     public func animate(isHidden: Bool) {
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = Constants.animationDuration
-            
+
             self.animator().alphaValue = isHidden ? 0 : 1
         }, completionHandler: {
             self.isHidden = isHidden
         })
     }
-    
+
     // MARK: - Private
 
     private func stylize() {

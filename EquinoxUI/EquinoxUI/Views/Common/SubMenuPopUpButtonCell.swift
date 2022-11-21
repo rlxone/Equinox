@@ -30,7 +30,7 @@ import AppKit
 
 public final class SubMenuPopUpButtonCell: NSPopUpButtonCell {
     public var selectedTitle: String?
-    
+
     public override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
         let mutableString = NSMutableAttributedString(attributedString: title)
         if let selectedTitle = selectedTitle {

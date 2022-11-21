@@ -33,46 +33,46 @@ import XCTest
 
 class SolarCoreTests: XCTestCase {
     private var solarCore: SolarCoreImpl!
-    
+
     override func setUpWithError() throws {
         solarCore = SolarCoreImpl()
     }
-    
+
     func testAzimuth() throws {
         // Given
         let longitude = -87.623_177
         let latitude = 41.881_832
         let date = try getDate(day: 28, month: 9, year: 2_021, hour: 12, minute: 0, second: 0)
         let result = 94.810_576_292_661_34
-        
+
         // When
         let azimuth = try? solarCore.azimuth(latitude: latitude, longitude: longitude, date: date, timezone: 0, dlstime: 0)
-        
+
         // Then
         XCTAssertNotNil(azimuth)
         XCTAssertEqual(azimuth, result)
     }
-    
+
     func testAltitude() throws {
         // Given
         let longitude = -87.623_177
         let latitude = 41.881_832
         let date = try getDate(day: 28, month: 9, year: 2_021, hour: 12, minute: 0, second: 0)
         let result = 2.316_156_681_523_694
-        
+
         // When
         let altitude = try? solarCore.altitude(latitude: latitude, longitude: longitude, date: date, timezone: 0, dlstime: 0)
-        
+
         // Then
         XCTAssertNotNil(altitude)
         XCTAssertEqual(altitude, result)
     }
-    
+
     private func getDate(day: Int, month: Int, year: Int, hour: Int, minute: Int, second: Int) throws -> Date {
         guard let timezone = TimeZone(identifier: "GMT") else {
             throw SolarError.wrongTimezone
         }
-        
+
         var dateComponents = DateComponents()
         dateComponents.timeZone = timezone
         dateComponents.day = day
@@ -81,10 +81,10 @@ class SolarCoreTests: XCTestCase {
         dateComponents.hour = hour
         dateComponents.minute = minute
         dateComponents.second = second
-        
+
         var calendar = Calendar.current
         calendar.timeZone = timezone
-        
+
         let date = calendar.date(from: dateComponents)!
         return date
     }

@@ -32,7 +32,7 @@ import AppKit
 
 extension NotificationView {
     public typealias Action = () -> Void
-    
+
     public struct Style {
         public struct OwnStyle {
             let borderColor: NSColor
@@ -72,7 +72,7 @@ public final class NotificationView: View {
         view.layer?.borderWidth = Constants.borderWidth
         return view
     }()
-    
+
     private lazy var shadowLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.fillColor = nil
@@ -89,16 +89,16 @@ public final class NotificationView: View {
         layer.fillRule = .evenOdd
         return layer
     }()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Life Cycle
-    
+
     public override func layout() {
         super.layout()
 
@@ -121,7 +121,7 @@ public final class NotificationView: View {
         shadowMaskLayer.bounds = bounds
         shadowLayer.mask = shadowMaskLayer
     }
-    
+
     public override func mouseUp(with event: NSEvent) {
         super.mouseUp(with: event)
         action?()
@@ -135,7 +135,7 @@ public final class NotificationView: View {
         super.updateLayer()
         stylize()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -187,9 +187,9 @@ public final class NotificationView: View {
             notificationLabel.stringValue = newValue
         }
     }
-    
+
     public var action: Action?
-    
+
     // MARK: - Private
 
     private func stylize() {

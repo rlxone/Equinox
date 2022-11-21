@@ -39,15 +39,15 @@ public protocol SettingsService {
 
 public final class SettingsServiceImpl: SettingsService {
     private let storageCore: StorageCore
-    
+
     // MARK: - Initializer
-    
+
     public init(storageCore: StorageCore) {
         self.storageCore = storageCore
     }
-    
+
     // MARK: - Public
-    
+
     public func hasWalkthrough(type: WalkthroughType) -> Bool {
         do {
             return try storageCore.get(key: type.rawValue)
@@ -55,7 +55,7 @@ public final class SettingsServiceImpl: SettingsService {
             return false
         }
     }
-    
+
     public func setWalkthrough(type: WalkthroughType) {
         storageCore.set(key: type.rawValue, value: true)
     }

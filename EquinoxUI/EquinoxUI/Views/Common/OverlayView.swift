@@ -33,9 +33,9 @@ public final class OverlayView: View {
         super.init()
         setup()
     }
-    
+
     // MARK: - Private
-    
+
     private func setup() {
         isUserInteractionsEnabled = false
         registerForDraggedTypes([.fileURL])

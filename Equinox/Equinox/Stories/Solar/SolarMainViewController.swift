@@ -46,7 +46,7 @@ extension SolarMainViewController {
         var latitude: String?
         var longitude: String?
     }
-    
+
     private enum Constants {
         static let solarDragType = NSPasteboard.PasteboardType("com.equinox.drag.solar")
         static let zoomFactor: Double = 0.005
@@ -61,16 +61,16 @@ extension SolarMainViewController {
 
 final class SolarMainViewController: ViewController {
     private let solarService: SolarService
-    
+
     private lazy var locationManager = CLLocationManager()
     private lazy var timezoneController = SolarTimezoneController()
-    
+
     private var latestUserLocation: CLLocation?
     private var latestCoordinate = LocationCoordinate(latitude: nil, longitude: nil)
     private var latestDate = Date()
     private var latestTimeProgress = Constants.defaultTimeProgress
     private lazy var latestTimezoneContainer = timezoneController.currentContainer
-    
+
     private var shouldIgnoreCoordinateChanges = false
 
     private lazy var contentView: SolarMainContentView = {
@@ -79,14 +79,14 @@ final class SolarMainViewController: ViewController {
         view.chartDelegate = self
         return view
     }()
-    
+
     // MARK: - Initializer
-    
+
     init(solarService: SolarService) {
         self.solarService = solarService
         super.init()
     }
-    
+
     // MARK: - Life Cycle
 
     override func loadView() {
@@ -97,7 +97,7 @@ final class SolarMainViewController: ViewController {
         super.viewDidLoad()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -105,7 +105,7 @@ final class SolarMainViewController: ViewController {
         setupActions()
         setupChartData()
     }
-    
+
     private func setupView() {
         contentView.resultDelegate = self
         contentView.locationHeaderTitle = Localization.Solar.Main.locationHeader
@@ -125,7 +125,7 @@ final class SolarMainViewController: ViewController {
             selectedItem: latestTimezoneContainer.name
         )
     }
-    
+
     private func setupActions() {
         contentView.locationAction = { [weak self] _ in
             self?.requestLocation()
@@ -150,27 +150,27 @@ final class SolarMainViewController: ViewController {
         contentView.copyAction = { [weak self] _ in
             self?.copyAction()
         }
-        
+
         contentView.helpAction = { [weak self] _ in
             self?.delegate?.solarViewControllerHelpWasInteracted()
         }
-        
+
         contentView.timezoneChangeAction = { [weak self] timezone in
             self?.timezoneChangeAction(timezone)
         }
     }
-    
+
     private func setupChartData() {
         reloadChartData()
         contentView.chartProgress = CGFloat(latestTimeProgress)
     }
-    
+
     // MARK: - Public
 
     public weak var delegate: SolarMainViewControllerDelegatae?
 
     // MARK: - Private
-    
+
     private func coordinateChangeAction(_ coordinate: CLLocationCoordinate2D) {
         guard !shouldIgnoreCoordinateChanges else {
             shouldIgnoreCoordinateChanges = false
@@ -199,16 +199,16 @@ final class SolarMainViewController: ViewController {
         latestDate = date
         makeResult(needUpdateCoordinateFields: true, needRoundCoordinateValues: true)
     }
-    
+
     private func copyAction() {
         delegate?.solarViewControllerShouldNotify(Localization.Solar.Main.copied)
     }
-    
+
     private func timezoneChangeAction(_ timezone: String) {
         latestTimezoneContainer = timezoneController.findContainer(name: timezone)
         makeResult(needUpdateCoordinateFields: false, needRoundCoordinateValues: false)
     }
-    
+
     private func requestLocation() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -218,7 +218,7 @@ final class SolarMainViewController: ViewController {
             locationManager.requestLocation()
         }
     }
-    
+
     private func makeResult(needUpdateCoordinateFields: Bool, needRoundCoordinateValues: Bool) {
         guard
             let latitudeString = latestCoordinate.latitude,
@@ -231,11 +231,11 @@ final class SolarMainViewController: ViewController {
             contentView.altitude = String()
             return
         }
-        
+
         guard isLatitudeValid(latitude), isLongitudeValid(longitude) else {
             return
         }
-        
+
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 
         if needUpdateCoordinateFields {
@@ -250,20 +250,20 @@ final class SolarMainViewController: ViewController {
                 contentView.longitude = String(coordinate.longitude)
             }
         }
-        
+
         guard let solarCoordinate = calculateSolarCoordinates(from: coordinate) else {
             return
         }
-        
+
         let azimuth = roundDouble(solarCoordinate.azimuth, places: Constants.resultPrecision)
         let altitude = roundDouble(solarCoordinate.altitude, places: Constants.resultPrecision)
-        
+
         contentView.azimuth = String(azimuth)
         contentView.altitude = String(altitude)
-        
+
         reloadChartData()
     }
-    
+
     private func setMapLocation(animated: Bool) {
         guard
             let latitudeString = latestCoordinate.latitude,
@@ -288,18 +288,18 @@ final class SolarMainViewController: ViewController {
         let lowerbound: Double = 180
         return longitude <= lowerbound && longitude >= -lowerbound
     }
-    
+
     private func roundDouble(_ value: Double, places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return round(value * divisor) / divisor
     }
-    
+
     private func calculateSolarCoordinates(from coordinate: CLLocationCoordinate2D) -> (azimuth: Double, altitude: Double)? {
         let latestTimezone = latestTimezoneContainer.timezone
         let timezone: Int = convertToHours(seconds: latestTimezone.secondsFromGMT())
         let daySavingTime = latestTimezone.isDaylightSavingTime(for: latestDate) ? 1 : 0
         let mergedDate = timezoneController.merge(date: latestDate, timeOffset: latestTimeProgress)
-        
+
         guard
             let azimuth = try? solarService.azimuth(
                 latitude: coordinate.latitude,
@@ -318,37 +318,37 @@ final class SolarMainViewController: ViewController {
         else {
             return nil
         }
-        
+
         return (azimuth, altitude)
     }
-    
+
     private func reloadChartData() {
         let calendar = timezoneController.calendar
-        
+
         let startTime = calendar.startOfDay(for: latestDate)
         var chartData: [InteractiveLineChart.ChartData] = []
-        
+
         for index in 0...Constants.hours {
             guard let time = calendar.date(byAdding: .hour, value: index, to: startTime) else {
                 continue
             }
-            
+
             var timeString: String
             let hour = index + 1
-            
+
             if !hour.isMultiple(of: 2) {
                 let progress: Float = Float(index) / Float(Constants.hours)
                 timeString = timezoneController.compactTime(from: progress)
             } else {
                 timeString = String()
             }
-            
+
             let latitude = Double(latestCoordinate.latitude ?? String(0))
             let longitude = Double(latestCoordinate.longitude ?? String(0))
             let latestTimezone = latestTimezoneContainer.timezone
             let timezone = convertToHours(seconds: latestTimezone.secondsFromGMT())
             let daySavingTime = latestTimezone.isDaylightSavingTime(for: latestDate) ? 1 : 0
-            
+
             do {
                 let elevation = try solarService.altitude(
                     latitude: latitude ?? 0,
@@ -362,10 +362,10 @@ final class SolarMainViewController: ViewController {
                 continue
             }
         }
-        
+
         contentView.chartData = chartData
     }
-    
+
     private func convertToHours(seconds: Int) -> Int {
         return seconds / 60 / 60
     }
@@ -384,7 +384,7 @@ extension SolarMainViewController: CLLocationManagerDelegate {
         }
         latestUserLocation = location
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if latestUserLocation == nil {
             delegate?.solarViewControllerShouldNotify(Localization.Solar.Main.locationError)
@@ -400,10 +400,10 @@ extension SolarMainViewController: SolarResultViewDelegate {
         guard let data = try? NSKeyedArchiver.archivedData(withRootObject: object, requiringSecureCoding: false) else {
             return
         }
-        
+
         let pasteboardItem = NSPasteboardItem()
         pasteboardItem.setData(data, forType: Constants.solarDragType)
-        
+
         let draggingItem = NSDraggingItem(pasteboardWriter: pasteboardItem)
         draggingItem.setDraggingFrame(view.bounds, contents: view.snapshot())
         view.beginDraggingSession(with: [draggingItem], event: event, source: self)
@@ -434,7 +434,7 @@ extension SolarMainViewController: InteractiveLineChartDelegate {
         latestTimeProgress = Float(progress)
         makeResult(needUpdateCoordinateFields: false, needRoundCoordinateValues: false)
     }
-    
+
     func progressTitle(progress: CGFloat) -> String {
         return timezoneController.compactTime(from: Float(progress))
     }

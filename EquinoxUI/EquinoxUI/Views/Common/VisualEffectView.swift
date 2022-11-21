@@ -40,7 +40,7 @@ public class VisualEffectView: NSVisualEffectView {
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Life Cycle
 
     public override func hitTest(_ point: NSPoint) -> NSView? {

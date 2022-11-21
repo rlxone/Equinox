@@ -60,14 +60,14 @@ public final class MainContentView: View {
     private lazy var toolBarView = ToolBarView()
     private lazy var lineView = LineView()
     private lazy var bottomBarView = BottomBarView()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -95,7 +95,7 @@ public final class MainContentView: View {
             visualEffectView.topAnchor.constraint(equalTo: topAnchor),
             visualEffectView.trailingAnchor.constraint(equalTo: trailingAnchor),
             visualEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
+
             toolBarView.leadingAnchor.constraint(equalTo: visualEffectView.contentView.leadingAnchor),
             toolBarView.trailingAnchor.constraint(equalTo: visualEffectView.contentView.trailingAnchor),
             toolBarView.topAnchor.constraint(equalTo: visualEffectView.contentView.topAnchor),
@@ -195,7 +195,7 @@ public final class MainContentView: View {
             toolBarView.menuItems = newValue
         }
     }
-    
+
     public var helpAction: BottomBarView.HelpAction? {
         didSet {
             bottomBarView.helpAction = helpAction

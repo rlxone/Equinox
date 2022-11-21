@@ -40,15 +40,15 @@ public final class WallpaperServiceImpl: WallpaperService {
     private let metadataCore: MetadataCore
     private let imageCore: ImageCore
     private let fileCore: FileCore
-    
+
     // MARK: - Initializer
-    
+
     public init(metadataCore: MetadataCore, imageCore: ImageCore, fileCore: FileCore) {
         self.metadataCore = metadataCore
         self.imageCore = imageCore
         self.fileCore = fileCore
     }
-    
+
     // MARK: - Public
 
     public func createWallpaper(_ attributes: [ImageAttributes], progressCallback: ProgressCallback?) throws -> Data {
@@ -57,7 +57,7 @@ public final class WallpaperServiceImpl: WallpaperService {
         let image = try imageCore.createImage(from: preparedAttrubutes, metadata: metadata, progressCallback: progressCallback)
         return image
     }
-    
+
     // MARK: - Private
 
     private func prepareAttributes(_ attributes: [ImageAttributes]) -> [ImageAttributes] {

@@ -39,13 +39,13 @@ public protocol SolarService {
 
 public final class SolarServiceImpl: SolarService {
     private let solarCore: SolarCore
-    
+
     // MARK: - Initializer
-    
+
     public init(solarCore: SolarCore) {
         self.solarCore = solarCore
     }
-    
+
     // MARK: - Public
 
     public func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {

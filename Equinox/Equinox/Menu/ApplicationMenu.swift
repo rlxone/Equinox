@@ -42,14 +42,14 @@ final class ApplicationMenu: NSMenu {
         super.init(title: title)
         setup()
     }
-    
+
     required init(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         items = [
             mainMenu,
@@ -59,13 +59,13 @@ final class ApplicationMenu: NSMenu {
             helpMenu
         ]
     }
-    
+
     // MARK: - Public
-    
+
     weak var applicationDelegate: ApplicationMenuDelegate?
-    
+
     // MARK: - Private
-    
+
     private var mainMenu: MenuItem {
         let menu = MenuItem()
         menu.submenu = NSMenu(title: "MainMenu")
@@ -119,7 +119,7 @@ final class ApplicationMenu: NSMenu {
         ]
         return menu
     }
-    
+
     private var fileMenu: MenuItem {
         let menu = MenuItem()
         menu.submenu = NSMenu(title: Localization.Menu.File.file)
@@ -134,7 +134,7 @@ final class ApplicationMenu: NSMenu {
         ]
         return menu
     }
-    
+
     private var editMenu: MenuItem {
         let menu = MenuItem()
         menu.submenu = NSMenu(title: Localization.Menu.Edit.edit)
@@ -186,7 +186,7 @@ final class ApplicationMenu: NSMenu {
         ]
         return menu
     }
-    
+
     private var windowMenu: MenuItem {
         let menu = MenuItem()
         menu.submenu = NSMenu(title: Localization.Menu.Window.window)
@@ -213,7 +213,7 @@ final class ApplicationMenu: NSMenu {
         ]
         return menu
     }
-    
+
     private var helpMenu: MenuItem {
         let menu = MenuItem()
         let menuSearch = MenuItem()
@@ -224,7 +224,7 @@ final class ApplicationMenu: NSMenu {
         ]
         return menu
     }
-    
+
     @objc
     private func new(_ sender: Any?) {
         applicationDelegate?.applicationMenuNew(sender)

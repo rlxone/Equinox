@@ -46,15 +46,15 @@ final class SolarRootViewController: ViewController {
     private lazy var contentView = RootContentView()
     private weak var navigationController: NavigationController?
     private weak var tipViewController: TipViewController?
-    
+
     // MARK: - Initializer
-    
+
     init(solarService: SolarService, settingsService: SettingsService) {
         self.solarService = solarService
         self.settingsService = settingsService
         super.init()
     }
-    
+
     // MARK: - Life Cycle
 
     override func loadView() {
@@ -67,18 +67,18 @@ final class SolarRootViewController: ViewController {
     }
 
     // MARK: - Setup
-    
+
     private func setup() {
         presentTypeController()
         presentTipIfNeeded()
     }
-    
+
     // MARK: - Public
-    
+
     weak var delegate: SolarRootViewControllerDelegate?
-    
+
     // MARK: - Private
-    
+
     private func presentTypeController() {
         let controller = SolarMainViewController(solarService: solarService)
         controller.delegate = self
@@ -86,22 +86,22 @@ final class SolarRootViewController: ViewController {
         self.navigationController = navigationController
         addChildController(navigationController, container: view)
     }
-    
+
     private func presentTipIfNeeded() {
         let hasWalkthrough = settingsService.hasWalkthrough(type: .solarCalculator)
-        
+
         if !hasWalkthrough {
             presentTip(firstPresent: true, animated: false)
         }
     }
-    
+
     private func presentTip(firstPresent: Bool, animated: Bool) {
         let title = Localization.Tip.Calculator.title
         let description = Localization.Tip.Calculator.description
         let image = Image.calculatorTip
         let status = Localization.Tip.Shared.tips
         let buttonTitle = firstPresent ? Localization.Tip.Shared.started : Localization.Tip.Shared.ok
-        
+
         let controller = TipViewController(
             model: .init(
                 title: title,
@@ -113,7 +113,7 @@ final class SolarRootViewController: ViewController {
         )
         controller.delegate = self
         tipViewController = controller
-        
+
         navigationController?.present(controller, animated: animated)
     }
 }
@@ -124,7 +124,7 @@ extension SolarRootViewController: SolarMainViewControllerDelegatae {
     func solarViewControllerShouldNotify(_ text: String) {
         delegate?.rootViewControllerShouldNotify(text)
     }
-    
+
     func solarViewControllerHelpWasInteracted() {
         presentTip(firstPresent: false, animated: true)
     }

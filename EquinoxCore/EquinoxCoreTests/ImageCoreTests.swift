@@ -34,11 +34,11 @@ import XCTest
 class ImageCoreTests: XCTestCase {
     private var imageCore: ImageCoreImpl!
     private lazy var testBundle = Bundle(for: type(of: self))
-    
+
     override func setUpWithError() throws {
         imageCore = ImageCoreImpl()
     }
-    
+
     func testCreateSolarImage() throws {
         // Given
         let path = testBundle.path(forResource: "image", ofType: "png")!
@@ -59,17 +59,17 @@ class ImageCoreTests: XCTestCase {
                 appearanceType: .dark
             )
         ]
-        
+
         let metadataCore = MetadataCoreImpl()
         let metadata = try XCTUnwrap(try metadataCore.generate(from: imageAttributes))
-        
+
         // When
         let image = try imageCore.createImage(from: imageAttributes, metadata: metadata, progressCallback: nil)
-        
+
         // Then
         XCTAssertNotNil(image)
     }
-    
+
     func testCreateTimeImage() throws {
         // Given
         let path = testBundle.path(forResource: "image", ofType: "png")!
@@ -90,17 +90,17 @@ class ImageCoreTests: XCTestCase {
                 appearanceType: .dark
             )
         ]
-        
+
         let metadataCore = MetadataCoreImpl()
         let metadata = try XCTUnwrap(try metadataCore.generate(from: imageAttributes))
-        
+
         // When
         let image = try imageCore.createImage(from: imageAttributes, metadata: metadata, progressCallback: nil)
-        
+
         // Then
         XCTAssertNotNil(image)
     }
-    
+
     func testCreateAppearanceImage() throws {
         // Given
         let path = testBundle.path(forResource: "image", ofType: "png")!
@@ -121,49 +121,49 @@ class ImageCoreTests: XCTestCase {
                 appearanceType: .dark
             )
         ]
-        
+
         let metadataCore = MetadataCoreImpl()
         let metadata = try XCTUnwrap(try metadataCore.generate(from: imageAttributes))
-        
+
         // When
         let image = try imageCore.createImage(from: imageAttributes, metadata: metadata, progressCallback: nil)
-        
+
         // Then
         XCTAssertNotNil(image)
     }
-    
+
     func testGetImageFormat() throws {
         // Given
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
         let result = ImageFormatType.heic
-        
+
         // When
         let format = try imageCore.getImageFormat(for: url)
-        
+
         // Then
         XCTAssertEqual(format, result)
     }
-    
+
     func testValidateImage() throws {
         // Given
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
-        
+
         // When
         let result = imageCore.validateImage(url, imageFormat: [.heic])
-        
+
         // Then
         XCTAssertTrue(result)
     }
-    
+
     func testResizeImage() throws {
         // Given
         let image = NSImage(size: .init(width: 300, height: 300))
-        
+
         // When
         let result = imageCore.resizeImage(image: image, size: .init(width: 200, height: 200))
-        
+
         // Then
         XCTAssertEqual(result.size, result.size)
     }

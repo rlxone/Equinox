@@ -275,9 +275,9 @@ public final class TabView: View {
             }
         }
     }
-    
+
     // MARK: - Private
-    
+
     private var tabViews: [TabItemView] {
         return stackView
             .arrangedSubviews

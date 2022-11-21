@@ -42,7 +42,7 @@ extension DynamicButton {
             self.borderColor = borderColor
         }
     }
-    
+
     private enum Constants {
         static let borderWidth: CGFloat = 1
         static let cornerRadius: CGFloat = 12
@@ -50,7 +50,7 @@ extension DynamicButton {
         static let leftLocation: [NSNumber] = [0, 0]
         static let centerLocation: [NSNumber] = [0.5, 0.5]
         static let rightLocation: [NSNumber] = [1, 1]
-        
+
         static let defaultStartPoint = CGPoint(x: 0, y: 0.5)
         static let defaultEndPoint = CGPoint(x: 1, y: 0.5)
     }
@@ -66,7 +66,7 @@ public final class DynamicButton: Button {
         layer.endPoint = Constants.defaultEndPoint
         return layer
     }()
-    
+
     private lazy var innerGradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
         layer.locations = Constants.centerLocation
@@ -74,7 +74,7 @@ public final class DynamicButton: Button {
         layer.endPoint = Constants.defaultEndPoint
         return layer
     }()
-    
+
     // MARK: - Initializer
 
     public override init() {
@@ -94,17 +94,17 @@ public final class DynamicButton: Button {
         layer?.borderWidth = Constants.borderWidth
         layer?.cornerRadius = Constants.cornerRadius
     }
-    
+
     private func setupGradientLayers() {
         layer?.addSublayer(outerGradientLayer)
         layer?.addSublayer(innerGradientLayer)
     }
 
     // MARK: - Life Cycle
-    
+
     public override func layout() {
         super.layout()
-        
+
         outerGradientLayer.frame = bounds
         innerGradientLayer.frame = .init(
             x: bounds.width / 4,
@@ -114,7 +114,7 @@ public final class DynamicButton: Button {
         )
         innerGradientLayer.cornerRadius = bounds.width / 4
     }
-    
+
     public override var wantsUpdateLayer: Bool {
         return true
     }
@@ -133,7 +133,7 @@ public final class DynamicButton: Button {
             }
         }
     }
-    
+
     public func setType(_ type: AppearanceType, animated: Bool) {
         if animated {
             animateTransition(for: type)
@@ -169,7 +169,7 @@ public final class DynamicButton: Button {
             CATransaction.commit()
         }
     }
-    
+
     private func stylize() {
         guard let style = style else {
             return
@@ -184,7 +184,7 @@ public final class DynamicButton: Button {
         ]
         layer?.borderColor = style.borderColor.cgColor
     }
-    
+
     private func animateTransition(for type: AppearanceType) {
         let animation = CASpringAnimation(keyPath: "locations")
         animation.fromValue = outerGradientLayer.locations

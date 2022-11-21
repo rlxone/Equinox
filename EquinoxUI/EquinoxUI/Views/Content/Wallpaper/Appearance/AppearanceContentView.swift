@@ -58,7 +58,7 @@ extension AppearanceContentView {
             self.appearanceType = appearanceType
         }
     }
-    
+
     private enum Constants {
         static let stackViewSpacing: CGFloat = 0
         static let lineHeight: CGFloat = 1

@@ -58,7 +58,7 @@ public final class GalleryCollectionLayout: NSCollectionViewFlowLayout {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -68,7 +68,7 @@ public final class GalleryCollectionLayout: NSCollectionViewFlowLayout {
         sectionInset = Constants.sectionInset
         sectionFootersPinToVisibleBounds = true
     }
-    
+
     // MARK: - Public
 
     public var type: GalleryCollectionView.CollectionType = .solar
@@ -85,7 +85,7 @@ public final class GalleryCollectionLayout: NSCollectionViewFlowLayout {
 
         return .init(width: itemWidth, height: itemHeight)
     }
-    
+
     // MARK: - Private
 
     private func calculateItemWidth(for width: CGFloat, itemsPerRow: Int) -> CGFloat {

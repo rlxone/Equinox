@@ -51,7 +51,7 @@ extension RoundedDatePicker {
             self.textColor = textColor
         }
     }
-    
+
     private enum Constants {
         static let cornerRadius: CGFloat = 6
         static let borderWidth: CGFloat = 1
@@ -87,14 +87,14 @@ public final class RoundedDatePicker: View {
     }()
 
     private lazy var spacerView = View()
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -139,7 +139,7 @@ public final class RoundedDatePicker: View {
         datePicker.target = self
         datePicker.action = #selector(dateAction)
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -175,9 +175,9 @@ public final class RoundedDatePicker: View {
     }
 
     public var onDateChange: DateChangeAction?
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         layer?.backgroundColor = style?.backgroundColor.cgColor
         layer?.borderColor = style?.borderColor.cgColor

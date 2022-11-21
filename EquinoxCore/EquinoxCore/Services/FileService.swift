@@ -40,9 +40,9 @@ public protocol FileService {
 public final class FileServiceImpl: FileService {
     private let imageCore: ImageCore
     private let fileCore: FileCore
-    
+
     // MARK: - Initializer
-    
+
     public init(
         imageCore: ImageCore,
         fileCore: FileCore
@@ -50,7 +50,7 @@ public final class FileServiceImpl: FileService {
         self.imageCore = imageCore
         self.fileCore = fileCore
     }
-    
+
     // MARK: - Public
 
     public func getDirectoryContent(from url: URL, imageFormat: [ImageFormatType]) throws -> [URL] {
@@ -58,13 +58,13 @@ public final class FileServiceImpl: FileService {
         let images = validateImages(content, imageFormat: imageFormat)
         return images
     }
-    
+
     public func getFilesize(_ url: URL) throws -> UInt64 {
         return try fileCore.getFilesize(url)
     }
-    
+
     // MARK: - Private
-    
+
     private func validateImages(_ urls: [URL], imageFormat: [ImageFormatType]) -> [URL] {
         var preparedUrls: [URL] = []
 

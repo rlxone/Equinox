@@ -51,7 +51,7 @@ extension MetadataCoreImpl {
 public final class MetadataCoreImpl: MetadataCore {
     public init() {
     }
-    
+
     // MARK: - Public
 
     public func generate(from attributes: [ImageAttributes]) throws -> CGImageMetadata {
@@ -70,26 +70,26 @@ public final class MetadataCoreImpl: MetadataCore {
         else {
             throw MetadataError.wrongMetadataType
         }
-        
+
         var latitude: Double?
         var longitude: Double?
         var date: Date?
         var timezone: TimeZone?
-        
+
         let exifDictionary = properties[kCGImagePropertyExifDictionary as String] as? [String: Any]
         let gpsDictionary = properties[kCGImagePropertyGPSDictionary as String] as? [String: Any]
-        
+
         if let gpsDictionary = gpsDictionary {
             let coordinate = getCoordinate(from: gpsDictionary)
             latitude = coordinate.latitude
             longitude = coordinate.longitude
         }
-        
+
         if let exifDictionary = exifDictionary {
             date = getDate(from: exifDictionary)
             timezone = getTimezone(from: exifDictionary)
         }
-        
+
         return ExifMetadata(
             latitude: latitude,
             longitude: longitude,
@@ -97,7 +97,7 @@ public final class MetadataCoreImpl: MetadataCore {
             timezone: timezone
         )
     }
-    
+
     // MARK: - Private
 
     private func createImageMetadata(_ attributes: [ImageAttributes]) throws -> ImageMetadata {
@@ -202,41 +202,41 @@ public final class MetadataCoreImpl: MetadataCore {
         let percentage = Double(hour) / 24
         return percentage
     }
-    
+
     private func getCoordinate(from exifData: [String: Any]) -> (latitude: Double?, longitude: Double?) {
         let latitude = exifData[kCGImagePropertyGPSLatitude as String] as? Double
         let longitude = exifData[kCGImagePropertyGPSLongitude as String] as? Double
-        
+
         return (latitude, longitude)
     }
-    
+
     private func getDate(from exifData: [String: Any]) -> Date? {
         let dateString = exifData[kCGImagePropertyExifDateTimeOriginal as String] as? String
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         dateFormatter.dateFormat = "yyyy:MM:dd HH:mm:ss"
-        
+
         var date: Date?
         if let dateString = dateString {
             date = dateFormatter.date(from: dateString)
         }
-        
+
         return date
     }
-    
+
     private func getTimezone(from exifData: [String: Any]) -> TimeZone? {
         var timeOffset: String?
-        
+
         if #available(macOS 10.15, *) {
             timeOffset = exifData[kCGImagePropertyExifOffsetTimeOriginal as String] as? String
         }
-        
+
         var timezone: TimeZone?
         if let timeOffset = timeOffset {
             timezone = TimeZone(abbreviation: "GMT\(timeOffset)")
         }
-        
+
         return timezone
     }
 }

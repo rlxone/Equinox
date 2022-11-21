@@ -35,7 +35,7 @@ extension CreateContentView {
         case success
         case failure
     }
-    
+
     public struct Style {
         public struct OwnStyle {
             let overlayBackgroundColor: NSColor
@@ -54,7 +54,7 @@ extension CreateContentView {
         let headerStyle: CreateHeaderView.Style
         let animatedImageStyle: CreateAnimatedImageView.Style
         let bottomStyle: CreateBottomView.Style
-        
+
         public init(
             ownStyle: OwnStyle,
             headerStyle: CreateHeaderView.Style,
@@ -67,7 +67,7 @@ extension CreateContentView {
             self.bottomStyle = bottomStyle
         }
     }
-    
+
     private enum Constants {
         static let overlayCornerRadius: CGFloat = 16
         static let overlayBorderWidth: CGFloat = 1
@@ -99,7 +99,7 @@ public final class CreateContentView: View {
         view.isUserInteractionsEnabled = false
         return view
     }()
-    
+
     private lazy var overlayView: VisualEffectView = {
         let visualEffectView = VisualEffectView(material: .headerView, blendingMode: .withinWindow)
         visualEffectView.wantsLayer = true
@@ -107,21 +107,21 @@ public final class CreateContentView: View {
         visualEffectView.layer?.borderWidth = Constants.overlayBorderWidth
         return visualEffectView
     }()
-    
+
     private lazy var shadowOverlayView = VisualEffectView(material: .hudWindow, blendingMode: .withinWindow)
-    
+
     private lazy var headerView: CreateHeaderView = {
         let view = CreateHeaderView()
         view.alphaValue = 0
         return view
     }()
-    
+
     private lazy var bottomView: CreateBottomView = {
         let view = CreateBottomView()
         view.alphaValue = 0
         return view
     }()
-    
+
     private lazy var animatedImageView: CreateAnimatedImageView = {
         let imageView = CreateAnimatedImageView()
         imageView.cornerRadius = Constants.imageCornerRadius
@@ -131,24 +131,24 @@ public final class CreateContentView: View {
         imageView.setBorderOffset(Constants.progressOffset, animated: false)
         return imageView
     }()
-    
+
     private lazy var shadowAnimatedImageView: AnimatedImageView = {
         let view = AnimatedImageView()
         view.cornerRadius = Constants.imageCornerRadius
         return view
     }()
-    
+
     private var animatedImageCenterYConstraint: NSLayoutConstraint?
     private var shadowAnimatedImageCenterYConstraint: NSLayoutConstraint?
     private var overlayHeightConstraint: NSLayoutConstraint?
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Life Cycle
 
     public override var wantsUpdateLayer: Bool {
@@ -159,7 +159,7 @@ public final class CreateContentView: View {
         super.updateLayer()
         stylize()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -179,7 +179,7 @@ public final class CreateContentView: View {
         overlayView.contentView.addSubview(bottomView)
         overlayView.contentView.addSubview(animatedImageView)
     }
-    
+
     private func setupConstraints() {
         setupOverlayConstraints()
         setupHeaderConstraints()
@@ -191,7 +191,7 @@ public final class CreateContentView: View {
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.translatesAutoresizingMaskIntoConstraints = false
         shadowOverlayView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -250,14 +250,14 @@ public final class CreateContentView: View {
 
     private func setupBottomConstraints() {
         bottomView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             bottomView.bottomAnchor.constraint(equalTo: overlayView.contentView.bottomAnchor),
             bottomView.trailingAnchor.constraint(equalTo: overlayView.contentView.trailingAnchor),
             bottomView.leadingAnchor.constraint(equalTo: overlayView.contentView.leadingAnchor)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -267,7 +267,7 @@ public final class CreateContentView: View {
             }
         }
     }
-    
+
     public var statusText: String? {
         didSet {
             headerView.statusText = statusText
@@ -279,31 +279,31 @@ public final class CreateContentView: View {
             headerView.descriptionText = descriptionText
         }
     }
-    
+
     public var saveButtonTitle: String? {
         didSet {
             bottomView.saveButtonTitle = saveButtonTitle
         }
     }
-    
+
     public var setButtonTitle: String? {
         didSet {
             bottomView.setButtonTitle = setButtonTitle
         }
     }
-    
+
     public var createButtonTitle: String? {
         didSet {
             bottomView.createButtonTitle = createButtonTitle
         }
     }
-    
+
     public var cancelButtonTitle: String? {
         didSet {
             bottomView.cancelButtonTitle = cancelButtonTitle
         }
     }
-    
+
     public var shareButtonTitle: String? {
         didSet {
             bottomView.shareButtonTitle = shareButtonTitle
@@ -327,13 +327,13 @@ public final class CreateContentView: View {
             bottomView.setButtonAction = setButtonAction
         }
     }
-    
+
     public var createButtonAction: Button.Action? {
         didSet {
             bottomView.createButtonAction = createButtonAction
         }
     }
-    
+
     public var shareButtonAction: Button.Action? {
         didSet {
             bottomView.shareButtonAction = shareButtonAction
@@ -352,7 +352,7 @@ public final class CreateContentView: View {
             animatedImageView.dragDelegate = dragAnimatedImageDelegate
         }
     }
-    
+
     public var isProgressHidden: Bool {
         get {
             return animatedImageView.isProgressHidden
@@ -361,13 +361,13 @@ public final class CreateContentView: View {
             animatedImageView.isProgressHidden = newValue
         }
     }
-    
+
     public var tags: [String] = [] {
         didSet {
             bottomView.tags = tags
         }
     }
-    
+
     public func setProgress(_ progress: Float, animated: Bool) {
         animatedImageView.setProgress(progress, animated: animated)
     }
@@ -376,32 +376,32 @@ public final class CreateContentView: View {
         animatedImageView.beginAnimation()
         shadowAnimatedImageView.beginAnimation()
     }
-    
+
     public func completeProcessAnimation(with reason: AnimationResult) {
         animatedImageView.lineWidth = Constants.borderLineWidth
         animatedImageView.setBorderOffset(Constants.borderOffset, animated: true)
-        
+
         bottomView.showButtons(success: reason == .success)
-        
+
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = Constants.completeContraintAnimationDuration
             context.timingFunction = .init(name: .easeInEaseOut)
-            
+
             self.animatedImageCenterYConstraint?.animator().constant = -Constants.animatedImageViewCenterYOffset
             self.overlayHeightConstraint?.animator().constant = Constants.regularHeight
-            
+
             self.headerView.animator().alphaValue = 1
             self.bottomView.animator().alphaValue = 1
         }, completionHandler: nil)
     }
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         layer?.backgroundColor = style?.ownStyle.overlayBackgroundColor.cgColor
         overlayView.layer?.borderColor = style?.ownStyle.overlayBorderColor.cgColor
         animatedImageView.style = style?.animatedImageStyle
-        
+
         headerView.style = style?.headerStyle
         bottomView.style = style?.bottomStyle
     }

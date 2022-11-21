@@ -168,7 +168,7 @@ public final class RoundedPushButton: Button {
         shadow1Layer.cornerRadius = cornerRadius
         shadow2Layer.cornerRadius = cornerRadius
         borderLayer.cornerRadius = cornerRadius
-        
+
         let path = NSBezierPath(roundedRect: contentView.bounds, xRadius: cornerRadius, yRadius: cornerRadius)
         let bounds = path.bounds
 
@@ -184,7 +184,7 @@ public final class RoundedPushButton: Button {
             width: bounds.width + Constants.borderWidth * 2,
             height: bounds.height + Constants.borderWidth * 2
         )
-        
+
         path.appendRoundedRect(
             bounds.insetBy(dx: -Constants.borderWidth * 2, dy: -Constants.borderWidth * 2),
             xRadius: cornerRadius,

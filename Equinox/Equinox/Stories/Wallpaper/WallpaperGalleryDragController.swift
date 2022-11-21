@@ -72,19 +72,19 @@ extension WallpaperGalleryDragController {
 
 final class WallpaperGalleryDragController {
     private let type: WallpaperType
-    
+
     // MARK: - Initializer
-    
+
     init(type: WallpaperType) {
         self.type = type
     }
-    
+
     // MARK: - Public
 
     weak var delegate: WallpaperGalleryDragControllerDelegate?
 
     // MARK: - Private
-    
+
     private func dropInternalItems(collectionView: NSCollectionView, draggingInfo: NSDraggingInfo, insertIndexPath: IndexPath) -> Bool {
         guard let pasteboardItems = draggingInfo.draggingPasteboard.pasteboardItems else {
             return false

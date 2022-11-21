@@ -99,7 +99,7 @@ public final class SolarMainContentView: VisualEffectView {
     private lazy var resultView = SolarResultView()
     private lazy var timelineView = SolarTimelineView()
     private lazy var lineView = LineView()
-    
+
     private lazy var helpButton: NSButton = {
         let button = NSButton()
         button.bezelStyle = .helpButton
@@ -129,14 +129,14 @@ public final class SolarMainContentView: VisualEffectView {
         mapView.delegate = self
         return mapView
     }()
-    
+
     // MARK: - Initializer
 
     public init() {
         super.init(material: .windowBackground, blendingMode: .behindWindow)
         setup()
     }
-    
+
     // MARK: - Life Cycle
 
     public override var wantsUpdateLayer: Bool {
@@ -147,7 +147,7 @@ public final class SolarMainContentView: VisualEffectView {
         super.updateLayer()
         stylize()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -166,7 +166,7 @@ public final class SolarMainContentView: VisualEffectView {
         overlayView.addSubview(resultView)
         overlayView.addSubview(lineView)
     }
-    
+
     private func setupConstraints() {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.translatesAutoresizingMaskIntoConstraints = false
@@ -195,28 +195,28 @@ public final class SolarMainContentView: VisualEffectView {
             locationView.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: Constants.locationTopOffset),
             locationView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.locationLeadingOffset),
             locationView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.locationTrailingOffset),
-            
+
             timelineView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.solarTimelineLeadingOffset),
             timelineView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.solarTimelineTrailingOffset),
             timelineView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: Constants.solarTimelineTopOffset),
-            
+
             resultView.topAnchor.constraint(equalTo: timelineView.bottomAnchor, constant: Constants.resultTopOffset),
             resultView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.resultLeadingOffset),
             resultView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.resultTrailingOffset),
-            
+
             pinImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: Constants.pinCenterXOffset),
             pinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: -Constants.pinCenterYOffset),
             pinImageView.widthAnchor.constraint(equalToConstant: Constants.pinWidth),
             pinImageView.heightAnchor.constraint(equalToConstant: Constants.pinHeight),
-            
+
             helpButton.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: Constants.helpTopOffset),
             helpButton.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor, constant: -Constants.helpBottomOffset),
             helpButton.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.helpTrailingOffset)
         ])
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -242,31 +242,31 @@ public final class SolarMainContentView: VisualEffectView {
             locationView.timeHeaderTitle = timeHeaderTitle ?? String()
         }
     }
-    
+
     public var timelineHeaderTitle: String? {
         didSet {
             timelineView.timelineHeaderTitle = timelineHeaderTitle ?? String()
         }
     }
-    
+
     public var timezoneHeaderTitle: String? {
         didSet {
             timelineView.timezoneHeaderTitle = timezoneHeaderTitle ?? String()
         }
     }
-    
+
     public var timezoneData: SubMenuPopUpButton.MenuData? {
         didSet {
             timelineView.timezoneData = timezoneData
         }
     }
-    
+
     public var timezoneChangeAction: SubMenuPopUpButton.ChangeAction? {
         didSet {
             timelineView.timezoneChangeAction = timezoneChangeAction
         }
     }
-    
+
     public var resultHeaderTitle: String? {
         didSet {
             resultView.resultHeaderTitle = resultHeaderTitle ?? String()
@@ -320,19 +320,19 @@ public final class SolarMainContentView: VisualEffectView {
             locationView.date = date
         }
     }
-    
+
     public var chartData: [InteractiveLineChart.ChartData]? {
         didSet {
             timelineView.chartData = chartData
         }
     }
-    
-    public var chartDelegate: InteractiveLineChartDelegate? {
+
+    public weak var chartDelegate: InteractiveLineChartDelegate? {
         didSet {
             timelineView.chartDelegate = chartDelegate
         }
     }
-    
+
     public var chartProgress: CGFloat? {
         didSet {
             timelineView.chartProgress = chartProgress ?? 0
@@ -391,13 +391,13 @@ public final class SolarMainContentView: VisualEffectView {
             resultView.copyAction = copyAction
         }
     }
-    
+
     public var helpAction: HelpAction?
-    
+
     public func setMapLocation(_ location: CLLocation, animated: Bool) {
         mapView.setCenter(location.coordinate, animated: animated)
     }
-    
+
     public func setMapZoomFactor(_ factor: Double, animated: Bool) {
         let span = MKCoordinateSpan(latitudeDelta: factor, longitudeDelta: factor)
         let region = MKCoordinateRegion(center: mapView.centerCoordinate, span: span)
@@ -413,7 +413,7 @@ public final class SolarMainContentView: VisualEffectView {
         lineView.style = style?.lineStyle
         pinImageView.image = style?.ownStyle.pinImage
     }
-    
+
     @objc
     private func helpButtonAction(_ sender: NSButton) {
         helpAction?(sender)

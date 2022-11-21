@@ -40,20 +40,20 @@ public protocol StorageCore {
 
 public final class StorageCoreImpl: StorageCore {
     private let userDefaults: UserDefaults
-    
+
     // MARK: - Initializer
-    
+
     public init(userDefaults: UserDefaults) {
         self.userDefaults = userDefaults
     }
-    
+
     // MARK: - Public
-    
+
     public func set<T>(key: String, value: T) {
         userDefaults.set(value, forKey: key)
         userDefaults.synchronize()
     }
-    
+
     public func get<T>(key: String) throws -> T {
         guard let object = userDefaults.object(forKey: key) else {
             throw StorageError.keyNotFound
@@ -63,7 +63,7 @@ public final class StorageCoreImpl: StorageCore {
         }
         return unwrappedValue
     }
-    
+
     public func remove(key: String) {
         userDefaults.removeObject(forKey: key)
     }

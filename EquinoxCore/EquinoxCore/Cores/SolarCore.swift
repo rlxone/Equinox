@@ -41,24 +41,24 @@ public protocol SolarCore {
 public final class SolarCoreImpl: SolarCore {
     public init() {
     }
-    
+
     // MARK: - Public
 
     public func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {
         guard let timeZone = TimeZone(identifier: "GMT") else {
             throw SolarError.wrongTimezone
         }
-        
+
         var calendar = Calendar.current
         calendar.timeZone = timeZone
-        
+
         let year = calendar.component(.year, from: date)
         let month = calendar.component(.month, from: date)
         let day = calendar.component(.day, from: date)
         let hours = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
         let seconds = calendar.component(.second, from: date)
-        
+
         return Solar.elevation(
             lat: latitude,
             lon: longitude,
@@ -72,15 +72,15 @@ public final class SolarCoreImpl: SolarCore {
             dlstime: dlstime
         )
     }
-    
+
     public func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {
         guard let timeZone = TimeZone(identifier: "GMT") else {
             throw SolarError.wrongTimezone
         }
-        
+
         var calendar = Calendar.current
         calendar.timeZone = timeZone
-        
+
         let year = calendar.component(.year, from: date)
         let month = calendar.component(.month, from: date)
         let day = calendar.component(.day, from: date)

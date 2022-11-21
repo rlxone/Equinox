@@ -117,14 +117,14 @@ public final class SolarResultView: View {
         view.isSelectable = true
         return view
     }()
-    
+
     // MARK: - Initializer
 
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Life Cycle
 
     public override func mouseDown(with event: NSEvent) {
@@ -140,7 +140,7 @@ public final class SolarResultView: View {
         super.updateLayer()
         stylize()
     }
-    
+
     // MARK: - Setup
 
     private func setup() {
@@ -170,10 +170,10 @@ public final class SolarResultView: View {
             dragImageView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.dragImageViewTopOffset),
             dragImageView.widthAnchor.constraint(equalToConstant: Constants.dragImageViewWidth),
             dragImageView.heightAnchor.constraint(equalToConstant: Constants.dragImageViewHeight),
-            
+
             resultHeaderLabel.leadingAnchor.constraint(equalTo: dragImageView.trailingAnchor, constant: Constants.resultHeaderLabelLeadingOffset),
             resultHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.resultHeaderLabelTopOffset),
-            
+
             azimuthTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.azimuthTextFieldLeadingOffset),
             azimuthTextField.topAnchor.constraint(equalTo: resultHeaderLabel.bottomAnchor, constant: Constants.azimuthTextFieldTopOffset),
             azimuthTextField.widthAnchor.constraint(equalTo: altitudeTextField.widthAnchor),
@@ -186,9 +186,9 @@ public final class SolarResultView: View {
             altitudeTextField.heightAnchor.constraint(equalToConstant: Constants.altitudeTextFieldHeight)
         ])
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -258,7 +258,7 @@ public final class SolarResultView: View {
         }
         return NSImage(cgImage: cgImage, size: bounds.size)
     }
-    
+
     // MARK: - Private
 
     private func stylize() {

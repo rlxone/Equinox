@@ -51,46 +51,46 @@ extension TipViewController {
 
 class TipViewController: ViewController {
     private let model: Model
-    
+
     private lazy var contentView: TipContentView = {
         let view = TipContentView()
         view.style = .default
         return view
     }()
-    
+
     // MARK: - Initializer
-    
+
     init(model: Model) {
         self.model = model
         super.init()
     }
-    
+
     // MARK: - Life Cycle
 
     override func loadView() {
         view = contentView
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         contentView.title = model.title
         contentView.descriptionTitle = model.description
         contentView.status = model.status
         contentView.buttonTitle = model.buttonTitle
         contentView.image = model.image
-        
+
         contentView.action = { [weak self] _ in
             self?.delegate?.getStartedWasInteracted()
         }
     }
-    
+
     // MARK: - Public
-    
+
     weak var delegate: TipViewControllerDelegate?
 }

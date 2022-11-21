@@ -61,7 +61,7 @@ extension AppearanceItemView {
             self.appearanceStyle = appearanceStyle
         }
     }
-    
+
     private enum Constants {
         static let appearanceLeadingOffset: CGFloat = 10
         static let appearanceWidth: CGFloat = 24

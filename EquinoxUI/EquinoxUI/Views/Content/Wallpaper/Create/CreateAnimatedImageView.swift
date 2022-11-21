@@ -34,13 +34,13 @@ extension CreateAnimatedImageView {
     public struct Style {
         let progressColor: NSColor
         let borderColor: NSColor
-        
+
         public init(progressColor: NSColor, borderColor: NSColor) {
             self.progressColor = progressColor
             self.borderColor = borderColor
         }
     }
-    
+
     private enum Constants {
         static let borderAnimationDuration: TimeInterval = 0.3
     }
@@ -50,7 +50,7 @@ extension CreateAnimatedImageView {
 
 public final class CreateAnimatedImageView: View {
     private lazy var animatedImageView = DragAnimatedImageView()
-    
+
     private lazy var borderView: BorderProgressView = {
         let view = BorderProgressView()
         view.setProgress(1, animated: false)
@@ -62,24 +62,24 @@ public final class CreateAnimatedImageView: View {
         view.setProgress(0, animated: false)
         return view
     }()
-    
+
     private var progressLeadingConstraint: NSLayoutConstraint?
     private var progressTopConstraint: NSLayoutConstraint?
     private var progressTrailingConstraint: NSLayoutConstraint?
     private var progressBottomConstraint: NSLayoutConstraint?
-    
+
     private var borderLeadingConstraint: NSLayoutConstraint?
     private var borderTopConstraint: NSLayoutConstraint?
     private var borderTrailingConstraint: NSLayoutConstraint?
     private var borderBottomConstraint: NSLayoutConstraint?
-    
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
-    
+
     // MARK: - Life Cycle
 
     public override var wantsUpdateLayer: Bool {
@@ -90,40 +90,40 @@ public final class CreateAnimatedImageView: View {
         super.updateLayer()
         stylize()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         setupView()
         setupConstraints()
     }
-    
+
     private func setupView() {
         wantsLayer = true
         layer?.masksToBounds = false
-        
+
         addSubview(animatedImageView)
         addSubview(borderView)
         addSubview(progressView)
     }
-    
+
     private func setupConstraints() {
         animatedImageView.translatesAutoresizingMaskIntoConstraints = false
         progressView.translatesAutoresizingMaskIntoConstraints = false
         borderView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             animatedImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             animatedImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             animatedImageView.topAnchor.constraint(equalTo: topAnchor),
             animatedImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        
+
         borderLeadingConstraint = borderView.leadingAnchor.constraint(equalTo: animatedImageView.leadingAnchor)
         borderTopConstraint = borderView.topAnchor.constraint(equalTo: animatedImageView.topAnchor)
         borderTrailingConstraint = borderView.trailingAnchor.constraint(equalTo: animatedImageView.trailingAnchor)
         borderBottomConstraint = borderView.bottomAnchor.constraint(equalTo: animatedImageView.bottomAnchor)
-        
+
         progressLeadingConstraint = progressView.leadingAnchor.constraint(equalTo: animatedImageView.leadingAnchor)
         progressTopConstraint = progressView.topAnchor.constraint(equalTo: animatedImageView.topAnchor)
         progressTrailingConstraint = progressView.trailingAnchor.constraint(equalTo: animatedImageView.trailingAnchor)
@@ -133,15 +133,15 @@ public final class CreateAnimatedImageView: View {
         borderTopConstraint?.isActive = true
         borderTrailingConstraint?.isActive = true
         borderBottomConstraint?.isActive = true
-        
+
         progressLeadingConstraint?.isActive = true
         progressTopConstraint?.isActive = true
         progressTrailingConstraint?.isActive = true
         progressBottomConstraint?.isActive = true
     }
-    
+
     // MARK: - Public
-    
+
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -149,44 +149,44 @@ public final class CreateAnimatedImageView: View {
             }
         }
     }
-    
+
     public weak var delegate: AnimatedImageViewDelegate? {
         didSet {
             animatedImageView.delegate = delegate
         }
     }
-    
+
     public weak var dragDelegate: DragAnimatedImageViewDelegate? {
         didSet {
             animatedImageView.dragDelegate = dragDelegate
         }
     }
-    
+
     public var cornerRadius: CGFloat = 0 {
         didSet {
             animatedImageView.cornerRadius = cornerRadius
         }
     }
-    
+
     public var borderCornerRadius: CGFloat = 0 {
         didSet {
             borderView.radius = borderCornerRadius
         }
     }
-    
+
     public var progressCornerRadius: CGFloat = 0 {
         didSet {
             progressView.radius = progressCornerRadius
         }
     }
-    
+
     public var lineWidth: CGFloat = 0 {
         didSet {
             borderView.lineWidth = lineWidth
             progressView.lineWidth = lineWidth
         }
     }
-    
+
     public var isProgressHidden: Bool {
         get {
             return progressView.isHidden
@@ -195,43 +195,43 @@ public final class CreateAnimatedImageView: View {
             progressView.isHidden = newValue
         }
     }
-    
+
     public func beginAnimation() {
         animatedImageView.beginAnimation()
     }
-    
+
     public func setProgress(_ progress: Float, animated: Bool) {
         progressView.setProgress(progress, animated: animated)
     }
-    
+
     public func setBorderOffset(_ offset: CGFloat, animated: Bool) {
         let changes: () -> Void = { [weak self] in
             self?.borderTopConstraint?.constant = -offset
             self?.borderLeadingConstraint?.constant = -offset
             self?.borderTrailingConstraint?.constant = offset
             self?.borderBottomConstraint?.constant = offset
-            
+
             self?.progressTopConstraint?.constant = -offset
             self?.progressLeadingConstraint?.constant = -offset
             self?.progressTrailingConstraint?.constant = offset
             self?.progressBottomConstraint?.constant = offset
         }
-        
+
         if animated {
             NSAnimationContext.runAnimationGroup { context in
                 context.duration = Constants.borderAnimationDuration
                 context.timingFunction = .init(name: .easeInEaseOut)
                 context.allowsImplicitAnimation = true
-                
+
                 changes()
             }
         } else {
             changes()
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func stylize() {
         borderView.strokeColor = style?.borderColor
         progressView.strokeColor = style?.progressColor

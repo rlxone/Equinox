@@ -71,7 +71,7 @@ extension DragView {
             self.browseStyle = browseStyle
         }
     }
-    
+
     private enum Constants {
         static let dashedLineWidth: CGFloat = 2
         static let highlightDashedLineWidth: CGFloat = 4
@@ -205,7 +205,7 @@ public final class DragView: View {
                 equalTo: dashedView.contentView.trailingAnchor,
                 constant: -Constants.alternativeLabelTrailingOffset
             ),
-            
+
             browseButton.topAnchor.constraint(equalTo: alternativeLabel.bottomAnchor, constant: Constants.browseButtonTopOffset),
             browseButton.centerXAnchor.constraint(equalTo: dashedView.contentView.centerXAnchor),
             browseButton.widthAnchor.constraint(equalToConstant: Constants.browseButtonWidth),

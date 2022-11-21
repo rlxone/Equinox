@@ -29,7 +29,7 @@
 import AppKit
 
 final class Application {
-    func create() {        
+    func create() {
         let delegate = AppDelegate()
         NSApplication.shared.delegate = delegate
         NSApplication.shared.setActivationPolicy(.regular)

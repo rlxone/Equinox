@@ -39,19 +39,19 @@ extension AppDelegate: NSApplicationDelegate {
         setupMenu()
         storiesController.start()
     }
-    
+
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
-    
+
     func applicationDockMenu(_ sender: NSApplication) -> NSMenu? {
         let dock = DockMenu(title: NSApplication.appName)
         dock.dockDelegate = self
         return dock
     }
-    
+
     // MARK: - Private
-    
+
     private func setupMenu() {
         let applicationMenu = ApplicationMenu(title: NSApplication.appName)
         applicationMenu.applicationDelegate = self

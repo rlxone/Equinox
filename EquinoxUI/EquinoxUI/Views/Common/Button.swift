@@ -57,9 +57,9 @@ public class Button: NSButton {
     private var isMouseEntered = false
     private var operationQueue = OperationQueue()
     private var semaphore = DispatchSemaphore(value: 0)
-    
+
     // MARK: - Initializer
-    
+
     public init() {
         super.init(frame: .zero)
         setup()
@@ -138,7 +138,7 @@ public class Button: NSButton {
     public var onAction: Action?
 
     // MARK: - Private
-    
+
     private func mouseEntered() {
         isMouseEntered = true
 
@@ -163,13 +163,13 @@ public class Button: NSButton {
 
         operationQueue.addOperation(operation)
     }
-    
+
     private func mouseExited() {
         isMouseEntered = false
         operationQueue.cancelAllOperations()
         hideTooltip()
     }
-    
+
     private var centerRelativePoint: NSPoint? {
         guard let window = window else {
             return nil

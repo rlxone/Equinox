@@ -34,7 +34,7 @@ public enum Localization {
             return String(format: Localization.localizedString(key: "images"), arguments: [param1])
         }
     }
-    
+
     public enum Menu {
         public enum Main {
             public static func about(param1: String) -> String {
@@ -46,17 +46,17 @@ public enum Localization {
             public static func quit(param1: String) -> String {
                 return String(format: Localization.localizedString(key: "menu.main.quit"), arguments: [param1])
             }
-            
+
             public static let preferences = Localization.localizedString(key: "menu.main.preferences")
             public static let hideOthers = Localization.localizedString(key: "menu.main.hide.others")
             public static let showAll = Localization.localizedString(key: "menu.main.show.all")
         }
-        
+
         public enum File {
             public static let file = Localization.localizedString(key: "menu.file")
             public static let new = Localization.localizedString(key: "menu.file.new")
         }
-        
+
         public enum Edit {
             public static let edit = Localization.localizedString(key: "menu.edit")
             public static let undo = Localization.localizedString(key: "menu.edit.undo")
@@ -67,23 +67,23 @@ public enum Localization {
             public static let selectAll = Localization.localizedString(key: "menu.edit.select.all")
             public static let delete = Localization.localizedString(key: "menu.edit.delete")
         }
-        
+
         public enum Window {
             public static let window = Localization.localizedString(key: "menu.window")
             public static let minimize = Localization.localizedString(key: "menu.window.minimize")
             public static let zoom = Localization.localizedString(key: "menu.window.zoom")
             public static let showAll = Localization.localizedString(key: "menu.window.show.all")
         }
-        
+
         public enum Help {
             public static let help = Localization.localizedString(key: "menu.help")
         }
     }
-    
+
     public enum Dock {
         public static let new = Localization.localizedString(key: "dock.new")
     }
-    
+
     public enum Welcome {
         public static func welcome(param1: String) -> String {
             return String(format: Localization.localizedString(key: "welcome.welcome"), arguments: [param1])
@@ -91,7 +91,7 @@ public enum Localization {
         public static func version(param1: String) -> String {
             return String(format: Localization.localizedString(key: "welcome.version"), arguments: [param1])
         }
-        
+
         public static let title = Localization.localizedString(key: "welcome.title")
         public static let github = Localization.localizedString(key: "welcome.github")
         public static let choose = Localization.localizedString(key: "welcome.choose.type")
@@ -103,7 +103,7 @@ public enum Localization {
         public static let appearance = Localization.localizedString(key: "welcome.types.appearance")
         public static let appearanceDescription = Localization.localizedString(key: "welcome.types.appearance.description")
     }
-    
+
     public enum Wallpaper {
         public enum Main {
             public static let solar = Localization.localizedString(key: "wallpaper.main.solar")
@@ -114,7 +114,7 @@ public enum Localization {
             public static let browse = Localization.localizedString(key: "wallpaper.main.browse")
             public static let validate = Localization.localizedString(key: "wallpaper.main.validate")
         }
-        
+
         public enum Gallery {
             public static let dragTitle = Localization.localizedString(key: "wallpaper.gallery.drag.title")
             public static let dragSupplementary = Localization.localizedString(key: "wallpaper.gallery.drag.supplementary")
@@ -131,7 +131,7 @@ public enum Localization {
             public static let tooltipPrimaryTitle = Localization.localizedString(key: "wallpaper.gallery.tooltip.primary.title")
             public static let tooltipPrimaryDescription = Localization.localizedString(key: "wallpaper.gallery.tooltip.primary.description")
         }
-        
+
         public enum Appearance {
             public static let autoTitle = Localization.localizedString(key: "wallpaper.appearance.auto.title")
             public static let autoDescription = Localization.localizedString(key: "wallpaper.appearance.auto.description")
@@ -140,7 +140,7 @@ public enum Localization {
             public static let darkTitle = Localization.localizedString(key: "wallpaper.appearance.dark.title")
             public static let darkDescription = Localization.localizedString(key: "wallpaper.appearance.dark.description")
         }
-        
+
         public enum Create {
             public static let success = Localization.localizedString(key: "wallpaper.create.success")
             public static let successDescription = Localization.localizedString(key: "wallpaper.create.success.description")
@@ -163,7 +163,7 @@ public enum Localization {
             public static let setSuccess = Localization.localizedString(key: "wallpaper.create.set.success")
             public static let cantShare = Localization.localizedString(key: "wallpaper.create.cant.share")
         }
-        
+
         public enum Set {
             public static let title = Localization.localizedString(key: "wallpaper.set.title")
             public static let descriptionTitle = Localization.localizedString(key: "wallpaper.set.description.title")
@@ -173,7 +173,7 @@ public enum Localization {
             public static let skip = Localization.localizedString(key: "wallpaper.set.skip")
         }
     }
-    
+
     public enum Solar {
         public enum Main {
             public static let title = Localization.localizedString(key: "solar.main.title")
@@ -192,29 +192,29 @@ public enum Localization {
             public static let locationError = Localization.localizedString(key: "solar.main.location.error")
         }
     }
-    
+
     public enum Tip {
         public enum Shared {
             public static let tips = Localization.localizedString(key: "tip.tips")
             public static let started = Localization.localizedString(key: "tip.started")
             public static let ok = Localization.localizedString(key: "tip.ok")
         }
-        
+
         public enum Solar {
             public static let title = Localization.localizedString(key: "tip.solar.title")
             public static let description = Localization.localizedString(key: "tip.solar.description")
         }
-        
+
         public enum Time {
             public static let title = Localization.localizedString(key: "tip.time.title")
             public static let description = Localization.localizedString(key: "tip.time.description")
         }
-        
+
         public enum Appearance {
             public static let title = Localization.localizedString(key: "tip.appearance.title")
             public static let description = Localization.localizedString(key: "tip.appearance.description")
         }
-        
+
         public enum Calculator {
             public static let title = Localization.localizedString(key: "tip.calculator.title")
             public static let description = Localization.localizedString(key: "tip.calculator.description")

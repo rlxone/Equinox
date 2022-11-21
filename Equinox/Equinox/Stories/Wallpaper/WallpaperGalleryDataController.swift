@@ -36,29 +36,29 @@ final class WallpaperGalleryDataController {
     private let fileService: FileService
     private let solarService: SolarService
     private let imageProvider: ImageProvider
-    
+
     private var mutableData = GalleryData(items: [], info: String())
     private var filesizeCache: [URL: UInt64] = [:]
-    
+
     // MARK: - Initializer
-    
+
     init(type: WallpaperType, fileService: FileService, solarService: SolarService, imageProvider: ImageProvider) {
         self.type = type
         self.fileService = fileService
         self.solarService = solarService
         self.imageProvider = imageProvider
     }
-    
+
     // MARK: - Public
-    
+
     var data: GalleryData {
         return mutableData
     }
-    
+
     func refreshData() {
         var containsPrimary = false
         var totalSize: UInt64 = 0
-        
+
         for (index, model) in mutableData.items.enumerated() {
             if model.primary {
                 containsPrimary = true
@@ -70,37 +70,37 @@ final class WallpaperGalleryDataController {
                 totalSize += calculateFilesize(model.url) ?? 0
             }
         }
-        
+
         if !containsPrimary {
             mutableData.items.first?.primary = true
         }
-        
+
         switch type {
         case .appearance:
             refreshAppearanceData()
-            
+
         case .solar, .time:
             break
         }
-        
+
         refreshInfo(totalSize: totalSize)
     }
-    
+
     func make(_ urls: [URL], insertIndexPath: IndexPath) -> [(indexPath: IndexPath, model: GalleryModel)] {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(identifier: "GMT") ?? .current
         let startTime = calendar.startOfDay(for: Date())
         var newData: [(IndexPath, GalleryModel)] = []
-        
+
         for (index, url) in urls.enumerated() {
             let newIndex = insertIndexPath.item + index
             let indexPath = IndexPath(item: newIndex, section: insertIndexPath.section)
             let count = data.items.count + index
-            
+
             let isPrimary = isPrimaryIndex(count)
             let imageData = calculateImageData(url)
             let time = calendar.date(byAdding: .hour, value: count, to: startTime)
-            
+
             let model = GalleryModel(
                 number: newIndex + 1,
                 url: url,
@@ -110,23 +110,23 @@ final class WallpaperGalleryDataController {
                 altitude: imageData?.altitude,
                 time: time
             )
-            
+
             newData.append((indexPath, model))
         }
-        
+
         return newData
     }
-    
+
     func insert(_ items: [GalleryModel], at index: Int) {
         mutableData.items.insert(contentsOf: items, at: index)
     }
-    
+
     func remove(at index: Int) {
         mutableData.items.remove(at: index)
     }
-    
+
     // MARK: - Private
-    
+
     private func refreshAppearanceData() {
         for item in mutableData.items {
             switch item.appearance {
@@ -136,19 +136,19 @@ final class WallpaperGalleryDataController {
                 } else if !mutableData.items.contains(where: { $0.appearance == .dark }) {
                     item.appearance = .dark
                 }
-                
+
             default:
                 break
             }
         }
     }
-    
+
     private func refreshInfo(totalSize: UInt64) {
         let formattedTotalSize = getFormattedFilesize(filesize: totalSize)
         let images = Localization.Shared.images(param1: mutableData.items.count)
         mutableData.info = "\(images) • \(formattedTotalSize)"
     }
-    
+
     private func calculateImageData(_ url: URL) -> (azimuth: Double, altitude: Double)? {
         guard
             let metadata = imageProvider.getImageMetadata(for: url),
@@ -183,7 +183,7 @@ final class WallpaperGalleryDataController {
         let altitude = roundDouble(solarAltitude, places: 3)
         return (azimuth, altitude)
     }
-    
+
     private func calculateFilesize(_ url: URL) -> UInt64? {
         do {
             let filesize = try fileService.getFilesize(url)
@@ -192,7 +192,7 @@ final class WallpaperGalleryDataController {
             return nil
         }
     }
-    
+
     private func getFormattedFilesize(filesize: UInt64) -> String {
         return ByteCountFormatter.string(fromByteCount: Int64(filesize), countStyle: .file)
     }
