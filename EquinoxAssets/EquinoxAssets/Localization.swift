@@ -116,6 +116,10 @@ public enum Localization {
         }
         
         public enum Gallery {
+            public static func menuDelete(param1: Int) -> String {
+                return String(format: Localization.localizedString(key: "delete"), arguments: [param1])
+            }
+            
             public static let dragTitle = Localization.localizedString(key: "wallpaper.gallery.drag.title")
             public static let dragSupplementary = Localization.localizedString(key: "wallpaper.gallery.drag.supplementary")
             public static let or = Localization.localizedString(key: "wallpaper.gallery.or")

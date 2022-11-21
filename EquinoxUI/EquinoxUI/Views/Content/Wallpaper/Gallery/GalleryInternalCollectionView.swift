@@ -58,6 +58,15 @@ public final class GalleryInternalCollectionView: NSCollectionView {
         internalDelegate?.didDeleteBackward(sender)
     }
     
+    public override func menu(for event: NSEvent) -> NSMenu? {
+        let clickedPoint = convert(event.locationInWindow, from: nil)
+        if let indexPath = indexPathForItem(at: clickedPoint) {
+            appendSelection(for: indexPath)
+            return super.menu(for: event)
+        }
+        return nil
+    }
+    
     // MARK: - Setup
     
     private func setup() {
@@ -67,4 +76,12 @@ public final class GalleryInternalCollectionView: NSCollectionView {
     // MARK: Public
 
     public weak var internalDelegate: GalleryInternalCollectionViewDelegate?
+    
+    // MARK: Private
+    
+    private func appendSelection(for indexPath: IndexPath) {
+        if !selectionIndexPaths.contains(indexPath) {
+            selectionIndexPaths = [indexPath]
+        }
+    }
 }
