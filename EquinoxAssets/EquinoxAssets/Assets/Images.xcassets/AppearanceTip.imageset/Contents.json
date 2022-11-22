@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "appearance-tip-1.jpg",
+      "filename" : "Artboard@500.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "appearance-tip-2.jpg",
+      "filename" : "Artboard@1000.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "appearance-tip-3.jpg",
+      "filename" : "Artboard.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
