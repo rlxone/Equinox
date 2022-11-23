@@ -77,6 +77,12 @@ public enum Localization {
         
         public enum Help {
             public static let help = Localization.localizedString(key: "menu.help")
+            public static let githubProject = Localization.localizedString(key: "menu.help.githubProject")
+            public static let githubFAQ = Localization.localizedString(key: "menu.help.githubFAQ")
+            public static let githubIssue = Localization.localizedString(key: "menu.help.githubIssue")
+            public static let equinoxWebsite = Localization.localizedString(key: "menu.help.equinoxWebsite")
+            public static let macAppStoreReview = Localization.localizedString(key: "menu.help.macAppStoreReview")
+            public static let productHunt = Localization.localizedString(key: "menu.help.productHunt")
         }
     }
     
