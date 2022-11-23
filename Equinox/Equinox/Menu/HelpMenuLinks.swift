@@ -29,7 +29,7 @@
 import EquinoxAssets
 import Foundation
 
-internal enum HelpMenuLinks: CaseIterable {
+enum HelpMenuLinks: CaseIterable {
     case githubProject
     case githubFAQ
     case githubIssue
