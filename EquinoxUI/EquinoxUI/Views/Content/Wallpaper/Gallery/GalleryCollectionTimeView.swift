@@ -69,7 +69,6 @@ public final class GalleryCollectionTimeView: View {
 
     private lazy var timePicker: NSDatePicker = {
         let picker = NSDatePicker()
-        let calendar = Calendar.current
         picker.isBordered = false
         picker.datePickerMode = .single
         picker.datePickerElements = [.hourMinuteSecond]

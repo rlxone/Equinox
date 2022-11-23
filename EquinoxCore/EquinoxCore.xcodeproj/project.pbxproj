@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F31A9E2B26E985EE00135E49 /* SolarError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31A9E2A26E985EE00135E49 /* SolarError.swift */; };
 		F32C64AB27028479002F5817 /* EquinoxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B334CD267DC5B90025AB04 /* EquinoxCore.framework */; };
 		F32C64B427028505002F5817 /* ImageCacheCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32C64B327028505002F5817 /* ImageCacheCoreTests.swift */; };
 		F3348F522702912D00695C8A /* HashCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3348F512702912D00695C8A /* HashCoreTests.swift */; };
@@ -19,6 +18,9 @@
 		F356C8BF2736EFDC00E915C6 /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8BE2736EFDC00E915C6 /* StorageError.swift */; };
 		F356C8C12736F1B800E915C6 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8C02736F1B800E915C6 /* SettingsService.swift */; };
 		F356C8C32736F25F00E915C6 /* WalkthroughType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8C22736F25F00E915C6 /* WalkthroughType.swift */; };
+		F374BA4C292E455C00CE69FF /* Accessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F374BA4B292E455C00CE69FF /* Accessors.swift */; };
+		F374BA4E292E69E100CE69FF /* metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = F374BA4D292E69E100CE69FF /* metadata.json */; };
+		F374BA51292E7D3100CE69FF /* MockUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F374BA50292E7D3100CE69FF /* MockUserDefaults.swift */; };
 		F38D5B142741B0950065E13D /* StorageCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38D5B132741B0950065E13D /* StorageCoreTests.swift */; };
 		F399A513268B553500ED45EF /* ImageCacheCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399A512268B553500ED45EF /* ImageCacheCore.swift */; };
 		F399A517268B58C900ED45EF /* HashCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399A516268B58C900ED45EF /* HashCore.swift */; };
@@ -58,7 +60,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F31A9E2A26E985EE00135E49 /* SolarError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarError.swift; sourceTree = "<group>"; };
 		F32C64A727028479002F5817 /* EquinoxCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EquinoxCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32C64B327028505002F5817 /* ImageCacheCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheCoreTests.swift; sourceTree = "<group>"; };
 		F3348F512702912D00695C8A /* HashCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashCoreTests.swift; sourceTree = "<group>"; };
@@ -70,6 +71,9 @@
 		F356C8BE2736EFDC00E915C6 /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
 		F356C8C02736F1B800E915C6 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		F356C8C22736F25F00E915C6 /* WalkthroughType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughType.swift; sourceTree = "<group>"; };
+		F374BA4B292E455C00CE69FF /* Accessors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessors.swift; sourceTree = "<group>"; };
+		F374BA4D292E69E100CE69FF /* metadata.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = metadata.json; sourceTree = "<group>"; };
+		F374BA50292E7D3100CE69FF /* MockUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaults.swift; sourceTree = "<group>"; };
 		F38D5B132741B0950065E13D /* StorageCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageCoreTests.swift; sourceTree = "<group>"; };
 		F399A512268B553500ED45EF /* ImageCacheCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheCore.swift; sourceTree = "<group>"; };
 		F399A516268B58C900ED45EF /* HashCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashCore.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		F32C64A827028479002F5817 /* EquinoxCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				F374BA4F292E7D2300CE69FF /* Mocks */,
 				F3348F5F2702B09600695C8A /* Resources */,
 				F32C64B327028505002F5817 /* ImageCacheCoreTests.swift */,
 				F3348F512702912D00695C8A /* HashCoreTests.swift */,
@@ -138,8 +143,25 @@
 			children = (
 				F3348F602702B0B400695C8A /* image.heic */,
 				F3D01413274354DD00065404 /* image.png */,
+				F374BA4D292E69E100CE69FF /* metadata.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F374BA4A292E450800CE69FF /* Accessors */ = {
+			isa = PBXGroup;
+			children = (
+				F374BA4B292E455C00CE69FF /* Accessors.swift */,
+			);
+			path = Accessors;
+			sourceTree = "<group>";
+		};
+		F374BA4F292E7D2300CE69FF /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F374BA50292E7D3100CE69FF /* MockUserDefaults.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		F3B334C3267DC5B90025AB04 = {
@@ -163,6 +185,7 @@
 		F3B334CF267DC5B90025AB04 /* EquinoxCore */ = {
 			isa = PBXGroup;
 			children = (
+				F374BA4A292E450800CE69FF /* Accessors */,
 				F3D2EDEF267DCD9C009704C5 /* Errors */,
 				F3D2EDF4267DCD9C009704C5 /* Models */,
 				F3D2EDE8267DCD9C009704C5 /* Cores */,
@@ -192,7 +215,6 @@
 				F3D2EDF0267DCD9C009704C5 /* FileError.swift */,
 				F3D2EDF1267DCD9C009704C5 /* ImageError.swift */,
 				F3D2EDF3267DCD9C009704C5 /* MetadataError.swift */,
-				F31A9E2A26E985EE00135E49 /* SolarError.swift */,
 				F356C8BE2736EFDC00E915C6 /* StorageError.swift */,
 			);
 			path = Errors;
@@ -334,6 +356,7 @@
 			files = (
 				F3348F612702B13700695C8A /* image.heic in Resources */,
 				F3D01414274354DD00065404 /* image.png in Resources */,
+				F374BA4E292E69E100CE69FF /* metadata.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +379,7 @@
 				F32C64B427028505002F5817 /* ImageCacheCoreTests.swift in Sources */,
 				F3348F652702B5A000695C8A /* ImageCoreTests.swift in Sources */,
 				F3348F54270296AF00695C8A /* SolarCoreTests.swift in Sources */,
+				F374BA51292E7D3100CE69FF /* MockUserDefaults.swift in Sources */,
 				F3348F5B27029E2100695C8A /* MetadataCoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,6 +392,7 @@
 				F3EC93B526CC147D0032FA39 /* WallpaperService.swift in Sources */,
 				F356C8BF2736EFDC00E915C6 /* StorageError.swift in Sources */,
 				F3D2EE13267DCD9C009704C5 /* SolarMetadata.swift in Sources */,
+				F374BA4C292E455C00CE69FF /* Accessors.swift in Sources */,
 				F356C8BB2736E72E00E915C6 /* StorageCore.swift in Sources */,
 				F3D2EE08267DCD9C009704C5 /* ImageError.swift in Sources */,
 				F3D2EE04267DCD9C009704C5 /* ImageCore.swift in Sources */,
@@ -383,7 +408,6 @@
 				F3D2EE07267DCD9C009704C5 /* FileError.swift in Sources */,
 				F3D2EE15267DCD9C009704C5 /* FileService.swift in Sources */,
 				F3D2EE0F267DCD9C009704C5 /* ImageAttributes.swift in Sources */,
-				F31A9E2B26E985EE00135E49 /* SolarError.swift in Sources */,
 				F399A513268B553500ED45EF /* ImageCacheCore.swift in Sources */,
 				F3D2EE0A267DCD9C009704C5 /* MetadataError.swift in Sources */,
 				F3BD019426C352EF0090D864 /* SolarService.swift in Sources */,

@@ -323,7 +323,7 @@ final class SolarMainViewController: ViewController {
     }
     
     private func reloadChartData() {
-        let calendar = timezoneController.calendar
+        let calendar = getCurrentCalendar
         
         let startTime = calendar.startOfDay(for: latestDate)
         var chartData: [InteractiveLineChart.ChartData] = []

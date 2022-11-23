@@ -31,6 +31,15 @@ import XCTest
 
 // swiftlint:disable force_unwrapping
 
+struct TestMetadata: Codable {
+    struct Pair: Codable {
+        let key: String
+        let value: String
+    }
+    
+    let metadata: [Pair]
+}
+
 class MetadataCoreTests: XCTestCase {
     private var metadataCore: MetadataCoreImpl!
     private lazy var testBundle = Bundle(for: type(of: self))
@@ -59,8 +68,7 @@ class MetadataCoreTests: XCTestCase {
                 appearanceType: .dark
             )
         ]
-        let result = "YnBsaXN0MDDSAQIDCFJhcFJzadIEBQYHUWxRZBAAEAGiCQ7TCgsMBg0NUWlRYVF6I0BLgAAAAAAA0woLDAcPDyNARgAAAAAAAAgNEBMYGhweI" +
-        "CMqLC4wOUAAAAAAAAABAQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAASQ=="
+        let result = getTestMetadata(key: "solar.metadata")
         
         // When
         let metadata = try metadataCore.generate(from: imageAttributes)
@@ -74,7 +82,7 @@ class MetadataCoreTests: XCTestCase {
         XCTAssertEqual(tagValue, result)
     }
     
-    func testGenerateTimeMetadata() throws {
+    func testGenerateTimeSmallMetadata() throws {
         // Given
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
@@ -94,8 +102,48 @@ class MetadataCoreTests: XCTestCase {
                 appearanceType: .dark
             )
         ]
-        let result = "YnBsaXN0MDDSAQIDDFJ0aVJhcKIECdIFBgcIUWlRdBAAIz/gAAAAAAAA0gUGCgsQASM/4VVVVVVVVdINDgcKUWxRZAgNEBMWGx0fISovMTo/" +
-        "QQAAAAAAAAEBAAAAAAAAAA8AAAAAAAAAAAAAAAAAAABD"
+        let result = getTestMetadata(key: "time.small.metadata")
+        
+        // When
+        let metadata = try metadataCore.generate(from: imageAttributes)
+        let tags = CGImageMetadataCopyTags(metadata) as? [CGImageMetadataTag]
+        let timeTag = tags?.first { CGImageMetadataTagCopyName($0) == ImageMetadataType.time.rawValue as CFString }
+        let tag = try XCTUnwrap(timeTag)
+        let tagValue = try XCTUnwrap(CGImageMetadataTagCopyValue(tag) as? String)
+        
+        // Then
+        XCTAssertNotNil(metadata)
+        XCTAssertEqual(tagValue, result)
+    }
+    
+    func testGenerateTimeLargeMetadata() throws {
+        // Given
+        let path = testBundle.path(forResource: "image", ofType: "heic")!
+        let url = URL(fileURLWithPath: path)
+        let imagesCount = 24 * 12
+        var imageAttributes: [ImageAttributes] = []
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "GMT") ?? .current
+        let startOfDate = calendar.startOfDay(for: Date())
+        let oneDaysSeconds = 24 * 60 * 60
+        let oneImageInterval = oneDaysSeconds / imagesCount
+        
+        for index in 0..<imagesCount {
+            let value = oneImageInterval * index
+            guard let date = calendar.date(byAdding: .second, value: value, to: startOfDate) else {
+                continue
+            }
+            imageAttributes.append(
+                ImageAttributes(
+                    url: url,
+                    index: index,
+                    primary: index == 0,
+                    imageType: .time(date: date),
+                    appearanceType: nil
+                )
+            )
+        }
+        let result = getTestMetadata(key: "time.large.metadata")
         
         // When
         let metadata = try metadataCore.generate(from: imageAttributes)
@@ -129,7 +177,7 @@ class MetadataCoreTests: XCTestCase {
                 appearanceType: .dark
             )
         ]
-        let result = "YnBsaXN0MDDSAQIDBFFsUWQQABABCA0PERMAAAAAAAABAQAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAFQ=="
+        let result = getTestMetadata(key: "appearance.metadata")
         
         // When
         let metadata = try metadataCore.generate(from: imageAttributes)
@@ -158,10 +206,22 @@ class MetadataCoreTests: XCTestCase {
         XCTAssertNotNil(metadata?.createDate)
     }
     
-    private func getDate(day: Int, month: Int, year: Int, hour: Int, minute: Int, second: Int) throws -> Date {
-        guard let timezone = TimeZone(abbreviation: "GMT") else {
-            throw SolarError.wrongTimezone
+    private func getTestMetadata(key: String) -> String? {
+        let path = testBundle.path(forResource: "metadata", ofType: "json")!
+        let url = URL(fileURLWithPath: path)
+        do {
+            let data = try Data(contentsOf: url)
+            let jsonData = try JSONDecoder().decode(TestMetadata.self, from: data)
+            return jsonData.metadata
+                .first { $0.key == key }?
+                .value
+        } catch {
+            return nil
         }
+    }
+    
+    private func getDate(day: Int, month: Int, year: Int, hour: Int, minute: Int, second: Int) throws -> Date {
+        let timezone = TimeZone(abbreviation: "GMT") ?? .current
         
         var dateComponents = DateComponents()
         dateComponents.day = day
