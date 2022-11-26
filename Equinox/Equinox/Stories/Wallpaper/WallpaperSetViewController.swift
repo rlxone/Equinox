@@ -75,14 +75,22 @@ final class WallpaperSetViewController: ViewController {
     
     private func setupView() {
         contentView.title = Localization.Wallpaper.Set.title
-        contentView.descriptionTitle = Localization.Wallpaper.Set.descriptionTitle
-        contentView.todoText = Localization.Wallpaper.Set.todo
+        if #available(macOS 13, *) {
+            contentView.descriptionTitle = Localization.Wallpaper.Set.descriptionTitle
+            contentView.todoText = Localization.Wallpaper.Set.todo
+            contentView.links = [
+                .init(text: Localization.Wallpaper.Set.todoLink, tag: Constants.desktopLinkTag)
+            ]
+        } else {
+            contentView.descriptionTitle = Localization.Wallpaper.Set.descriptionTitleOld
+            contentView.todoText = Localization.Wallpaper.Set.todoOld
+            contentView.links = [
+                .init(text: Localization.Wallpaper.Set.todoLinkOld, tag: Constants.desktopLinkTag)
+            ]
+        }
         contentView.buttonTitle = Localization.Wallpaper.Set.continue
         contentView.image = Image.setTip
         contentView.skipText = Localization.Wallpaper.Set.skip
-        contentView.links = [
-            .init(text: Localization.Wallpaper.Set.todoLink, tag: Constants.desktopLinkTag)
-        ]
     }
     
     private func setupActions() {

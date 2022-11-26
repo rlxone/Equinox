@@ -95,9 +95,12 @@
 "wallpaper.create.cant.share" = "Can't share the wallpaper!";
 
 "wallpaper.set.title" = "Set up before set";
-"wallpaper.set.description.title" = "You need to set «Dynamic» type in your «Desktop & Screen Saver» macOS Preferences before you set the wallpaper.";
-"wallpaper.set.todo" = "1. Open «Desktop & Screen Saver» macOS Preferences.\n2. Choose any «Dynamic Desktop» wallpaper and set it’s type to «Dynamic».\n3. Press «Continue».";
-"wallpaper.set.todo.link" = "«Desktop & Screen Saver»";
+"wallpaper.set.description.title.old" = "You need to set «Dynamic» type in your «Desktop & Screen Saver» macOS Preferences before you set the wallpaper.";
+"wallpaper.set.description.title" = "You need to set «Dynamic» type in your «Wallpaper» macOS Preferences before you set the wallpaper.";
+"wallpaper.set.todo.old" = "1. Open «Desktop & Screen Saver» macOS Preferences.\n2. Choose any «Dynamic Desktop» wallpaper and set it’s type to «Dynamic».\n3. Press «Continue».";
+"wallpaper.set.todo" = "1. Open «Wallpaper» macOS Preferences.\n2. Choose any «Dynamic Desktop» wallpaper and set it’s type to «Dynamic».\n3. Press «Continue».";
+"wallpaper.set.todo.link.old" = "«Desktop & Screen Saver»";
+"wallpaper.set.todo.link" = "«Wallpaper»";
 "wallpaper.set.continue" = "Continue";
 "wallpaper.set.skip" = "Don’t show this message again";
 

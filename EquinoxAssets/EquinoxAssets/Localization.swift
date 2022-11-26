@@ -176,6 +176,9 @@ public enum Localization {
         
         public enum Set {
             public static let title = Localization.localizedString(key: "wallpaper.set.title")
+            public static let descriptionTitleOld = Localization.localizedString(key: "wallpaper.set.description.title.old")
+            public static let todoOld = Localization.localizedString(key: "wallpaper.set.todo.old")
+            public static let todoLinkOld = Localization.localizedString(key: "wallpaper.set.todo.link.old")
             public static let descriptionTitle = Localization.localizedString(key: "wallpaper.set.description.title")
             public static let todo = Localization.localizedString(key: "wallpaper.set.todo")
             public static let todoLink = Localization.localizedString(key: "wallpaper.set.todo.link")
