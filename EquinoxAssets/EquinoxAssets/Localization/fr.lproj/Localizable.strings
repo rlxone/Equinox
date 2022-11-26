@@ -95,9 +95,12 @@
 "wallpaper.create.cant.share" = "Le fond d'écran ne peut pas être partagé";
 
 "wallpaper.set.title" = "Configurer avant d'appliquer";
-"wallpaper.set.description.title" = "Vous devez sélectionner le mode «Dynamique» dans «Bureau & économiseur d'écran» depuis les Préférences Système de macOS avant d'appliquer le fond d'écran.";
-"wallpaper.set.todo" = "1. Ouvrir «Bureau & économiseur d'écran» dans les Préférences Système de macOS.\n2. Choisir n'importe quel fond d'écran «Bureau dynamique» et sélectionner le mode «Dynamique».\n3. Appuyer sur «Continuer».";
-"wallpaper.set.todo.link" = "«Bureau & économiseur d'écran»";
+"wallpaper.set.description.title.old" = "Vous devez sélectionner le mode «Dynamique» dans «Bureau & économiseur d'écran» depuis les Préférences Système de macOS avant d'appliquer le fond d'écran.";
+"wallpaper.set.description.title" = "Vous devez sélectionner le mode «Dynamique» dans «Fond d'écran» depuis les Préférences Système de macOS avant d'appliquer le fond d'écran.";
+"wallpaper.set.todo.old" = "1. Ouvrir «Bureau & économiseur d'écran» dans les Préférences Système de macOS.\n2. Choisir n'importe quel fond d'écran «Bureau dynamique» et sélectionner le mode «Dynamique».\n3. Appuyer sur «Continuer».";
+"wallpaper.set.todo" = "1. Ouvrir «Fond d'écran» dans les Préférences Système de macOS.\n2. Choisir n'importe quel fond d'écran «Bureau dynamique» et sélectionner le mode «Dynamique».\n3. Appuyer sur «Continuer».";
+"wallpaper.set.todo.link.old" = "«Bureau & économiseur d'écran»";
+"wallpaper.set.todo.link" = "«Fond d'écran»";
 "wallpaper.set.continue" = "Continuer";
 "wallpaper.set.skip" = "Ne plus afficher ce message";
 
