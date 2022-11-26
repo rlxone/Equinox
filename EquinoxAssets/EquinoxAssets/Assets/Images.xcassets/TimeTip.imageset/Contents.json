@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "time-tip-1.jpg",
+      "filename" : "time-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "time-tip-2.jpg",
+      "filename" : "time-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "time-tip-3.jpg",
+      "filename" : "time-3.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -87,10 +87,11 @@ final class WallpaperGalleryDataController {
     }
     
     func make(_ urls: [URL], insertIndexPath: IndexPath) -> [(indexPath: IndexPath, model: GalleryModel)] {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "GMT") ?? .current
+        let calendar = getCurrentCalendar
         let startTime = calendar.startOfDay(for: Date())
         var newData: [(IndexPath, GalleryModel)] = []
+        let oneDaySeconds = 24 * 60 * 60
+        let oneImageInterval = oneDaySeconds / urls.count
         
         for (index, url) in urls.enumerated() {
             let newIndex = insertIndexPath.item + index
@@ -99,7 +100,8 @@ final class WallpaperGalleryDataController {
             
             let isPrimary = isPrimaryIndex(count)
             let imageData = calculateImageData(url)
-            let time = calendar.date(byAdding: .hour, value: count, to: startTime)
+            let addingInterval = data.items.isEmpty ? oneImageInterval * index : 0
+            let time = calendar.date(byAdding: .second, value: addingInterval, to: startTime)
             
             let model = GalleryModel(
                 number: newIndex + 1,

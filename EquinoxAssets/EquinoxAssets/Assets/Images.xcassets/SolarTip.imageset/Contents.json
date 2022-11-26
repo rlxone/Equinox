@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "solar-tip-1.jpg",
+      "filename" : "solar-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "solar-tip-2.jpg",
+      "filename" : "solar-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "solar-tip-3.jpg",
+      "filename" : "solar-3.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

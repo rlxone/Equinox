@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Dmitry Meduho
+// Copyright (c) 2022 Dmitry Meduho
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,12 @@
 
 import Foundation
 
-public enum SolarError: Error {
-    case wrongTimezone
-}
+public let getCurrentCalendar: Calendar = {
+    var calendar = Calendar.current
+    if #available(macOS 13, *) {
+        calendar.timeZone = .gmt
+    } else {
+        calendar.timeZone = TimeZone(identifier: "GMT") ?? .current
+    }
+    return calendar
+}()

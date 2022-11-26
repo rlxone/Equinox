@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Dmitry Meduho
+// Copyright (c) 2022 Dmitry Meduho
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,43 +28,14 @@
 
 import Foundation
 
-// MARK: - Protocols
-
-public protocol SolarService {
-    func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double
-    func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double
-}
-
-// MARK: - Class
-
-public final class SolarServiceImpl: SolarService {
-    private let solarCore: SolarCore
+final class MockUserDefaults: UserDefaults {
+    private var values = [String: Any]()
     
-    // MARK: - Initializer
-    
-    public init(solarCore: SolarCore) {
-        self.solarCore = solarCore
+    override func object(forKey defaultName: String) -> Any? {
+        return values[defaultName]
     }
     
-    // MARK: - Public
-
-    public func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {
-        return solarCore.altitude(
-            latitude: latitude,
-            longitude: longitude,
-            date: date,
-            timezone: timezone,
-            dlstime: dlstime
-        )
-    }
-
-    public func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {
-        return solarCore.azimuth(
-            latitude: latitude,
-            longitude: longitude,
-            date: date,
-            timezone: timezone,
-            dlstime: dlstime
-        )
+    override func set(_ value: Any?, forKey defaultName: String) {
+        values[defaultName] = value
     }
 }

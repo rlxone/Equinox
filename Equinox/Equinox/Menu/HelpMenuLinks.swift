@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Dmitry Meduho
+// Copyright (c) 2022 William Mead
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,45 +26,49 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import EquinoxAssets
 import Foundation
 
-// MARK: - Protocols
-
-public protocol SolarService {
-    func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double
-    func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double
-}
-
-// MARK: - Class
-
-public final class SolarServiceImpl: SolarService {
-    private let solarCore: SolarCore
+enum HelpMenuLinks: CaseIterable {
+    case githubProject
+    case githubFAQ
+    case githubIssue
+    case equinoxWebsite
+    case macAppStoreReview
+    case productHunt
     
-    // MARK: - Initializer
-    
-    public init(solarCore: SolarCore) {
-        self.solarCore = solarCore
-    }
-    
-    // MARK: - Public
-
-    public func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {
-        return solarCore.altitude(
-            latitude: latitude,
-            longitude: longitude,
-            date: date,
-            timezone: timezone,
-            dlstime: dlstime
-        )
-    }
-
-    public func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {
-        return solarCore.azimuth(
-            latitude: latitude,
-            longitude: longitude,
-            date: date,
-            timezone: timezone,
-            dlstime: dlstime
-        )
+    var linkInfo: (title: String, url: URL?) {
+        switch self {
+        case .githubProject:
+            return (
+                Localization.Menu.Help.githubProject,
+                URL(string: "https://github.com/rlxone/Equinox")
+            )
+        case .githubFAQ:
+            return (
+                Localization.Menu.Help.githubFAQ,
+                URL(string: "https://github.com/rlxone/Equinox#faq")
+            )
+        case .githubIssue:
+            return (
+                Localization.Menu.Help.githubIssue,
+                URL(string: "https://github.com/rlxone/Equinox/issues")
+            )
+        case .equinoxWebsite:
+            return (
+                Localization.Menu.Help.equinoxWebsite,
+                URL(string: "https://equinoxmac.com")
+            )
+        case .macAppStoreReview:
+            return (
+                Localization.Menu.Help.macAppStoreReview,
+                URL(string: "https://apps.apple.com/us/app/equinox-create-wallpaper/id1591510203?action=write-review")
+            )
+        case .productHunt:
+            return (
+                Localization.Menu.Help.productHunt,
+                URL(string: "https://www.producthunt.com/products/equinox")
+            )
+        }
     }
 }

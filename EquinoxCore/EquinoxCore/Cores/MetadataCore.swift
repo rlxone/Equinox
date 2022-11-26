@@ -118,7 +118,7 @@ public final class MetadataCoreImpl: MetadataCore {
                 if timeMetadata == nil {
                     timeMetadata = []
                 }
-                let dayPercentage = try getDayPercentage(from: date)
+                let dayPercentage = getDayPercentage(from: date)
                 let metadata = TimeMetadata(index: attribute.index, time: dayPercentage)
                 timeMetadata?.append(metadata)
 
@@ -192,14 +192,12 @@ public final class MetadataCoreImpl: MetadataCore {
         throw MetadataError.wrongMetadataType
     }
 
-    private func getDayPercentage(from date: Date) throws -> Double {
-        guard let timezone = TimeZone(identifier: "GMT") else {
-            throw MetadataError.wrongTimezone
-        }
-        var calendar = Calendar.current
-        calendar.timeZone = timezone
-        let hour = calendar.component(.hour, from: date)
-        let percentage = Double(hour) / 24
+    private func getDayPercentage(from date: Date) -> Double {
+        let calendar = getCurrentCalendar
+        let startOfDay = calendar.startOfDay(for: date)
+        let seconds = calendar.dateComponents([.second], from: startOfDay, to: date).second ?? 0
+        let oneDaySeconds = 24 * 60 * 60
+        let percentage = Double(seconds) / Double(oneDaySeconds)
         return percentage
     }
     
