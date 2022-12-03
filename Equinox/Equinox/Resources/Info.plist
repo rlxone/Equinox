@@ -22,7 +22,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>2.0</string>
+	<string>5</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
@@ -30,7 +30,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2021 rlxone. All rights reserved.</string>
+	<string>Copyright © 2022 rlxone. All rights reserved.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Equinox wants to use your location for making more correct solar calculations</string>
 	<key>NSPrincipalClass</key>
