@@ -151,7 +151,7 @@ public final class SolarTimelineView: View {
         }
     }
     
-    public var chartDelegate: InteractiveLineChartDelegate? {
+    public weak var chartDelegate: InteractiveLineChartDelegate? {
         didSet {
             interactiveLineChart.delegate = chartDelegate
         }

@@ -29,8 +29,6 @@
 import EquinoxCore
 import XCTest
 
-// swiftlint:disable force_unwrapping
-
 class StorageCoreTests: XCTestCase {
     private var storageCore: StorageCore!
     private var userDefaults: MockUserDefaults!
