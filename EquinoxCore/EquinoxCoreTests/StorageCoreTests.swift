@@ -29,15 +29,12 @@
 import EquinoxCore
 import XCTest
 
-// swiftlint:disable force_unwrapping
-
 class StorageCoreTests: XCTestCase {
     private var storageCore: StorageCore!
-    private var userDefaults: UserDefaults!
+    private var userDefaults: MockUserDefaults!
     
     override func setUpWithError() throws {
-        userDefaults = UserDefaults(suiteName: #file)!
-        userDefaults.removePersistentDomain(forName: #file)
+        userDefaults = MockUserDefaults()
         storageCore = StorageCoreImpl(userDefaults: userDefaults)
     }
     

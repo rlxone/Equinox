@@ -77,6 +77,12 @@ public enum Localization {
         
         public enum Help {
             public static let help = Localization.localizedString(key: "menu.help")
+            public static let githubProject = Localization.localizedString(key: "menu.help.githubProject")
+            public static let githubFAQ = Localization.localizedString(key: "menu.help.githubFAQ")
+            public static let githubIssue = Localization.localizedString(key: "menu.help.githubIssue")
+            public static let equinoxWebsite = Localization.localizedString(key: "menu.help.equinoxWebsite")
+            public static let macAppStoreReview = Localization.localizedString(key: "menu.help.macAppStoreReview")
+            public static let productHunt = Localization.localizedString(key: "menu.help.productHunt")
         }
     }
     
@@ -116,6 +122,10 @@ public enum Localization {
         }
         
         public enum Gallery {
+            public static func menuDelete(param1: Int) -> String {
+                return String(format: Localization.localizedString(key: "delete"), arguments: [param1])
+            }
+            
             public static let dragTitle = Localization.localizedString(key: "wallpaper.gallery.drag.title")
             public static let dragSupplementary = Localization.localizedString(key: "wallpaper.gallery.drag.supplementary")
             public static let or = Localization.localizedString(key: "wallpaper.gallery.or")
@@ -166,6 +176,9 @@ public enum Localization {
         
         public enum Set {
             public static let title = Localization.localizedString(key: "wallpaper.set.title")
+            public static let descriptionTitleOld = Localization.localizedString(key: "wallpaper.set.description.title.old")
+            public static let todoOld = Localization.localizedString(key: "wallpaper.set.todo.old")
+            public static let todoLinkOld = Localization.localizedString(key: "wallpaper.set.todo.link.old")
             public static let descriptionTitle = Localization.localizedString(key: "wallpaper.set.description.title")
             public static let todo = Localization.localizedString(key: "wallpaper.set.todo")
             public static let todoLink = Localization.localizedString(key: "wallpaper.set.todo.link")

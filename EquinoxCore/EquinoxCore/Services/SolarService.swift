@@ -49,7 +49,7 @@ public final class SolarServiceImpl: SolarService {
     // MARK: - Public
 
     public func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {
-        return try solarCore.altitude(
+        return solarCore.altitude(
             latitude: latitude,
             longitude: longitude,
             date: date,
@@ -59,7 +59,7 @@ public final class SolarServiceImpl: SolarService {
     }
 
     public func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {
-        return try solarCore.azimuth(
+        return solarCore.azimuth(
             latitude: latitude,
             longitude: longitude,
             date: date,

@@ -1,0 +1,134 @@
+"menu.main.about" = "À propos %@";
+"menu.main.preferences" = "Préférences...";
+"menu.main.hide" = "Masquer %@";
+"menu.main.hide.others" = "Masquer autres";
+"menu.main.show.all" = "Afficher tout";
+"menu.main.quit" = "Quitter %@";
+
+"menu.file" = "Fichier";
+"menu.file.new" = "Nouveau";
+
+"menu.edit" = "Édition";
+"menu.edit.undo" = "Annuler";
+"menu.edit.redo" = "Rétablir";
+"menu.edit.cut" = "Couper";
+"menu.edit.copy" = "Copier";
+"menu.edit.paste" = "Coller";
+"menu.edit.select.all" = "Selectionner tout";
+"menu.edit.delete" = "Supprimer";
+
+"menu.window" = "Fenêtre";
+"menu.window.minimize" = "Réduire";
+"menu.window.zoom" = "Zoom";
+"menu.window.show.all" = "Afficher tout";
+
+"menu.help" = "Aide";
+"menu.help.githubProject" = "Projet sur GitHub";
+"menu.help.githubFAQ" = "Foire Aux Questions";
+"menu.help.githubIssue" = "Signaler un problème";
+"menu.help.equinoxWebsite" = "Site Equinox";
+"menu.help.macAppStoreReview" = "Noter Equinox sur le Mac App Store";
+"menu.help.productHunt" = "Equinox sur Product Hunt";
+
+"welcome.title" = "Bienvenue dans Equinox";
+"welcome.welcome" = "Bienvenue dans %@";
+"welcome.version" = "Version %@";
+"welcome.github" = "Github";
+"welcome.choose.type" = "Chosir type";
+"welcome.choose.type.description" = "Selectionnez le type de fond d'écran";
+"welcome.types.solar" = "Solaire";
+"welcome.types.solar.description" = "Créer un fond d'écran à base de calculs solaires. L'image évolue durant le journée suivant la position du soleil dans le ciel.";
+"welcome.types.time" = "Temps";
+"welcome.types.time.description" = "Créer un fond d'écran à base de calcul du temps. L'image évolue durant la journée en fonction des heures.";
+"welcome.types.appearance" = "Apparence";
+"welcome.types.appearance.description" = "Créer un fond d'écran à partir de l'apparence système. Il faut deux images : une pour le mode clair et une autre pour le mode sombre.";
+
+"wallpaper.main.solar" = "Solaire";
+"wallpaper.main.time" = "Temps";
+"wallpaper.main.appearance" = "Apparence";
+"wallpaper.main.calculator" = "Calculatrice";
+"wallpaper.main.create" = "Créer";
+"wallpaper.main.browse" = "Parcourir images";
+"wallpaper.main.validate" = "Merci de remplir tous les champs";
+
+"wallpaper.gallery.drag.title" = "Glisser et déposer vos images";
+"wallpaper.gallery.drag.supplementary" = "Les fichiers doivent être au format png, jpeg, tiff ou heif";
+"wallpaper.gallery.or" = "ou";
+"wallpaper.gallery.browse" = "Parcourir";
+"wallpaper.gallery.azimuth" = "Azimut:";
+"wallpaper.gallery.azimuth.value" = "Valeur";
+"wallpaper.gallery.altitude" = "Altitude:";
+"wallpaper.gallery.altitude.value" = "Valeur";
+"wallpaper.gallery.time" = "Temps :";
+"wallpaper.gallery.time.value" = "Valeur";
+"wallpaper.gallery.tooltip.appearance.title" = "Apparence";
+"wallpaper.gallery.tooltip.appearance.description" = "Mode graphique. Seulement une image peut avoir l'apparence clair ou sombre.";
+"wallpaper.gallery.tooltip.primary.title" = "Principal";
+"wallpaper.gallery.tooltip.primary.description" = "La minature du fond d'écran sera l'image principal.";
+
+"wallpaper.appearance.auto.title" = "Automatique";
+"wallpaper.appearance.auto.description" = "Image par défaut du fond d'écran";
+"wallpaper.appearance.light.title" = "Clair (Fixe)";
+"wallpaper.appearance.light.description" = "Afficher l'image en mode clair statique";
+"wallpaper.appearance.dark.title" = "Sombre (Fixe)";
+"wallpaper.appearance.dark.description" = "Afficher l'image en mode sombre statique";
+
+"wallpaper.create.success" = "Succès";
+"wallpaper.create.success.description" = "Glisser ou sauvegarder votre fond d'écran où vous voulez";
+"wallpaper.create.failure" = "Échec";
+"wallpaper.create.failure.description" = "Oups! Une erreur s'est produite";
+"wallpaper.create.save" = "Sauvegarder";
+"wallpaper.create.set" = "Utiliser";
+"wallpaper.create.share" = "Partager";
+"wallpaper.create.new" = "Nouveau";
+"wallpaper.create.cancel" = "Annuler";
+"wallpaper.create.solar.based" = "Solaire";
+"wallpaper.create.time.based" = "Temps";
+"wallpaper.create.appearance.based" = "Apparence";
+"wallpaper.create.file.saved" = "Fond d'écran sauvegardé";
+"wallpaper.create.new.title" = "Créer un nouveau fond d'écran ?";
+"wallpaper.create.new.description" = "Voulez vous créer un fond d'écran d'un autre type ou réutiliser celui du précédent ?";
+"wallpaper.create.title" = "Créer";
+"wallpaper.create.repeat.title" = "Répéter";
+"wallpaper.create.set.error" = "Le fond d'écran ne peut pas être sauvegardé.";
+"wallpaper.create.set.success" = "Le fond d'écran a bien été appliqué";
+"wallpaper.create.cant.share" = "Le fond d'écran ne peut pas être partagé";
+
+"wallpaper.set.title" = "Configurer avant d'appliquer";
+"wallpaper.set.description.title.old" = "Vous devez sélectionner le mode «Dynamique» dans «Bureau & économiseur d'écran» depuis les Préférences Système de macOS avant d'appliquer le fond d'écran.";
+"wallpaper.set.description.title" = "Vous devez sélectionner le mode «Dynamique» dans «Fond d'écran» depuis les Préférences Système de macOS avant d'appliquer le fond d'écran.";
+"wallpaper.set.todo.old" = "1. Ouvrir «Bureau & économiseur d'écran» dans les Préférences Système de macOS.\n2. Choisir n'importe quel fond d'écran «Bureau dynamique» et sélectionner le mode «Dynamique».\n3. Appuyer sur «Continuer».";
+"wallpaper.set.todo" = "1. Ouvrir «Fond d'écran» dans les Préférences Système de macOS.\n2. Choisir n'importe quel fond d'écran «Bureau dynamique» et sélectionner le mode «Dynamique».\n3. Appuyer sur «Continuer».";
+"wallpaper.set.todo.link.old" = "«Bureau & économiseur d'écran»";
+"wallpaper.set.todo.link" = "«Fond d'écran»";
+"wallpaper.set.continue" = "Continuer";
+"wallpaper.set.skip" = "Ne plus afficher ce message";
+
+"solar.main.title" = "Calculatrice solaire";
+"solar.main.location.header" = "Position";
+"solar.main.date.header" = "Date";
+"solar.main.result.header" = "Résultat";
+"solar.main.latitude" = "Latitude :";
+"solar.main.longitude" = "Longitude :";
+"solar.main.date" = "Date :";
+"solar.main.altitude" = "Altitude :";
+"solar.main.azimuth" = "Azimut :";
+"solar.main.value" = "Valeur";
+"solar.main.copied" = "Copié";
+"solar.main.sun.timeline" = "Chronologie soleil";
+"solar.main.timezone" = "Fuseau horaire :";
+"solar.main.location.error" = "Oups ! Une eurreur s'est produite durant la géolocalisation. Merci de réessayer.";
+
+"tip.tips" = "ASTUCES";
+"tip.started" = "Commencer";
+"tip.ok" = "Compris";
+"tip.solar.title" = "Fond d'écran solaire";
+"tip.solar.description" = "Ce type de fond d'écran prends en compte la position du soleil. Suivant le moment de l'année vous verez l'image la plus adapté sur votre bureau. \nNe vous inquietez pas des calculs, avec l'aide de la «Calculatrice Solaire» vous avez seulement besoin de savoir quand et où vous avez pris la photo.";
+"tip.time.title" = "Fond d'écran temps";
+"tip.time.description" = "Le temps est essentiel pour ce type de fond d'écran. L'image de votre bureau change tout au long de la journée suivant les heures choisies.";
+"tip.appearance.title" = "Fond d'écran apparence";
+"tip.appearance.description" = "Le type de fond d'écran le plus simple. L'image de votre bureau change dans la journée suivant le changement d'apparence système. Il faut deux images : une clair et une autre pour le mode sombre.";
+"tip.calculator.title" = "Calculatrice solaire";
+"tip.calculator.description" = "Cela vous aide à calculer la position du soleil dans le ciel.\n1. Indiquez le lieu, la date et l'heure où la photo a été prise sur le graphique chronologique du soleil. Si vous ne connaissez pas l'heure exacte vous pouvez utiliser le graphique chronologique pour voir la hauteur du soleil dans le ciel afin de le caler en fonction de la photo.\n2. Glisser et déposer ou copier le résultat par dessus votre image.";
+
+"dock.new" = "Nouveau";

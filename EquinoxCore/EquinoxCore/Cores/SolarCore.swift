@@ -32,8 +32,8 @@ import SolarNOAA
 // MARK: - Protocols
 
 public protocol SolarCore {
-    func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double
-    func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double
+    func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) -> Double
+    func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) -> Double
 }
 
 // MARK: - Class
@@ -44,13 +44,8 @@ public final class SolarCoreImpl: SolarCore {
     
     // MARK: - Public
 
-    public func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {
-        guard let timeZone = TimeZone(identifier: "GMT") else {
-            throw SolarError.wrongTimezone
-        }
-        
-        var calendar = Calendar.current
-        calendar.timeZone = timeZone
+    public func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) -> Double {
+        let calendar = getCurrentCalendar
         
         let year = calendar.component(.year, from: date)
         let month = calendar.component(.month, from: date)
@@ -73,13 +68,8 @@ public final class SolarCoreImpl: SolarCore {
         )
     }
     
-    public func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) throws -> Double {
-        guard let timeZone = TimeZone(identifier: "GMT") else {
-            throw SolarError.wrongTimezone
-        }
-        
-        var calendar = Calendar.current
-        calendar.timeZone = timeZone
+    public func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) -> Double {
+        let calendar = getCurrentCalendar
         
         let year = calendar.component(.year, from: date)
         let month = calendar.component(.month, from: date)

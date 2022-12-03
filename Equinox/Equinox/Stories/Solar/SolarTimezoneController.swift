@@ -26,6 +26,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import EquinoxCore
 import Foundation
 
 extension SolarTimezoneController {
@@ -61,12 +62,6 @@ final class SolarTimezoneController {
     
     var currentContainer: TimezoneContainer {
         return makeContainer(from: .current)
-    }
-    
-    var calendar: Calendar {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "GMT") ?? .current
-        return calendar
     }
     
     var timezones: [String: [String]] {
@@ -139,7 +134,7 @@ final class SolarTimezoneController {
     }
     
     private func merge(date: Date, time: Date) -> Date? {
-        let calendar = self.calendar
+        let calendar = getCurrentCalendar
         
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
         let timeComponents = calendar.dateComponents([.hour, .minute, .second], from: time)
@@ -156,7 +151,7 @@ final class SolarTimezoneController {
     }
     
     private func getTime(for date: Date, with offset: Float) -> Date? {
-        let calendar = self.calendar
+        let calendar = getCurrentCalendar
         let startTime = calendar.startOfDay(for: date)
         let seconds = Int(24 * 60 * 60 * offset)
         let date = calendar.date(byAdding: .second, value: seconds, to: startTime)

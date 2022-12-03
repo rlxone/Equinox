@@ -117,5 +117,9 @@ nesting:
 
 identifier_name:
     min_length: 2
+    
+type_name:
+    min_length: 3
+    max_length: 50
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji, sonarqube, markdown)

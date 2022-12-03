@@ -38,10 +38,11 @@ protocol WallpaperGalleryDragControllerDelegate: AnyObject {
     func refreshCollectionData(_ index: Int, field: GalleryModel.MutateField, sender: Any?)
     func processInternalCollectionItems(_ indexPaths: [IndexPath], insertIndexPath: IndexPath)
     func processExternalCollectionItems(_ urls: [URL], insertIndexPath: IndexPath)
-    func deleteCollectionItems(_ indexPaths: [IndexPath])
+    func deleteCollectionItems()
     func canValidateCollectionDrag() -> Bool
     func loadImage(url: URL, completion: @escaping (NSImage?) -> Void)
     func collectionDidScroll()
+    func collectionMenuNeedsUpdate(_ menu: NSMenu)
 }
 
 // MARK: - Enums, Structs
@@ -193,8 +194,7 @@ extension WallpaperGalleryDragController: GalleryCollectionViewDelegate {
         guard !collectionView.selectionIndexes.isEmpty else {
             return
         }
-        let selectedIndexPaths = collectionView.selectionIndexPaths.sorted(by: >)
-        delegate?.deleteCollectionItems(selectedIndexPaths)
+        delegate?.deleteCollectionItems()
     }
 
     func loadImage(url: URL, completion: @escaping (NSImage?) -> Void) {
@@ -208,6 +208,10 @@ extension WallpaperGalleryDragController: GalleryCollectionViewDelegate {
 
     func didScroll(_ scrollView: NSScrollView) {
         delegate?.collectionDidScroll()
+    }
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        delegate?.collectionMenuNeedsUpdate(menu)
     }
 }
 

@@ -38,43 +38,39 @@ class SolarCoreTests: XCTestCase {
         solarCore = SolarCoreImpl()
     }
     
-    func testAzimuth() throws {
+    func testAzimuth() {
         // Given
         let longitude = -87.623_177
         let latitude = 41.881_832
-        let date = try getDate(day: 28, month: 9, year: 2_021, hour: 12, minute: 0, second: 0)
+        let date = getDate(day: 28, month: 9, year: 2_021, hour: 12, minute: 0, second: 0)
         let result = 94.810_576_292_661_34
         
         // When
-        let azimuth = try? solarCore.azimuth(latitude: latitude, longitude: longitude, date: date, timezone: 0, dlstime: 0)
+        let azimuth = solarCore.azimuth(latitude: latitude, longitude: longitude, date: date, timezone: 0, dlstime: 0)
         
         // Then
-        XCTAssertNotNil(azimuth)
         XCTAssertEqual(azimuth, result)
     }
     
-    func testAltitude() throws {
+    func testAltitude() {
         // Given
         let longitude = -87.623_177
         let latitude = 41.881_832
-        let date = try getDate(day: 28, month: 9, year: 2_021, hour: 12, minute: 0, second: 0)
+        let date = getDate(day: 28, month: 9, year: 2_021, hour: 12, minute: 0, second: 0)
         let result = 2.316_156_681_523_694
         
         // When
-        let altitude = try? solarCore.altitude(latitude: latitude, longitude: longitude, date: date, timezone: 0, dlstime: 0)
+        let altitude = solarCore.altitude(latitude: latitude, longitude: longitude, date: date, timezone: 0, dlstime: 0)
         
         // Then
-        XCTAssertNotNil(altitude)
         XCTAssertEqual(altitude, result)
     }
     
-    private func getDate(day: Int, month: Int, year: Int, hour: Int, minute: Int, second: Int) throws -> Date {
-        guard let timezone = TimeZone(identifier: "GMT") else {
-            throw SolarError.wrongTimezone
-        }
+    private func getDate(day: Int, month: Int, year: Int, hour: Int, minute: Int, second: Int) -> Date {
+        let timeZone = TimeZone(abbreviation: "GMT") ?? .current
         
         var dateComponents = DateComponents()
-        dateComponents.timeZone = timezone
+        dateComponents.timeZone = timeZone
         dateComponents.day = day
         dateComponents.month = month
         dateComponents.year = year
@@ -83,7 +79,7 @@ class SolarCoreTests: XCTestCase {
         dateComponents.second = second
         
         var calendar = Calendar.current
-        calendar.timeZone = timezone
+        calendar.timeZone = timeZone
         
         let date = calendar.date(from: dateComponents)!
         return date

@@ -61,7 +61,7 @@ final class WallpaperCreateViewController: ViewController {
     
     private let operationQueue: OperationQueue = {
         let queue = OperationQueue()
-        queue.qualityOfService = .background
+        queue.qualityOfService = .userInitiated
         return queue
     }()
 
@@ -375,6 +375,9 @@ extension WallpaperCreateViewController: NSDraggingSource {
             return .copy
 
         case .withinApplication:
+            return []
+            
+        @unknown default:
             return []
         }
     }

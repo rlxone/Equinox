@@ -327,7 +327,7 @@ public final class SolarMainContentView: VisualEffectView {
         }
     }
     
-    public var chartDelegate: InteractiveLineChartDelegate? {
+    public weak var chartDelegate: InteractiveLineChartDelegate? {
         didSet {
             timelineView.chartDelegate = chartDelegate
         }

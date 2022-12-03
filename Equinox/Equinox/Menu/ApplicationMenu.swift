@@ -216,17 +216,32 @@ final class ApplicationMenu: NSMenu {
     
     private var helpMenu: MenuItem {
         let menu = MenuItem()
-        let menuSearch = MenuItem()
-        menuSearch.view = NSTextField()
         menu.submenu = NSMenu(title: Localization.Menu.Help.help)
-        menu.submenu?.items = [
-            menuSearch
-        ]
+        HelpMenuLinks.allCases.forEach { helpLink in
+            let menuItem = MenuItem(
+                title: helpLink.linkInfo.title,
+                keyEquivalent: "",
+                keyModifier: .command,
+                action: #selector(openURL(_:)),
+                target: self
+            )
+            menuItem.representedObject = helpLink.linkInfo.url
+            menu.submenu?.items.append(menuItem)
+        }
+        menu.submenu?.items.insert(MenuItem.separator(), at: 3)
         return menu
     }
     
     @objc
     private func new(_ sender: Any?) {
         applicationDelegate?.applicationMenuNew(sender)
+    }
+    
+    @objc
+    private func openURL(_ sender: NSMenuItem) {
+        guard let unwrappedURL = sender.representedObject as? URL else {
+            return
+        }
+        NSWorkspace.shared.open(unwrappedURL)
     }
 }

@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D8467CE2899BB0C00D19E32 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D8467CC2899BB0C00D19E32 /* InfoPlist.strings */; };
+		3D916CE428B1682700D29FFF /* HelpMenuLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D916CE328B1682700D29FFF /* HelpMenuLinks.swift */; };
 		F3003226213081F0008D1352 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3003225213081F0008D1352 /* AppDelegate.swift */; };
 		F30C86DC26D6CEE600F93E60 /* WallpaperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86DB26D6CEE600F93E60 /* WallpaperType.swift */; };
 		F30C86E626DC761300F93E60 /* RoundedPushButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86E526DC761300F93E60 /* RoundedPushButtonExtensions.swift */; };
@@ -76,6 +78,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D8467CD2899BB0C00D19E32 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D8467CF2899BCDA00D19E32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D916CE328B1682700D29FFF /* HelpMenuLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpMenuLinks.swift; sourceTree = "<group>"; };
 		F3003222213081F0008D1352 /* Equinox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equinox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3003225213081F0008D1352 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F300322C213081F0008D1352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -278,6 +283,7 @@
 				F32BE0D326DD861B00CF90F8 /* AppIcon.xcassets */,
 				F300322C213081F0008D1352 /* Info.plist */,
 				F300322D213081F0008D1352 /* Equinox.entitlements */,
+				3D8467CC2899BB0C00D19E32 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 				F3D2EE4A267EDA18009704C5 /* ApplicationMenu.swift */,
 				F3E14A632742049400D986B6 /* DockMenu.swift */,
 				F3D2EE4F267EE774009704C5 /* MenuItem.swift */,
+				3D916CE328B1682700D29FFF /* HelpMenuLinks.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -339,6 +346,7 @@
 				TargetAttributes = {
 					F3003221213081F0008D1352 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = "";
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -354,6 +362,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = F3003219213081F0008D1352;
 			packageReferences = (
@@ -373,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F32BE0D426DD861B00CF90F8 /* AppIcon.xcassets in Resources */,
+				3D8467CE2899BB0C00D19E32 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +391,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		F31A9E2926E9701B00135E49 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -395,7 +406,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  cd ..\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if test -d \"${HOME}/.mint/bin\"; then\n  PATH=\"${HOME}/.mint/bin/:${PATH}\"\nfi\n\nif test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  cd ..\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -432,6 +443,7 @@
 				F329B3DE26F6838500A31035 /* WallpaperGalleryDataController.swift in Sources */,
 				F356C8B1272F78B500E915C6 /* SolarTimezoneController.swift in Sources */,
 				F30C86DC26D6CEE600F93E60 /* WallpaperType.swift in Sources */,
+				3D916CE428B1682700D29FFF /* HelpMenuLinks.swift in Sources */,
 				F3E7B05E26ADE71100287C60 /* GalleryContentViewExtensions.swift in Sources */,
 				F32F3778273AD25400A52762 /* WorkspaceRunner.swift in Sources */,
 				F3AC410E26D57AA1000A7253 /* WallpaperRootViewController.swift in Sources */,
@@ -450,6 +462,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3D8467CC2899BB0C00D19E32 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D8467CD2899BB0C00D19E32 /* fr */,
+				3D8467CF2899BCDA00D19E32 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F3003239213081F0008D1352 /* Debug */ = {
@@ -486,6 +510,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -510,6 +535,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -547,6 +573,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -564,6 +591,7 @@
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -576,6 +604,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Equinox/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -583,11 +612,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlxone.equinox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -600,6 +629,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Equinox/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -607,11 +637,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlxone.equinox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
