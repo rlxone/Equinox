@@ -55,7 +55,12 @@ public class Button: NSButton {
     private var tooltipWindow: TooltipWindow?
     private var isTooltipVisible = false
     private var isMouseEntered = false
-    private var operationQueue = OperationQueue()
+    private var operationQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        queue.qualityOfService = .userInitiated
+        return queue
+    }()
     private var semaphore = DispatchSemaphore(value: 0)
     
     // MARK: - Initializer
