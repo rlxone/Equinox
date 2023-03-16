@@ -1,0 +1,136 @@
+"menu.main.about" = "关于 %@";
+"menu.main.preferences" = "偏好设置...";
+"menu.main.hide" = "隐藏 %@";
+"menu.main.hide.others" = "隐藏其他";
+"menu.main.show.all" = "显示全部";
+"menu.main.quit" = "退出 %@";
+
+"menu.file" = "文件";
+"menu.file.new" = "新建";
+
+"menu.edit" = "编辑";
+"menu.edit.undo" = "撤销";
+"menu.edit.redo" = "重做";
+"menu.edit.cut" = "剪切";
+"menu.edit.copy" = "复制";
+"menu.edit.paste" = "粘贴";
+"menu.edit.select.all" = "全选";
+"menu.edit.delete" = "删除";
+
+"menu.window" = "窗口";
+"menu.window.minimize" = "最小化";
+"menu.window.zoom" = "缩放";
+"menu.window.show.all" = "显示所有";
+
+"menu.help" = "帮助";
+"menu.help.githubProject" = "GitHub项目";
+"menu.help.githubFAQ" = "常见问题解答";
+"menu.help.githubIssue" = "报告问题";
+"menu.help.equinoxWebsite" = "Equinox网站";
+"menu.help.macAppStoreReview" = "在Mac应用商店上评价Equinox";
+"menu.help.productHunt" = "产品搜寻中的Equinox";
+
+"welcome.title" = "欢迎来到 Equinox";
+"welcome.welcome" = "欢迎来到 %@";
+"welcome.version" = "版本 %@";
+"welcome.github" = "Github";
+"welcome.choose.type" = "选择类型";
+"welcome.choose.type.description" = "为您的壁纸选择合适的类型";
+"welcome.types.solar" = "太阳";
+"welcome.types.solar.description" = "根据太阳计算创建壁纸。桌面图片会根据太阳在天空中的位置全天变化。";
+"welcome.types.time" = "时间";
+"welcome.types.time.description" = "根据时间计算创建壁纸。根据您选择的时间，桌面图片全天都会发生变化。";
+"welcome.types.appearance" = "外观";
+"welcome.types.appearance.description" = "根据系统外观创建壁纸。您需要两个图像：一个用于亮模式，一个用于暗模式。";
+
+"wallpaper.main.solar" = "太阳";
+"wallpaper.main.time" = "时间";
+"wallpaper.main.appearance" = "外观";
+"wallpaper.main.calculator" = "计算";
+"wallpaper.main.create" = "创建";
+"wallpaper.main.browse" = "浏览图像文件";
+"wallpaper.main.validate" = "请填写所有字段";
+
+"wallpaper.gallery.drag.title" = "拖放图像";
+"wallpaper.gallery.drag.supplementary" = "文件应该是png、jpeg、tiff或heif。";
+"wallpaper.gallery.or" = "或者";
+"wallpaper.gallery.browse" = "浏览";
+"wallpaper.gallery.azimuth" = "太阳方位角:";
+"wallpaper.gallery.azimuth.value" = "值";
+"wallpaper.gallery.altitude" = "海拔:";
+"wallpaper.gallery.altitude.value" = "值";
+"wallpaper.gallery.time" = "时间:";
+"wallpaper.gallery.time.value" = "值";
+"wallpaper.gallery.tooltip.appearance.title" = "外观";
+"wallpaper.gallery.tooltip.appearance.description" = "图形模式. 只有一个图像可以是浅色或深色外观.";
+"wallpaper.gallery.tooltip.primary.title" = "主要";
+"wallpaper.gallery.tooltip.primary.description" = "主图像将显示为壁纸缩略图.";
+
+"wallpaper.appearance.auto.title" = "自动";
+"wallpaper.appearance.auto.description" = "默认壁纸图像";
+"wallpaper.appearance.light.title" = "浅色 (静态)";
+"wallpaper.appearance.light.description" = "在静态浅色模式下显示图像";
+"wallpaper.appearance.dark.title" = "深色 (静态)";
+"wallpaper.appearance.dark.description" = "在静态深色模式下显示图像";
+
+"wallpaper.create.success" = "成功";
+"wallpaper.create.success.description" = "拖动或保存您想要的壁纸";
+"wallpaper.create.failure" = "失败";
+"wallpaper.create.failure.description" = "哎呀！出了问题";
+"wallpaper.create.save" = "保存";
+"wallpaper.create.set" = "设置";
+"wallpaper.create.share" = "分享";
+"wallpaper.create.new" = "新建";
+"wallpaper.create.cancel" = "取消";
+"wallpaper.create.solar.based" = "基于-太阳";
+"wallpaper.create.time.based" = "基于-时间";
+"wallpaper.create.appearance.based" = "基于-外观";
+"wallpaper.create.file.saved" = "壁纸已保存";
+"wallpaper.create.new.title" = "创建新壁纸?";
+"wallpaper.create.new.description" = "您想创建一种新类型的壁纸还是重复当前的壁纸？";
+"wallpaper.create.title" = "创建";
+"wallpaper.create.repeat.title" = "重复";
+"wallpaper.create.set.error" = "无法保存壁纸.";
+"wallpaper.create.set.success" = "您已成功设置壁纸";
+"wallpaper.create.cant.share" = "无法共享壁纸！";
+
+"wallpaper.set.title" = "应用前配置";
+"wallpaper.set.description.title.old" = "在设置壁纸之前，您需要在«桌面和屏幕保护程序»macOS首选项中设置«动态»类型。";
+"wallpaper.set.description.title" = "在设置壁纸之前，您需要在«壁纸»macOS首选项中设置«动态»类型。";
+"wallpaper.set.todo.old" = "1.打开«桌面和屏幕保护程序» macOS首选项。\n2.选择任何«动态桌面»壁纸，并将其类型设置为«动态»。\n3.按“继续”.";
+"wallpaper.set.todo" = "1.打开 «壁纸» macOS首选项。\n2.选择任何«动态桌面»壁纸，并将其类型设置为«动态»。\n3.按“继续”。";
+
+
+"wallpaper.set.todo.link.old" = "«桌面 & 屏幕保护程序»";
+"wallpaper.set.todo.link" = "«壁纸»";
+"wallpaper.set.continue" = "继续";
+"wallpaper.set.skip" = "不再显示此消息";
+
+"solar.main.title" = "太阳计算器";
+"solar.main.location.header" = "位置";
+"solar.main.date.header" = "日期";
+"solar.main.result.header" = "结果";
+"solar.main.latitude" = "纬度:";
+"solar.main.longitude" = "经度:";
+"solar.main.date" = "日期:";
+"solar.main.altitude" = "海拔:";
+"solar.main.azimuth" = "方位角:";
+"solar.main.value" = "值";
+"solar.main.copied" = "复制";
+"solar.main.sun.timeline" = "太阳时间线";
+"solar.main.timezone" = "时区:";
+"solar.main.location.error" = "哎呀！获取您的位置时出错。请再试一次";
+
+"tip.tips" = "提示";
+"tip.started" = "开始";
+"tip.ok" = "知道了";
+"tip.solar.title" = "太阳壁纸";
+"tip.solar.description" = "这种壁纸的主要特点是它考虑到了太阳的位置。根据一年中的时间，您将在桌面上看到最相关的图像。\n不要担心计算。借助«太阳能计算器»，您只需要知道何时何地拍照。";
+"tip.time.title" = "时间壁纸";
+"tip.time.description" = "时间是这种壁纸的关键。桌面图片会根据您选择的时间全天更改.";
+"tip.appearance.title" = "外观壁纸";
+"tip.appearance.description" = "这种类型的壁纸很简单。桌面图片全天都会根据系统外观的变化而变化。您需要两张图像：一张用于浅色模式，一张用于深色模式.";
+"tip.calculator.title" = "太阳计算器";
+"tip.calculator.description" = "它将帮助你计算太阳在天空中的位置。\n1.选择拍摄照片时太阳时间线上的地点、日期和时间。如果你不知道确切的时间，你可以使用太阳时间线来查看太阳在天空中的位置有多高或有多低，并将其与你的照片相匹配。\n2.将结果拖放或复制到图像上。";
+
+"dock.new" = "新的";
