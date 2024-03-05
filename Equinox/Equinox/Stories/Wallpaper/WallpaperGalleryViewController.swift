@@ -38,6 +38,7 @@ protocol WallpaperGalleryViewControllerDelegate: AnyObject {
     func openBrowseDialog()
     func presentAppearancePopover(relativeTo view: NSView, selectedType: EquinoxUI.AppearanceType)
     func closePopover()
+    func notify(_ text: String)
 }
 
 // MARK: - Enums, Structs
@@ -270,18 +271,26 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
     }
 
     func processExternalCollectionItems(_ urls: [URL], insertIndexPath: IndexPath) {
-        var urls = imageProvider.validateImages(urls, imageFormat: [.jpeg, .png, .tiff, .heic])
-
+        var validatedUrls = imageProvider.validateImages(urls, imageFormat: [.jpeg, .png, .tiff, .heic])
+        
+        if urls.count != validatedUrls.count {
+            delegate?.notify(Localization.Wallpaper.Gallery.wrongImagesType(param1: urls.count - validatedUrls.count))
+        }
+        
+        guard !validatedUrls.isEmpty else {
+            return
+        }
+        
         switch type {
         case .solar, .time:
             break
             
         case .appearance:
-            let distance = min(Constants.maxAppearanceItemsCount - dataController.data.items.count, urls.count)
-            urls = Array(urls[0..<distance])
+            let distance = min(Constants.maxAppearanceItemsCount - dataController.data.items.count, validatedUrls.count)
+            validatedUrls = Array(validatedUrls[0..<distance])
         }
         
-        let items = dataController.make(urls, insertIndexPath: insertIndexPath)
+        let items = dataController.make(validatedUrls, insertIndexPath: insertIndexPath)
         let models = items.map { $0.model }
         let indexPaths = items.map { $0.indexPath }
         
