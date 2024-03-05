@@ -94,8 +94,7 @@ final class WallpaperGalleryDragController {
         let indexPaths: [IndexPath] = pasteboardItems.compactMap { item in
             guard
                 let pasteboardData = item.data(forType: Constants.collectionDragType),
-                let unarchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(pasteboardData),
-                let indexPath = unarchivedData as? IndexPath
+                let indexPath = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSIndexPath.self, from: pasteboardData) as? IndexPath
             else {
                 return nil
             }
@@ -132,7 +131,7 @@ extension WallpaperGalleryDragController: GalleryCollectionViewDelegate {
     }
 
     func pasteboardWriter(for collectionView: NSCollectionView, indexPath: IndexPath) -> NSPasteboardWriting? {
-        guard let data = try? NSKeyedArchiver.archivedData(withRootObject: indexPath, requiringSecureCoding: false) else {
+        guard let data = try? NSKeyedArchiver.archivedData(withRootObject: indexPath as NSIndexPath, requiringSecureCoding: true) else {
             return nil
         }
         let pasteboardItem = NSPasteboardItem()
@@ -239,7 +238,7 @@ extension WallpaperGalleryDragController: GalleryCollectionContentViewDelegate {
         guard
             let pasteboardItem = sender.draggingPasteboard.pasteboardItems?.first,
             let pasteboardData = pasteboardItem.data(forType: Constants.solarDragType),
-            let unarchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(pasteboardData),
+            let unarchivedData = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: pasteboardData),
             let results = unarchivedData as? [String],
             let azimuthString = results.first,
             let altitudeString = results.last,
