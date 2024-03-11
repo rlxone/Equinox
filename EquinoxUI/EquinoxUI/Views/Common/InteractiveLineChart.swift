@@ -193,7 +193,7 @@ public final class InteractiveLineChart: View {
                 xRadius: Constants.lineWidth / 2,
                 yRadius: Constants.lineWidth / 2
             )
-            context.addPath(linePath.cgPath)
+            context.addPath(linePath.path)
             context.fillPath()
             
             let paragraphStyle = NSMutableParagraphStyle()
@@ -248,7 +248,7 @@ public final class InteractiveLineChart: View {
             xRadius: Constants.lineWidth / 2,
             yRadius: Constants.lineWidth / 2
         )
-        context.addPath(linePath.cgPath)
+        context.addPath(linePath.path)
         context.fillPath()
     }
     
@@ -317,7 +317,7 @@ public final class InteractiveLineChart: View {
             yRadius: Constants.progressLineWidth / 2
         )
         
-        context.addPath(linePath.cgPath)
+        context.addPath(linePath.path)
         context.fillPath()
     }
     
@@ -387,7 +387,7 @@ public final class InteractiveLineChart: View {
         }
         
         let path = InteractiveLineChartCurve(points: points).bezierPath
-        context.addPath(path.cgPath)
+        context.addPath(path.path)
         
         context.strokePath()
     }

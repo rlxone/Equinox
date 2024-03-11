@@ -176,10 +176,10 @@ public final class PushButton: Button {
         let bounds = path.bounds
 
         shadow1Layer.bounds = bounds
-        shadow1Layer.shadowPath = path.cgPath
+        shadow1Layer.shadowPath = path.path
 
         shadow2Layer.bounds = bounds
-        shadow2Layer.shadowPath = path.cgPath
+        shadow2Layer.shadowPath = path.path
 
         borderLayer.frame = .init(
             x: -Constants.borderWidth,
@@ -195,10 +195,10 @@ public final class PushButton: Button {
         )
 
         shadowMask1Layer.bounds = bounds
-        shadowMask1Layer.path = path.cgPath
+        shadowMask1Layer.path = path.path
 
         shadowMask2Layer.bounds = bounds
-        shadowMask2Layer.path = path.cgPath
+        shadowMask2Layer.path = path.path
 
         shadow1Layer.mask = shadowMask1Layer
         shadow2Layer.mask = shadowMask2Layer
@@ -218,7 +218,7 @@ public final class PushButton: Button {
         innerShadowPath.append(innerShadowReversedPath)
 
         innerShadowLayer.bounds = bounds
-        innerShadowLayer.shadowPath = innerShadowPath.cgPath
+        innerShadowLayer.shadowPath = innerShadowPath.path
     }
 
     public override var wantsUpdateLayer: Bool {
@@ -342,6 +342,7 @@ public final class PushButton: Button {
             return titleLabel.stringValue
         }
         set {
+            super.title = String()
             titleLabel.stringValue = newValue
         }
     }
