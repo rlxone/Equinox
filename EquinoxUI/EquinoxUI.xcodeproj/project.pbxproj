@@ -75,7 +75,6 @@
 		F3BD018026C16B790090D864 /* RoundedFloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD017F26C16B790090D864 /* RoundedFloatingTextField.swift */; };
 		F3BD018226C1F0AC0090D864 /* RoundedDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD018126C1F0AC0090D864 /* RoundedDatePicker.swift */; };
 		F3CBF494267F940500087660 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBF493267F940500087660 /* View.swift */; };
-		F3D2EE3D267DECD5009704C5 /* InvisibleScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2EE3C267DECD5009704C5 /* InvisibleScroller.swift */; };
 		F3D2EE44267DEDAA009704C5 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2EE43267DEDAA009704C5 /* VisualEffectView.swift */; };
 		F3D2EE47267DF125009704C5 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2EE46267DF125009704C5 /* Window.swift */; };
 		F3D9F23926C064A900CF816C /* SolarMainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9F23826C064A900CF816C /* SolarMainContentView.swift */; };
@@ -163,7 +162,6 @@
 		F3CBF493267F940500087660 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F3D2EE28267DD29B009704C5 /* EquinoxUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EquinoxUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D2EE2C267DD29B009704C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3D2EE3C267DECD5009704C5 /* InvisibleScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleScroller.swift; sourceTree = "<group>"; };
 		F3D2EE43267DEDAA009704C5 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		F3D2EE46267DF125009704C5 /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
 		F3D9F23826C064A900CF816C /* SolarMainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarMainContentView.swift; sourceTree = "<group>"; };
@@ -259,7 +257,6 @@
 				F38FB107269FAD42007F8362 /* Button.swift */,
 				F3EC93AA26C99DF50032FA39 /* ImageView.swift */,
 				F32F3775273A16C700A52762 /* TextView.swift */,
-				F3D2EE3C267DECD5009704C5 /* InvisibleScroller.swift */,
 				F37657332680048800AC4191 /* StyledLabel.swift */,
 				F3140D01268221C60058EB60 /* PushButton.swift */,
 				F30C86E326DC557200F93E60 /* RoundedPushButton.swift */,
@@ -524,7 +521,6 @@
 				F356C8A9272B318900E915C6 /* InteractiveLineChartCurve.swift in Sources */,
 				F34E06B9267ABB6E00F004EF /* TooltipWindow.swift in Sources */,
 				F3BD018026C16B790090D864 /* RoundedFloatingTextField.swift in Sources */,
-				F3D2EE3D267DECD5009704C5 /* InvisibleScroller.swift in Sources */,
 				F37657342680048800AC4191 /* StyledLabel.swift in Sources */,
 				F3EC93AB26C99DF50032FA39 /* ImageView.swift in Sources */,
 				F3FEC7E827278DFE00C8F439 /* SolarTimelineView.swift.swift in Sources */,
