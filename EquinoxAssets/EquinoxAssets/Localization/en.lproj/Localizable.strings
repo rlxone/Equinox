@@ -65,6 +65,7 @@
 "wallpaper.gallery.tooltip.appearance.description" = "Graphic mode. Only one image can be a light or dark appearance.";
 "wallpaper.gallery.tooltip.primary.title" = "Primary";
 "wallpaper.gallery.tooltip.primary.description" = "The primary image will be shown as a wallpaper thumbnail.";
+"wallpaper.gallery.wrong.images.type" = "Some files (%d) have the wrong image type. Only png, jpeg, tiff and heic are supported";
 
 "wallpaper.appearance.auto.title" = "Automatic";
 "wallpaper.appearance.auto.description" = "Default wallpaper image";
