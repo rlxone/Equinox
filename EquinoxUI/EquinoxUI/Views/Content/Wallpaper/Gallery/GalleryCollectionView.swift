@@ -152,9 +152,11 @@ public final class GalleryCollectionView: NSScrollView {
         collectionView.collectionViewLayout = collectionLayout
         collectionView.dataSource = dataSource
         
-        verticalScroller = InvisibleScroller()
+        verticalScroller?.scrollerStyle = .overlay
+        autohidesScrollers = true
         documentView = collectionView
         contentView.postsBoundsChangedNotifications = true
+        contentView.postsFrameChangedNotifications = true
     }
     
     private func setupMenu() {
@@ -166,8 +168,14 @@ public final class GalleryCollectionView: NSScrollView {
     private func setupNotifications() {
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(scrollViewDidScroll(_:)),
+            selector: #selector(scrollViewBoundsDidChange(_:)),
             name: NSView.boundsDidChangeNotification,
+            object: contentView
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollViewFrameDidChange(_:)),
+            name: NSView.frameDidChangeNotification,
             object: contentView
         )
     }
@@ -309,12 +317,17 @@ public final class GalleryCollectionView: NSScrollView {
     }
     
     @objc
-    private func scrollViewDidScroll(_ notification: Notification) {
+    private func scrollViewBoundsDidChange(_ notification: Notification) {
         delegate?.didScroll(self)
         collectionView.visibleItems().forEach {
             updateTrackingAreas(view: $0.view)
         }
         updateFooterPin()
+    }
+    
+    @objc
+    private func scrollViewFrameDidChange(_ notification: Notification) {
+        collectionLayout.invalidateLayout()
     }
     
     private func updateTrackingAreas(view: NSView) {
