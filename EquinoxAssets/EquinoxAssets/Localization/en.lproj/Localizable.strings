@@ -65,7 +65,7 @@
 "wallpaper.gallery.tooltip.appearance.description" = "Graphic mode. Only one image can be a light or dark appearance.";
 "wallpaper.gallery.tooltip.primary.title" = "Primary";
 "wallpaper.gallery.tooltip.primary.description" = "The primary image will be shown as a wallpaper thumbnail.";
-"wallpaper.gallery.wrong.images.type" = "Some files (%d) have the wrong image type. Only png, jpeg, tiff and heic are supported";
+"wallpaper.gallery.wrong.images.type" = "Some files (%d) have the wrong image type. Only png, jpeg, tiff, and heic are supported";
 
 "wallpaper.appearance.auto.title" = "Automatic";
 "wallpaper.appearance.auto.description" = "Default wallpaper image";
@@ -98,8 +98,8 @@
 "wallpaper.set.title" = "Set up before set";
 "wallpaper.set.description.title.old" = "You need to set “Dynamic” type in your “Desktop & Screen Saver” macOS Preferences before you set the wallpaper.";
 "wallpaper.set.description.title" = "You need to set “Dynamic” type in your “Wallpaper” macOS Preferences before you set the wallpaper.";
-"wallpaper.set.todo.old" = "1. Open “Desktop & Screen Saver” macOS Preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set it’s type to “Dynamic”.\n3. Press “Continue”.";
-"wallpaper.set.todo" = "1. Open “Wallpaper” macOS Preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set it’s type to “Dynamic”.\n3. Press “Continue”.";
+"wallpaper.set.todo.old" = "1. Open “Desktop & Screen Saver” macOS Preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set its type to “Dynamic”.\n3. Press “Continue”.";
+"wallpaper.set.todo" = "1. Open “Wallpaper” macOS Preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set its type to “Dynamic”.\n3. Press “Continue”.";
 "wallpaper.set.todo.link.old" = "“Desktop & Screen Saver”";
 "wallpaper.set.todo.link" = "“Wallpaper”";
 "wallpaper.set.continue" = "Continue";
@@ -118,18 +118,18 @@
 "solar.main.copied" = "Copied";
 "solar.main.sun.timeline" = "Sun timeline";
 "solar.main.timezone" = "Time zone:";
-"solar.main.location.error" = "Oops! Something went wrong while getting your location. Please, try again";
+"solar.main.location.error" = "Oops! Something went wrong while getting your location. Please try again";
 
 "tip.tips" = "TIPS";
 "tip.started" = "Get started";
 "tip.ok" = "Got it";
 "tip.solar.title" = "Solar wallpaper";
-"tip.solar.description" = "The main feature of this type of wallpaper is that it takes the position of the sun into account. Depending on the time of year you will see the most relevant image on your desktop.\nDon't worry about calculations. With the help of the “Solar calculator” you only need to know where and when you took a photo.";
+"tip.solar.description" = "The main feature of this type of wallpaper is that it takes the position of the sun into account. Depending on the time of year, you will see the most relevant image on your desktop.\nDon't worry about calculations. With the help of the “Solar calculator,” you only need to know where and when you took a photo.";
 "tip.time.title" = "Time wallpaper";
 "tip.time.description" = "Time is the key to this type of wallpaper. The desktop picture changes throughout the day, based on the time you choose.";
 "tip.appearance.title" = "Appearance wallpaper";
 "tip.appearance.description" = "This type of wallpaper is as simple as it is. The desktop picture changes throughout the day, based on system appearance change. You need two images: one for light and one for dark mode.";
 "tip.calculator.title" = "Solar calculator";
-"tip.calculator.description" = "It will help you to calculate the position of the sun in the sky.\n1. Choose the place, date, and time on the sun timeline when you took a photo. If you don't know the exact time you can use the sun timeline to see how high or low the position of the sun in the sky is and match it with the photos you have.\n2. Drag and drop or copy the result over your image.";
+"tip.calculator.description" = "It will help you calculate the position of the sun in the sky.\n1. Choose the place, date, and time on the sun timeline when you took a photo. If you don't know the exact time, you can use the sun timeline to see how high or low the position of the sun in the sky is and match it with the photos you have.\n2. Drag and drop or copy the result over your image.";
 
 "dock.new" = "New";
