@@ -269,7 +269,7 @@ extension WallpaperMainViewController: WallpaperGalleryViewControllerDelegate {
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
         if #available(macOS 11.0, *) {
-            openPanel.allowedContentTypes = [.png, .jpeg, .tiff, .heic]
+            openPanel.allowedContentTypes = ImageFormatType.allCases.utTypes
         }
         
         openPanel.beginSheetModal(for: window) { [weak self] result in

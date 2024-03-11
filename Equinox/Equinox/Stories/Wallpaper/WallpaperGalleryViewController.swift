@@ -271,10 +271,11 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
     }
 
     func processExternalCollectionItems(_ urls: [URL], insertIndexPath: IndexPath) {
-        var validatedUrls = imageProvider.validateImages(urls, imageFormat: [.jpeg, .png, .tiff, .heic])
+        var validatedUrls = imageProvider.validateImages(urls)
         
         if urls.count != validatedUrls.count {
-            delegate?.notify(Localization.Wallpaper.Gallery.wrongImagesType(param1: urls.count - validatedUrls.count))
+            let wrongImagesCount = urls.count - validatedUrls.count
+            delegate?.notify(Localization.Wallpaper.Gallery.wrongImagesType(param1: wrongImagesCount))
         }
         
         guard !validatedUrls.isEmpty else {
