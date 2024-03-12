@@ -160,10 +160,10 @@ public final class TabView: View {
         )
 
         shadow1Layer.bounds = bounds
-        shadow1Layer.shadowPath = path.cgPath
+        shadow1Layer.shadowPath = path.path
 
         shadow2Layer.bounds = bounds
-        shadow2Layer.shadowPath = path.cgPath
+        shadow2Layer.shadowPath = path.path
 
         borderLayer.frame = .init(
             x: -Constants.borderWidth,
@@ -179,10 +179,10 @@ public final class TabView: View {
         )
 
         shadowMask1Layer.bounds = bounds
-        shadowMask1Layer.path = path.cgPath
+        shadowMask1Layer.path = path.path
 
         shadowMask2Layer.bounds = bounds
-        shadowMask2Layer.path = path.cgPath
+        shadowMask2Layer.path = path.path
 
         shadow1Layer.mask = shadowMask1Layer
         shadow2Layer.mask = shadowMask2Layer

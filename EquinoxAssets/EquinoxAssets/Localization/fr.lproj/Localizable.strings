@@ -65,6 +65,7 @@
 "wallpaper.gallery.tooltip.appearance.description" = "Mode graphique. Seulement une image peut avoir l'apparence clair ou sombre.";
 "wallpaper.gallery.tooltip.primary.title" = "Principal";
 "wallpaper.gallery.tooltip.primary.description" = "La minature du fond d'écran sera l'image principal.";
+"wallpaper.gallery.wrong.images.type" = "Certains fichiers (%d) n'ont pas le bon type d'image. Seuls les formats png, jpeg, tiff et heic sont pris en charge.";
 
 "wallpaper.appearance.auto.title" = "Automatique";
 "wallpaper.appearance.auto.description" = "Image par défaut du fond d'écran";

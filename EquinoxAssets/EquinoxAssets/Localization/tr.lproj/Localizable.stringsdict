@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d 图片</string>
+			<string>%d fotoğraf</string>
 			<key>other</key>
-			<string>%d 图片</string>
+			<string>%d fotoğraf</string>
 		</dict>
 	</dict>
 	<key>delete</key>
@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>删除图片</string>
+			<string>Fotoğrafı sil</string>
 			<key>other</key>
-			<string>删除图片（%d 项）</string>
+			<string>Fotoğrafı sil (%d öğe)</string>
 		</dict>
 	</dict>
 </dict>

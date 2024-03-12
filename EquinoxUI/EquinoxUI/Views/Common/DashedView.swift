@@ -49,7 +49,7 @@ public class DashedView: View {
             roundedRect: bounds,
             xRadius: cornerRadius,
             yRadius: cornerRadius
-        ).cgPath
+        ).path
     }
 
     public override var wantsUpdateLayer: Bool {

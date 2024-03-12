@@ -29,32 +29,39 @@
 import AppKit
 
 extension NSBezierPath {
-    var cgPath: CGPath {
-        let path = CGMutablePath()
-        let componentsCount = 3
-        var points = [CGPoint](repeating: .zero, count: componentsCount)
+    var path: CGPath {
+        if #available(macOS 14, *) {
+            return cgPath
+        } else {
+            let path = CGMutablePath()
+            let componentsCount = 3
+            var points = [CGPoint](repeating: .zero, count: componentsCount)
 
-        for index in 0 ..< elementCount {
-            let type = element(at: index, associatedPoints: &points)
+            for index in 0 ..< elementCount {
+                let type = element(at: index, associatedPoints: &points)
 
-            switch type {
-            case .moveTo:
-                path.move(to: points[0])
+                switch type {
+                case .moveTo:
+                    path.move(to: points[0])
 
-            case .lineTo:
-                path.addLine(to: points[0])
+                case .lineTo:
+                    path.addLine(to: points[0])
 
-            case .curveTo:
-                path.addCurve(to: points[2], control1: points[0], control2: points[1])
+                case .curveTo:
+                    path.addCurve(to: points[2], control1: points[0], control2: points[1])
 
-            case .closePath:
-                path.closeSubpath()
+                case .closePath:
+                    path.closeSubpath()
 
-            @unknown default:
-                break
+                case .cubicCurveTo, .quadraticCurveTo:
+                    break
+
+                @unknown default:
+                    break
+                }
             }
-        }
 
-        return path
+            return path
+        }
     }
 }

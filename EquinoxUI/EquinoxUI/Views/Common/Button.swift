@@ -133,7 +133,8 @@ public class Button: NSButton {
     // MARK: - Setup
 
     private func setup() {
-        stringValue = String()
+        title = String()
+        isBordered = false
     }
 
     // MARK: - Public

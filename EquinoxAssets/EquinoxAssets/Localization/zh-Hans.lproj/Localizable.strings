@@ -65,6 +65,7 @@
 "wallpaper.gallery.tooltip.appearance.description" = "图形模式。只有一个图像可以是浅色或深色的外观。";
 "wallpaper.gallery.tooltip.primary.title" = "主要图像";
 "wallpaper.gallery.tooltip.primary.description" = "主要图像将会作为墙纸的缩略图展示。";
+"wallpaper.gallery.wrong.images.type" = "一些文件（%d）具有错误的图像类型。仅支持png、jpeg、tiff和heic格式";
 
 "wallpaper.appearance.auto.title" = "自动";
 "wallpaper.appearance.auto.description" = "默认墙纸图像";

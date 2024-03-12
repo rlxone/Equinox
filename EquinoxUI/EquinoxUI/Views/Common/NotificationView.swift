@@ -107,7 +107,7 @@ public final class NotificationView: View {
 
         visualEffectView.layer?.cornerRadius = radius
         shadowLayer.bounds = bounds
-        shadowLayer.shadowPath = path.cgPath
+        shadowLayer.shadowPath = path.path
 
         path.appendRoundedRect(
             bounds.insetBy(
@@ -117,7 +117,7 @@ public final class NotificationView: View {
             yRadius: 0
         )
 
-        shadowMaskLayer.path = path.cgPath
+        shadowMaskLayer.path = path.path
         shadowMaskLayer.bounds = bounds
         shadowLayer.mask = shadowMaskLayer
     }

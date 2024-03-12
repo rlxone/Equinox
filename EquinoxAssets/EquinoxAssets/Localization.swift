@@ -126,6 +126,10 @@ public enum Localization {
                 return String(format: Localization.localizedString(key: "delete"), arguments: [param1])
             }
             
+            public static func wrongImagesType(param1: Int) -> String {
+                return String(format: Localization.localizedString(key: "wallpaper.gallery.wrong.images.type"), arguments: [param1])
+            }
+            
             public static let dragTitle = Localization.localizedString(key: "wallpaper.gallery.drag.title")
             public static let dragSupplementary = Localization.localizedString(key: "wallpaper.gallery.drag.supplementary")
             public static let or = Localization.localizedString(key: "wallpaper.gallery.or")

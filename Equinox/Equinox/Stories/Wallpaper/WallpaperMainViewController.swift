@@ -268,6 +268,9 @@ extension WallpaperMainViewController: WallpaperGalleryViewControllerDelegate {
         openPanel.showsHiddenFiles = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
+        if #available(macOS 11.0, *) {
+            openPanel.allowedContentTypes = ImageFormatType.allCases.utTypes
+        }
         
         openPanel.beginSheetModal(for: window) { [weak self] result in
             guard let self = self, result == .OK else {
@@ -314,6 +317,10 @@ extension WallpaperMainViewController: WallpaperGalleryViewControllerDelegate {
     
     func dataWasChanged() {
         contentView.isCreateButtonEnabled = canCreateWallpaper
+    }
+    
+    func notify(_ text: String) {
+        delegate?.mainViewControllerShouldNotify(text)
     }
 }
 
