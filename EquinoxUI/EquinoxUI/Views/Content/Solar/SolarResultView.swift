@@ -78,7 +78,7 @@ extension SolarResultView {
         static let fieldCornerRadius: CGFloat = 4
         static let defaultEdgeInsets: NSEdgeInsets = .init(top: 0, left: 12, bottom: 0, right: 8)
         static let dragImageViewLeadingOffset: CGFloat = 20
-        static let dragImageViewTopOffset: CGFloat = 18
+        static let dragImageViewTopOffset: CGFloat = 17.5
         static let dragImageViewWidth: CGFloat = 17
         static let dragImageViewHeight: CGFloat = 17
         static let resultHeaderLabelLeadingOffset: CGFloat = 8
