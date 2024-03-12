@@ -65,6 +65,7 @@
 "wallpaper.gallery.tooltip.appearance.description" = "Grafik modu. Yalnızca bir görüntü açık veya koyu bir görünüm olabilir.";
 "wallpaper.gallery.tooltip.primary.title" = "Birincil";
 "wallpaper.gallery.tooltip.primary.description" = "Birincil görüntü bir duvar kağıdı küçük resmi olarak gösterilecektir.";
+"wallpaper.gallery.wrong.images.type" = "Bazı dosyalar (%d) yanlış resim türüne sahip. Yalnızca png, jpeg, tiff ve heic formatları desteklenmektedir";
 
 "wallpaper.appearance.auto.title" = "Otomatik";
 "wallpaper.appearance.auto.description" = "Varsayılan duvar kağıdı görüntüsü";
