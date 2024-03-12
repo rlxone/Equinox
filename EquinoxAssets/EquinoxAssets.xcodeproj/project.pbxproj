@@ -23,6 +23,8 @@
 		3D7BA8CA2932AD3300B501FF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		3DD0F58D2895688600BE34A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DD0F58F2895688B00BE34A6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E341F5482A9C8FCA007637CB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E341F5492A9C8FCA007637CB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = tr; path = tr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F360471D26ECE63E0009F725 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		F3765729267FBF8900AC4191 /* Bundler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundler.swift; sourceTree = "<group>"; };
 		F399A50C268780B800ED45EF /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				en,
 				Base,
 				fr,
+				tr,
 			);
 			mainGroup = F3C88A0A267F7FE800A51A1A;
 			productRefGroup = F3C88A15267F7FE800A51A1A /* Products */;
@@ -202,6 +205,7 @@
 			children = (
 				3D7BA8C82932AD2F00B501FF /* en */,
 				3D7BA8CA2932AD3300B501FF /* fr */,
+				E341F5492A9C8FCA007637CB /* tr */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -211,6 +215,7 @@
 			children = (
 				3DD0F58D2895688600BE34A6 /* en */,
 				3DD0F58F2895688B00BE34A6 /* fr */,
+				E341F5482A9C8FCA007637CB /* tr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
