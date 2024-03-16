@@ -61,6 +61,8 @@
 		F3893B77273A0DC0009FF22E /* SetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3893B76273A0DC0009FF22E /* SetContentView.swift */; };
 		F38D5B12273EE0F60065E13D /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38D5B11273EE0F60065E13D /* OverlayView.swift */; };
 		F38FB108269FAD42007F8362 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FB107269FAD42007F8362 /* Button.swift */; };
+		F395A4B42BA2718B0013AFCE /* RoundedTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F395A4B32BA2718B0013AFCE /* RoundedTitleView.swift */; };
+		F395A4B62BA649590013AFCE /* TooltipPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F395A4B52BA649590013AFCE /* TooltipPresenter.swift */; };
 		F399A5032686319B00ED45EF /* DragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399A5022686319B00ED45EF /* DragView.swift */; };
 		F399A505268645DC00ED45EF /* DashedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399A504268645DC00ED45EF /* DashedView.swift */; };
 		F399A50B2686781900ED45EF /* GalleryCollectionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399A50A2686781900ED45EF /* GalleryCollectionImageView.swift */; };
@@ -88,7 +90,7 @@
 		F3EC93AD26C9D51E0032FA39 /* SolarLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC93AC26C9D51E0032FA39 /* SolarLocationView.swift */; };
 		F3EC93AF26C9D53E0032FA39 /* SolarResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC93AE26C9D53E0032FA39 /* SolarResultView.swift */; };
 		F3FEC7E627277F2800C8F439 /* InteractiveLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FEC7E527277F2800C8F439 /* InteractiveLineChart.swift */; };
-		F3FEC7E827278DFE00C8F439 /* SolarTimelineView.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FEC7E727278DFE00C8F439 /* SolarTimelineView.swift.swift */; };
+		F3FEC7E827278DFE00C8F439 /* SolarTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FEC7E727278DFE00C8F439 /* SolarTimelineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +148,8 @@
 		F3893B76273A0DC0009FF22E /* SetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetContentView.swift; sourceTree = "<group>"; };
 		F38D5B11273EE0F60065E13D /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		F38FB107269FAD42007F8362 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		F395A4B32BA2718B0013AFCE /* RoundedTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTitleView.swift; sourceTree = "<group>"; };
+		F395A4B52BA649590013AFCE /* TooltipPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipPresenter.swift; sourceTree = "<group>"; };
 		F399A5022686319B00ED45EF /* DragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragView.swift; sourceTree = "<group>"; };
 		F399A504268645DC00ED45EF /* DashedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedView.swift; sourceTree = "<group>"; };
 		F399A50A2686781900ED45EF /* GalleryCollectionImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionImageView.swift; sourceTree = "<group>"; };
@@ -175,7 +179,7 @@
 		F3EC93AC26C9D51E0032FA39 /* SolarLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarLocationView.swift; sourceTree = "<group>"; };
 		F3EC93AE26C9D53E0032FA39 /* SolarResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResultView.swift; sourceTree = "<group>"; };
 		F3FEC7E527277F2800C8F439 /* InteractiveLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveLineChart.swift; sourceTree = "<group>"; };
-		F3FEC7E727278DFE00C8F439 /* SolarTimelineView.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarTimelineView.swift.swift; sourceTree = "<group>"; };
+		F3FEC7E727278DFE00C8F439 /* SolarTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarTimelineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +295,8 @@
 				F356C8AA272F479400E915C6 /* SubMenuPopUpButtonCell.swift */,
 				F3AC410626D3E27C000A7253 /* TypeView.swift */,
 				F3AC410826D3E289000A7253 /* TypeItemView.swift */,
+				F395A4B32BA2718B0013AFCE /* RoundedTitleView.swift */,
+				F395A4B52BA649590013AFCE /* TooltipPresenter.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -362,7 +368,7 @@
 			children = (
 				F3D9F23826C064A900CF816C /* SolarMainContentView.swift */,
 				F3EC93AC26C9D51E0032FA39 /* SolarLocationView.swift */,
-				F3FEC7E727278DFE00C8F439 /* SolarTimelineView.swift.swift */,
+				F3FEC7E727278DFE00C8F439 /* SolarTimelineView.swift */,
 				F3EC93AE26C9D53E0032FA39 /* SolarResultView.swift */,
 			);
 			path = Solar;
@@ -524,7 +530,7 @@
 				F3BD018026C16B790090D864 /* RoundedFloatingTextField.swift in Sources */,
 				F37657342680048800AC4191 /* StyledLabel.swift in Sources */,
 				F3EC93AB26C99DF50032FA39 /* ImageView.swift in Sources */,
-				F3FEC7E827278DFE00C8F439 /* SolarTimelineView.swift.swift in Sources */,
+				F3FEC7E827278DFE00C8F439 /* SolarTimelineView.swift in Sources */,
 				F36AD5E626E576BE00314A02 /* GalleryCollectionDataSource.swift in Sources */,
 				F38D5B12273EE0F60065E13D /* OverlayView.swift in Sources */,
 				F30C86E426DC557200F93E60 /* RoundedPushButton.swift in Sources */,
@@ -586,9 +592,11 @@
 				F3D2EE47267DF125009704C5 /* Window.swift in Sources */,
 				F34E06B3267AB94800F004EF /* TooltipView.swift in Sources */,
 				F34E06CF267B855F00F004EF /* GalleryCollectionViewItem.swift in Sources */,
+				F395A4B42BA2718B0013AFCE /* RoundedTitleView.swift in Sources */,
 				F36AD5E426E530C900314A02 /* GalleryCollectionLayout.swift in Sources */,
 				F3E0D71A267CF1C90077DBAB /* WindowContentView.swift in Sources */,
 				F34E06CD267B7BA300F004EF /* GalleryCollectionContentView.swift in Sources */,
+				F395A4B62BA649590013AFCE /* TooltipPresenter.swift in Sources */,
 				F3E7B04B26A64D1700287C60 /* AppearanceType.swift in Sources */,
 				F3837F0D2698E87C00671585 /* GalleryInternalCollectionView.swift in Sources */,
 				F31A9E2826E6D95B00135E49 /* DragAnimatedImageView.swift in Sources */,

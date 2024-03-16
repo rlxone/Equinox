@@ -117,7 +117,7 @@
 "solar.main.value" = "Value";
 "solar.main.copied" = "Copied";
 "solar.main.sun.timeline" = "Sun timeline";
-"solar.main.timezone" = "Time zone:";
+"solar.main.timezone" = "Time zones";
 "solar.main.location.error" = "Oops! Something went wrong while getting your location. Please try again";
 
 "tip.tips" = "TIPS";

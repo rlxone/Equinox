@@ -249,15 +249,21 @@ public final class SolarMainContentView: VisualEffectView {
         }
     }
     
-    public var timezoneHeaderTitle: String? {
-        didSet {
-            timelineView.timezoneHeaderTitle = timezoneHeaderTitle ?? String()
-        }
-    }
-    
     public var timezoneData: SubMenuPopUpButton.MenuData? {
         didSet {
             timelineView.timezoneData = timezoneData
+        }
+    }
+    
+    public var timezoneAbbreviationTitle: String? {
+        didSet {
+            timelineView.timezoneAbbreviationTitle = timezoneAbbreviationTitle
+        }
+    }
+    
+    public var timezoneDaylighSavingTimeTitle: String? {
+        didSet {
+            timelineView.timezoneDaylighSavingTimeTitle = timezoneDaylighSavingTimeTitle
         }
     }
     

@@ -90,6 +90,7 @@ public final class DynamicButton: Button {
     }
 
     private func setupView() {
+        showTooltip = true
         wantsLayer = true
         layer?.borderWidth = Constants.borderWidth
         layer?.cornerRadius = Constants.cornerRadius

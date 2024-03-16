@@ -117,7 +117,7 @@
 "solar.main.value" = "Değer";
 "solar.main.copied" = "Kopyalandı";
 "solar.main.sun.timeline" = "Güneş zaman çizelgesi";
-"solar.main.timezone" = "Saat dilimi:";
+"solar.main.timezone" = "Zaman dilimleri:";
 "solar.main.location.error" = "Hoppala! Konumunuz alınırken bir şeyler ters gitti. Lütfen tekrar deneyin";
 
 "tip.tips" = "İPUÇLARI";

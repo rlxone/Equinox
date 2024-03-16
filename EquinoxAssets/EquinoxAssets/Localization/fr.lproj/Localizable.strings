@@ -117,7 +117,7 @@
 "solar.main.value" = "Valeur";
 "solar.main.copied" = "Copié";
 "solar.main.sun.timeline" = "Chronologie soleil";
-"solar.main.timezone" = "Fuseau horaire :";
+"solar.main.timezone" = "Fuseau horaires";
 "solar.main.location.error" = "Oups ! Une eurreur s'est produite durant la géolocalisation. Merci de réessayer.";
 
 "tip.tips" = "ASTUCES";

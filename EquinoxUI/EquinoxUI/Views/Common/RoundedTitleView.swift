@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Dmitry Meduho
+// Copyright (c) 2024 Dmitry Meduho
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,62 +30,80 @@ import AppKit
 
 // MARK: - Enums, Structs
 
-extension PrimaryButton {
+extension RoundedTitleView {
     public struct Style {
-        let backgroundColor: NSColor
-        let alternativeColor: NSColor
-        let highlightColor: NSColor
-        let borderColor: NSColor
-
+        public struct OwnStyle {
+            let backgroundColor: NSColor
+            let borderColor: NSColor
+            
+            public init(backgroundColor: NSColor, borderColor: NSColor) {
+                self.backgroundColor = backgroundColor
+                self.borderColor = borderColor
+            }
+        }
+        
+        let ownStyle: OwnStyle
+        let titleStyle: StyledLabel.Style
+        
         public init(
-            backgroundColor: NSColor,
-            alternativeColor: NSColor,
-            highlightColor: NSColor,
-            borderColor: NSColor
+            ownStyle: OwnStyle,
+            titleStyle: StyledLabel.Style
         ) {
-            self.backgroundColor = backgroundColor
-            self.alternativeColor = alternativeColor
-            self.highlightColor = highlightColor
-            self.borderColor = borderColor
+            self.ownStyle = ownStyle
+            self.titleStyle = titleStyle
         }
     }
     
     private enum Constants {
+        static let cornerRadius: CGFloat = 6
         static let borderWidth: CGFloat = 1
-        static let cornerRadius: CGFloat = 12
+        static let horizontalPadding: CGFloat = 8
+        static let verticalPadding: CGFloat = 4
     }
 }
 
 // MARK: - Class
 
-public final class PrimaryButton: Button {
+public final class RoundedTitleView: View {
+    private lazy var titleLabel = {
+        let label = StyledLabel()
+        label.alignment = .center
+        return label
+    }()
+    
     public override init() {
         super.init()
         setup()
     }
-
+    
     // MARK: - Setup
-
+    
     private func setup() {
-        showTooltip = true
+        setupView()
+        setupConstraints()
+    }
+    
+    private func setupView() {
         wantsLayer = true
         layer?.borderWidth = Constants.borderWidth
         layer?.cornerRadius = Constants.cornerRadius
+        
+        addSubview(titleLabel)
     }
-
-    // MARK: - Life Cycle
-
-    public override var wantsUpdateLayer: Bool {
-        return true
+    
+    private func setupConstraints() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.horizontalPadding),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.horizontalPadding),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.verticalPadding),
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.verticalPadding)
+        ])
     }
-
-    public override func updateLayer() {
-        super.updateLayer()
-        stylize()
-    }
-
+    
     // MARK: - Public
-
+    
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
@@ -93,28 +111,22 @@ public final class PrimaryButton: Button {
             }
         }
     }
-
-    public var isSelected: Bool {
-        get {
-            return state == .on
-        }
-        set {
-            state = newValue ? .on : .off
+    
+    public var title: String? {
+        didSet {
+            titleLabel.stringValue = title ?? String()
         }
     }
-
+    
     // MARK: - Private
     
     private func stylize() {
-        if isSelected {
-            if NSColor.currentControlTint == .graphiteControlTint {
-                layer?.backgroundColor = style?.alternativeColor.cgColor
-            } else {
-                layer?.backgroundColor = NSColor.controlAccentColor.cgColor
-            }
-        } else {
-            layer?.backgroundColor = style?.backgroundColor.cgColor
-            layer?.borderColor = style?.borderColor.cgColor
+        guard let style = style else {
+            return
         }
+        
+        layer?.backgroundColor = style.ownStyle.backgroundColor.cgColor
+        layer?.borderColor = style.ownStyle.borderColor.cgColor
+        titleLabel.style = style.titleStyle
     }
 }

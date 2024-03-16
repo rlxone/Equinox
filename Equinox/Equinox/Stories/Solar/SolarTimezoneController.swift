@@ -29,51 +29,104 @@
 import EquinoxCore
 import Foundation
 
-extension SolarTimezoneController {
-    struct TimezoneContainer {
-        let timezone: TimeZone
-        let name: String
+extension SolarDateAndTimeController {
+    struct ExtendedTimezone {
+        let underlyingTimezone: TimeZone
+        let city: String
         let continent: String
+    }
+    
+    enum Constants {
+        static let defaultTimeInSeconds = oneDaySeconds / 4 // 6:00 AM
+        static let oneDaySeconds = 24 * 60 * 60
     }
 }
 
-final class SolarTimezoneController {
-    private lazy var cachedTimezones = [TimezoneContainer]()
+final class SolarDateAndTimeController {
+    private lazy var cachedTimezones = [String: ExtendedTimezone]()
+    private lazy var currentDate = merge(date: Date(), seconds: currentTime) ?? Date()
+    private lazy var currentTime = Constants.defaultTimeInSeconds
+    private lazy var currentTimezone = makeTimezone(from: .current)
     
     // MARK: - Initializer
     
     init() {
-        setup()
+        updateCache()
     }
     
     // MARK: - Setup
     
     private func setup() {
+        
+        updateCache()
+    }
+    
+    private func updateCache() {
+        cachedTimezones = [:]
         for knownTimezone in TimeZone.knownTimeZoneIdentifiers {
             guard let timezone = TimeZone(identifier: knownTimezone) else {
                 continue
             }
-            let container = makeContainer(from: timezone)
-            cachedTimezones.append(container)
+            let container = makeTimezone(from: timezone)
+            cachedTimezones[timezone.identifier] = container
         }
     }
     
     // MARK: - Public
     
-    var currentContainer: TimezoneContainer {
-        return makeContainer(from: .current)
+    func setDate(date: Date) {
+        currentDate = merge(date: date, seconds: currentTime) ?? Date()
     }
     
-    var timezones: [String: [String]] {
-        return convertTimezones(from: cachedTimezones)
+    func setTime(timeOffset: Float) {
+        currentTime = Int(Float(Constants.oneDaySeconds) * timeOffset)
+        currentDate = merge(date: currentDate, seconds: currentTime) ?? Date()
     }
     
-    func findContainer(name: String) -> TimezoneContainer {
-        return cachedTimezones.first { $0.name == name } ?? currentContainer
+    func setTimezone(identifier: String) {
+        currentTimezone = timezone(identifier: identifier)
     }
     
-    func compactTime(from progress: Float) -> String {
-        let seconds = progress * 24 * 60 * 60
+    var selectedTimezone: ExtendedTimezone {
+        return currentTimezone
+    }
+    
+    var selectedDate: Date {
+        return currentDate
+    }
+    
+    var continentTimezones: [String: [ExtendedTimezone]] {
+        return convertToContinentTimezones(timezones: cachedTimezones)
+    }
+    
+    var abbreviation: String {
+        return getGMTHours(
+            from: currentTimezone.underlyingTimezone,
+            date: currentDate
+        )
+    }
+    
+    var timeOffset: Float {
+        Float(currentTime) / Float(24 * 60 * 60)
+    }
+    
+    func timezone(identifier: String) -> ExtendedTimezone {
+        return cachedTimezones[identifier] ?? currentTimezone
+    }
+    
+    func abbreviation(identifier: String) -> String {
+        return getGMTHours(
+            from: timezone(identifier: identifier).underlyingTimezone,
+            date: currentDate
+        )
+    }
+    
+    func convertToHours(seconds: Int) -> Int {
+        return seconds / 60 / 60
+    }
+    
+    func compactTime(timeOffset: Float) -> String {
+        let seconds = timeOffset * Float(Constants.oneDaySeconds)
         
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
@@ -84,88 +137,59 @@ final class SolarTimezoneController {
         return formattedString ?? String()
     }
     
-    func merge(date: Date, timeOffset: Float) -> Date? {
-        guard let time = getTime(for: date, with: timeOffset) else {
-            return nil
-        }
-        return merge(date: date, time: time)
-    }
-    
     // MARK: - Private
     
-    private func makeContainer(from timezone: TimeZone) -> TimezoneContainer {
-        let abbreviation = getGMTHours(from: timezone)
-        var timezoneContinent = String()
-        var timezoneCity = String()
-        var name = String()
+    private func makeTimezone(from timezone: TimeZone) -> ExtendedTimezone {
+        var continent = String()
+        var city = String()
         
         let components = timezone.identifier.components(separatedBy: "/")
-        if let continent = components.first, let city = components.last {
-            timezoneContinent = continent
-            timezoneCity = city
+        if let timezoneContinent = components.first, let timezoneCity = components.last {
+            continent = timezoneContinent
+            city = timezoneCity
         }
         
-        if abbreviation.isEmpty {
-            name = timezoneCity
-        } else if abbreviation == "GMT" {
-            name = timezoneCity
-        } else {
-            name = "\(timezoneCity) (\(abbreviation))"
-        }
-        
-        return TimezoneContainer(
-            timezone: timezone,
-            name: name,
-            continent: timezoneContinent
-        )
+        return ExtendedTimezone(underlyingTimezone: timezone, city: city, continent: continent)
     }
     
-    private func convertTimezones(from timezones: [TimezoneContainer]) -> [String: [String]] {
-        var timezonesDictionary: [String: [String]] = [:]
+    private func convertToContinentTimezones(timezones: [String: ExtendedTimezone]) -> [String: [ExtendedTimezone]] {
+        var timezonesDictionary: [String: [ExtendedTimezone]] = [:]
         
         for timezone in timezones {
-            if !timezonesDictionary.keys.contains(timezone.continent) {
-                timezonesDictionary[timezone.continent] = [String]()
+            if !timezonesDictionary.keys.contains(timezone.value.continent) {
+                timezonesDictionary[timezone.value.continent] = [ExtendedTimezone]()
             }
-            timezonesDictionary[timezone.continent]?.append(timezone.name)
+            timezonesDictionary[timezone.value.continent]?.append(timezone.value)
         }
         
         return timezonesDictionary
     }
     
-    private func merge(date: Date, time: Date) -> Date? {
+    private func merge(date: Date, seconds: Int) -> Date? {
         let calendar = getCurrentCalendar
         
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
-        let timeComponents = calendar.dateComponents([.hour, .minute, .second], from: time)
+        let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(seconds)
 
         var mergedComponents = DateComponents()
         mergedComponents.year = dateComponents.year
         mergedComponents.month = dateComponents.month
         mergedComponents.day = dateComponents.day
-        mergedComponents.hour = timeComponents.hour
-        mergedComponents.minute = timeComponents.minute
-        mergedComponents.second = timeComponents.second
+        mergedComponents.hour = hours
+        mergedComponents.minute = minutes
+        mergedComponents.second = seconds
         
         return calendar.date(from: mergedComponents)
     }
     
-    private func getTime(for date: Date, with offset: Float) -> Date? {
-        let calendar = getCurrentCalendar
-        let startTime = calendar.startOfDay(for: date)
-        let seconds = Int(24 * 60 * 60 * offset)
-        let date = calendar.date(byAdding: .second, value: seconds, to: startTime)
-        return date
-    }
-    
-    private func getGMTHours(from timezone: TimeZone) -> String {
+    private func getGMTHours(from timezone: TimeZone, date: Date) -> String {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
         formatter.numberStyle = .decimal
-        formatter.decimalSeparator = "."
+        formatter.decimalSeparator = ":"
         
-        let hours = Float(timezone.secondsFromGMT()) / 60 / 60
+        let hours = Float(timezone.secondsFromGMT(for: date)) / 60 / 60
         let formattedHours = formatter.string(from: NSNumber(value: hours)) ?? "0"
         var string: String
         
@@ -176,5 +200,9 @@ final class SolarTimezoneController {
         }
         
         return string
+    }
+    
+    func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
 }

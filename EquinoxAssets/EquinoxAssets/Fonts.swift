@@ -53,6 +53,10 @@ public enum Font {
         return NSFont.systemFont(ofSize: 12, weight: weight)
     }
     
+    public static func caption2(_ weight: NSFont.Weight) -> NSFont {
+        return NSFont.systemFont(ofSize: 10, weight: weight)
+    }
+    
     public static func small(_ weight: NSFont.Weight) -> NSFont {
         return NSFont.systemFont(ofSize: 8, weight: weight)
     }

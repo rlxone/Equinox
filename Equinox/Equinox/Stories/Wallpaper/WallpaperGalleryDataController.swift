@@ -161,22 +161,21 @@ final class WallpaperGalleryDataController {
             return nil
         }
         let timezone = metadata.timezone ?? .current
-        let timezoneHours = timezone.secondsFromGMT() / 60 / 60
-        let daylightSavingTimeValue = timezone.isDaylightSavingTime(for: date) ? 1 : 0
+        let timezoneHours = timezone.secondsFromGMT(for: date) / 60 / 60
         guard
             let solarAzimuth = try? solarService.azimuth(
                 latitude: latitude,
                 longitude: longitude,
                 date: date,
                 timezone: timezoneHours,
-                dlstime: daylightSavingTimeValue
+                dlstime: 0
             ),
             let solarAltitude = try? solarService.altitude(
                 latitude: latitude,
                 longitude: longitude,
                 date: date,
                 timezone: timezoneHours,
-                dlstime: daylightSavingTimeValue
+                dlstime: 0
             )
         else {
             return nil

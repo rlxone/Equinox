@@ -117,7 +117,7 @@
 "solar.main.value" = "值";
 "solar.main.copied" = "已复制";
 "solar.main.sun.timeline" = "太阳时间轴";
-"solar.main.timezone" = "时区:";
+"solar.main.timezone" = "时区";
 "solar.main.location.error" = "哎呀！在获取你的位置的时候出错了。请再试一次";
 
 "tip.tips" = "提示";
