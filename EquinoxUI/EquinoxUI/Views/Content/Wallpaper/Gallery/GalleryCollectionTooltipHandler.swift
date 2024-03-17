@@ -31,10 +31,10 @@ import AppKit
 public final class GalleryCollectionTooltipHandler {
     public var style: TooltipWindow.Style?
     
-    public var appearanceToopltipTitle: String?
-    public var appearanceToopltipDescription: String?
-    public var primaryToopltipTitle: String?
-    public var primaryToopltipDescription: String?
+    public var appearanceTooltipTitle: String?
+    public var appearanceTooltipDescription: String?
+    public var primaryTooltipTitle: String?
+    public var primaryTooltipDescription: String?
 }
 
 // MARK: - TooltipDelegate
@@ -52,9 +52,9 @@ extension GalleryCollectionTooltipHandler: TooltipDelegate {
         
         switch identifier {
         case GalleryContentView.TooltipIdentifier.appearance.rawValue:
-            title = appearanceToopltipTitle
+            title = appearanceTooltipTitle
         case GalleryContentView.TooltipIdentifier.primary.rawValue:
-            title = primaryToopltipTitle
+            title = primaryTooltipTitle
         default:
             title = String()
         }
@@ -74,9 +74,9 @@ extension GalleryCollectionTooltipHandler: TooltipDelegate {
         
         switch identifier {
         case GalleryContentView.TooltipIdentifier.appearance.rawValue:
-            description = appearanceToopltipDescription
+            description = appearanceTooltipDescription
         case GalleryContentView.TooltipIdentifier.primary.rawValue:
-            description = primaryToopltipDescription
+            description = primaryTooltipDescription
         default:
             description = String()
         }

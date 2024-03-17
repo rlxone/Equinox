@@ -49,7 +49,7 @@ extension SolarTimelineView {
         let interactiveLineChartStyle: InteractiveLineChart.Style
         let titleStyle: StyledLabel.Style
         let timezoneAbbreviationStyle: RoundedTitleView.Style
-        let timezoneDaylighSavingTimeStyle: RoundedTitleView.Style
+        let timezoneDaylightSavingTimeStyle: RoundedTitleView.Style
         let timezoneMenuStyle: SubMenuPopUpButton.Style
         
         public init(
@@ -57,14 +57,14 @@ extension SolarTimelineView {
             interactiveLineChartStyle: InteractiveLineChart.Style,
             titleStyle: StyledLabel.Style,
             timezoneAbbreviationStyle: RoundedTitleView.Style,
-            timezoneDaylighSavingTimeStyle: RoundedTitleView.Style,
+            timezoneDaylightSavingTimeStyle: RoundedTitleView.Style,
             timezoneMenuStyle: SubMenuPopUpButton.Style
         ) {
             self.ownStyle = ownStyle
             self.interactiveLineChartStyle = interactiveLineChartStyle
             self.titleStyle = titleStyle
             self.timezoneAbbreviationStyle = timezoneAbbreviationStyle
-            self.timezoneDaylighSavingTimeStyle = timezoneDaylighSavingTimeStyle
+            self.timezoneDaylightSavingTimeStyle = timezoneDaylightSavingTimeStyle
             self.timezoneMenuStyle = timezoneMenuStyle
         }
     }
@@ -214,13 +214,13 @@ public final class SolarTimelineView: View {
         }
     }
     
-    public var timezoneDaylighSavingTimeTitle: String? {
+    public var timezoneDaylightSavingTimeTitle: String? {
         didSet {
-            timezoneDaylightSavingTimeTitleView.title = timezoneDaylighSavingTimeTitle
+            timezoneDaylightSavingTimeTitleView.title = timezoneDaylightSavingTimeTitle
         }
     }
     
-    public var isTimezoneDaylighSavingTimeVisible: Bool {
+    public var isTimezoneDaylightSavingTimeVisible: Bool {
         get {
             return !timezoneDaylightSavingTimeTitleView.isHidden
         }
@@ -248,7 +248,7 @@ public final class SolarTimelineView: View {
         interactiveLineChart.style = style?.interactiveLineChartStyle
         titleLabel.style = style?.titleStyle
         timezoneAbbreviationTitleView.style = style?.timezoneAbbreviationStyle
-        timezoneDaylightSavingTimeTitleView.style = style?.timezoneDaylighSavingTimeStyle
+        timezoneDaylightSavingTimeTitleView.style = style?.timezoneDaylightSavingTimeStyle
         timezoneButton.style = style?.timezoneMenuStyle
         
         layer?.backgroundColor = style?.ownStyle.contentBackgroundColor.cgColor

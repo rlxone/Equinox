@@ -221,9 +221,9 @@ public final class GalleryCollectionViewItem: NSCollectionViewItem {
         contentView.altitudeText = textList.altitudeText
         contentView.altitudePlaceholder = textList.altitudePlaceholder
         contentView.timeText = textList.timeText
-        contentView.appearanceToopltipTitle = textList.appearanceToopltipTitle
-        contentView.appearanceToopltipDescription = textList.appearanceToopltipDescription
-        contentView.primaryToopltipTitle = textList.primaryToopltipTitle
-        contentView.primaryToopltipDescription = textList.primaryToopltipDescription
+        contentView.appearanceTooltipTitle = textList.appearanceTooltipTitle
+        contentView.appearanceTooltipDescription = textList.appearanceTooltipDescription
+        contentView.primaryTooltipTitle = textList.primaryTooltipTitle
+        contentView.primaryTooltipDescription = textList.primaryTooltipDescription
     }
 }

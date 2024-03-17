@@ -51,12 +51,10 @@ final class SolarDateAndTimeController {
     // MARK: - Initializer
     
     init() {
-        updateCache()
+        initialize()
     }
     
-    // MARK: - Cache
-    
-    private func updateCache() {
+    private func initialize() {
         cachedTimezones = [:]
         for knownTimezone in TimeZone.knownTimeZoneIdentifiers {
             guard let timezone = TimeZone(identifier: knownTimezone) else {
@@ -79,7 +77,7 @@ final class SolarDateAndTimeController {
     }
     
     func setTimezone(identifier: String) {
-        currentTimezone = timezone(identifier: identifier)
+        currentTimezone = cachedTimezones[identifier] ?? currentTimezone
     }
     
     var selectedTimezone: ExtendedTimezone {
@@ -116,7 +114,7 @@ final class SolarDateAndTimeController {
         )
     }
     
-    var isDaylighSavingTime: Bool {
+    var isDaylightSavingTime: Bool {
         return currentTimezone.underlyingTimezone.isDaylightSavingTime(for: endOfDay)
     }
     

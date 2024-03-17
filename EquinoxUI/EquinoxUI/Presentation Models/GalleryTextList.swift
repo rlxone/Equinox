@@ -35,10 +35,10 @@ public struct GalleryTextList {
     let altitudePlaceholder: String
     let timeText: String
     let timeTextPlaceholder: String
-    let appearanceToopltipTitle: String
-    let appearanceToopltipDescription: String
-    let primaryToopltipTitle: String
-    let primaryToopltipDescription: String
+    let appearanceTooltipTitle: String
+    let appearanceTooltipDescription: String
+    let primaryTooltipTitle: String
+    let primaryTooltipDescription: String
 
     public init(
         azimuthText: String,
@@ -47,10 +47,10 @@ public struct GalleryTextList {
         altitudePlaceholder: String,
         timeText: String,
         timeTextPlaceholder: String,
-        appearanceToopltipTitle: String,
-        appearanceToopltipDescription: String,
-        primaryToopltipTitle: String,
-        primaryToopltipDescription: String
+        appearanceTooltipTitle: String,
+        appearanceTooltipDescription: String,
+        primaryTooltipTitle: String,
+        primaryTooltipDescription: String
     ) {
         self.azimuthText = azimuthText
         self.azimuthPlaceholder = azimuthPlaceholder
@@ -58,9 +58,9 @@ public struct GalleryTextList {
         self.altitudePlaceholder = altitudePlaceholder
         self.timeText = timeText
         self.timeTextPlaceholder = timeTextPlaceholder
-        self.appearanceToopltipTitle = appearanceToopltipTitle
-        self.appearanceToopltipDescription = appearanceToopltipDescription
-        self.primaryToopltipTitle = primaryToopltipTitle
-        self.primaryToopltipDescription = primaryToopltipDescription
+        self.appearanceTooltipTitle = appearanceTooltipTitle
+        self.appearanceTooltipDescription = appearanceTooltipDescription
+        self.primaryTooltipTitle = primaryTooltipTitle
+        self.primaryTooltipDescription = primaryTooltipDescription
     }
 }

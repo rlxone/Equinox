@@ -96,7 +96,7 @@ extension SolarMainContentView.Style {
                         color: Color.label
                     )
                 ),
-                timezoneDaylighSavingTimeStyle: .init(
+                timezoneDaylightSavingTimeStyle: .init(
                     ownStyle: .init(
                         backgroundColor: Color.solarContent,
                         borderColor: Color.solarContentBorder

@@ -284,16 +284,16 @@ public final class SolarMainContentView: VisualEffectView {
     
     public var isTimezoneDaylightSavingTimeVisible: Bool {
         get {
-            return timelineView.isTimezoneDaylighSavingTimeVisible
+            return timelineView.isTimezoneDaylightSavingTimeVisible
         }
         set {
-            timelineView.isTimezoneDaylighSavingTimeVisible = newValue
+            timelineView.isTimezoneDaylightSavingTimeVisible = newValue
         }
     }
     
-    public var timezoneDaylighSavingTimeTitle: String? {
+    public var timezoneDaylightSavingTimeTitle: String? {
         didSet {
-            timelineView.timezoneDaylighSavingTimeTitle = timezoneDaylighSavingTimeTitle
+            timelineView.timezoneDaylightSavingTimeTitle = timezoneDaylightSavingTimeTitle
         }
     }
     

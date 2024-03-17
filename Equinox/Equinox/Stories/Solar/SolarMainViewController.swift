@@ -120,7 +120,7 @@ final class SolarMainViewController: ViewController {
         contentView.daylightSavingTimeTooltipDescription = Localization.Solar.Main.daylightSavingTimeTooltipDescription
         contentView.abbreviationTooltipTitle = Localization.Solar.Main.abbreviationTooltipTitle
         contentView.abbreviationTooltipDescription = Localization.Solar.Main.abbreviationTooltipDescription
-        contentView.timezoneDaylighSavingTimeTitle = Localization.Solar.Main.daylightSavingTimeTitle
+        contentView.timezoneDaylightSavingTimeTitle = Localization.Solar.Main.daylightSavingTimeTitle
         contentView.dragAndDropTooltipTitle = Localization.Solar.Main.dragAndDropTooltipTitle
         contentView.dragAndDropTooltipDescription = Localization.Solar.Main.dragAndDropTooltipDescription
     }
@@ -162,6 +162,16 @@ final class SolarMainViewController: ViewController {
     private func setupChartData() {
         reloadChartData()
         contentView.chartProgress = CGFloat(dateAndTimeController.timeOffset)
+    }
+    
+    private func setupTimezoneData() {
+        contentView.timezoneData = SubMenuPopUpButton.MenuData(
+            headerTitle: Localization.Solar.Main.timezone,
+            items: dateAndTimeController.continentTimezones.mapValues { $0.map { convertToMenuItem($0) } },
+            selectedItem: convertToMenuItem(dateAndTimeController.selectedTimezone)
+        )
+        contentView.timezoneAbbreviationTitle = dateAndTimeController.abbreviation
+        contentView.isTimezoneDaylightSavingTimeVisible = dateAndTimeController.isDaylightSavingTime
     }
     
     // MARK: - Public
@@ -208,7 +218,7 @@ final class SolarMainViewController: ViewController {
     private func timezoneChangeAction(_ menuItem: SubMenuPopUpButton.MenuData.Item) {
         dateAndTimeController.setTimezone(identifier: menuItem.identifier)
         contentView.timezoneAbbreviationTitle = dateAndTimeController.abbreviation
-        contentView.isTimezoneDaylightSavingTimeVisible = dateAndTimeController.isDaylighSavingTime
+        contentView.isTimezoneDaylightSavingTimeVisible = dateAndTimeController.isDaylightSavingTime
         makeResult(needUpdateCoordinateFields: false, needRoundCoordinateValues: false)
     }
     
@@ -365,16 +375,6 @@ final class SolarMainViewController: ViewController {
         }
         
         contentView.chartData = chartData
-    }
-    
-    private func setupTimezoneData() {
-        contentView.timezoneData = SubMenuPopUpButton.MenuData(
-            headerTitle: Localization.Solar.Main.timezone,
-            items: dateAndTimeController.continentTimezones.mapValues { $0.map { convertToMenuItem($0) } },
-            selectedItem: convertToMenuItem(dateAndTimeController.selectedTimezone)
-        )
-        contentView.timezoneAbbreviationTitle = dateAndTimeController.abbreviation
-        contentView.isTimezoneDaylightSavingTimeVisible = dateAndTimeController.isDaylighSavingTime
     }
     
     private func convertToMenuItem(_ timezone: SolarDateAndTimeController.ExtendedTimezone) -> SubMenuPopUpButton.MenuData.Item {
