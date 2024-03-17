@@ -163,74 +163,7 @@ public final class SolarMainContentView: VisualEffectView {
         super.updateLayer()
         stylize()
     }
-    
-    // MARK: - Setup
 
-    private func setup() {
-        setupView()
-        setupConstraints()
-    }
-
-    private func setupView() {
-        addSubview(mapView)
-        addSubview(overlayView)
-        addSubview(pinImageView)
-        addSubview(helpButton)
-
-        overlayView.addSubview(locationView)
-        overlayView.addSubview(timelineView)
-        overlayView.addSubview(resultView)
-        overlayView.addSubview(lineView)
-    }
-    
-    private func setupConstraints() {
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        overlayView.translatesAutoresizingMaskIntoConstraints = false
-        timelineView.translatesAutoresizingMaskIntoConstraints = false
-        locationView.translatesAutoresizingMaskIntoConstraints = false
-        resultView.translatesAutoresizingMaskIntoConstraints = false
-        lineView.translatesAutoresizingMaskIntoConstraints = false
-        pinImageView.translatesAutoresizingMaskIntoConstraints = false
-        helpButton.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            mapView.topAnchor.constraint(equalTo: topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: overlayView.topAnchor),
-
-            overlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            overlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            overlayView.bottomAnchor.constraint(equalTo: bottomAnchor),
-
-            lineView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor),
-            lineView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor),
-            lineView.topAnchor.constraint(equalTo: overlayView.topAnchor),
-            lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
-
-            locationView.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: Constants.locationTopOffset),
-            locationView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.locationLeadingOffset),
-            locationView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.locationTrailingOffset),
-            
-            timelineView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.solarTimelineLeadingOffset),
-            timelineView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.solarTimelineTrailingOffset),
-            timelineView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: Constants.solarTimelineTopOffset),
-            
-            resultView.topAnchor.constraint(equalTo: timelineView.bottomAnchor, constant: Constants.resultTopOffset),
-            resultView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.resultLeadingOffset),
-            resultView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.resultTrailingOffset),
-            
-            pinImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: Constants.pinCenterXOffset),
-            pinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: -Constants.pinCenterYOffset),
-            pinImageView.widthAnchor.constraint(equalToConstant: Constants.pinWidth),
-            pinImageView.heightAnchor.constraint(equalToConstant: Constants.pinHeight),
-            
-            helpButton.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: Constants.helpTopOffset),
-            helpButton.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor, constant: -Constants.helpBottomOffset),
-            helpButton.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.helpTrailingOffset)
-        ])
-    }
-    
     // MARK: - Public
     
     public var style: Style? {
@@ -475,6 +408,75 @@ public final class SolarMainContentView: VisualEffectView {
     @objc
     private func helpButtonAction(_ sender: NSButton) {
         helpAction?(sender)
+    }
+}
+
+// MARK: - Setup
+
+extension SolarMainContentView {
+    private func setup() {
+        setupView()
+        setupConstraints()
+    }
+
+    private func setupView() {
+        addSubview(mapView)
+        addSubview(overlayView)
+        addSubview(pinImageView)
+        addSubview(helpButton)
+
+        overlayView.addSubview(locationView)
+        overlayView.addSubview(timelineView)
+        overlayView.addSubview(resultView)
+        overlayView.addSubview(lineView)
+    }
+    
+    private func setupConstraints() {
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+        timelineView.translatesAutoresizingMaskIntoConstraints = false
+        locationView.translatesAutoresizingMaskIntoConstraints = false
+        resultView.translatesAutoresizingMaskIntoConstraints = false
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        pinImageView.translatesAutoresizingMaskIntoConstraints = false
+        helpButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            mapView.topAnchor.constraint(equalTo: topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: overlayView.topAnchor),
+
+            overlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            lineView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor),
+            lineView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor),
+            lineView.topAnchor.constraint(equalTo: overlayView.topAnchor),
+            lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
+
+            locationView.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: Constants.locationTopOffset),
+            locationView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.locationLeadingOffset),
+            locationView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.locationTrailingOffset),
+            
+            timelineView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.solarTimelineLeadingOffset),
+            timelineView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.solarTimelineTrailingOffset),
+            timelineView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: Constants.solarTimelineTopOffset),
+            
+            resultView.topAnchor.constraint(equalTo: timelineView.bottomAnchor, constant: Constants.resultTopOffset),
+            resultView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.resultLeadingOffset),
+            resultView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.resultTrailingOffset),
+            
+            pinImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: Constants.pinCenterXOffset),
+            pinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: -Constants.pinCenterYOffset),
+            pinImageView.widthAnchor.constraint(equalToConstant: Constants.pinWidth),
+            pinImageView.heightAnchor.constraint(equalToConstant: Constants.pinHeight),
+            
+            helpButton.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: Constants.helpTopOffset),
+            helpButton.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor, constant: -Constants.helpBottomOffset),
+            helpButton.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.helpTrailingOffset)
+        ])
     }
 }
 
