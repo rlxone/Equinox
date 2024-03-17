@@ -128,11 +128,10 @@ final class WallpaperGalleryViewController: ViewController {
             altitudeText: Localization.Wallpaper.Gallery.altitude,
             altitudePlaceholder: Localization.Wallpaper.Gallery.altitudeValue,
             timeText: Localization.Wallpaper.Gallery.time,
-            timeTextPlaceholder: Localization.Wallpaper.Gallery.timeValue,
-            appearanceToopltipTitle: Localization.Wallpaper.Gallery.tooltipAppearanceTitle,
-            appearanceToopltipDescription: Localization.Wallpaper.Gallery.tooltipAppearanceDescription,
-            primaryToopltipTitle: Localization.Wallpaper.Gallery.tooltipPrimaryTitle,
-            primaryToopltipDescription: Localization.Wallpaper.Gallery.tooltipPrimaryDescription
+            appearanceTooltipTitle: Localization.Wallpaper.Gallery.tooltipAppearanceTitle,
+            appearanceTooltipDescription: Localization.Wallpaper.Gallery.tooltipAppearanceDescription,
+            primaryTooltipTitle: Localization.Wallpaper.Gallery.tooltipPrimaryTitle,
+            primaryTooltipDescription: Localization.Wallpaper.Gallery.tooltipPrimaryDescription
         )
     }
     

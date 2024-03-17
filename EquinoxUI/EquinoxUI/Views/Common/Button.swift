@@ -28,42 +28,16 @@
 
 import AppKit
 
-// MARK: - Protocols
-
-public protocol TooltipDelegate: AnyObject {
-    func tooltipTitle(_ sender: Any?) -> String
-    func tooltipDescription(_ sender: Any?) -> String
-    func tooltipViewForFooter(_ sender: Any?) -> NSView?
-    func tooltipWillDisplayView(_ sender: Any?, view: NSView)
-    func tooltipStyle(_ sender: Any?) -> TooltipWindow.Style?
-}
-
 // MARK: - Enums, Structs
 
 extension Button {
     public typealias Action = (Button) -> Void
-
-    private enum Constants {
-        static let presentDelayMilliseconds = 1_200
-    }
 }
 
 // MARK: - Class
 
-public class Button: NSButton {
-    private var trackingArea: NSTrackingArea?
-    private var tooltipWindow: TooltipWindow?
-    private var isTooltipVisible = false
-    private var isMouseEntered = false
-    private var operationQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        queue.qualityOfService = .userInitiated
-        return queue
-    }()
-    private var semaphore = DispatchSemaphore(value: 0)
-    
-    // MARK: - Initializer
+public class Button: NSButton, Tooltipable {
+    private var tooltipPresenter: TooltipPresenter?
     
     public init() {
         super.init(frame: .zero)
@@ -78,32 +52,7 @@ public class Button: NSButton {
     // MARK: - Life Cycle
 
     public override func updateTrackingAreas() {
-        guard let window = window else {
-            super.updateTrackingAreas()
-            return
-        }
-        operationQueue.cancelAllOperations()
-        if let area = trackingArea {
-            removeTrackingArea(area)
-        }
-        let area = NSTrackingArea(
-            rect: bounds,
-            options: [
-                .mouseEnteredAndExited,
-                .activeAlways
-            ],
-            owner: self,
-            userInfo: nil
-        )
-        trackingArea = area
-        addTrackingArea(area)
-        var mouseLocation = window.mouseLocationOutsideOfEventStream
-        mouseLocation = convert(mouseLocation, to: nil)
-        if bounds.contains(mouseLocation) {
-            mouseEntered()
-        } else if isTooltipVisible {
-            mouseExited()
-        }
+        tooltipPresenter?.updateTrackingAreas()
         super.updateTrackingAreas()
     }
 
@@ -111,23 +60,19 @@ public class Button: NSButton {
         if isEnabled {
             onAction?(self)
         }
-        isMouseEntered = false
-        operationQueue.cancelAllOperations()
-        hideTooltip()
+        tooltipPresenter?.mouseUp()
     }
 
     public override func mouseDown(with event: NSEvent) {
-        isMouseEntered = false
-        operationQueue.cancelAllOperations()
-        hideTooltip()
+        tooltipPresenter?.mouseDown()
     }
 
     public override func mouseEntered(with event: NSEvent) {
-        mouseEntered()
+        tooltipPresenter?.mouseEntered()
     }
 
     public override func mouseExited(with event: NSEvent) {
-        mouseExited()
+        tooltipPresenter?.mouseExited()
     }
 
     // MARK: - Setup
@@ -139,95 +84,27 @@ public class Button: NSButton {
 
     // MARK: - Public
 
-    public weak var tooltipDelegate: TooltipDelegate?
-
     public var onAction: Action?
-
-    // MARK: - Private
     
-    private func mouseEntered() {
-        isMouseEntered = true
-
-        operationQueue.cancelAllOperations()
-        let operation = BlockOperation()
-
-        operation.addExecutionBlock { [weak self, weak operation] in
-            guard let operation = operation, !operation.isCancelled else {
-                return
-            }
-            let deadline: DispatchTime = .now() + .milliseconds(Constants.presentDelayMilliseconds)
-            DispatchQueue.main.asyncAfter(deadline: deadline) { [weak self, weak operation] in
-                guard let operation = operation, !operation.isCancelled else {
-                    self?.semaphore.signal()
-                    return
-                }
-                self?.showTooltip()
-                self?.semaphore.signal()
-            }
-            self?.semaphore.wait()
+    // MARK: - Tooltipable
+    
+    public var showTooltip = false {
+        didSet {
+            tooltipPresenter = showTooltip ? TooltipPresenter(view: self) : nil
         }
-
-        operationQueue.addOperation(operation)
     }
     
-    private func mouseExited() {
-        isMouseEntered = false
-        operationQueue.cancelAllOperations()
-        hideTooltip()
+    public var tooltipPresentDelayMilliseconds: Int = 0 {
+        didSet {
+            tooltipPresenter?.presentDelayMilliseconds = tooltipPresentDelayMilliseconds
+        }
     }
     
-    private var centerRelativePoint: NSPoint? {
-        guard let window = window else {
-            return nil
+    public weak var tooltipDelegate: TooltipDelegate? {
+        didSet {
+            tooltipPresenter?.tooltipDelegate = tooltipDelegate
         }
-        let buttonFrame = convert(bounds, to: nil)
-        let offsetX = window.frame.origin.x + buttonFrame.origin.x + buttonFrame.width / 2
-        let offsetY = window.frame.origin.y + buttonFrame.origin.y + buttonFrame.height
-        return NSPoint(x: offsetX, y: offsetY)
     }
-
-    private func showTooltip() {
-        guard
-            let window = window,
-            isMouseEntered,
-            tooltipWindow == nil,
-            let centerPoint = centerRelativePoint,
-            let delegate = tooltipDelegate
-        else {
-            return
-        }
-
-        guard
-            let convertedPoint = window.contentView?.convert(window.mouseLocationOutsideOfEventStream, from: window.contentView),
-            let hitView = window.contentView?.hitTest(convertedPoint),
-            hitView == self
-        else {
-            return
-        }
-
-        let tooltipWindow = TooltipWindow()
-        tooltipWindow.style = delegate.tooltipStyle(self)
-        if let footerView = delegate.tooltipViewForFooter(self) {
-            delegate.tooltipWillDisplayView(self, view: footerView)
-            tooltipWindow.tooltipView?.footerView = footerView
-        }
-        tooltipWindow.tooltipView?.setText(
-            title: delegate.tooltipTitle(self),
-            description: delegate.tooltipDescription(self)
-        )
-        tooltipWindow.setWindowFrame(relativeTo: centerPoint)
-
-        window.addChildWindow(tooltipWindow, ordered: .above)
-        tooltipWindow.present(animated: true)
-
-        self.tooltipWindow = tooltipWindow
-
-        isTooltipVisible = true
-    }
-
-    private func hideTooltip() {
-        tooltipWindow?.close()
-        tooltipWindow = nil
-        isTooltipVisible = false
-    }
+    
+    public var tooltipIdentifier: String?
 }

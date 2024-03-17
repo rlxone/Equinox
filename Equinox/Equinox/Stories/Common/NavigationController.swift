@@ -33,20 +33,10 @@ import Foundation
 // MARK: - Enums, Structs
 
 extension NavigationController {
-    private class ControlState {
-        let isEnabled: Bool
-        
-        init(isEnabled: Bool) {
-            self.isEnabled = isEnabled
-        }
-    }
-    
     private enum Constants {
         static let defaultAnimationTimeInterval: TimeInterval = 0.35
         static let pushAnimationPreviousShiftAspect: CGFloat = 3
         static let pushAnimationPreviousAlpha: CGFloat = 0.3
-        static let presentScaleAnimationTimeInterval: TimeInterval = 0.25
-        static let dismissScaleAnimationTimeInterval: TimeInterval = 0.2
         static let dismissAnimationTimeInterval: TimeInterval = 0.25
     }
 }
@@ -55,7 +45,6 @@ extension NavigationController {
 
 class NavigationController: ViewController {
     private var rootViewController: ViewController
-    private var controlsState = NSMapTable<NSView, ControlState>(keyOptions: [.weakMemory])
     
     // MARK: - Initializer
     

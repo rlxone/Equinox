@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Dmitry Meduho
+// Copyright (c) 2024 Dmitry Meduho
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,20 +28,22 @@
 
 import AppKit
 
-public final class GalleryCollectionTooltipHandler {
+final class SolarTooltipHander {
     public var style: TooltipWindow.Style?
     
-    public var appearanceTooltipTitle: String?
-    public var appearanceTooltipDescription: String?
-    public var primaryTooltipTitle: String?
-    public var primaryTooltipDescription: String?
+    public var daylightSavingTimeTitle: String?
+    public var daylightSavingTimeDescription: String?
+    public var abbreviationTitle: String?
+    public var abbreviationDescription: String?
+    public var dragAndDropTitle: String?
+    public var dragAndDropDescription: String?
 }
 
 // MARK: - TooltipDelegate
 
-extension GalleryCollectionTooltipHandler: TooltipDelegate {
-    public func tooltipTitle(_ sender: NSView?) -> String {
-        guard
+extension SolarTooltipHander: TooltipDelegate {
+    func tooltipTitle(_ sender: NSView?) -> String {
+        guard 
             let tooltipable = sender as? Tooltipable,
             let identifier = tooltipable.tooltipIdentifier
         else {
@@ -51,10 +53,12 @@ extension GalleryCollectionTooltipHandler: TooltipDelegate {
         let title: String?
         
         switch identifier {
-        case GalleryContentView.TooltipIdentifier.appearance.rawValue:
-            title = appearanceTooltipTitle
-        case GalleryContentView.TooltipIdentifier.primary.rawValue:
-            title = primaryTooltipTitle
+        case SolarMainContentView.TooltipIdentifier.daylightSavingTime.rawValue:
+            title = daylightSavingTimeTitle
+        case SolarMainContentView.TooltipIdentifier.abbreviation.rawValue:
+            title = abbreviationTitle
+        case SolarMainContentView.TooltipIdentifier.dragAndDrop.rawValue:
+            title = dragAndDropTitle
         default:
             title = String()
         }
@@ -62,7 +66,7 @@ extension GalleryCollectionTooltipHandler: TooltipDelegate {
         return title ?? String()
     }
     
-    public func tooltipDescription(_ sender: NSView?) -> String {
+    func tooltipDescription(_ sender: NSView?) -> String {
         guard
             let tooltipable = sender as? Tooltipable,
             let identifier = tooltipable.tooltipIdentifier
@@ -73,10 +77,12 @@ extension GalleryCollectionTooltipHandler: TooltipDelegate {
         let description: String?
         
         switch identifier {
-        case GalleryContentView.TooltipIdentifier.appearance.rawValue:
-            description = appearanceTooltipDescription
-        case GalleryContentView.TooltipIdentifier.primary.rawValue:
-            description = primaryTooltipDescription
+        case SolarMainContentView.TooltipIdentifier.daylightSavingTime.rawValue:
+            description = daylightSavingTimeDescription
+        case SolarMainContentView.TooltipIdentifier.abbreviation.rawValue:
+            description = abbreviationDescription
+        case SolarMainContentView.TooltipIdentifier.dragAndDrop.rawValue:
+            description = dragAndDropDescription
         default:
             description = String()
         }
@@ -84,14 +90,14 @@ extension GalleryCollectionTooltipHandler: TooltipDelegate {
         return description ?? String()
     }
 
-    public func tooltipViewForFooter(_ sender: NSView?) -> NSView? {
+    func tooltipViewForFooter(_ sender: NSView?) -> NSView? {
         return nil
     }
 
-    public func tooltipWillDisplayView(_ sender: NSView?, view: NSView) {
+    func tooltipWillDisplayView(_ sender: NSView?, view: NSView) {
     }
     
-    public func tooltipStyle(_ sender: NSView?) -> TooltipWindow.Style? {
+    func tooltipStyle(_ sender: NSView?) -> TooltipWindow.Style? {
         return style
     }
 }

@@ -50,7 +50,6 @@ extension SolarMainViewController {
     private enum Constants {
         static let solarDragType = NSPasteboard.PasteboardType("com.equinox.drag.solar")
         static let zoomFactor: Double = 0.005
-        static let defaultTimeProgress: Float = 0.25
         static let resultPrecision = 2
         static let coordinatePrecision = 3
         static let hours = 24
@@ -63,13 +62,10 @@ final class SolarMainViewController: ViewController {
     private let solarService: SolarService
     
     private lazy var locationManager = CLLocationManager()
-    private lazy var timezoneController = SolarTimezoneController()
+    private lazy var dateAndTimeController = SolarDateAndTimeController()
     
     private var latestUserLocation: CLLocation?
     private var latestCoordinate = LocationCoordinate(latitude: nil, longitude: nil)
-    private var latestDate = Date()
-    private var latestTimeProgress = Constants.defaultTimeProgress
-    private lazy var latestTimezoneContainer = timezoneController.currentContainer
     
     private var shouldIgnoreCoordinateChanges = false
 
@@ -104,6 +100,7 @@ final class SolarMainViewController: ViewController {
         setupView()
         setupActions()
         setupChartData()
+        setupTimezoneData()
     }
     
     private func setupView() {
@@ -118,12 +115,14 @@ final class SolarMainViewController: ViewController {
         contentView.azimuthTitle = Localization.Solar.Main.azimuth
         contentView.fieldPlaceholder = Localization.Solar.Main.value
         contentView.timelineHeaderTitle = Localization.Solar.Main.sunTimeline
-        contentView.timezoneHeaderTitle = Localization.Solar.Main.timezone
-        contentView.date = latestDate
-        contentView.timezoneData = SubMenuPopUpButton.MenuData(
-            items: timezoneController.timezones,
-            selectedItem: latestTimezoneContainer.name
-        )
+        contentView.date = dateAndTimeController.selectedDate
+        contentView.daylightSavingTimeTooltipTitle = Localization.Solar.Main.daylightSavingTimeTooltipTitle
+        contentView.daylightSavingTimeTooltipDescription = Localization.Solar.Main.daylightSavingTimeTooltipDescription
+        contentView.abbreviationTooltipTitle = Localization.Solar.Main.abbreviationTooltipTitle
+        contentView.abbreviationTooltipDescription = Localization.Solar.Main.abbreviationTooltipDescription
+        contentView.timezoneDaylightSavingTimeTitle = Localization.Solar.Main.daylightSavingTimeTitle
+        contentView.dragAndDropTooltipTitle = Localization.Solar.Main.dragAndDropTooltipTitle
+        contentView.dragAndDropTooltipDescription = Localization.Solar.Main.dragAndDropTooltipDescription
     }
     
     private func setupActions() {
@@ -162,12 +161,22 @@ final class SolarMainViewController: ViewController {
     
     private func setupChartData() {
         reloadChartData()
-        contentView.chartProgress = CGFloat(latestTimeProgress)
+        contentView.chartProgress = CGFloat(dateAndTimeController.timeOffset)
+    }
+    
+    private func setupTimezoneData() {
+        contentView.timezoneData = SubMenuPopUpButton.MenuData(
+            headerTitle: Localization.Solar.Main.timezone,
+            items: dateAndTimeController.continentTimezones.mapValues { $0.map { convertToMenuItem($0) } },
+            selectedItem: convertToMenuItem(dateAndTimeController.selectedTimezone)
+        )
+        contentView.timezoneAbbreviationTitle = dateAndTimeController.abbreviation
+        contentView.isTimezoneDaylightSavingTimeVisible = dateAndTimeController.isDaylightSavingTime
     }
     
     // MARK: - Public
 
-    public weak var delegate: SolarMainViewControllerDelegatae?
+    weak var delegate: SolarMainViewControllerDelegatae?
 
     // MARK: - Private
     
@@ -196,7 +205,9 @@ final class SolarMainViewController: ViewController {
     }
 
     private func dateChangeAction(_ date: Date) {
-        latestDate = date
+        dateAndTimeController.setDate(date: date)
+        setupTimezoneData()
+        contentView.timezoneAbbreviationTitle = dateAndTimeController.abbreviation
         makeResult(needUpdateCoordinateFields: true, needRoundCoordinateValues: true)
     }
     
@@ -204,8 +215,10 @@ final class SolarMainViewController: ViewController {
         delegate?.solarViewControllerShouldNotify(Localization.Solar.Main.copied)
     }
     
-    private func timezoneChangeAction(_ timezone: String) {
-        latestTimezoneContainer = timezoneController.findContainer(name: timezone)
+    private func timezoneChangeAction(_ menuItem: SubMenuPopUpButton.MenuData.Item) {
+        dateAndTimeController.setTimezone(identifier: menuItem.identifier)
+        contentView.timezoneAbbreviationTitle = dateAndTimeController.abbreviation
+        contentView.isTimezoneDaylightSavingTimeVisible = dateAndTimeController.isDaylightSavingTime
         makeResult(needUpdateCoordinateFields: false, needRoundCoordinateValues: false)
     }
     
@@ -276,7 +289,7 @@ final class SolarMainViewController: ViewController {
             return
         }
         let location = CLLocation(latitude: latitude, longitude: longitude)
-        contentView.setMapLocation(location, animated: false)
+        contentView.setMapLocation(location, animated: animated)
     }
 
     private func isLatitudeValid(_ latitude: Double) -> Bool {
@@ -295,25 +308,24 @@ final class SolarMainViewController: ViewController {
     }
     
     private func calculateSolarCoordinates(from coordinate: CLLocationCoordinate2D) -> (azimuth: Double, altitude: Double)? {
-        let latestTimezone = latestTimezoneContainer.timezone
-        let timezone: Int = convertToHours(seconds: latestTimezone.secondsFromGMT())
-        let daySavingTime = latestTimezone.isDaylightSavingTime(for: latestDate) ? 1 : 0
-        let mergedDate = timezoneController.merge(date: latestDate, timeOffset: latestTimeProgress)
+        let date = dateAndTimeController.selectedDate
+        let secondsFromGMT = dateAndTimeController.secondsFromGMT
+        let timezoneOffset = dateAndTimeController.convertToHours(seconds: secondsFromGMT)
         
         guard
             let azimuth = try? solarService.azimuth(
                 latitude: coordinate.latitude,
                 longitude: coordinate.longitude,
-                date: mergedDate ?? Date(),
-                timezone: timezone,
-                dlstime: daySavingTime
+                date: date,
+                timezone: timezoneOffset,
+                dlstime: 0
             ),
             let altitude = try? solarService.altitude(
                 latitude: coordinate.latitude,
                 longitude: coordinate.longitude,
-                date: mergedDate ?? Date(),
-                timezone: timezone,
-                dlstime: daySavingTime
+                date: date,
+                timezone: timezoneOffset,
+                dlstime: 0
             )
         else {
             return nil
@@ -325,8 +337,13 @@ final class SolarMainViewController: ViewController {
     private func reloadChartData() {
         let calendar = getCurrentCalendar
         
-        let startTime = calendar.startOfDay(for: latestDate)
+        let startTime = calendar.startOfDay(for: dateAndTimeController.selectedDate)
         var chartData: [InteractiveLineChart.ChartData] = []
+        
+        let latitude = Double(latestCoordinate.latitude ?? String(0))
+        let longitude = Double(latestCoordinate.longitude ?? String(0))
+        let secondsFromGMT = dateAndTimeController.secondsFromGMT
+        let timezone = dateAndTimeController.convertToHours(seconds: secondsFromGMT)
         
         for index in 0...Constants.hours {
             guard let time = calendar.date(byAdding: .hour, value: index, to: startTime) else {
@@ -338,16 +355,10 @@ final class SolarMainViewController: ViewController {
             
             if !hour.isMultiple(of: 2) {
                 let progress: Float = Float(index) / Float(Constants.hours)
-                timeString = timezoneController.compactTime(from: progress)
+                timeString = dateAndTimeController.compactTime(timeOffset: progress)
             } else {
                 timeString = String()
             }
-            
-            let latitude = Double(latestCoordinate.latitude ?? String(0))
-            let longitude = Double(latestCoordinate.longitude ?? String(0))
-            let latestTimezone = latestTimezoneContainer.timezone
-            let timezone = convertToHours(seconds: latestTimezone.secondsFromGMT())
-            let daySavingTime = latestTimezone.isDaylightSavingTime(for: latestDate) ? 1 : 0
             
             do {
                 let elevation = try solarService.altitude(
@@ -355,7 +366,7 @@ final class SolarMainViewController: ViewController {
                     longitude: longitude ?? 0,
                     date: time,
                     timezone: timezone,
-                    dlstime: daySavingTime
+                    dlstime: 0
                 )
                 chartData.append(.init(bottomText: timeString, value: CGFloat(elevation)))
             } catch {
@@ -366,8 +377,12 @@ final class SolarMainViewController: ViewController {
         contentView.chartData = chartData
     }
     
-    private func convertToHours(seconds: Int) -> Int {
-        return seconds / 60 / 60
+    private func convertToMenuItem(_ timezone: SolarDateAndTimeController.ExtendedTimezone) -> SubMenuPopUpButton.MenuData.Item {
+        return SubMenuPopUpButton.MenuData.Item(
+            identifier: timezone.underlyingTimezone.identifier,
+            title: timezone.city,
+            supplementaryTitle: dateAndTimeController.abbreviation(identifier: timezone.underlyingTimezone.identifier)
+        )
     }
 }
 
@@ -431,11 +446,11 @@ extension SolarMainViewController: NSDraggingSource {
 
 extension SolarMainViewController: InteractiveLineChartDelegate {
     func progressDidChange(progress: CGFloat) {
-        latestTimeProgress = Float(progress)
+        dateAndTimeController.setTime(timeOffset: Float(progress))
         makeResult(needUpdateCoordinateFields: false, needRoundCoordinateValues: false)
     }
     
     func progressTitle(progress: CGFloat) -> String {
-        return timezoneController.compactTime(from: Float(progress))
+        return dateAndTimeController.compactTime(timeOffset: Float(progress))
     }
 }

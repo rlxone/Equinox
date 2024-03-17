@@ -120,7 +120,6 @@ extension GalleryCollectionButtonsView.Style {
             primaryStyle: .init(
                 backgroundColor: Color.wallpaperPrimaryBackground,
                 alternativeColor: Color.controlAccent,
-                highlightColor: Color.controlAccent,
                 borderColor: Color.wallpaperButtonBorder
             )
         )

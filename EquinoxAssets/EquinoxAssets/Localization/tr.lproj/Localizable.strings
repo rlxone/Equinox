@@ -60,7 +60,6 @@
 "wallpaper.gallery.altitude" = "Rakım:";
 "wallpaper.gallery.altitude.value" = "Değer";
 "wallpaper.gallery.time" = "Zaman:";
-"wallpaper.gallery.time.value" = "Değer";
 "wallpaper.gallery.tooltip.appearance.title" = "Görünüş";
 "wallpaper.gallery.tooltip.appearance.description" = "Grafik modu. Yalnızca bir görüntü açık veya koyu bir görünüm olabilir.";
 "wallpaper.gallery.tooltip.primary.title" = "Birincil";
@@ -117,8 +116,15 @@
 "solar.main.value" = "Değer";
 "solar.main.copied" = "Kopyalandı";
 "solar.main.sun.timeline" = "Güneş zaman çizelgesi";
-"solar.main.timezone" = "Saat dilimi:";
+"solar.main.timezone" = "Zaman dilimleri:";
 "solar.main.location.error" = "Hoppala! Konumunuz alınırken bir şeyler ters gitti. Lütfen tekrar deneyin";
+"solar.main.dst.title" = "Yaz Saati";
+"solar.main.dst.tooltip.title" = "Yaz Saati";
+"solar.main.dst.tooltip.description" = "Saatler ilkbaharda bir saat ileri alınır ve sonbaharda bir saat geri alınır";
+"solar.main.abbreviation.tooltip.title" = "GMT ofseti";
+"solar.main.abbreviation.tooltip.description" = "Greenwich Ortalama Zamanı (GMT) ile belirli bir konumdaki yerel zaman arasındaki zaman farkı, saat ve dakika olarak ifade edilir";
+"solar.main.drag.and.drop.tooltip.title" = "Sürükle ve Bırak";
+"solar.main.drag.and.drop.tooltip.description" = "Sonucu sürükleyip bırakın veya kopyalayın";
 
 "tip.tips" = "İPUÇLARI";
 "tip.started" = "Başlayın";

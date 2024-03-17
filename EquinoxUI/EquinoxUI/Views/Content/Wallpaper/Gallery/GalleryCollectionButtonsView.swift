@@ -80,14 +80,27 @@ extension GalleryCollectionButtonsView {
         static let cornerRadius: CGFloat = 4
         static let borderWidth: CGFloat = 1
         static let buttonSize: CGFloat = 24
+        static let tooltipPresentDelayMilliseconds = 1_000
     }
 }
 
 // MARK: - Class
 
 public final class GalleryCollectionButtonsView: View {
-    private lazy var dynamicButton = DynamicButton()
-    private lazy var primaryButton = PrimaryButton()
+    private lazy var dynamicButton: DynamicButton = {
+        let button = DynamicButton()
+        button.showTooltip = true
+        button.tooltipPresentDelayMilliseconds = Constants.tooltipPresentDelayMilliseconds
+        button.tooltipIdentifier = GalleryContentView.TooltipIdentifier.appearance.rawValue
+        return button
+    }()
+    private lazy var primaryButton: PrimaryButton = {
+        let button = PrimaryButton()
+        button.showTooltip = true
+        button.tooltipPresentDelayMilliseconds = Constants.tooltipPresentDelayMilliseconds
+        button.tooltipIdentifier = GalleryContentView.TooltipIdentifier.primary.rawValue
+        return button
+    }()
 
     private lazy var visualEffectView: VisualEffectView = {
         let visualEffectView = VisualEffectView(material: .toolTip, blendingMode: .withinWindow)
@@ -218,7 +231,7 @@ public final class GalleryCollectionButtonsView: View {
         }
     }
 
-    public weak var tooltipDelegate: TooltipDelegate? {
+    public weak override var tooltipDelegate: TooltipDelegate? {
         didSet {
             dynamicButton.tooltipDelegate = tooltipDelegate
             primaryButton.tooltipDelegate = tooltipDelegate

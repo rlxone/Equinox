@@ -39,14 +39,12 @@ public protocol WallpaperService {
 public final class WallpaperServiceImpl: WallpaperService {
     private let metadataCore: MetadataCore
     private let imageCore: ImageCore
-    private let fileCore: FileCore
     
     // MARK: - Initializer
     
-    public init(metadataCore: MetadataCore, imageCore: ImageCore, fileCore: FileCore) {
+    public init(metadataCore: MetadataCore, imageCore: ImageCore) {
         self.metadataCore = metadataCore
         self.imageCore = imageCore
-        self.fileCore = fileCore
     }
     
     // MARK: - Public

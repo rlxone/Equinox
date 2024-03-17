@@ -47,12 +47,6 @@ final class MenuItem: NSMenuItem {
         self.target = target
     }
     
-    init(title string: String, submenuItems: [NSMenuItem]) {
-        super.init(title: string, action: nil, keyEquivalent: String())
-        self.submenu = NSMenu()
-        self.submenu?.items = submenuItems
-    }
-    
     required init(coder: NSCoder) {
         super.init(coder: coder)
     }

@@ -31,15 +31,48 @@ import AppKit
 // MARK: - Enums, Structs
 
 extension SubMenuPopUpButton {
-    public typealias ChangeAction = (String) -> Void
+    public typealias ChangeAction = (MenuData.Item) -> Void
     
     public struct MenuData {
-        var items: [String: [String]]
-        var selectedItem: String
+        public struct Item: Equatable {
+            public var identifier: String
+            public var title: String
+            public var supplementaryTitle: String?
+            
+            public init(identifier: String, title: String, supplementaryTitle: String? = nil) {
+                self.identifier = identifier
+                self.title = title
+                self.supplementaryTitle = supplementaryTitle
+            }
+        }
         
-        public init(items: [String: [String]], selectedItem: String) {
+        var headerTitle: String
+        var items: [String: [Item]]
+        var selectedItem: Item
+        
+        public init(headerTitle: String, items: [String: [Item]], selectedItem: Item) {
+            self.headerTitle = headerTitle
             self.items = items
             self.selectedItem = selectedItem
+        }
+    }
+    
+    public struct Style {
+        let titleFont: NSFont
+        let titleColor: NSColor
+        let supplementaryTitleFont: NSFont?
+        let supplementaryTitleColor: NSColor?
+        
+        public init(
+            titleFont: NSFont,
+            titleColor: NSColor,
+            supplementaryTitleFont: NSFont? = nil,
+            supplementaryTitleColor: NSColor? = nil
+        ) {
+            self.titleFont = titleFont
+            self.titleColor = titleColor
+            self.supplementaryTitleFont = supplementaryTitleFont
+            self.supplementaryTitleColor = supplementaryTitleColor
         }
     }
 }
@@ -69,6 +102,8 @@ public final class SubMenuPopUpButton: NSPopUpButton {
     
     // MARK: - Public
     
+    public var style: Style?
+    
     public var data: MenuData? {
         didSet {
             reloadData()
@@ -85,20 +120,25 @@ public final class SubMenuPopUpButton: NSPopUpButton {
         }
         
         let menu = NSMenu()
-        setAlternativeTitle(data.selectedItem)
+        setAlternativeTitle(data.selectedItem.title)
+        addSectionHeader(menu: menu, title: data.headerTitle)
+        
         let sortedItems = data.items.sorted { $0.key < $1.key }
         
         for item in sortedItems {
             let itemMenu = NSMenu()
-            let menuItem = NSMenuItem(title: item.key, action: nil, keyEquivalent: String())
-            let sortedSubItems = item.value.sorted { $0 < $1 }
+            let menuItem = NSMenuItem(title: String(), action: nil, keyEquivalent: String())
+            menuItem.attributedTitle = formatTitleAttributedString(title: item.key)
+            let sortedSubItems = item.value.sorted { $0.title < $1.title }
             
             for subItem in sortedSubItems {
                 let subMenuItem = NSMenuItem(
-                    title: subItem,
+                    title: subItem.title,
                     action: #selector(menuItemAction(_:)),
                     keyEquivalent: String()
                 )
+                subMenuItem.attributedTitle = formatAlternativeTitleAttributedString(item: subItem)
+                subMenuItem.representedObject = subItem
                 if subItem == data.selectedItem {
                     subMenuItem.state = .on
                     menuItem.state = .on
@@ -113,6 +153,17 @@ public final class SubMenuPopUpButton: NSPopUpButton {
         self.menu = menu
     }
     
+    func addSectionHeader(menu: NSMenu, title: String) {
+        if #available(macOS 14.0, *) {
+            menu.addItem(.sectionHeader(title: title))
+        } else {
+            menu.autoenablesItems = false
+            let headerItem = NSMenuItem(title: title, action: nil, keyEquivalent: String())
+            headerItem.isEnabled = false
+            menu.addItem(headerItem)
+        }
+    }
+    
     private func setAlternativeTitle(_ title: String) {
         guard let cell = cell as? SubMenuPopUpButtonCell else {
             return
@@ -122,16 +173,57 @@ public final class SubMenuPopUpButton: NSPopUpButton {
     
     @objc
     private func menuItemAction(_ item: NSMenuItem) {
-        setAlternativeTitle(item.title)
-        data?.selectedItem = item.title
-        changeAction?(item.title)
+        guard let menuItem = item.representedObject as? MenuData.Item else {
+            return
+        }
+
+        setAlternativeTitle(menuItem.title)
+        data?.selectedItem = menuItem
+        changeAction?(menuItem)
     }
-}
-
-// MARK: - NSMenuDelegate
-
-extension SubMenuPopUpButton: NSMenuDelegate {
-    public func menuWillOpen(_ menu: NSMenu) {
-        reloadData()
+    
+    private func formatTitleAttributedString(title: String) -> NSAttributedString {
+        guard let style = style else {
+            return NSAttributedString()
+        }
+        
+        return NSAttributedString(
+            string: title,
+            attributes: [
+                .foregroundColor: style.titleColor,
+                .font: style.titleFont
+            ]
+        )
+    }
+    
+    private func formatAlternativeTitleAttributedString(item: MenuData.Item) -> NSAttributedString {
+        guard let style = style else {
+            return NSAttributedString()
+        }
+        
+        let attributedTitle = NSMutableAttributedString()
+        let title = NSAttributedString(
+            string: item.title + " ",
+            attributes: [
+                .foregroundColor: style.titleColor,
+                .font: style.titleFont
+            ]
+        )
+        attributedTitle.append(title)
+        if
+            let supplementaryTitle = item.supplementaryTitle,
+            let supplementaryTitleFont = style.supplementaryTitleFont,
+            let supplementaryTitleColor = style.supplementaryTitleColor
+        {
+            let supplementaryString = NSAttributedString(
+                string: supplementaryTitle,
+                attributes: [
+                    .foregroundColor: supplementaryTitleColor,
+                    .font: supplementaryTitleFont
+                ]
+            )
+            attributedTitle.append(supplementaryString)
+        }
+        return attributedTitle
     }
 }

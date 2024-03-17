@@ -37,7 +37,6 @@ protocol ImageProvider {
         resizeMode: ImageResizeMode,
         completion: @escaping (NSImage?) -> Void
     )
-    func removeCachedImage(_ url: URL)
     func validateImages(_ urls: [URL]) -> [URL]
     func getImageMetadata(for url: URL) -> ExifMetadata?
 }
@@ -111,10 +110,6 @@ final class ImageProviderImpl: ImageProvider {
                 completion(resizedImage)
             }
         }
-    }
-
-    func removeCachedImage(_ url: URL) {
-        imageService.removeCachedImage(url: url)
     }
 
     func validateImages(_ urls: [URL]) -> [URL] {

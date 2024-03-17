@@ -48,18 +48,24 @@ extension SolarTimelineView {
         let ownStyle: OwnStyle
         let interactiveLineChartStyle: InteractiveLineChart.Style
         let titleStyle: StyledLabel.Style
-        let timelineStyle: StyledLabel.Style
+        let timezoneAbbreviationStyle: RoundedTitleView.Style
+        let timezoneDaylightSavingTimeStyle: RoundedTitleView.Style
+        let timezoneMenuStyle: SubMenuPopUpButton.Style
         
         public init(
             ownStyle: SolarTimelineView.Style.OwnStyle,
             interactiveLineChartStyle: InteractiveLineChart.Style,
             titleStyle: StyledLabel.Style,
-            timelineStyle: StyledLabel.Style
+            timezoneAbbreviationStyle: RoundedTitleView.Style,
+            timezoneDaylightSavingTimeStyle: RoundedTitleView.Style,
+            timezoneMenuStyle: SubMenuPopUpButton.Style
         ) {
             self.ownStyle = ownStyle
             self.interactiveLineChartStyle = interactiveLineChartStyle
             self.titleStyle = titleStyle
-            self.timelineStyle = timelineStyle
+            self.timezoneAbbreviationStyle = timezoneAbbreviationStyle
+            self.timezoneDaylightSavingTimeStyle = timezoneDaylightSavingTimeStyle
+            self.timezoneMenuStyle = timezoneMenuStyle
         }
     }
     
@@ -73,9 +79,10 @@ extension SolarTimelineView {
         static let chartHeightOffset: CGFloat = 148
         static let timezoneButtonTopOffset: CGFloat = 16
         static let timezoneButtonTrailingOffset: CGFloat = 25
-        static let timezoneButtonWidth: CGFloat = 150
-        static let timezoneLabelTrailingOffset: CGFloat = 8
+        static let timezoneButtonWidth: CGFloat = 125
+        static let timezoneStackViewSpacing: CGFloat = 8
         static let chartInsets = NSEdgeInsets(top: 14, left: 25, bottom: 14, right: 25)
+        static let tooltipPresentDelayMilliseconds = 300
     }
 }
 
@@ -88,8 +95,29 @@ public final class SolarTimelineView: View {
         return chart
     }()
     private lazy var titleLabel = StyledLabel()
-    private lazy var timezoneLabel = StyledLabel()
+    private lazy var timezoneStackView: StackView = {
+        let stackView = StackView()
+        stackView.orientation = .horizontal
+        stackView.alignment = .centerY
+        stackView.distribution = .fill
+        stackView.spacing = Constants.timezoneStackViewSpacing
+        return stackView
+    }()
     private lazy var timezoneButton = SubMenuPopUpButton()
+    private lazy var timezoneAbbreviationTitleView: RoundedTitleView = {
+        let view = RoundedTitleView()
+        view.showTooltip = true
+        view.tooltipPresentDelayMilliseconds = Constants.tooltipPresentDelayMilliseconds
+        view.tooltipIdentifier = SolarMainContentView.TooltipIdentifier.abbreviation.rawValue
+        return view
+    }()
+    private lazy var timezoneDaylightSavingTimeTitleView: RoundedTitleView = {
+        let view = RoundedTitleView()
+        view.showTooltip = true
+        view.tooltipPresentDelayMilliseconds = Constants.tooltipPresentDelayMilliseconds
+        view.tooltipIdentifier = SolarMainContentView.TooltipIdentifier.daylightSavingTime.rawValue
+        return view
+    }()
     
     // MARK: - Initializer
     
@@ -111,16 +139,18 @@ public final class SolarTimelineView: View {
         layer?.borderWidth = Constants.contentBorderWidth
         
         addSubview(titleLabel)
-        addSubview(timezoneLabel)
         addSubview(interactiveLineChart)
-        addSubview(timezoneButton)
+        addSubview(timezoneStackView)
+        
+        timezoneStackView.addArrangedSubview(timezoneDaylightSavingTimeTitleView)
+        timezoneStackView.addArrangedSubview(timezoneAbbreviationTitleView)
+        timezoneStackView.addArrangedSubview(timezoneButton)
     }
     
     private func setupConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        timezoneLabel.translatesAutoresizingMaskIntoConstraints = false
         interactiveLineChart.translatesAutoresizingMaskIntoConstraints = false
-        timezoneButton.translatesAutoresizingMaskIntoConstraints = false
+        timezoneStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.titleLeadingOffset),
@@ -132,12 +162,9 @@ public final class SolarTimelineView: View {
             interactiveLineChart.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.chartBottomOffset),
             interactiveLineChart.heightAnchor.constraint(equalToConstant: Constants.chartHeightOffset),
             
-            timezoneButton.topAnchor.constraint(equalTo: topAnchor, constant: Constants.timezoneButtonTopOffset),
-            timezoneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.timezoneButtonTrailingOffset),
-            timezoneButton.widthAnchor.constraint(equalToConstant: Constants.timezoneButtonWidth),
-            
-            timezoneLabel.trailingAnchor.constraint(equalTo: timezoneButton.leadingAnchor, constant: -Constants.timezoneLabelTrailingOffset),
-            timezoneLabel.centerYAnchor.constraint(equalTo: timezoneButton.centerYAnchor)
+            timezoneStackView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.timezoneButtonTopOffset),
+            timezoneStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.timezoneButtonTrailingOffset),
+            timezoneButton.widthAnchor.constraint(equalToConstant: Constants.timezoneButtonWidth)
         ])
     }
     
@@ -175,15 +202,30 @@ public final class SolarTimelineView: View {
         }
     }
     
-    public var timezoneHeaderTitle: String? {
-        didSet {
-            timezoneLabel.stringValue = timezoneHeaderTitle ?? String()
-        }
-    }
-    
     public var timezoneData: SubMenuPopUpButton.MenuData? {
         didSet {
             timezoneButton.data = timezoneData
+        }
+    }
+    
+    public var timezoneAbbreviationTitle: String? {
+        didSet {
+            timezoneAbbreviationTitleView.title = timezoneAbbreviationTitle
+        }
+    }
+    
+    public var timezoneDaylightSavingTimeTitle: String? {
+        didSet {
+            timezoneDaylightSavingTimeTitleView.title = timezoneDaylightSavingTimeTitle
+        }
+    }
+    
+    public var isTimezoneDaylightSavingTimeVisible: Bool {
+        get {
+            return !timezoneDaylightSavingTimeTitleView.isHidden
+        }
+        set {
+            timezoneDaylightSavingTimeTitleView.isHidden = !newValue
         }
     }
     
@@ -193,12 +235,21 @@ public final class SolarTimelineView: View {
         }
     }
     
+    public override weak var tooltipDelegate: TooltipDelegate? {
+        didSet {
+            timezoneAbbreviationTitleView.tooltipDelegate = tooltipDelegate
+            timezoneDaylightSavingTimeTitleView.tooltipDelegate = tooltipDelegate
+        }
+    }
+    
     // MARK: - Private
     
     private func stylize() {
         interactiveLineChart.style = style?.interactiveLineChartStyle
         titleLabel.style = style?.titleStyle
-        timezoneLabel.style = style?.timelineStyle
+        timezoneAbbreviationTitleView.style = style?.timezoneAbbreviationStyle
+        timezoneDaylightSavingTimeTitleView.style = style?.timezoneDaylightSavingTimeStyle
+        timezoneButton.style = style?.timezoneMenuStyle
         
         layer?.backgroundColor = style?.ownStyle.contentBackgroundColor.cgColor
         layer?.borderColor = style?.ownStyle.contentBackgroundBorderColor.cgColor

@@ -60,7 +60,6 @@
 "wallpaper.gallery.altitude" = "Altitude:";
 "wallpaper.gallery.altitude.value" = "Value";
 "wallpaper.gallery.time" = "Time:";
-"wallpaper.gallery.time.value" = "Value";
 "wallpaper.gallery.tooltip.appearance.title" = "Appearance";
 "wallpaper.gallery.tooltip.appearance.description" = "Graphic mode. Only one image can be a light or dark appearance.";
 "wallpaper.gallery.tooltip.primary.title" = "Primary";
@@ -117,8 +116,15 @@
 "solar.main.value" = "Value";
 "solar.main.copied" = "Copied";
 "solar.main.sun.timeline" = "Sun timeline";
-"solar.main.timezone" = "Time zone:";
+"solar.main.timezone" = "Time zones";
 "solar.main.location.error" = "Oops! Something went wrong while getting your location. Please try again";
+"solar.main.dst.title" = "DST";
+"solar.main.dst.tooltip.title" = "Daylight Saving Time";
+"solar.main.dst.tooltip.description" = "Clocks go forward one hour in the spring and back one hour in the fall";
+"solar.main.abbreviation.tooltip.title" = "GMT offset";
+"solar.main.abbreviation.tooltip.description" = "The difference in time between Greenwich Mean Time (GMT) and the local time at a specific location, expressed in hours and minutes";
+"solar.main.drag.and.drop.tooltip.title" = "Drag and drop";
+"solar.main.drag.and.drop.tooltip.description" = "Drag and drop or copy the result over your image";
 
 "tip.tips" = "TIPS";
 "tip.started" = "Get started";

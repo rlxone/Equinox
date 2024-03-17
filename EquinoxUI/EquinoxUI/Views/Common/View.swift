@@ -28,7 +28,9 @@
 
 import AppKit
 
-public class View: NSView {
+public class View: NSView, Tooltipable {
+    private var tooltipPresenter: TooltipPresenter?
+    
     public init() {
         super.init(frame: .zero)
     }
@@ -40,19 +42,56 @@ public class View: NSView {
     
     // MARK: - Life Cycle
     
+    public override func updateTrackingAreas() {
+        tooltipPresenter?.updateTrackingAreas()
+        super.updateTrackingAreas()
+    }
+    
     public override func mouseDown(with event: NSEvent) {
         if isUserInteractionsEnabled {
             super.mouseDown(with: event)
         }
+        tooltipPresenter?.mouseDown()
     }
     
     public override func mouseUp(with event: NSEvent) {
         if isUserInteractionsEnabled {
             super.mouseUp(with: event)
         }
+        tooltipPresenter?.mouseDown()
+    }
+
+    public override func mouseEntered(with event: NSEvent) {
+        tooltipPresenter?.mouseEntered()
+    }
+
+    public override func mouseExited(with event: NSEvent) {
+        tooltipPresenter?.mouseExited()
     }
     
     // MARK: - Public
 
     public var isUserInteractionsEnabled = true
+    
+    // MARK: - Tooltipable
+    
+    public var showTooltip = false {
+        didSet {
+            tooltipPresenter = showTooltip ? TooltipPresenter(view: self) : nil
+        }
+    }
+    
+    public var tooltipPresentDelayMilliseconds: Int = 0 {
+        didSet {
+            tooltipPresenter?.presentDelayMilliseconds = tooltipPresentDelayMilliseconds
+        }
+    }
+    
+    public weak var tooltipDelegate: TooltipDelegate? {
+        didSet {
+            tooltipPresenter?.tooltipDelegate = tooltipDelegate
+        }
+    }
+    
+    public var tooltipIdentifier: String?
 }

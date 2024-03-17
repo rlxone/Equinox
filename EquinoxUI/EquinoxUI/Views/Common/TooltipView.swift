@@ -63,7 +63,6 @@ extension TooltipView {
         static let stackViewWidth: CGFloat = 250
         static let stackViewVerticalPadding: CGFloat = 12
         static let footerWidth: CGFloat = 300
-        static let stackViewFooter: CGFloat = 12
     }
 }
 

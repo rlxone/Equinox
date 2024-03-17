@@ -379,27 +379,27 @@ public final class GalleryCollectionContentView: View {
         }
     }
     
-    public var appearanceToopltipTitle: String? {
+    public var appearanceTooltipTitle: String? {
         didSet {
-            tooltipHandler.appearanceToopltipTitle = appearanceToopltipTitle
+            tooltipHandler.appearanceTooltipTitle = appearanceTooltipTitle
         }
     }
     
-    public var appearanceToopltipDescription: String? {
+    public var appearanceTooltipDescription: String? {
         didSet {
-            tooltipHandler.appearanceToopltipDescription = appearanceToopltipDescription
+            tooltipHandler.appearanceTooltipDescription = appearanceTooltipDescription
         }
     }
     
-    public var primaryToopltipTitle: String? {
+    public var primaryTooltipTitle: String? {
         didSet {
-            tooltipHandler.primaryToopltipTitle = primaryToopltipTitle
+            tooltipHandler.primaryTooltipTitle = primaryTooltipTitle
         }
     }
     
-    public var primaryToopltipDescription: String? {
+    public var primaryTooltipDescription: String? {
         didSet {
-            tooltipHandler.primaryToopltipDescription = primaryToopltipDescription
+            tooltipHandler.primaryTooltipDescription = primaryTooltipDescription
         }
     }
     
