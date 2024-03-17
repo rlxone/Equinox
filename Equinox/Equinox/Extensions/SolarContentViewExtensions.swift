@@ -138,7 +138,8 @@ extension SolarMainContentView.Style {
             ),
             lineStyle: .init(
                 color: Color.separator
-            )
+            ),
+            tooltipStyle: .default
         )
     }
 }

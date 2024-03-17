@@ -119,6 +119,13 @@
 "solar.main.sun.timeline" = "太阳时间轴";
 "solar.main.timezone" = "时区";
 "solar.main.location.error" = "哎呀！在获取你的位置的时候出错了。请再试一次";
+"solar.main.dst.title" = "夏令时";
+"solar.main.dst.tooltip.title" = "夏令时";
+"solar.main.dst.tooltip.description" = "时钟在春季往前调整一小时，在秋季往后调整一小时";
+"solar.main.abbreviation.tooltip.title" = "GMT 偏移";
+"solar.main.abbreviation.tooltip.description" = "格林尼治标准时间 (GMT) 和特定位置的本地时间之间的时间差，以小时和分钟表示";
+"solar.main.drag.and.drop.tooltip.title" = "拖放";
+"solar.main.drag.and.drop.tooltip.description" = "拖放或将结果复制到您的图像上";
 
 "tip.tips" = "提示";
 "tip.started" = "开始";

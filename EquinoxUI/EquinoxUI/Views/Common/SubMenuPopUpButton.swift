@@ -120,7 +120,6 @@ public final class SubMenuPopUpButton: NSPopUpButton {
         }
         
         let menu = NSMenu()
-        menu.delegate = self
         setAlternativeTitle(data.selectedItem.title)
         addSectionHeader(menu: menu, title: data.headerTitle)
         
@@ -226,13 +225,5 @@ public final class SubMenuPopUpButton: NSPopUpButton {
             attributedTitle.append(supplementaryString)
         }
         return attributedTitle
-    }
-}
-
-// MARK: - NSMenuDelegate
-
-extension SubMenuPopUpButton: NSMenuDelegate {
-    public func menuWillOpen(_ menu: NSMenu) {
-        reloadData()
     }
 }

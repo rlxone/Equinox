@@ -207,6 +207,13 @@ public enum Localization {
             public static let sunTimeline = Localization.localizedString(key: "solar.main.sun.timeline")
             public static let timezone = Localization.localizedString(key: "solar.main.timezone")
             public static let locationError = Localization.localizedString(key: "solar.main.location.error")
+            public static let daylightSavingTimeTitle = Localization.localizedString(key: "solar.main.dst.title")
+            public static let daylightSavingTimeTooltipTitle = Localization.localizedString(key: "solar.main.dst.tooltip.title")
+            public static let daylightSavingTimeTooltipDescription = Localization.localizedString(key: "solar.main.dst.tooltip.description")
+            public static let abbreviationTooltipTitle = Localization.localizedString(key: "solar.main.abbreviation.tooltip.title")
+            public static let abbreviationTooltipDescription = Localization.localizedString(key: "solar.main.abbreviation.tooltip.description")
+            public static let dragAndDropTooltipTitle = Localization.localizedString(key: "solar.main.drag.and.drop.tooltip.title")
+            public static let dragAndDropTooltipDescription = Localization.localizedString(key: "solar.main.drag.and.drop.tooltip.description")
         }
     }
     

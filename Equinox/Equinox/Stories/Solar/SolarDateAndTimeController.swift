@@ -54,12 +54,7 @@ final class SolarDateAndTimeController {
         updateCache()
     }
     
-    // MARK: - Setup
-    
-    private func setup() {
-        
-        updateCache()
-    }
+    // MARK: - Cache
     
     private func updateCache() {
         cachedTimezones = [:]
@@ -102,7 +97,7 @@ final class SolarDateAndTimeController {
     var abbreviation: String {
         return getGMTHours(
             from: currentTimezone.underlyingTimezone,
-            date: currentDate
+            date: endOfDay
         )
     }
     
@@ -117,8 +112,16 @@ final class SolarDateAndTimeController {
     func abbreviation(identifier: String) -> String {
         return getGMTHours(
             from: timezone(identifier: identifier).underlyingTimezone,
-            date: currentDate
+            date: endOfDay
         )
+    }
+    
+    var isDaylighSavingTime: Bool {
+        return currentTimezone.underlyingTimezone.isDaylightSavingTime(for: endOfDay)
+    }
+    
+    var secondsFromGMT: Int {
+        currentTimezone.underlyingTimezone.secondsFromGMT(for: endOfDay)
     }
     
     func convertToHours(seconds: Int) -> Int {
@@ -138,6 +141,13 @@ final class SolarDateAndTimeController {
     }
     
     // MARK: - Private
+    
+    private var endOfDay: Date {
+        let calendar = getCurrentCalendar
+        let endOfDayTimeInterval = TimeInterval(Constants.oneDaySeconds - 1)
+        let endOfDay = calendar.startOfDay(for: currentDate).addingTimeInterval(endOfDayTimeInterval)
+        return endOfDay
+    }
     
     private func makeTimezone(from timezone: TimeZone) -> ExtendedTimezone {
         var continent = String()
@@ -168,16 +178,19 @@ final class SolarDateAndTimeController {
     private func merge(date: Date, seconds: Int) -> Date? {
         let calendar = getCurrentCalendar
         
+        let startTime = calendar.startOfDay(for: date)
+        let timeDate = calendar.date(byAdding: .second, value: seconds, to: startTime) ?? date
+        
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
-        let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(seconds)
+        let timeComponents = calendar.dateComponents([.hour, .minute, .second], from: timeDate)
 
         var mergedComponents = DateComponents()
         mergedComponents.year = dateComponents.year
         mergedComponents.month = dateComponents.month
         mergedComponents.day = dateComponents.day
-        mergedComponents.hour = hours
-        mergedComponents.minute = minutes
-        mergedComponents.second = seconds
+        mergedComponents.hour = timeComponents.hour
+        mergedComponents.minute = timeComponents.minute
+        mergedComponents.second = timeComponents.second
         
         return calendar.date(from: mergedComponents)
     }
@@ -187,7 +200,7 @@ final class SolarDateAndTimeController {
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
         formatter.numberStyle = .decimal
-        formatter.decimalSeparator = ":"
+        formatter.decimalSeparator = "."
         
         let hours = Float(timezone.secondsFromGMT(for: date)) / 60 / 60
         let formattedHours = formatter.string(from: NSNumber(value: hours)) ?? "0"
@@ -200,9 +213,5 @@ final class SolarDateAndTimeController {
         }
         
         return string
-    }
-    
-    func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
-        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
 }

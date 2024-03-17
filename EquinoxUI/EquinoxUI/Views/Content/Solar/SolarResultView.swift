@@ -91,6 +91,7 @@ extension SolarResultView {
         static let altitudeTextFieldLeadingOffset: CGFloat = 20
         static let altitudeTextFieldTrailingOffset: CGFloat = 20
         static let altitudeTextFieldHeight: CGFloat = 40
+        static let tooltipPresentDelayMilliseconds = 100
     }
 }
 
@@ -98,7 +99,13 @@ extension SolarResultView {
 
 public final class SolarResultView: View {
     private lazy var resultHeaderLabel = StyledLabel()
-    private lazy var dragImageView = ImageView()
+    private lazy var dragImageView: ImageView = {
+        let imageView = ImageView()
+        imageView.showTooltip = true
+        imageView.tooltipPresentDelayMilliseconds = Constants.tooltipPresentDelayMilliseconds
+        imageView.tooltipIdentifier = SolarMainContentView.TooltipIdentifier.dragAndDrop.rawValue
+        return imageView
+    }()
 
     private lazy var altitudeTextField: RoundedFloatingTextField = {
         let view = RoundedFloatingTextField()
@@ -245,6 +252,12 @@ public final class SolarResultView: View {
         didSet {
             azimuthTextField.copyAction = copyAction
             altitudeTextField.copyAction = copyAction
+        }
+    }
+    
+    public override weak var tooltipDelegate: TooltipDelegate? {
+        didSet {
+            dragImageView.tooltipDelegate = tooltipDelegate
         }
     }
 

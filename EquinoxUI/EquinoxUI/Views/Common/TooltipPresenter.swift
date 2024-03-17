@@ -30,12 +30,19 @@ import AppKit
 
 // MARK: - Protocols
 
+public protocol Tooltipable: AnyObject {
+    var tooltipIdentifier: String? { get set }
+    var showTooltip: Bool { get set }
+    var tooltipPresentDelayMilliseconds: Int { get set }
+    var tooltipDelegate: TooltipDelegate? { get set }
+}
+
 public protocol TooltipDelegate: AnyObject {
-    func tooltipTitle(_ sender: Any?) -> String
-    func tooltipDescription(_ sender: Any?) -> String
-    func tooltipViewForFooter(_ sender: Any?) -> NSView?
-    func tooltipWillDisplayView(_ sender: Any?, view: NSView)
-    func tooltipStyle(_ sender: Any?) -> TooltipWindow.Style?
+    func tooltipTitle(_ sender: NSView?) -> String
+    func tooltipDescription(_ sender: NSView?) -> String
+    func tooltipViewForFooter(_ sender: NSView?) -> NSView?
+    func tooltipWillDisplayView(_ sender: NSView?, view: NSView)
+    func tooltipStyle(_ sender: NSView?) -> TooltipWindow.Style?
 }
 
 // MARK: - Enums, Structs
@@ -64,6 +71,16 @@ final class TooltipPresenter {
     
     init(view: NSView) {
         self.view = view
+        let trackingArea = NSTrackingArea(
+            rect: view.bounds,
+            options: [
+                .mouseEnteredAndExited,
+                .activeAlways
+            ],
+            owner: view,
+            userInfo: nil
+        )
+        view.addTrackingArea(trackingArea)
     }
     
     // MARK: - Life Cycle
@@ -115,19 +132,19 @@ final class TooltipPresenter {
         let operation = BlockOperation()
 
         operation.addExecutionBlock { [weak self, weak operation] in
-            guard let operation = operation, !operation.isCancelled else {
+            guard let self = self, let operation = operation, !operation.isCancelled else {
                 return
             }
-            let deadline: DispatchTime = .now() + .milliseconds(Constants.presentDelayMilliseconds)
-            DispatchQueue.main.asyncAfter(deadline: deadline) { [weak self, weak operation] in
+            let deadline: DispatchTime = .now() + .milliseconds(self.presentDelayMilliseconds)
+            DispatchQueue.main.asyncAfter(deadline: deadline) { [weak operation] in
                 guard let operation = operation, !operation.isCancelled else {
-                    self?.semaphore.signal()
+                    self.semaphore.signal()
                     return
                 }
-                self?.showTooltip()
-                self?.semaphore.signal()
+                self.showTooltip()
+                self.semaphore.signal()
             }
-            self?.semaphore.wait()
+            self.semaphore.wait()
         }
 
         operationQueue.addOperation(operation)
@@ -143,7 +160,7 @@ final class TooltipPresenter {
     
     weak var tooltipDelegate: TooltipDelegate?
     
-    var presentDelayMilliseconds: Int = Constants.presentDelayMilliseconds
+    var presentDelayMilliseconds = 0
     
     // MARK: - Private
     
@@ -151,9 +168,9 @@ final class TooltipPresenter {
         guard let view = view, let window = view.window else {
             return nil
         }
-        let buttonFrame = view.convert(view.bounds, to: nil)
-        let offsetX = window.frame.origin.x + buttonFrame.origin.x + buttonFrame.width / 2
-        let offsetY = window.frame.origin.y + buttonFrame.origin.y + buttonFrame.height
+        let viewFrame = view.convert(view.bounds, to: nil)
+        let offsetX = window.frame.origin.x + viewFrame.origin.x + viewFrame.width / 2
+        let offsetY = window.frame.origin.y + viewFrame.origin.y + viewFrame.height
         return NSPoint(x: offsetX, y: offsetY)
     }
 
@@ -172,7 +189,7 @@ final class TooltipPresenter {
         guard
             let convertedPoint = window.contentView?.convert(window.mouseLocationOutsideOfEventStream, from: window.contentView),
             let hitView = window.contentView?.hitTest(convertedPoint),
-            hitView == view
+            hitView.isDescendant(of: view)
         else {
             return
         }

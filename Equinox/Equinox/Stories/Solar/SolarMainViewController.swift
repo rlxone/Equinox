@@ -116,6 +116,13 @@ final class SolarMainViewController: ViewController {
         contentView.fieldPlaceholder = Localization.Solar.Main.value
         contentView.timelineHeaderTitle = Localization.Solar.Main.sunTimeline
         contentView.date = dateAndTimeController.selectedDate
+        contentView.daylightSavingTimeTooltipTitle = Localization.Solar.Main.daylightSavingTimeTooltipTitle
+        contentView.daylightSavingTimeTooltipDescription = Localization.Solar.Main.daylightSavingTimeTooltipDescription
+        contentView.abbreviationTooltipTitle = Localization.Solar.Main.abbreviationTooltipTitle
+        contentView.abbreviationTooltipDescription = Localization.Solar.Main.abbreviationTooltipDescription
+        contentView.timezoneDaylighSavingTimeTitle = Localization.Solar.Main.daylightSavingTimeTitle
+        contentView.dragAndDropTooltipTitle = Localization.Solar.Main.dragAndDropTooltipTitle
+        contentView.dragAndDropTooltipDescription = Localization.Solar.Main.dragAndDropTooltipDescription
     }
     
     private func setupActions() {
@@ -201,6 +208,7 @@ final class SolarMainViewController: ViewController {
     private func timezoneChangeAction(_ menuItem: SubMenuPopUpButton.MenuData.Item) {
         dateAndTimeController.setTimezone(identifier: menuItem.identifier)
         contentView.timezoneAbbreviationTitle = dateAndTimeController.abbreviation
+        contentView.isTimezoneDaylightSavingTimeVisible = dateAndTimeController.isDaylighSavingTime
         makeResult(needUpdateCoordinateFields: false, needRoundCoordinateValues: false)
     }
     
@@ -291,11 +299,8 @@ final class SolarMainViewController: ViewController {
     
     private func calculateSolarCoordinates(from coordinate: CLLocationCoordinate2D) -> (azimuth: Double, altitude: Double)? {
         let date = dateAndTimeController.selectedDate
-        let timezone = dateAndTimeController.selectedTimezone.underlyingTimezone
-        let secondsFromGMT = timezone.secondsFromGMT(for: date)
+        let secondsFromGMT = dateAndTimeController.secondsFromGMT
         let timezoneOffset = dateAndTimeController.convertToHours(seconds: secondsFromGMT)
-        
-        print(date, timezone)
         
         guard
             let azimuth = try? solarService.azimuth(
@@ -327,8 +332,7 @@ final class SolarMainViewController: ViewController {
         
         let latitude = Double(latestCoordinate.latitude ?? String(0))
         let longitude = Double(latestCoordinate.longitude ?? String(0))
-        let selectedTimezone = dateAndTimeController.selectedTimezone.underlyingTimezone
-        let secondsFromGMT = selectedTimezone.secondsFromGMT(for: dateAndTimeController.selectedDate)
+        let secondsFromGMT = dateAndTimeController.secondsFromGMT
         let timezone = dateAndTimeController.convertToHours(seconds: secondsFromGMT)
         
         for index in 0...Constants.hours {
@@ -370,6 +374,7 @@ final class SolarMainViewController: ViewController {
             selectedItem: convertToMenuItem(dateAndTimeController.selectedTimezone)
         )
         contentView.timezoneAbbreviationTitle = dateAndTimeController.abbreviation
+        contentView.isTimezoneDaylightSavingTimeVisible = dateAndTimeController.isDaylighSavingTime
     }
     
     private func convertToMenuItem(_ timezone: SolarDateAndTimeController.ExtendedTimezone) -> SubMenuPopUpButton.MenuData.Item {

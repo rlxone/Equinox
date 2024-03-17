@@ -67,7 +67,6 @@ public final class PrimaryButton: Button {
     // MARK: - Setup
 
     private func setup() {
-        showTooltip = true
         wantsLayer = true
         layer?.borderWidth = Constants.borderWidth
         layer?.cornerRadius = Constants.cornerRadius

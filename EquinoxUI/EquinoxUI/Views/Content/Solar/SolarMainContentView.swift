@@ -49,19 +49,22 @@ extension SolarMainContentView {
         let timelineStyle: SolarTimelineView.Style
         let resultStyle: SolarResultView.Style
         let lineStyle: LineView.Style
+        let tooltipStyle: TooltipWindow.Style
 
         public init(
             ownStyle: OwnStyle,
             locationStyle: SolarLocationView.Style,
             timelineStyle: SolarTimelineView.Style,
             resultStyle: SolarResultView.Style,
-            lineStyle: LineView.Style
+            lineStyle: LineView.Style,
+            tooltipStyle: TooltipWindow.Style
         ) {
             self.ownStyle = ownStyle
             self.locationStyle = locationStyle
             self.timelineStyle = timelineStyle
             self.resultStyle = resultStyle
             self.lineStyle = lineStyle
+            self.tooltipStyle = tooltipStyle
         }
     }
 
@@ -89,6 +92,12 @@ extension SolarMainContentView {
         static let helpTrailingOffset: CGFloat = 20
         static let helpBottomOffset: CGFloat = 20
     }
+    
+    enum TooltipIdentifier: String {
+        case daylightSavingTime
+        case abbreviation
+        case dragAndDrop
+    }
 }
 
 // MARK: - Class
@@ -96,9 +105,18 @@ extension SolarMainContentView {
 public final class SolarMainContentView: VisualEffectView {
     private lazy var overlayView = View()
     private lazy var locationView = SolarLocationView()
-    private lazy var resultView = SolarResultView()
-    private lazy var timelineView = SolarTimelineView()
+    private lazy var resultView: SolarResultView = {
+        let view = SolarResultView()
+        view.tooltipDelegate = tooltipHandler
+        return view
+    }()
+    private lazy var timelineView: SolarTimelineView = {
+        let view = SolarTimelineView()
+        view.tooltipDelegate = tooltipHandler
+        return view
+    }()
     private lazy var lineView = LineView()
+    private lazy var tooltipHandler = SolarTooltipHander()
     
     private lazy var helpButton: NSButton = {
         let button = NSButton()
@@ -125,6 +143,9 @@ public final class SolarMainContentView: VisualEffectView {
         mapView.showsPointsOfInterest = true
         if #available(macOS 11, *) {
             mapView.showsPitchControl = true
+        }
+        if #available(macOS 14, *) {
+            mapView.pitchButtonVisibility = .visible
         }
         mapView.delegate = self
         return mapView
@@ -258,6 +279,15 @@ public final class SolarMainContentView: VisualEffectView {
     public var timezoneAbbreviationTitle: String? {
         didSet {
             timelineView.timezoneAbbreviationTitle = timezoneAbbreviationTitle
+        }
+    }
+    
+    public var isTimezoneDaylightSavingTimeVisible: Bool {
+        get {
+            return timelineView.isTimezoneDaylighSavingTimeVisible
+        }
+        set {
+            timelineView.isTimezoneDaylighSavingTimeVisible = newValue
         }
     }
     
@@ -400,14 +430,40 @@ public final class SolarMainContentView: VisualEffectView {
     
     public var helpAction: HelpAction?
     
-    public func setMapLocation(_ location: CLLocation, animated: Bool) {
-        mapView.setCenter(location.coordinate, animated: animated)
+    public var daylightSavingTimeTooltipTitle: String? {
+        didSet {
+            tooltipHandler.daylightSavingTimeTitle = daylightSavingTimeTooltipTitle
+        }
     }
     
-    public func setMapZoomFactor(_ factor: Double, animated: Bool) {
-        let span = MKCoordinateSpan(latitudeDelta: factor, longitudeDelta: factor)
-        let region = MKCoordinateRegion(center: mapView.centerCoordinate, span: span)
-        mapView.setRegion(region, animated: animated)
+    public var daylightSavingTimeTooltipDescription: String? {
+        didSet {
+            tooltipHandler.daylightSavingTimeDescription = daylightSavingTimeTooltipDescription
+        }
+    }
+    
+    public var abbreviationTooltipTitle: String? {
+        didSet {
+            tooltipHandler.abbreviationTitle = abbreviationTooltipTitle
+        }
+    }
+    
+    public var abbreviationTooltipDescription: String? {
+        didSet {
+            tooltipHandler.abbreviationDescription = abbreviationTooltipDescription
+        }
+    }
+    
+    public var dragAndDropTooltipTitle: String? {
+        didSet {
+            tooltipHandler.dragAndDropTitle = dragAndDropTooltipTitle
+        }
+    }
+    
+    public var dragAndDropTooltipDescription: String? {
+        didSet {
+            tooltipHandler.dragAndDropDescription = dragAndDropTooltipDescription
+        }
     }
 
     // MARK: - Private
@@ -418,6 +474,7 @@ public final class SolarMainContentView: VisualEffectView {
         resultView.style = style?.resultStyle
         lineView.style = style?.lineStyle
         pinImageView.image = style?.ownStyle.pinImage
+        tooltipHandler.style = style?.tooltipStyle
     }
     
     @objc
@@ -426,9 +483,19 @@ public final class SolarMainContentView: VisualEffectView {
     }
 }
 
-// MARK: - MKMapViewDelegate
+// MARK: - MKMapView, MKMapViewDelegate
 
 extension SolarMainContentView: MKMapViewDelegate {
+    public func setMapLocation(_ location: CLLocation, animated: Bool) {
+        mapView.setCenter(location.coordinate, animated: animated)
+    }
+    
+    public func setMapZoomFactor(_ factor: Double, animated: Bool) {
+        let span = MKCoordinateSpan(latitudeDelta: factor, longitudeDelta: factor)
+        let region = MKCoordinateRegion(center: mapView.centerCoordinate, span: span)
+        mapView.setRegion(region, animated: animated)
+    }
+    
     public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         coordinateChangeAction?(mapView.centerCoordinate)
     }

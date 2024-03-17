@@ -40,7 +40,7 @@ extension Button {
 
 // MARK: - Class
 
-public class Button: NSButton {
+public class Button: NSButton, Tooltipable {
     private var tooltipPresenter: TooltipPresenter?
     
     public init() {
@@ -88,17 +88,27 @@ public class Button: NSButton {
 
     // MARK: - Public
 
-    public weak var tooltipDelegate: TooltipDelegate? {
-        didSet {
-            tooltipPresenter?.tooltipDelegate = tooltipDelegate
-        }
-    }
-
     public var onAction: Action?
+    
+    // MARK: - Tooltipable
     
     public var showTooltip = false {
         didSet {
             tooltipPresenter = showTooltip ? TooltipPresenter(view: self) : nil
         }
     }
+    
+    public var tooltipPresentDelayMilliseconds: Int = 0 {
+        didSet {
+            tooltipPresenter?.presentDelayMilliseconds = tooltipPresentDelayMilliseconds
+        }
+    }
+    
+    public weak var tooltipDelegate: TooltipDelegate? {
+        didSet {
+            tooltipPresenter?.tooltipDelegate = tooltipDelegate
+        }
+    }
+    
+    public var tooltipIdentifier: String?
 }

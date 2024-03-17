@@ -28,7 +28,7 @@
 
 import AppKit
 
-public class View: NSView {
+public class View: NSView, Tooltipable {
     private var tooltipPresenter: TooltipPresenter?
     
     public init() {
@@ -73,9 +73,25 @@ public class View: NSView {
 
     public var isUserInteractionsEnabled = true
     
+    // MARK: - Tooltipable
+    
     public var showTooltip = false {
         didSet {
             tooltipPresenter = showTooltip ? TooltipPresenter(view: self) : nil
         }
     }
+    
+    public var tooltipPresentDelayMilliseconds: Int = 0 {
+        didSet {
+            tooltipPresenter?.presentDelayMilliseconds = tooltipPresentDelayMilliseconds
+        }
+    }
+    
+    public weak var tooltipDelegate: TooltipDelegate? {
+        didSet {
+            tooltipPresenter?.tooltipDelegate = tooltipDelegate
+        }
+    }
+    
+    public var tooltipIdentifier: String?
 }

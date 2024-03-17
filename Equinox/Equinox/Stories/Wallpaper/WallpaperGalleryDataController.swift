@@ -31,6 +31,12 @@ import EquinoxAssets
 import EquinoxCore
 import EquinoxUI
 
+extension WallpaperGalleryDataController {
+    private enum Constants {
+        static let oneDaySeconds = 24 * 60 * 60
+    }
+}
+
 final class WallpaperGalleryDataController {
     private let type: WallpaperType
     private let fileService: FileService
@@ -161,7 +167,8 @@ final class WallpaperGalleryDataController {
             return nil
         }
         let timezone = metadata.timezone ?? .current
-        let timezoneHours = timezone.secondsFromGMT(for: date) / 60 / 60
+        let endOfDate = endOfDay(date: date)
+        let timezoneHours = timezone.secondsFromGMT(for: endOfDate) / 60 / 60
         guard
             let solarAzimuth = try? solarService.azimuth(
                 latitude: latitude,
@@ -184,7 +191,7 @@ final class WallpaperGalleryDataController {
         let altitude = roundDouble(solarAltitude, places: 3)
         return (azimuth, altitude)
     }
-    
+
     private func calculateFilesize(_ url: URL) -> UInt64? {
         do {
             let filesize = try fileService.getFilesize(url)
@@ -193,7 +200,7 @@ final class WallpaperGalleryDataController {
             return nil
         }
     }
-    
+
     private func getFormattedFilesize(filesize: UInt64) -> String {
         return ByteCountFormatter.string(fromByteCount: Int64(filesize), countStyle: .file)
     }
@@ -205,5 +212,12 @@ final class WallpaperGalleryDataController {
     private func roundDouble(_ value: Double, places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return round(value * divisor) / divisor
+    }
+    
+    private func endOfDay(date: Date) -> Date {
+        let calendar = getCurrentCalendar
+        let endOfDayTimeInterval = TimeInterval(Constants.oneDaySeconds - 1)
+        let endOfDay = calendar.startOfDay(for: date).addingTimeInterval(endOfDayTimeInterval)
+        return endOfDay
     }
 }

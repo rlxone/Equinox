@@ -63,6 +63,7 @@
 		F38FB108269FAD42007F8362 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FB107269FAD42007F8362 /* Button.swift */; };
 		F395A4B42BA2718B0013AFCE /* RoundedTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F395A4B32BA2718B0013AFCE /* RoundedTitleView.swift */; };
 		F395A4B62BA649590013AFCE /* TooltipPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F395A4B52BA649590013AFCE /* TooltipPresenter.swift */; };
+		F395A4B82BA742FD0013AFCE /* SolarTooltipHander.swift in Sources */ = {isa = PBXBuildFile; fileRef = F395A4B72BA742FD0013AFCE /* SolarTooltipHander.swift */; };
 		F399A5032686319B00ED45EF /* DragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399A5022686319B00ED45EF /* DragView.swift */; };
 		F399A505268645DC00ED45EF /* DashedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399A504268645DC00ED45EF /* DashedView.swift */; };
 		F399A50B2686781900ED45EF /* GalleryCollectionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399A50A2686781900ED45EF /* GalleryCollectionImageView.swift */; };
@@ -150,6 +151,7 @@
 		F38FB107269FAD42007F8362 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F395A4B32BA2718B0013AFCE /* RoundedTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTitleView.swift; sourceTree = "<group>"; };
 		F395A4B52BA649590013AFCE /* TooltipPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipPresenter.swift; sourceTree = "<group>"; };
+		F395A4B72BA742FD0013AFCE /* SolarTooltipHander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarTooltipHander.swift; sourceTree = "<group>"; };
 		F399A5022686319B00ED45EF /* DragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragView.swift; sourceTree = "<group>"; };
 		F399A504268645DC00ED45EF /* DashedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedView.swift; sourceTree = "<group>"; };
 		F399A50A2686781900ED45EF /* GalleryCollectionImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionImageView.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				F3EC93AC26C9D51E0032FA39 /* SolarLocationView.swift */,
 				F3FEC7E727278DFE00C8F439 /* SolarTimelineView.swift */,
 				F3EC93AE26C9D53E0032FA39 /* SolarResultView.swift */,
+				F395A4B72BA742FD0013AFCE /* SolarTooltipHander.swift */,
 			);
 			path = Solar;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F395A4B82BA742FD0013AFCE /* SolarTooltipHander.swift in Sources */,
 				F329B3CE26F1453F00A31035 /* WelcomeContentView.swift in Sources */,
 				F356C8A9272B318900E915C6 /* InteractiveLineChartCurve.swift in Sources */,
 				F34E06B9267ABB6E00F004EF /* TooltipWindow.swift in Sources */,

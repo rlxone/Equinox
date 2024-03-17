@@ -119,6 +119,13 @@
 "solar.main.sun.timeline" = "Chronologie soleil";
 "solar.main.timezone" = "Fuseau horaires";
 "solar.main.location.error" = "Oups ! Une eurreur s'est produite durant la géolocalisation. Merci de réessayer.";
+"solar.main.dst.title" = "HAE";
+"solar.main.dst.tooltip.title" = "Heure d'été";
+"solar.main.dst.tooltip.description" = "Les horloges avancent d'une heure au printemps et reculent d'une heure à l'automne";
+"solar.main.abbreviation.tooltip.title" = "Décalage GMT";
+"solar.main.abbreviation.tooltip.description" = "La différence de temps entre l'heure moyenne de Greenwich (GMT) et l'heure locale à un emplacement spécifique, exprimée en heures et en minutes";
+"solar.main.drag.and.drop.tooltip.title" = "Glisser-déposer";
+"solar.main.drag.and.drop.tooltip.description" = "Glissez-déposez ou copiez le résultat sur votre image";
 
 "tip.tips" = "ASTUCES";
 "tip.started" = "Commencer";

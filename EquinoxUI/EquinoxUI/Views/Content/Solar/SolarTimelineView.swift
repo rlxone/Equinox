@@ -80,8 +80,9 @@ extension SolarTimelineView {
         static let timezoneButtonTopOffset: CGFloat = 16
         static let timezoneButtonTrailingOffset: CGFloat = 25
         static let timezoneButtonWidth: CGFloat = 125
-        static let timezoneLabelTrailingOffset: CGFloat = 8
+        static let timezoneStackViewSpacing: CGFloat = 8
         static let chartInsets = NSEdgeInsets(top: 14, left: 25, bottom: 14, right: 25)
+        static let tooltipPresentDelayMilliseconds = 300
     }
 }
 
@@ -99,12 +100,24 @@ public final class SolarTimelineView: View {
         stackView.orientation = .horizontal
         stackView.alignment = .centerY
         stackView.distribution = .fill
-        stackView.spacing = 8
+        stackView.spacing = Constants.timezoneStackViewSpacing
         return stackView
     }()
     private lazy var timezoneButton = SubMenuPopUpButton()
-    private lazy var timezoneAbbreviationTitleView = RoundedTitleView()
-    private lazy var timezoneDaylightSavingTimeTitleView = RoundedTitleView()
+    private lazy var timezoneAbbreviationTitleView: RoundedTitleView = {
+        let view = RoundedTitleView()
+        view.showTooltip = true
+        view.tooltipPresentDelayMilliseconds = Constants.tooltipPresentDelayMilliseconds
+        view.tooltipIdentifier = SolarMainContentView.TooltipIdentifier.abbreviation.rawValue
+        return view
+    }()
+    private lazy var timezoneDaylightSavingTimeTitleView: RoundedTitleView = {
+        let view = RoundedTitleView()
+        view.showTooltip = true
+        view.tooltipPresentDelayMilliseconds = Constants.tooltipPresentDelayMilliseconds
+        view.tooltipIdentifier = SolarMainContentView.TooltipIdentifier.daylightSavingTime.rawValue
+        return view
+    }()
     
     // MARK: - Initializer
     
@@ -128,8 +141,6 @@ public final class SolarTimelineView: View {
         addSubview(titleLabel)
         addSubview(interactiveLineChart)
         addSubview(timezoneStackView)
-        
-        timezoneDaylightSavingTimeTitleView.title = "DST"
         
         timezoneStackView.addArrangedSubview(timezoneDaylightSavingTimeTitleView)
         timezoneStackView.addArrangedSubview(timezoneAbbreviationTitleView)
@@ -209,9 +220,25 @@ public final class SolarTimelineView: View {
         }
     }
     
+    public var isTimezoneDaylighSavingTimeVisible: Bool {
+        get {
+            return !timezoneDaylightSavingTimeTitleView.isHidden
+        }
+        set {
+            timezoneDaylightSavingTimeTitleView.isHidden = !newValue
+        }
+    }
+    
     public var timezoneChangeAction: SubMenuPopUpButton.ChangeAction? {
         didSet {
             timezoneButton.changeAction = timezoneChangeAction
+        }
+    }
+    
+    public override weak var tooltipDelegate: TooltipDelegate? {
+        didSet {
+            timezoneAbbreviationTitleView.tooltipDelegate = tooltipDelegate
+            timezoneDaylightSavingTimeTitleView.tooltipDelegate = tooltipDelegate
         }
     }
     

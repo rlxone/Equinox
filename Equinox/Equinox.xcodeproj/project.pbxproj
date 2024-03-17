@@ -23,7 +23,7 @@
 		F32F3778273AD25400A52762 /* WorkspaceRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F3777273AD25400A52762 /* WorkspaceRunner.swift */; };
 		F337578A26BF533200310E72 /* SolarMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337578926BF533200310E72 /* SolarMainViewController.swift */; };
 		F34E06D5267B86A700F004EF /* WallpaperMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06D4267B86A700F004EF /* WallpaperMainViewController.swift */; };
-		F356C8B1272F78B500E915C6 /* SolarTimezoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8B0272F78B500E915C6 /* SolarTimezoneController.swift */; };
+		F356C8B1272F78B500E915C6 /* SolarDateAndTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8B0272F78B500E915C6 /* SolarDateAndTimeController.swift */; };
 		F356C8B32734B88D00E915C6 /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8B22734B88D00E915C6 /* TipViewController.swift */; };
 		F356C8B92734C1FA00E915C6 /* TipContentViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8B82734C1FA00E915C6 /* TipContentViewExtensions.swift */; };
 		F36AD5DA26E515C800314A02 /* WallpaperWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD5D926E515C800314A02 /* WallpaperWindowController.swift */; };
@@ -100,7 +100,7 @@
 		F32F3777273AD25400A52762 /* WorkspaceRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceRunner.swift; sourceTree = "<group>"; };
 		F337578926BF533200310E72 /* SolarMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarMainViewController.swift; sourceTree = "<group>"; };
 		F34E06D4267B86A700F004EF /* WallpaperMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperMainViewController.swift; sourceTree = "<group>"; };
-		F356C8B0272F78B500E915C6 /* SolarTimezoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarTimezoneController.swift; sourceTree = "<group>"; };
+		F356C8B0272F78B500E915C6 /* SolarDateAndTimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarDateAndTimeController.swift; sourceTree = "<group>"; };
 		F356C8B22734B88D00E915C6 /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
 		F356C8B82734C1FA00E915C6 /* TipContentViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipContentViewExtensions.swift; sourceTree = "<group>"; };
 		F36AD5D926E515C800314A02 /* WallpaperWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperWindowController.swift; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 				F36AD5DD26E51BCF00314A02 /* SolarWindowController.swift */,
 				F36AD5DF26E528C800314A02 /* SolarRootViewController.swift */,
 				F337578926BF533200310E72 /* SolarMainViewController.swift */,
-				F356C8B0272F78B500E915C6 /* SolarTimezoneController.swift */,
+				F356C8B0272F78B500E915C6 /* SolarDateAndTimeController.swift */,
 			);
 			path = Solar;
 			sourceTree = "<group>";
@@ -446,7 +446,7 @@
 				F3837F0F2698FFA400671585 /* main.swift in Sources */,
 				F3E7B06026AE17E500287C60 /* AppearanceContentViewExtensions.swift in Sources */,
 				F329B3DE26F6838500A31035 /* WallpaperGalleryDataController.swift in Sources */,
-				F356C8B1272F78B500E915C6 /* SolarTimezoneController.swift in Sources */,
+				F356C8B1272F78B500E915C6 /* SolarDateAndTimeController.swift in Sources */,
 				F30C86DC26D6CEE600F93E60 /* WallpaperType.swift in Sources */,
 				3D916CE428B1682700D29FFF /* HelpMenuLinks.swift in Sources */,
 				F3E7B05E26ADE71100287C60 /* GalleryContentViewExtensions.swift in Sources */,
