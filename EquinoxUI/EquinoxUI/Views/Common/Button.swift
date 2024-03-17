@@ -32,10 +32,6 @@ import AppKit
 
 extension Button {
     public typealias Action = (Button) -> Void
-
-    private enum Constants {
-        static let presentDelayMilliseconds = 1_200
-    }
 }
 
 // MARK: - Class

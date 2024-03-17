@@ -34,7 +34,6 @@ public struct GalleryTextList {
     let altitudeText: String
     let altitudePlaceholder: String
     let timeText: String
-    let timeTextPlaceholder: String
     let appearanceTooltipTitle: String
     let appearanceTooltipDescription: String
     let primaryTooltipTitle: String
@@ -46,7 +45,6 @@ public struct GalleryTextList {
         altitudeText: String,
         altitudePlaceholder: String,
         timeText: String,
-        timeTextPlaceholder: String,
         appearanceTooltipTitle: String,
         appearanceTooltipDescription: String,
         primaryTooltipTitle: String,
@@ -57,7 +55,6 @@ public struct GalleryTextList {
         self.altitudeText = altitudeText
         self.altitudePlaceholder = altitudePlaceholder
         self.timeText = timeText
-        self.timeTextPlaceholder = timeTextPlaceholder
         self.appearanceTooltipTitle = appearanceTooltipTitle
         self.appearanceTooltipDescription = appearanceTooltipDescription
         self.primaryTooltipTitle = primaryTooltipTitle

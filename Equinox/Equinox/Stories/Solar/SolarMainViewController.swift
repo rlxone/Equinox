@@ -176,7 +176,7 @@ final class SolarMainViewController: ViewController {
     
     // MARK: - Public
 
-    public weak var delegate: SolarMainViewControllerDelegatae?
+    weak var delegate: SolarMainViewControllerDelegatae?
 
     // MARK: - Private
     
@@ -289,7 +289,7 @@ final class SolarMainViewController: ViewController {
             return
         }
         let location = CLLocation(latitude: latitude, longitude: longitude)
-        contentView.setMapLocation(location, animated: false)
+        contentView.setMapLocation(location, animated: animated)
     }
 
     private func isLatitudeValid(_ latitude: Double) -> Bool {

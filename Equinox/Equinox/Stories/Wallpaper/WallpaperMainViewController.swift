@@ -56,7 +56,6 @@ extension WallpaperMainViewController {
 final class WallpaperMainViewController: ViewController {
     private let type: WallpaperType
     private let fileService: FileService
-    private let wallpaperService: WallpaperService
     private let solarService: SolarService
     private let imageProvider: ImageProvider
     
@@ -64,7 +63,7 @@ final class WallpaperMainViewController: ViewController {
     private weak var appearancePopoverView: NSView?
     private weak var galleryController: WallpaperGalleryViewController?
 
-    public lazy var contentView: MainContentView = {
+    lazy var contentView: MainContentView = {
         let view = MainContentView()
         view.style = .default
         return view
@@ -75,13 +74,11 @@ final class WallpaperMainViewController: ViewController {
     init(
         type: WallpaperType,
         fileService: FileService,
-        wallpaperService: WallpaperService,
         solarService: SolarService,
         imageProvider: ImageProvider
     ) {
         self.type = type
         self.fileService = fileService
-        self.wallpaperService = wallpaperService
         self.solarService = solarService
         self.imageProvider = imageProvider
         super.init()

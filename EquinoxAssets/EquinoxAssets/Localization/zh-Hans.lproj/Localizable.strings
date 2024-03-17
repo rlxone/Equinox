@@ -60,7 +60,6 @@
 "wallpaper.gallery.altitude" = "高度角:";
 "wallpaper.gallery.altitude.value" = "值";
 "wallpaper.gallery.time" = "时间:";
-"wallpaper.gallery.time.value" = "值";
 "wallpaper.gallery.tooltip.appearance.title" = "外观";
 "wallpaper.gallery.tooltip.appearance.description" = "图形模式。只有一个图像可以是浅色或深色的外观。";
 "wallpaper.gallery.tooltip.primary.title" = "主要图像";

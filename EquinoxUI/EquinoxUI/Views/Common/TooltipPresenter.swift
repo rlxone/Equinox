@@ -45,14 +45,6 @@ public protocol TooltipDelegate: AnyObject {
     func tooltipStyle(_ sender: NSView?) -> TooltipWindow.Style?
 }
 
-// MARK: - Enums, Structs
-
-extension TooltipPresenter {
-    private enum Constants {
-        static let presentDelayMilliseconds = 1_200
-    }
-}
-
 // MARK: - Class
 
 final class TooltipPresenter {
@@ -64,7 +56,6 @@ final class TooltipPresenter {
     private var operationQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
-        queue.qualityOfService = .userInitiated
         return queue
     }()
     private var semaphore = DispatchSemaphore(value: 0)

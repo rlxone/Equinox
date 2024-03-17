@@ -139,7 +139,6 @@ public enum Localization {
             public static let altitude = Localization.localizedString(key: "wallpaper.gallery.altitude")
             public static let altitudeValue = Localization.localizedString(key: "wallpaper.gallery.azimuth.value")
             public static let time = Localization.localizedString(key: "wallpaper.gallery.time")
-            public static let timeValue = Localization.localizedString(key: "wallpaper.gallery.time.value")
             public static let tooltipAppearanceTitle = Localization.localizedString(key: "wallpaper.gallery.tooltip.appearance.title")
             public static let tooltipAppearanceDescription = Localization.localizedString(key: "wallpaper.gallery.tooltip.appearance.description")
             public static let tooltipPrimaryTitle = Localization.localizedString(key: "wallpaper.gallery.tooltip.primary.title")

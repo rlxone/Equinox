@@ -34,18 +34,15 @@ extension PrimaryButton {
     public struct Style {
         let backgroundColor: NSColor
         let alternativeColor: NSColor
-        let highlightColor: NSColor
         let borderColor: NSColor
 
         public init(
             backgroundColor: NSColor,
             alternativeColor: NSColor,
-            highlightColor: NSColor,
             borderColor: NSColor
         ) {
             self.backgroundColor = backgroundColor
             self.alternativeColor = alternativeColor
-            self.highlightColor = highlightColor
             self.borderColor = borderColor
         }
     }

@@ -69,9 +69,6 @@ extension SolarMainContentView {
     }
 
     private enum Constants {
-        static let contentCornerRadius: CGFloat = 8
-        static let fieldCornerRadius: CGFloat = 4
-        static let defaultEdgeInsets: NSEdgeInsets = .init(top: 0, left: 12, bottom: 0, right: 8)
         static let lineHeight: CGFloat = 1
         static let locationTopOffset: CGFloat = 30
         static let locationLeadingOffset: CGFloat = 20
@@ -79,11 +76,9 @@ extension SolarMainContentView {
         static let solarTimelineTopOffset: CGFloat = 20
         static let solarTimelineLeadingOffset: CGFloat = 20
         static let solarTimelineTrailingOffset: CGFloat = 20
-        static let solarTimelineBottomOffset: CGFloat = 30
         static let resultTopOffset: CGFloat = 20
         static let resultLeadingOffset: CGFloat = 20
         static let resultTrailingOffset: CGFloat = 20
-        static let resultBottomOffset: CGFloat = 30
         static let pinCenterXOffset: CGFloat = 8
         static let pinCenterYOffset: CGFloat = 15
         static let pinWidth: CGFloat = 32

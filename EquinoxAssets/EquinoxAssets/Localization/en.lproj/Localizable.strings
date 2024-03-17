@@ -60,7 +60,6 @@
 "wallpaper.gallery.altitude" = "Altitude:";
 "wallpaper.gallery.altitude.value" = "Value";
 "wallpaper.gallery.time" = "Time:";
-"wallpaper.gallery.time.value" = "Value";
 "wallpaper.gallery.tooltip.appearance.title" = "Appearance";
 "wallpaper.gallery.tooltip.appearance.description" = "Graphic mode. Only one image can be a light or dark appearance.";
 "wallpaper.gallery.tooltip.primary.title" = "Primary";

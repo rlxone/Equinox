@@ -38,12 +38,6 @@ extension GalleryCollectionFooterItem {
             self.footerStyle = footerStyle
         }
     }
-    
-    private enum Constants {
-        static let infoHorizontalOffset: CGFloat = 12
-        static let infoVerticalOffset: CGFloat = 8
-        static let animationDuration: TimeInterval = 0.3
-    }
 }
 
 // MARK: - Class

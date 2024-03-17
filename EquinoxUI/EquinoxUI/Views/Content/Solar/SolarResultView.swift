@@ -57,18 +57,15 @@ extension SolarResultView {
         let ownStyle: OwnStyle
         let resultHeaderStyle: StyledLabel.Style
         let textFieldStyle: RoundedFloatingTextField.Style
-        let pushButtonStyle: PushButton.Style
 
         public init(
             ownStyle: OwnStyle,
             resultHeaderStyle: StyledLabel.Style,
-            textFieldStyle: RoundedFloatingTextField.Style,
-            pushButtonStyle: PushButton.Style
+            textFieldStyle: RoundedFloatingTextField.Style
         ) {
             self.ownStyle = ownStyle
             self.resultHeaderStyle = resultHeaderStyle
             self.textFieldStyle = textFieldStyle
-            self.pushButtonStyle = pushButtonStyle
         }
     }
 

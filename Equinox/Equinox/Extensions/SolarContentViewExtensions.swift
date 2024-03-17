@@ -133,8 +133,7 @@ extension SolarMainContentView.Style {
                         copyImage: Image.copy
                     ),
                     pushButtonStyle: .default
-                ),
-                pushButtonStyle: .default
+                )
             ),
             lineStyle: .init(
                 color: Color.separator
