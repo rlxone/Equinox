@@ -1,0 +1,141 @@
+"menu.main.about" = "%@ Hakkında";
+"menu.main.preferences" = "Tercihler...";
+"menu.main.hide" = "%@ Gizle";
+"menu.main.hide.others" = "Diğerlerini Gizle";
+"menu.main.show.all" = "Tümünü Göster";
+"menu.main.quit" = "%@ Çık";
+
+"menu.file" = "Dosya";
+"menu.file.new" = "Yeni";
+
+"menu.edit" = "Düzenle";
+"menu.edit.undo" = "Geri al";
+"menu.edit.redo" = "Yinele";
+"menu.edit.cut" = "Kes";
+"menu.edit.copy" = "Kopyala";
+"menu.edit.paste" = "Yapıştır";
+"menu.edit.select.all" = "Tümünü Seç";
+"menu.edit.delete" = "Sil";
+
+"menu.window" = "Pencere";
+"menu.window.minimize" = "Simge durumuna küçült";
+"menu.window.zoom" = "Yakınlaştır";
+"menu.window.show.all" = "Tümünü Göster";
+
+"menu.help" = "Yardım";
+"menu.help.githubProject" = "GitHub projesi";
+"menu.help.githubFAQ" = "Sıkça Sorulan Sorular";
+"menu.help.githubIssue" = "Bir sorun bildirin";
+"menu.help.equinoxWebsite" = "Equinox web sitesi";
+"menu.help.macAppStoreReview" = "Mac App Store'da Equinox'u değerlendirin";
+"menu.help.productHunt" = "Product Hunt'da Equinox";
+
+"welcome.title" = "Equinox'a Hoş Geldiniz";
+"welcome.welcome" = "%@'a Hoşgeldiniz";
+"welcome.version" = "Versiyon %@";
+"welcome.github" = "Github";
+"welcome.choose.type" = "Tür Seçin";
+"welcome.choose.type.description" = "Duvar kağıdınız için uygun bir tür seçin";
+"welcome.types.solar" = "Güneş";
+"welcome.types.solar.description" = "Güneş hesaplamalarına dayalı duvar kağıdı oluşturun. Masaüstü resmi, güneşin gökyüzündeki konumuna bağlı olarak gün boyunca değişir.";
+"welcome.types.time" = "Zaman";
+"welcome.types.time.description" = "Zaman hesaplamalarına göre duvar kağıdı oluşturun. Masaüstü resmi, seçtiğiniz zamana göre gün boyunca değişir.";
+"welcome.types.appearance" = "Görünüm";
+"welcome.types.appearance.description" = "Sistem görünümüne göre duvar kağıdı oluşturun. İki görüntüye ihtiyacınız var: biri aydınlık ve diğeri karanlık mod için.";
+
+"wallpaper.main.solar" = "Güneş";
+"wallpaper.main.time" = "Zaman";
+"wallpaper.main.appearance" = "Görünüm";
+"wallpaper.main.calculator" = "Hesaplayıcı";
+"wallpaper.main.create" = "Oluştur";
+"wallpaper.main.browse" = "Görüntü dosyalarına göz atın";
+"wallpaper.main.validate" = "Lütfen tüm alanları doldurun";
+
+"wallpaper.gallery.drag.title" = "Fotoğraflarınızı sürükleyip bırakın";
+"wallpaper.gallery.drag.supplementary" = "Dosyalar png, jpeg, tiff veya heif formatında olmalıdır.";
+"wallpaper.gallery.or" = "veya";
+"wallpaper.gallery.browse" = "Gözat";
+"wallpaper.gallery.azimuth" = "Güneş Açısı:";
+"wallpaper.gallery.azimuth.value" = "Değer";
+"wallpaper.gallery.altitude" = "Rakım:";
+"wallpaper.gallery.altitude.value" = "Değer";
+"wallpaper.gallery.time" = "Zaman:";
+"wallpaper.gallery.tooltip.appearance.title" = "Görünüş";
+"wallpaper.gallery.tooltip.appearance.description" = "Grafik modu. Yalnızca bir görüntü açık veya koyu bir görünüm olabilir.";
+"wallpaper.gallery.tooltip.primary.title" = "Birincil";
+"wallpaper.gallery.tooltip.primary.description" = "Birincil görüntü bir duvar kağıdı küçük resmi olarak gösterilecektir.";
+"wallpaper.gallery.wrong.images.type" = "Bazı dosyalar (%d) yanlış resim türüne sahip. Yalnızca png, jpeg, tiff ve heic formatları desteklenmektedir";
+
+"wallpaper.appearance.auto.title" = "Otomatik";
+"wallpaper.appearance.auto.description" = "Varsayılan duvar kağıdı görüntüsü";
+"wallpaper.appearance.light.title" = "Aydınlık (Hareketsiz)";
+"wallpaper.appearance.light.description" = "Görüntüyü statik aydınlık modunda görüntüleme";
+"wallpaper.appearance.dark.title" = "Karanlık (Hareketsiz)";
+"wallpaper.appearance.dark.description" = "Görüntüyü statik karanlık modunda görüntüleme";
+
+"wallpaper.create.success" = "Başarılı";
+"wallpaper.create.success.description" = "Duvar kağıdınızı istediğiniz gibi sürükleyin veya kaydedin.";
+"wallpaper.create.failure" = "Başarısız";
+"wallpaper.create.failure.description" = "Hoppala! Bir şeyler yanlış gitti";
+"wallpaper.create.save" = "Kaydet";
+"wallpaper.create.set" = "Ayarla";
+"wallpaper.create.share" = "Paylaş";
+"wallpaper.create.new" = "Yeni";
+"wallpaper.create.cancel" = "İptal";
+"wallpaper.create.solar.based" = "Güneşe dayalı";
+"wallpaper.create.time.based" = "Zamana dayalı";
+"wallpaper.create.appearance.based" = "Görünüme dayalı";
+"wallpaper.create.file.saved" = "Duvar kağıdı kaydedildi";
+"wallpaper.create.new.title" = "Yeni duvar kağıdı mı oluşturalım?";
+"wallpaper.create.new.description" = "Yeni bir duvar kağıdı türü oluşturmak mı yoksa mevcut olanı tekrarlamak mı istersiniz?";
+"wallpaper.create.title" = "Oluştur";
+"wallpaper.create.repeat.title" = "Tekrarla";
+"wallpaper.create.set.error" = "Duvar kağıdını kaydedemiyorum.";
+"wallpaper.create.set.success" = "Duvar kağıdını başarıyla ayarladınız";
+"wallpaper.create.cant.share" = "Duvar kağıdını paylaşamıyorum!";
+
+"wallpaper.set.title" = "Ayarlamadan önce ayarlayın";
+"wallpaper.set.description.title.old" = "Duvar kağıdını ayarlamadan önce «Masaüstü ve Ekran Koruyucu» macOS Tercihlerinizde «Dinamik» türünü ayarlamanız gerekmektedir.";
+"wallpaper.set.description.title" = "Duvar kağıdını ayarlamadan önce macOS Tercihlerinizde «Duvar Kağıdı», «Dinamik» türünü ayarlamanız gerekir.";
+"wallpaper.set.todo.old" = "1. «Masaüstü ve Ekran Koruyucu» macOS Tercihlerini açın.\n2. Herhangi bir «Dinamik Masaüstü» duvar kağıdı seçin ve türünü «Dinamik» olarak ayarlayın.\n3. «Devam Et» düğmesine basın.";
+"wallpaper.set.todo" = "1. macOS Sistem Ayarlarından «Duvar Kağıdı»'nı açın.\n2. Herhangi bir «Dinamik Masaüstü» duvar kağıdı seçin ve türünü «Dinamik» olarak ayarlayın.\n3. «Devam Et» düğmesine basın.";
+"wallpaper.set.todo.link.old" = "«Masaüstü & Ekran Koruyucu»";
+"wallpaper.set.todo.link" = "«Duvar Kağıdı»";
+"wallpaper.set.continue" = "Devam Et";
+"wallpaper.set.skip" = "Bu mesajı bir daha gösterme";
+
+"solar.main.title" = "Güneş hesaplayıcı";
+"solar.main.location.header" = "Konum";
+"solar.main.date.header" = "Tarih";
+"solar.main.result.header" = "Sonuç";
+"solar.main.latitude" = "Enlem:";
+"solar.main.longitude" = "Boylam:";
+"solar.main.date" = "Tarih:";
+"solar.main.altitude" = "Rakım:";
+"solar.main.azimuth" = "Güneş Açısı:";
+"solar.main.value" = "Değer";
+"solar.main.copied" = "Kopyalandı";
+"solar.main.sun.timeline" = "Güneş zaman çizelgesi";
+"solar.main.timezone" = "Zaman dilimleri:";
+"solar.main.location.error" = "Hoppala! Konumunuz alınırken bir şeyler ters gitti. Lütfen tekrar deneyin";
+"solar.main.dst.title" = "Yaz Saati";
+"solar.main.dst.tooltip.title" = "Yaz Saati";
+"solar.main.dst.tooltip.description" = "Saatler ilkbaharda bir saat ileri alınır ve sonbaharda bir saat geri alınır";
+"solar.main.abbreviation.tooltip.title" = "GMT ofseti";
+"solar.main.abbreviation.tooltip.description" = "Greenwich Ortalama Zamanı (GMT) ile belirli bir konumdaki yerel zaman arasındaki zaman farkı, saat ve dakika olarak ifade edilir";
+"solar.main.drag.and.drop.tooltip.title" = "Sürükle ve Bırak";
+"solar.main.drag.and.drop.tooltip.description" = "Sonucu sürükleyip bırakın veya kopyalayın";
+
+"tip.tips" = "İPUÇLARI";
+"tip.started" = "Başlayın";
+"tip.ok" = "Anladım";
+"tip.solar.title" = "Güneş duvar kağıdı";
+"tip.solar.description" = "Bu tür duvar kağıdının ana özelliği, güneşin konumunu dikkate almasıdır. Yılın zamanına bağlı olarak masaüstünüzde en uygun görüntüyü göreceksiniz.\nHesaplamalar için endişelenmeyin. «Güneş hesaplayıcısı» yardımıyla sadece nerede ve ne zaman fotoğraf çektiğinizi bilmeniz yeterlidir.";
+"tip.time.title" = "Zaman duvar kağıdı";
+"tip.time.description" = "Zaman, bu tür duvar kağıdının anahtarıdır. Masaüstü resmi, seçtiğiniz saate bağlı olarak gün boyunca değişir.";
+"tip.appearance.title" = "Görünüm duvar kağıdı";
+"tip.appearance.description" = "Bu duvar kağıdı türü olduğu kadar basittir. Masaüstü resmi, sistem görünümü değişikliğine bağlı olarak gün boyunca değişir. İki resme ihtiyacınız var: biri aydınlık ve diğeri karanlık mod için.";
+"tip.calculator.title" = "Güneş hesaplayıcı";
+"tip.calculator.description" = "Güneşin gökyüzündeki konumunu hesaplamanıza yardımcı olacaktır.\n1. Güneş zaman çizelgesinde fotoğraf çektiğiniz yeri, tarihi ve saati seçin. Tam zamanı bilmiyorsanız, güneşin gökyüzündeki konumunun ne kadar yüksek veya alçak olduğunu görmek için güneş zaman çizelgesini kullanabilir ve bunu elinizdeki fotoğraflarla eşleştirebilirsiniz.\n2. Sonucu sürükleyip bırakın veya görüntünün üzerine kopyalayın.";
+
+"dock.new" = "Yeni";

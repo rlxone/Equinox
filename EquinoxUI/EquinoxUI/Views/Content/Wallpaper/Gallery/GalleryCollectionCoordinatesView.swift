@@ -67,7 +67,6 @@ extension GalleryCollectionCoordinatesView {
     private enum Constants {
         static let cornerRadius: CGFloat = 4
         static let borderWidth: CGFloat = 1
-        static let defaultPadding: CGFloat = 10
         static let stackSpacing: CGFloat = 4
         static let separatorHeight: CGFloat = 1
         static let separatorOffset: CGFloat = 1

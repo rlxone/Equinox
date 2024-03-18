@@ -43,6 +43,11 @@ extension GalleryContentView {
             self.dragStyle = dragStyle
         }
     }
+    
+    enum TooltipIdentifier: String {
+        case appearance
+        case primary
+    }
 }
 
 // MARK: - Class

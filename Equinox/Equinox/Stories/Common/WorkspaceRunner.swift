@@ -48,13 +48,4 @@ enum WorkspaceRunner {
         
         return output
     }
-
-    static func launchApplication(bundleIndentifier: String, options: NSWorkspace.LaunchOptions) {
-        NSWorkspace.shared.launchApplication(
-            withBundleIdentifier: bundleIndentifier,
-            options: options,
-            additionalEventParamDescriptor: nil,
-            launchIdentifier: nil
-        )
-    }
 }

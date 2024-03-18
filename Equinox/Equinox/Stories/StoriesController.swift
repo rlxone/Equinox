@@ -92,8 +92,7 @@ extension StoriesControllerImpl: StoriesController {
             ),
             wallpaperService: WallpaperServiceImpl(
                 metadataCore: metadataCore,
-                imageCore: imageCore,
-                fileCore: fileCore
+                imageCore: imageCore
             ),
             solarService: SolarServiceImpl(solarCore: solarCore),
             settingsService: SettingsServiceImpl(storageCore: storageCore),

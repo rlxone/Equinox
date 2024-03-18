@@ -60,11 +60,11 @@
 "wallpaper.gallery.altitude" = "Altitude:";
 "wallpaper.gallery.altitude.value" = "Valeur";
 "wallpaper.gallery.time" = "Temps :";
-"wallpaper.gallery.time.value" = "Valeur";
 "wallpaper.gallery.tooltip.appearance.title" = "Apparence";
 "wallpaper.gallery.tooltip.appearance.description" = "Mode graphique. Seulement une image peut avoir l'apparence clair ou sombre.";
 "wallpaper.gallery.tooltip.primary.title" = "Principal";
 "wallpaper.gallery.tooltip.primary.description" = "La minature du fond d'écran sera l'image principal.";
+"wallpaper.gallery.wrong.images.type" = "Certains fichiers (%d) n'ont pas le bon type d'image. Seuls les formats png, jpeg, tiff et heic sont pris en charge.";
 
 "wallpaper.appearance.auto.title" = "Automatique";
 "wallpaper.appearance.auto.description" = "Image par défaut du fond d'écran";
@@ -116,8 +116,15 @@
 "solar.main.value" = "Valeur";
 "solar.main.copied" = "Copié";
 "solar.main.sun.timeline" = "Chronologie soleil";
-"solar.main.timezone" = "Fuseau horaire :";
+"solar.main.timezone" = "Fuseau horaires";
 "solar.main.location.error" = "Oups ! Une eurreur s'est produite durant la géolocalisation. Merci de réessayer.";
+"solar.main.dst.title" = "HAE";
+"solar.main.dst.tooltip.title" = "Heure d'été";
+"solar.main.dst.tooltip.description" = "Les horloges avancent d'une heure au printemps et reculent d'une heure à l'automne";
+"solar.main.abbreviation.tooltip.title" = "Décalage GMT";
+"solar.main.abbreviation.tooltip.description" = "La différence de temps entre l'heure moyenne de Greenwich (GMT) et l'heure locale à un emplacement spécifique, exprimée en heures et en minutes";
+"solar.main.drag.and.drop.tooltip.title" = "Glisser-déposer";
+"solar.main.drag.and.drop.tooltip.description" = "Glissez-déposez ou copiez le résultat sur votre image";
 
 "tip.tips" = "ASTUCES";
 "tip.started" = "Commencer";

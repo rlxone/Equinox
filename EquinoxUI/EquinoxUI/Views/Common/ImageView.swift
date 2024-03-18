@@ -28,9 +28,36 @@
 
 import AppKit
 
-public class ImageView: NSImageView {
+public class ImageView: NSImageView, Tooltipable {
+    private var tooltipPresenter: TooltipPresenter?
+    
     public override func hitTest(_ point: NSPoint) -> NSView? {
         return isUserInteractionsEnabled ? super.hitTest(point) : nil
+    }
+    
+    // MARK: - Life Cycle
+    
+    public override func updateTrackingAreas() {
+        tooltipPresenter?.updateTrackingAreas()
+        super.updateTrackingAreas()
+    }
+    
+    public override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        tooltipPresenter?.mouseDown()
+    }
+    
+    public override func mouseUp(with event: NSEvent) {
+        super.mouseUp(with: event)
+        tooltipPresenter?.mouseDown()
+    }
+
+    public override func mouseEntered(with event: NSEvent) {
+        tooltipPresenter?.mouseEntered()
+    }
+
+    public override func mouseExited(with event: NSEvent) {
+        tooltipPresenter?.mouseExited()
     }
     
     // MARK: - Public
@@ -61,4 +88,26 @@ public class ImageView: NSImageView {
             }
         }
     }
+    
+    // MARK: - Tooltipable
+    
+    public var showTooltip = false {
+        didSet {
+            tooltipPresenter = showTooltip ? TooltipPresenter(view: self) : nil
+        }
+    }
+    
+    public var tooltipPresentDelayMilliseconds: Int = 0 {
+        didSet {
+            tooltipPresenter?.presentDelayMilliseconds = tooltipPresentDelayMilliseconds
+        }
+    }
+    
+    public weak var tooltipDelegate: TooltipDelegate? {
+        didSet {
+            tooltipPresenter?.tooltipDelegate = tooltipDelegate
+        }
+    }
+    
+    public var tooltipIdentifier: String?
 }

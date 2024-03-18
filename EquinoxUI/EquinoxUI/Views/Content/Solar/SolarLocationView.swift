@@ -85,7 +85,6 @@ extension SolarLocationView {
         static let dateHeaderLabelLeadingOffset: CGFloat = 20
         static let dateHeaderLabelTopOffset: CGFloat = 16
         static let locationButtonTopOffset: CGFloat = 16
-        static let locationButtonTrailingOffset: CGFloat = 16
         static let locationButtonWidth: CGFloat = 23
         static let locationButtonHeight: CGFloat = 23
         static let latitudeTextFieldTopOffset: CGFloat = 10

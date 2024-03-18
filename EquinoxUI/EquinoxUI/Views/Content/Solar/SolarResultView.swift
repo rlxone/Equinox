@@ -57,18 +57,15 @@ extension SolarResultView {
         let ownStyle: OwnStyle
         let resultHeaderStyle: StyledLabel.Style
         let textFieldStyle: RoundedFloatingTextField.Style
-        let pushButtonStyle: PushButton.Style
 
         public init(
             ownStyle: OwnStyle,
             resultHeaderStyle: StyledLabel.Style,
-            textFieldStyle: RoundedFloatingTextField.Style,
-            pushButtonStyle: PushButton.Style
+            textFieldStyle: RoundedFloatingTextField.Style
         ) {
             self.ownStyle = ownStyle
             self.resultHeaderStyle = resultHeaderStyle
             self.textFieldStyle = textFieldStyle
-            self.pushButtonStyle = pushButtonStyle
         }
     }
 
@@ -78,7 +75,7 @@ extension SolarResultView {
         static let fieldCornerRadius: CGFloat = 4
         static let defaultEdgeInsets: NSEdgeInsets = .init(top: 0, left: 12, bottom: 0, right: 8)
         static let dragImageViewLeadingOffset: CGFloat = 20
-        static let dragImageViewTopOffset: CGFloat = 18
+        static let dragImageViewTopOffset: CGFloat = 17.5
         static let dragImageViewWidth: CGFloat = 17
         static let dragImageViewHeight: CGFloat = 17
         static let resultHeaderLabelLeadingOffset: CGFloat = 8
@@ -91,6 +88,7 @@ extension SolarResultView {
         static let altitudeTextFieldLeadingOffset: CGFloat = 20
         static let altitudeTextFieldTrailingOffset: CGFloat = 20
         static let altitudeTextFieldHeight: CGFloat = 40
+        static let tooltipPresentDelayMilliseconds = 100
     }
 }
 
@@ -98,7 +96,13 @@ extension SolarResultView {
 
 public final class SolarResultView: View {
     private lazy var resultHeaderLabel = StyledLabel()
-    private lazy var dragImageView = ImageView()
+    private lazy var dragImageView: ImageView = {
+        let imageView = ImageView()
+        imageView.showTooltip = true
+        imageView.tooltipPresentDelayMilliseconds = Constants.tooltipPresentDelayMilliseconds
+        imageView.tooltipIdentifier = SolarMainContentView.TooltipIdentifier.dragAndDrop.rawValue
+        return imageView
+    }()
 
     private lazy var altitudeTextField: RoundedFloatingTextField = {
         let view = RoundedFloatingTextField()
@@ -245,6 +249,12 @@ public final class SolarResultView: View {
         didSet {
             azimuthTextField.copyAction = copyAction
             altitudeTextField.copyAction = copyAction
+        }
+    }
+    
+    public override weak var tooltipDelegate: TooltipDelegate? {
+        didSet {
+            dragImageView.tooltipDelegate = tooltipDelegate
         }
     }
 

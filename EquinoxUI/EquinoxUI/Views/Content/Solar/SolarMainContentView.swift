@@ -49,26 +49,26 @@ extension SolarMainContentView {
         let timelineStyle: SolarTimelineView.Style
         let resultStyle: SolarResultView.Style
         let lineStyle: LineView.Style
+        let tooltipStyle: TooltipWindow.Style
 
         public init(
             ownStyle: OwnStyle,
             locationStyle: SolarLocationView.Style,
             timelineStyle: SolarTimelineView.Style,
             resultStyle: SolarResultView.Style,
-            lineStyle: LineView.Style
+            lineStyle: LineView.Style,
+            tooltipStyle: TooltipWindow.Style
         ) {
             self.ownStyle = ownStyle
             self.locationStyle = locationStyle
             self.timelineStyle = timelineStyle
             self.resultStyle = resultStyle
             self.lineStyle = lineStyle
+            self.tooltipStyle = tooltipStyle
         }
     }
 
     private enum Constants {
-        static let contentCornerRadius: CGFloat = 8
-        static let fieldCornerRadius: CGFloat = 4
-        static let defaultEdgeInsets: NSEdgeInsets = .init(top: 0, left: 12, bottom: 0, right: 8)
         static let lineHeight: CGFloat = 1
         static let locationTopOffset: CGFloat = 30
         static let locationLeadingOffset: CGFloat = 20
@@ -76,11 +76,9 @@ extension SolarMainContentView {
         static let solarTimelineTopOffset: CGFloat = 20
         static let solarTimelineLeadingOffset: CGFloat = 20
         static let solarTimelineTrailingOffset: CGFloat = 20
-        static let solarTimelineBottomOffset: CGFloat = 30
         static let resultTopOffset: CGFloat = 20
         static let resultLeadingOffset: CGFloat = 20
         static let resultTrailingOffset: CGFloat = 20
-        static let resultBottomOffset: CGFloat = 30
         static let pinCenterXOffset: CGFloat = 8
         static let pinCenterYOffset: CGFloat = 15
         static let pinWidth: CGFloat = 32
@@ -89,6 +87,12 @@ extension SolarMainContentView {
         static let helpTrailingOffset: CGFloat = 20
         static let helpBottomOffset: CGFloat = 20
     }
+    
+    enum TooltipIdentifier: String {
+        case daylightSavingTime
+        case abbreviation
+        case dragAndDrop
+    }
 }
 
 // MARK: - Class
@@ -96,9 +100,18 @@ extension SolarMainContentView {
 public final class SolarMainContentView: VisualEffectView {
     private lazy var overlayView = View()
     private lazy var locationView = SolarLocationView()
-    private lazy var resultView = SolarResultView()
-    private lazy var timelineView = SolarTimelineView()
+    private lazy var resultView: SolarResultView = {
+        let view = SolarResultView()
+        view.tooltipDelegate = tooltipHandler
+        return view
+    }()
+    private lazy var timelineView: SolarTimelineView = {
+        let view = SolarTimelineView()
+        view.tooltipDelegate = tooltipHandler
+        return view
+    }()
     private lazy var lineView = LineView()
+    private lazy var tooltipHandler = SolarTooltipHander()
     
     private lazy var helpButton: NSButton = {
         let button = NSButton()
@@ -126,6 +139,9 @@ public final class SolarMainContentView: VisualEffectView {
         if #available(macOS 11, *) {
             mapView.showsPitchControl = true
         }
+        if #available(macOS 14, *) {
+            mapView.pitchButtonVisibility = .visible
+        }
         mapView.delegate = self
         return mapView
     }()
@@ -147,74 +163,7 @@ public final class SolarMainContentView: VisualEffectView {
         super.updateLayer()
         stylize()
     }
-    
-    // MARK: - Setup
 
-    private func setup() {
-        setupView()
-        setupConstraints()
-    }
-
-    private func setupView() {
-        addSubview(mapView)
-        addSubview(overlayView)
-        addSubview(pinImageView)
-        addSubview(helpButton)
-
-        overlayView.addSubview(locationView)
-        overlayView.addSubview(timelineView)
-        overlayView.addSubview(resultView)
-        overlayView.addSubview(lineView)
-    }
-    
-    private func setupConstraints() {
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        overlayView.translatesAutoresizingMaskIntoConstraints = false
-        timelineView.translatesAutoresizingMaskIntoConstraints = false
-        locationView.translatesAutoresizingMaskIntoConstraints = false
-        resultView.translatesAutoresizingMaskIntoConstraints = false
-        lineView.translatesAutoresizingMaskIntoConstraints = false
-        pinImageView.translatesAutoresizingMaskIntoConstraints = false
-        helpButton.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            mapView.topAnchor.constraint(equalTo: topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: overlayView.topAnchor),
-
-            overlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            overlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            overlayView.bottomAnchor.constraint(equalTo: bottomAnchor),
-
-            lineView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor),
-            lineView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor),
-            lineView.topAnchor.constraint(equalTo: overlayView.topAnchor),
-            lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
-
-            locationView.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: Constants.locationTopOffset),
-            locationView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.locationLeadingOffset),
-            locationView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.locationTrailingOffset),
-            
-            timelineView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.solarTimelineLeadingOffset),
-            timelineView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.solarTimelineTrailingOffset),
-            timelineView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: Constants.solarTimelineTopOffset),
-            
-            resultView.topAnchor.constraint(equalTo: timelineView.bottomAnchor, constant: Constants.resultTopOffset),
-            resultView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.resultLeadingOffset),
-            resultView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.resultTrailingOffset),
-            
-            pinImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: Constants.pinCenterXOffset),
-            pinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: -Constants.pinCenterYOffset),
-            pinImageView.widthAnchor.constraint(equalToConstant: Constants.pinWidth),
-            pinImageView.heightAnchor.constraint(equalToConstant: Constants.pinHeight),
-            
-            helpButton.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: Constants.helpTopOffset),
-            helpButton.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor, constant: -Constants.helpBottomOffset),
-            helpButton.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.helpTrailingOffset)
-        ])
-    }
-    
     // MARK: - Public
     
     public var style: Style? {
@@ -249,15 +198,30 @@ public final class SolarMainContentView: VisualEffectView {
         }
     }
     
-    public var timezoneHeaderTitle: String? {
-        didSet {
-            timelineView.timezoneHeaderTitle = timezoneHeaderTitle ?? String()
-        }
-    }
-    
     public var timezoneData: SubMenuPopUpButton.MenuData? {
         didSet {
             timelineView.timezoneData = timezoneData
+        }
+    }
+    
+    public var timezoneAbbreviationTitle: String? {
+        didSet {
+            timelineView.timezoneAbbreviationTitle = timezoneAbbreviationTitle
+        }
+    }
+    
+    public var isTimezoneDaylightSavingTimeVisible: Bool {
+        get {
+            return timelineView.isTimezoneDaylightSavingTimeVisible
+        }
+        set {
+            timelineView.isTimezoneDaylightSavingTimeVisible = newValue
+        }
+    }
+    
+    public var timezoneDaylightSavingTimeTitle: String? {
+        didSet {
+            timelineView.timezoneDaylightSavingTimeTitle = timezoneDaylightSavingTimeTitle
         }
     }
     
@@ -394,14 +358,40 @@ public final class SolarMainContentView: VisualEffectView {
     
     public var helpAction: HelpAction?
     
-    public func setMapLocation(_ location: CLLocation, animated: Bool) {
-        mapView.setCenter(location.coordinate, animated: animated)
+    public var daylightSavingTimeTooltipTitle: String? {
+        didSet {
+            tooltipHandler.daylightSavingTimeTitle = daylightSavingTimeTooltipTitle
+        }
     }
     
-    public func setMapZoomFactor(_ factor: Double, animated: Bool) {
-        let span = MKCoordinateSpan(latitudeDelta: factor, longitudeDelta: factor)
-        let region = MKCoordinateRegion(center: mapView.centerCoordinate, span: span)
-        mapView.setRegion(region, animated: animated)
+    public var daylightSavingTimeTooltipDescription: String? {
+        didSet {
+            tooltipHandler.daylightSavingTimeDescription = daylightSavingTimeTooltipDescription
+        }
+    }
+    
+    public var abbreviationTooltipTitle: String? {
+        didSet {
+            tooltipHandler.abbreviationTitle = abbreviationTooltipTitle
+        }
+    }
+    
+    public var abbreviationTooltipDescription: String? {
+        didSet {
+            tooltipHandler.abbreviationDescription = abbreviationTooltipDescription
+        }
+    }
+    
+    public var dragAndDropTooltipTitle: String? {
+        didSet {
+            tooltipHandler.dragAndDropTitle = dragAndDropTooltipTitle
+        }
+    }
+    
+    public var dragAndDropTooltipDescription: String? {
+        didSet {
+            tooltipHandler.dragAndDropDescription = dragAndDropTooltipDescription
+        }
     }
 
     // MARK: - Private
@@ -412,6 +402,7 @@ public final class SolarMainContentView: VisualEffectView {
         resultView.style = style?.resultStyle
         lineView.style = style?.lineStyle
         pinImageView.image = style?.ownStyle.pinImage
+        tooltipHandler.style = style?.tooltipStyle
     }
     
     @objc
@@ -420,9 +411,88 @@ public final class SolarMainContentView: VisualEffectView {
     }
 }
 
-// MARK: - MKMapViewDelegate
+// MARK: - Setup
+
+extension SolarMainContentView {
+    private func setup() {
+        setupView()
+        setupConstraints()
+    }
+
+    private func setupView() {
+        addSubview(mapView)
+        addSubview(overlayView)
+        addSubview(pinImageView)
+        addSubview(helpButton)
+
+        overlayView.addSubview(locationView)
+        overlayView.addSubview(timelineView)
+        overlayView.addSubview(resultView)
+        overlayView.addSubview(lineView)
+    }
+    
+    private func setupConstraints() {
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+        timelineView.translatesAutoresizingMaskIntoConstraints = false
+        locationView.translatesAutoresizingMaskIntoConstraints = false
+        resultView.translatesAutoresizingMaskIntoConstraints = false
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        pinImageView.translatesAutoresizingMaskIntoConstraints = false
+        helpButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            mapView.topAnchor.constraint(equalTo: topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: overlayView.topAnchor),
+
+            overlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            lineView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor),
+            lineView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor),
+            lineView.topAnchor.constraint(equalTo: overlayView.topAnchor),
+            lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
+
+            locationView.topAnchor.constraint(equalTo: overlayView.topAnchor, constant: Constants.locationTopOffset),
+            locationView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.locationLeadingOffset),
+            locationView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.locationTrailingOffset),
+            
+            timelineView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.solarTimelineLeadingOffset),
+            timelineView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.solarTimelineTrailingOffset),
+            timelineView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: Constants.solarTimelineTopOffset),
+            
+            resultView.topAnchor.constraint(equalTo: timelineView.bottomAnchor, constant: Constants.resultTopOffset),
+            resultView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.resultLeadingOffset),
+            resultView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.resultTrailingOffset),
+            
+            pinImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: Constants.pinCenterXOffset),
+            pinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: -Constants.pinCenterYOffset),
+            pinImageView.widthAnchor.constraint(equalToConstant: Constants.pinWidth),
+            pinImageView.heightAnchor.constraint(equalToConstant: Constants.pinHeight),
+            
+            helpButton.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: Constants.helpTopOffset),
+            helpButton.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor, constant: -Constants.helpBottomOffset),
+            helpButton.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.helpTrailingOffset)
+        ])
+    }
+}
+
+// MARK: - MKMapView, MKMapViewDelegate
 
 extension SolarMainContentView: MKMapViewDelegate {
+    public func setMapLocation(_ location: CLLocation, animated: Bool) {
+        mapView.setCenter(location.coordinate, animated: animated)
+    }
+    
+    public func setMapZoomFactor(_ factor: Double, animated: Bool) {
+        let span = MKCoordinateSpan(latitudeDelta: factor, longitudeDelta: factor)
+        let region = MKCoordinateRegion(center: mapView.centerCoordinate, span: span)
+        mapView.setRegion(region, animated: animated)
+    }
+    
     public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         coordinateChangeAction?(mapView.centerCoordinate)
     }

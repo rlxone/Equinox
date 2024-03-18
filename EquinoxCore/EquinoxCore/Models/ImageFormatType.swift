@@ -27,10 +27,34 @@
 // THE SOFTWARE.
 
 import Foundation
+import UniformTypeIdentifiers
 
-public enum ImageFormatType {
+public enum ImageFormatType: CaseIterable {
     case png
     case jpeg
     case tiff
     case heic
+}
+
+extension ImageFormatType {
+    @available(macOS 11.0, *)
+    public var utType: UTType {
+        switch self {
+        case .png:
+            return .png
+        case .jpeg:
+            return .jpeg
+        case .tiff:
+            return .tiff
+        case .heic:
+            return .heic
+        }
+    }
+}
+
+extension Array where Element == ImageFormatType {
+    @available(macOS 11.0, *)
+    public var utTypes: [UTType] {
+        return self.map { $0.utType }
+    }
 }

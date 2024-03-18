@@ -46,9 +46,7 @@ extension MainContentView {
 
     private enum Constants {
         static let toolBarHeight: CGFloat = 74
-        static let tabViewHeight: CGFloat = 35
         static let bottomBarHeight: CGFloat = 74
-        static let lineOffset: CGFloat = 1
         static let lineHeight: CGFloat = 1
     }
 }

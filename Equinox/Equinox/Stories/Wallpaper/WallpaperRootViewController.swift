@@ -51,7 +51,6 @@ final class WallpaperRootViewController: ViewController {
 
     private lazy var contentView = RootContentView()
     private weak var navigationController: NavigationController?
-    private weak var mainViewController: WallpaperMainViewController?
     private weak var createViewController: WallpaperCreateViewController?
     private weak var tipViewController: TipViewController?
     private weak var setViewController: WallpaperSetViewController?
@@ -103,7 +102,6 @@ final class WallpaperRootViewController: ViewController {
         let controller = WallpaperMainViewController(
             type: type,
             fileService: fileService,
-            wallpaperService: wallpaperService,
             solarService: solarService,
             imageProvider: imageProvider
         )
@@ -192,14 +190,6 @@ final class WallpaperRootViewController: ViewController {
         createViewController = controller
         controller.delegate = self
         navigationController?.present(controller)
-    }
-
-    private func clearRoot() {
-        guard let navigationController = navigationController else {
-            return
-        }
-        navigationController.view.removeFromSuperview()
-        navigationController.removeFromParent()
     }
 }
 

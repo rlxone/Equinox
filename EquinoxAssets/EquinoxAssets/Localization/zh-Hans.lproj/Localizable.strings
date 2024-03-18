@@ -1,0 +1,141 @@
+"menu.main.about" = "关于 %@";
+"menu.main.preferences" = "偏好设置...";
+"menu.main.hide" = "隐藏 %@";
+"menu.main.hide.others" = "隐藏其他";
+"menu.main.show.all" = "全部显示";
+"menu.main.quit" = "退出 %@";
+
+"menu.file" = "文件";
+"menu.file.new" = "新建";
+
+"menu.edit" = "编辑";
+"menu.edit.undo" = "撤销";
+"menu.edit.redo" = "重做";
+"menu.edit.cut" = "剪切";
+"menu.edit.copy" = "拷贝";
+"menu.edit.paste" = "粘贴";
+"menu.edit.select.all" = "选择全部";
+"menu.edit.delete" = "删除";
+
+"menu.window" = "窗口";
+"menu.window.minimize" = "最小化";
+"menu.window.zoom" = "缩放";
+"menu.window.show.all" = "全部显示";
+
+"menu.help" = "帮助";
+"menu.help.githubProject" = "GitHub 项目";
+"menu.help.githubFAQ" = "常见问题";
+"menu.help.githubIssue" = "报告问题";
+"menu.help.equinoxWebsite" = "Equinox 网站";
+"menu.help.macAppStoreReview" = "在 Mac App Store 上给 Equinox 评分";
+"menu.help.productHunt" = "Product Hunt 上的 Equinox";
+
+"welcome.title" = "欢迎来到 Equinox";
+"welcome.welcome" = "欢迎来到 %@";
+"welcome.version" = "版本 %@";
+"welcome.github" = "Github";
+"welcome.choose.type" = "选择类型";
+"welcome.choose.type.description" = "选择最适合你的墙纸类型";
+"welcome.types.solar" = "日照";
+"welcome.types.solar.description" = "根据日照情况创建墙纸。根据太阳在天空中的位置，桌面图片在一天中不断变化。";
+"welcome.types.time" = "时间";
+"welcome.types.time.description" = "根据时间创建墙纸。基于你选择的时间，桌面图片在一天中不断变化。";
+"welcome.types.appearance" = "外观";
+"welcome.types.appearance.description" = "根据系统外观创建墙纸。你需要两张墙纸：一张浅色的，用于浅色模式；一张深色的，用于深色模式。";
+
+"wallpaper.main.solar" = "日照";
+"wallpaper.main.time" = "时间";
+"wallpaper.main.appearance" = "外观";
+"wallpaper.main.calculator" = "计算器";
+"wallpaper.main.create" = "创建";
+"wallpaper.main.browse" = "浏览图像文件";
+"wallpaper.main.validate" = "请填写所有字段";
+
+"wallpaper.gallery.drag.title" = "拖放你的图像";
+"wallpaper.gallery.drag.supplementary" = "支持这些格式：png, jpeg, tiff, heif.";
+"wallpaper.gallery.or" = "或者";
+"wallpaper.gallery.browse" = "浏览文件";
+"wallpaper.gallery.azimuth" = "方位角:";
+"wallpaper.gallery.azimuth.value" = "值";
+"wallpaper.gallery.altitude" = "高度角:";
+"wallpaper.gallery.altitude.value" = "值";
+"wallpaper.gallery.time" = "时间:";
+"wallpaper.gallery.tooltip.appearance.title" = "外观";
+"wallpaper.gallery.tooltip.appearance.description" = "图形模式。只有一个图像可以是浅色或深色的外观。";
+"wallpaper.gallery.tooltip.primary.title" = "主要图像";
+"wallpaper.gallery.tooltip.primary.description" = "主要图像将会作为墙纸的缩略图展示。";
+"wallpaper.gallery.wrong.images.type" = "一些文件（%d）具有错误的图像类型。仅支持png、jpeg、tiff和heic格式";
+
+"wallpaper.appearance.auto.title" = "自动";
+"wallpaper.appearance.auto.description" = "默认墙纸图像";
+"wallpaper.appearance.light.title" = "浅色（静态）";
+"wallpaper.appearance.light.description" = "在静态浅色模式中展示图像";
+"wallpaper.appearance.dark.title" = "深色（静态）";
+"wallpaper.appearance.dark.description" = "在静态深色模式中展示图像";
+
+"wallpaper.create.success" = "成功";
+"wallpaper.create.success.description" = "拖拽或保存你的墙纸——怎样都可以！";
+"wallpaper.create.failure" = "失败";
+"wallpaper.create.failure.description" = "哎呀！某处出了问题";
+"wallpaper.create.save" = "保存";
+"wallpaper.create.set" = "设为壁纸";
+"wallpaper.create.share" = "分享";
+"wallpaper.create.new" = "新建";
+"wallpaper.create.cancel" = "取消";
+"wallpaper.create.solar.based" = "根据日照";
+"wallpaper.create.time.based" = "根据时间";
+"wallpaper.create.appearance.based" = "根据外观";
+"wallpaper.create.file.saved" = "墙纸已保存";
+"wallpaper.create.new.title" = "创建新墙纸？";
+"wallpaper.create.new.description" = "你想创建新类型的墙纸，还是继续使用当前类型？";
+"wallpaper.create.title" = "创建新类型";
+"wallpaper.create.repeat.title" = "继续使用当前类型";
+"wallpaper.create.set.error" = "保存墙纸失败";
+"wallpaper.create.set.success" = "你的新墙纸设置成功！";
+"wallpaper.create.cant.share" = "分享墙纸失败";
+
+"wallpaper.set.title" = "在设为墙纸之前……";
+"wallpaper.set.description.title.old" = "你需要先在 macOS 偏好设置的【桌面与屏幕保护程序】中将类型设置为【动态】。";
+"wallpaper.set.description.title" = "你需要在 macOS 设置的【墙纸】一栏中将类型设置为【动态】。";
+"wallpaper.set.todo.old" = "1. 在 macOS 偏好设置中打开【桌面与屏幕保护程序】。\n2. 选择任意【动态桌面】墙纸，然后将它的类型设置为【动态】。\n3. 点击这里的【继续】。";
+"wallpaper.set.todo" = "1. 在 macOS 设置中打开【墙纸】。\n2. 选择任意【动态桌面】墙纸，然后将它的类型设置为【动态】。\n3. 点击这里的【继续】。";
+"wallpaper.set.todo.link.old" = "【桌面与屏幕保护程序】";
+"wallpaper.set.todo.link" = "【墙纸】";
+"wallpaper.set.continue" = "继续";
+"wallpaper.set.skip" = "不要再显示此信息";
+
+"solar.main.title" = "日照计算器";
+"solar.main.location.header" = "位置";
+"solar.main.date.header" = "日期";
+"solar.main.result.header" = "结果";
+"solar.main.latitude" = "纬度:";
+"solar.main.longitude" = "经度:";
+"solar.main.date" = "日期:";
+"solar.main.altitude" = "高度角:";
+"solar.main.azimuth" = "方位角:";
+"solar.main.value" = "值";
+"solar.main.copied" = "已复制";
+"solar.main.sun.timeline" = "太阳时间轴";
+"solar.main.timezone" = "时区";
+"solar.main.location.error" = "哎呀！在获取你的位置的时候出错了。请再试一次";
+"solar.main.dst.title" = "夏令时";
+"solar.main.dst.tooltip.title" = "夏令时";
+"solar.main.dst.tooltip.description" = "时钟在春季往前调整一小时，在秋季往后调整一小时";
+"solar.main.abbreviation.tooltip.title" = "GMT 偏移";
+"solar.main.abbreviation.tooltip.description" = "格林尼治标准时间 (GMT) 和特定位置的本地时间之间的时间差，以小时和分钟表示";
+"solar.main.drag.and.drop.tooltip.title" = "拖放";
+"solar.main.drag.and.drop.tooltip.description" = "拖放或将结果复制到您的图像上";
+
+"tip.tips" = "提示";
+"tip.started" = "开始";
+"tip.ok" = "知道啦";
+"tip.solar.title" = "日照墙纸";
+"tip.solar.description" = "这种类型的墙纸的主要特点是，它考虑到了太阳的位置。根据一年中的不同时间，你会在桌面上看到最相关的图像。\n不要担心计算问题。在“太阳计算器”的帮助下，你只需要知道你在哪里和什么时候拍了一张照片。";
+"tip.time.title" = "时间墙纸";
+"tip.time.description" = "时间是这种类型的墙纸的关键。根据你选择的时间，桌面图片会在一天内发生变化。";
+"tip.appearance.title" = "外观墙纸";
+"tip.appearance.description" = "这种类型的墙纸就像它的名字一样简单。根据系统外观的变化，桌面图片在一天中不断变化。你需要两张图片：一张用于浅色模式，一张用于深色模式。";
+"tip.calculator.title" = "日照计算器";
+"tip.calculator.description" = "它可以帮助你计算出太阳在天空中的位置。\n1. 在太阳时间轴上选择你拍摄照片的地点、日期和时间。如果你不知道确切的时间，你可以使用太阳时间线来查看太阳在天空中的位置有多高或多低，并将其与你的照片相匹配。\n2. 将结果拖放或复制到你的图像上。";
+
+"dock.new" = "新建";

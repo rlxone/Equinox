@@ -115,6 +115,8 @@ Many thanks to the macOS community and special thanks to [mczachurski](https://g
 Equinox is translated to:
 - English
 - French, by [W1W1-M](https://github.com/W1W1-M)
+- Türkçe, by [furkanipek](https://github.com/furkanipek)
+- Chinese, by [Chuan Hu](https://github.com/GaiZhenbiao), [DevLiuSir](https://github.com/DevLiuSir)
 
 To translate Equinox to another language:
 - Fork the main branch 

@@ -86,9 +86,31 @@ extension SolarMainContentView.Style {
                     font: Font.title2(.bold),
                     color: Color.label
                 ),
-                timelineStyle: .init(
-                    font: Font.callout(.regular),
-                    color: Color.label
+                timezoneAbbreviationStyle: .init(
+                    ownStyle: .init(
+                        backgroundColor: Color.solarContent,
+                        borderColor: Color.solarContentBorder
+                    ),
+                    titleStyle: .init(
+                        font: Font.callout(.regular),
+                        color: Color.label
+                    )
+                ),
+                timezoneDaylightSavingTimeStyle: .init(
+                    ownStyle: .init(
+                        backgroundColor: Color.solarContent,
+                        borderColor: Color.solarContentBorder
+                    ),
+                    titleStyle: .init(
+                        font: Font.callout(.regular),
+                        color: Color.label
+                    )
+                ),
+                timezoneMenuStyle: .init(
+                    titleFont: Font.body(.regular),
+                    titleColor: Color.label,
+                    supplementaryTitleFont: Font.caption2(.regular),
+                    supplementaryTitleColor: Color.secondaryLabel
                 )
             ),
             resultStyle: .init(
@@ -111,12 +133,12 @@ extension SolarMainContentView.Style {
                         copyImage: Image.copy
                     ),
                     pushButtonStyle: .default
-                ),
-                pushButtonStyle: .default
+                )
             ),
             lineStyle: .init(
                 color: Color.separator
-            )
+            ),
+            tooltipStyle: .default
         )
     }
 }

@@ -37,7 +37,6 @@ extension TabItemView {
         let font: NSFont
         let textColor: NSColor
         let highlightTextColor: NSColor
-        let graphiteHighlightTextColor: NSColor
         let accentColor: NSColor
         let backgroundColor: NSColor
 
@@ -45,14 +44,12 @@ extension TabItemView {
             font: NSFont,
             textColor: NSColor,
             highlightTextColor: NSColor,
-            graphiteHighlightTextColor: NSColor,
             accentColor: NSColor,
             backgroundColor: NSColor
         ) {
             self.font = font
             self.textColor = textColor
             self.highlightTextColor = highlightTextColor
-            self.graphiteHighlightTextColor = graphiteHighlightTextColor
             self.accentColor = accentColor
             self.backgroundColor = backgroundColor
         }
