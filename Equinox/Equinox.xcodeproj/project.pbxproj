@@ -133,6 +133,7 @@
 		F3E7B06126AE1A1C00287C60 /* CreateContentViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContentViewExtensions.swift; sourceTree = "<group>"; };
 		F3E7B06326AE2DAC00287C60 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		F3EC93A826C993870032FA39 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F6048FE12BA9AA8200712EE5 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +369,7 @@
 				fr,
 				tr,
 				"zh-Hans",
+				"zh-HK",
 			);
 			mainGroup = F3003219213081F0008D1352;
 			packageReferences = (
@@ -476,6 +478,7 @@
 				3D8467CF2899BCDA00D19E32 /* en */,
 				E341F5472A9C8FBA007637CB /* tr */,
 				128D6B812973A88F00FD5677 /* zh-Hans */,
+				F6048FE12BA9AA8200712EE5 /* zh-HK */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

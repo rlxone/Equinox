@@ -1,0 +1,9 @@
+/* Bundle name */
+"CFBundleName" = "Equinox";
+
+/* Copyright (human-readable) */
+"NSHumanReadableCopyright" = "Copyright © 2022 rlxone. 保留一切權利。";
+
+/* Privacy - Location Usage Description */
+"NSLocationUsageDescription" = "Equinox 希望使用你的位置來實現更正確的太陽計算";
+

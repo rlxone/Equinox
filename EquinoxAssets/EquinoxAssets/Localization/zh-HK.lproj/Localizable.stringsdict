@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>delete</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@delete@</string>
+		<key>delete</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>刪除影像 (%d 個項目)</string>
+		</dict>
+	</dict>
+	<key>images</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@images@</string>
+		<key>images</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d 個影像</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
