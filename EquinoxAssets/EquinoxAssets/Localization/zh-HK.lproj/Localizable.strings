@@ -47,7 +47,7 @@
 "menu.help.githubProject" = "GitHub 項目";
 
 /* (No Comment) */
-"menu.help.macAppStoreReview" = "在 Mac App Store 上為Equinox 評分 ";
+"menu.help.macAppStoreReview" = "在 Mac App Store 上為 Equinox 評分 ";
 
 /* (No Comment) */
 "menu.help.productHunt" = "Product Hunt 上的 Equinox";
@@ -62,7 +62,7 @@
 "menu.main.hide.others" = "隱藏其他";
 
 /* (No Comment) */
-"menu.main.preferences" = "偏好設定...";
+"menu.main.preferences" = "偏好設定⋯";
 
 /* (No Comment) */
 "menu.main.quit" = "結束 %@";
@@ -152,7 +152,7 @@
 "tip.appearance.title" = "外觀背景圖片";
 
 /* (No Comment) */
-"tip.calculator.description" = "它會幫助你計算太陽在天空當中的位置。\n1. 拍攝相片時，於太陽時間線上選取地點、日期與時間。如你不知道確切時間，你可以使用太陽時間線來檢視太陽在天空當中的位置高低，並將其匹配你的照片。\n2. 拖放或者複製結果至你的影像上。";
+"tip.calculator.description" = "它會幫助你計算太陽在天空當中的位置。\n1. 影相時，於太陽時間線上選取地點、日期與時間。如你不知道確切時間，你可以使用太陽時間線來檢視太陽在天空當中的位置高低，並將其匹配你的相片。\n2. 拖放或者複製結果至你的影像上。";
 
 /* (No Comment) */
 "tip.calculator.title" = "太陽計算機";
