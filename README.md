@@ -116,7 +116,8 @@ Equinox is translated to:
 - English
 - French, by [W1W1-M](https://github.com/W1W1-M)
 - Türkçe, by [furkanipek](https://github.com/furkanipek)
-- Chinese, by [Chuan Hu](https://github.com/GaiZhenbiao), [DevLiuSir](https://github.com/DevLiuSir)
+- Chinese (Simplified), by [Chuan Hu](https://github.com/GaiZhenbiao), [DevLiuSir](https://github.com/DevLiuSir), [changanmoon](https://github.com/changanmoon)
+- Chinese (Traditional, Hong Kong), by [changanmoon](https://github.com/changanmoon)
 
 To translate Equinox to another language:
 - Fork the main branch 
