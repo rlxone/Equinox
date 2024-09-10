@@ -30,18 +30,18 @@
 "menu.help.macAppStoreReview" = "Califica Equinox en Mac App Store";
 "menu.help.productHunt" = "Equinox en Product Hunt";
 
-"welcome.title" = "Welcome to Equinox";
-"welcome.welcome" = "Welcome to %@";
-"welcome.version" = "Version %@";
-"welcome.github" = "Github";
-"welcome.choose.type" = "Choose type";
-"welcome.choose.type.description" = "Select a suitable type for your wallpaper";
+"welcome.title" = "Bienvenido a Equinox";
+"welcome.welcome" = "Bienvenido a %@";
+"welcome.version" = "Versión %@";
+"welcome.github" = "GitHub";
+"welcome.choose.type" = "Elegir tipo";
+"welcome.choose.type.description" = "Seleccione un tipo adecuado para su fondo de pantalla";
 "welcome.types.solar" = "Solar";
-"welcome.types.solar.description" = "Create wallpaper based on solar calculations. The desktop picture changes throughout the day, based on the position of the sun in the sky.";
-"welcome.types.time" = "Time";
-"welcome.types.time.description" = "Create wallpaper based on time calculations. The desktop picture changes throughout the day, based on time you choose.";
-"welcome.types.appearance" = "Appearance";
-"welcome.types.appearance.description" = "Create wallpaper based on system appearance. You need two images: one for light and one for dark mode.";
+"welcome.types.solar.description" = "Crea un fondo de pantalla basado en cálculos solares. La imagen del escritorio cambia a lo largo del día, según la posición del sol en el cielo.";
+"welcome.types.time" = "Tiempo";
+"welcome.types.time.description" = "Crea un fondo de pantalla basado en cálculos de tiempo. La imagen del escritorio cambia a lo largo del día, según la hora que elija.";
+"welcome.types.appearance" = "Aparencia";
+"welcome.types.appearance.description" = "Crea un fondo de pantalla basado en la aparencia del sistema. Nesecitas dos imágenes: una para el modo claro y uno para el modo oscuro.";
 
 "wallpaper.main.solar" = "Solar";
 "wallpaper.main.time" = "Time";
