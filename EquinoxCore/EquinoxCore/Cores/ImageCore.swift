@@ -74,8 +74,8 @@ public final class ImageCoreImpl: ImageCore {
         progressCallback: ProgressCallback?
     ) throws -> Data {
         let mutableData = NSMutableData()
-        let options = [kCGImageDestinationLossyCompressionQuality: 1.0] as CFDictionary
         let destinationType = AVFileType.heic as CFString
+        let options = [kCGImageDestinationLossyCompressionQuality: lossyCompressionQuality] as CFDictionary
 
         guard let destination = CGImageDestinationCreateWithData(mutableData, destinationType, attributes.count, nil) else {
             throw ImageError.destinationNotCreated
@@ -182,5 +182,29 @@ public final class ImageCoreImpl: ImageCore {
             throw ImageError.imageNotConverted
         }
         return cgImage
+    }
+
+    private var lossyCompressionQuality: Double {
+        let lossless = 1.0
+        let lossy = 0.999_999_9
+
+        // This works around a bug in macOS 14.4.1 and later where encoding HEIC on Intel devices fails.
+        //
+        // See https://github.com/rlxone/Equinox/pull/69
+        #if arch(x86_64)
+        if #unavailable(macOS 14.4.1) {
+            return lossless
+        }
+
+        if #unavailable(macOS 15) {
+            return lossy
+        }
+
+        #else
+        // Fallthrough
+
+        #endif
+
+        return lossless
     }
 }

@@ -1,0 +1,141 @@
+"menu.main.about" = "關於 %@";
+"menu.main.preferences" = "偏好設定⋯";
+"menu.main.hide" = "隱藏 %@";
+"menu.main.hide.others" = "隱藏其他";
+"menu.main.show.all" = "全部顯示";
+"menu.main.quit" = "退出 %@";
+
+"menu.file" = "檔案";
+"menu.file.new" = "新增";
+
+"menu.edit" = "編輯";
+"menu.edit.undo" = "復原";
+"menu.edit.redo" = "重做";
+"menu.edit.cut" = "剪下";
+"menu.edit.copy" = "拷貝";
+"menu.edit.paste" = "貼上";
+"menu.edit.select.all" = "全選";
+"menu.edit.delete" = "刪除";
+
+"menu.window" = "視窗";
+"menu.window.minimize" = "最小化";
+"menu.window.zoom" = "縮放";
+"menu.window.show.all" = "全部顯示";
+
+"menu.help" = "幫助";
+"menu.help.githubProject" = "GitHub 專案";
+"menu.help.githubFAQ" = "常見問題";
+"menu.help.githubIssue" = "回報錯誤";
+"menu.help.equinoxWebsite" = "Equinox 網站";
+"menu.help.macAppStoreReview" = "在 Mac App Store 上為 Equinox 評分";
+"menu.help.productHunt" = "在 Product Hunt 上的 Equinox";
+
+"welcome.title" = "歡迎使用 Equinox";
+"welcome.welcome" = "歡迎使用 %@";
+"welcome.version" = "版本 %@";
+"welcome.github" = "Github";
+"welcome.choose.type" = "選擇類型";
+"welcome.choose.type.description" = "選擇適合您背景圖片的類型";
+"welcome.types.solar" = "日照";
+"welcome.types.solar.description" = "建立根據日照計算的背景圖片。圖片將根據太陽於空中的位置在一天中變換。";
+"welcome.types.time" = "時間";
+"welcome.types.time.description" = "建立根據時間計算的背景圖片。圖片將根據您所選的時間在一天中變換。";
+"welcome.types.appearance" = "外觀";
+"welcome.types.appearance.description" = "建立根據系統外觀變化的背景圖片。您需準備兩張圖片：淺色和深色模式各一張。";
+
+"wallpaper.main.solar" = "日照";
+"wallpaper.main.time" = "時間";
+"wallpaper.main.appearance" = "外觀";
+"wallpaper.main.calculator" = "計算器";
+"wallpaper.main.create" = "建立";
+"wallpaper.main.browse" = "瀏覽圖檔";
+"wallpaper.main.validate" = "請填寫所有欄位";
+
+"wallpaper.gallery.drag.title" = "將您的圖片拖放至此";
+"wallpaper.gallery.drag.supplementary" = "檔案格式應為 png、jpeg、tiff，或 heif。";
+"wallpaper.gallery.or" = "或";
+"wallpaper.gallery.browse" = "瀏覽";
+"wallpaper.gallery.azimuth" = "方位角：";
+"wallpaper.gallery.azimuth.value" = "數值";
+"wallpaper.gallery.altitude" = "海拔：";
+"wallpaper.gallery.altitude.value" = "數值";
+"wallpaper.gallery.time" = "時間：";
+"wallpaper.gallery.tooltip.appearance.title" = "外觀";
+"wallpaper.gallery.tooltip.appearance.description" = "圖形模式。僅一張圖片可被設為淺色或深色外觀。";
+"wallpaper.gallery.tooltip.primary.title" = "主圖";
+"wallpaper.gallery.tooltip.primary.description" = "作為背景圖片縮圖顯示的主要圖片。";
+"wallpaper.gallery.wrong.images.type" = "某些檔案 (%d) 的圖片類型錯誤。僅支援 png、jpeg、tiff，和 heic";
+
+"wallpaper.appearance.auto.title" = "自動";
+"wallpaper.appearance.auto.description" = "預設背景圖片";
+"wallpaper.appearance.light.title" = "淺色 (靜態)";
+"wallpaper.appearance.light.description" = "在靜態淺色模式顯示圖片";
+"wallpaper.appearance.dark.title" = "深色 (靜態)";
+"wallpaper.appearance.dark.description" = "在靜態深色模式顯示圖片";
+
+"wallpaper.create.success" = "成功";
+"wallpaper.create.success.description" = "將背景圖片拖曳或儲存到您喜歡的地方";
+"wallpaper.create.failure" = "失敗";
+"wallpaper.create.failure.description" = "哎呀！某個地方出錯了";
+"wallpaper.create.save" = "儲存";
+"wallpaper.create.set" = "設定";
+"wallpaper.create.share" = "分享";
+"wallpaper.create.new" = "新增";
+"wallpaper.create.cancel" = "取消";
+"wallpaper.create.solar.based" = "根據日照";
+"wallpaper.create.time.based" = "根據時間";
+"wallpaper.create.appearance.based" = "根據外觀";
+"wallpaper.create.file.saved" = "已儲存背景圖片";
+"wallpaper.create.new.title" = "要建立新背景圖片嗎？";
+"wallpaper.create.new.description" = "您要建立新類型的背景圖片還是重複目前的背景圖片？";
+"wallpaper.create.title" = "建立";
+"wallpaper.create.repeat.title" = "重複";
+"wallpaper.create.set.error" = "無法儲存背景圖片。";
+"wallpaper.create.set.success" = "您已成功設定背景圖片";
+"wallpaper.create.cant.share" = "無法分享背景圖片！";
+
+"wallpaper.set.title" = "設定前的準備作業";
+"wallpaper.set.description.title.old" = "在設定背景圖片前，您需要在 macOS 偏好設定的「桌面 & 螢幕保護程式」中設定「動態」類型。";
+"wallpaper.set.description.title" = "在設定背景圖片前，您需要在 macOS 偏好設定的「背景圖片」中設定「動態」類型。";
+"wallpaper.set.todo.old" = "1. 開啟 macOS 偏好設定的「桌面 & 螢幕保護程式」分頁。\n2. 選擇任意「動態桌面」背景圖片，並將類型設為「動態」。\n3. 按下「繼續」。";
+"wallpaper.set.todo" = "1. 開啟 macOS 偏好設定的「背景圖片」分頁。\n2. 選擇任意「動態桌面」背景圖片，並將類型設為「動態」。\n3. 按下「繼續」。";
+"wallpaper.set.todo.link.old" = "“桌面 & 螢幕保護程式”";
+"wallpaper.set.todo.link" = "“背景圖片”";
+"wallpaper.set.continue" = "繼續";
+"wallpaper.set.skip" = "不要再顯示此訊息";
+
+"solar.main.title" = "日照計算器";
+"solar.main.location.header" = "位置";
+"solar.main.date.header" = "日期";
+"solar.main.result.header" = "結果";
+"solar.main.latitude" = "緯度：";
+"solar.main.longitude" = "經度：";
+"solar.main.date" = "日期；";
+"solar.main.altitude" = "海拔：";
+"solar.main.azimuth" = "方位角：";
+"solar.main.value" = "數值";
+"solar.main.copied" = "已複製";
+"solar.main.sun.timeline" = "太陽時間軸";
+"solar.main.timezone" = "時區";
+"solar.main.location.error" = "哎呀！取得您的位置資訊時發生錯誤。請再試一次";
+"solar.main.dst.title" = "DST";
+"solar.main.dst.tooltip.title" = "夏令時間";
+"solar.main.dst.tooltip.description" = "時煎將在春季調快一小時，並在秋季復原";
+"solar.main.abbreviation.tooltip.title" = "GMT 偏移量";
+"solar.main.abbreviation.tooltip.description" = "格林威治標準時間 (GMT) 與指定位置本地時間的差異，以小時和分鐘表示";
+"solar.main.drag.and.drop.tooltip.title" = "拖放";
+"solar.main.drag.and.drop.tooltip.description" = "將結果拖放或複製到您的圖片上";
+
+"tip.tips" = "提示";
+"tip.started" = "入門";
+"tip.ok" = "瞭解";
+"tip.solar.title" = "日照背景圖片";
+"tip.solar.description" = "將太陽位置納入考量是此類背景圖片的主要功能。根據一年中的不同時間，你會看到最相關的背景圖片。\n有了「光照計算器」的幫助，您無須擔心如何計算，只需知道照片的拍攝地點和時間。";
+"tip.time.title" = "時間背景圖片";
+"tip.time.description" = "時間是此類背景圖片的關鍵。圖片將根據您所選的時間在一天中變換。";
+"tip.appearance.title" = "外觀背景圖片";
+"tip.appearance.description" = "此類背景圖片簡單明瞭。圖片將跟隨系統外觀在一天中變換。您需準備兩張圖片：淺色和深色模式各一張。";
+"tip.calculator.title" = "光照計算器";
+"tip.calculator.description" = "能夠幫助您計算太陽在空中的位置。\n1. 在太陽時間軸上選擇您拍攝照片時的地點、日期，和時間。如果您不知道確切時間，您可以使用太陽時間軸來查看太陽在空中的高度，並與您的圖片比對。\n2. 將結果拖放或複製到您的圖片。";
+
+"dock.new" = "新增";
