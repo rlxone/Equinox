@@ -1,34 +1,34 @@
-"menu.main.about" = "About %@";
-"menu.main.preferences" = "Preferences...";
-"menu.main.hide" = "Hide %@";
-"menu.main.hide.others" = "Hide Others";
-"menu.main.show.all" = "Show All";
-"menu.main.quit" = "Quit %@";
+"menu.main.about" = "Acerca de %@";
+"menu.main.preferences" = "Configuración...";
+"menu.main.hide" = "Ocultar %@";
+"menu.main.hide.others" = "Ocultar todos";
+"menu.main.show.all" = "Mostrar todos";
+"menu.main.quit" = "Salir de %@";
 
-"menu.file" = "File";
-"menu.file.new" = "New";
+"menu.file" = "Archivo";
+"menu.file.new" = "Nuevo";
 
-"menu.edit" = "Edit";
-"menu.edit.undo" = "Undo";
-"menu.edit.redo" = "Redo";
-"menu.edit.cut" = "Cut";
-"menu.edit.copy" = "Copy";
-"menu.edit.paste" = "Paste";
-"menu.edit.select.all" = "Select All";
-"menu.edit.delete" = "Delete";
+"menu.edit" = "Edición";
+"menu.edit.undo" = "Deshacer";
+"menu.edit.redo" = "Rehacer";
+"menu.edit.cut" = "Cortar";
+"menu.edit.copy" = "Copiar";
+"menu.edit.paste" = "Pegar";
+"menu.edit.select.all" = "Seleccionar todo";
+"menu.edit.delete" = "Eliminar";
 
-"menu.window" = "Window";
-"menu.window.minimize" = "Minimize";
-"menu.window.zoom" = "Zoom";
-"menu.window.show.all" = "Show All";
+"menu.window" = "Ventana";
+"menu.window.minimize" = "Minimizar";
+"menu.window.zoom" = "Maximizar";
+"menu.window.show.all" = "Mostrar todo";
 
-"menu.help" = "Help";
-"menu.help.githubProject" = "GitHub project";
-"menu.help.githubFAQ" = "Frequently Asked Questions";
-"menu.help.githubIssue" = "Report an issue";
-"menu.help.equinoxWebsite" = "Equinox website";
-"menu.help.macAppStoreReview" = "Rate Equinox on the Mac App Store";
-"menu.help.productHunt" = "Equinox on Product Hunt";
+"menu.help" = "Ayuda";
+"menu.help.githubProject" = "Proyecto en GitHub";
+"menu.help.githubFAQ" = "Preguntas Frecuentes";
+"menu.help.githubIssue" = "Reportar un Issue";
+"menu.help.equinoxWebsite" = "Equinox sitio";
+"menu.help.macAppStoreReview" = "Califica Equinox en Mac App Store";
+"menu.help.productHunt" = "Equinox en Product Hunt";
 
 "welcome.title" = "Welcome to Equinox";
 "welcome.welcome" = "Welcome to %@";
