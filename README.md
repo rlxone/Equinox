@@ -119,6 +119,7 @@ Equinox is translated to:
 - Chinese (Simplified), by [Chuan Hu](https://github.com/GaiZhenbiao), [DevLiuSir](https://github.com/DevLiuSir)
 - Chinese (Traditional), by [5idereal](https://github.com/5idereal)
 - Chinese (Traditional, Hong Kong), by [changanmoon](https://github.com/changanmoon)
+- Spanish by [rogeruiz](https://github.com/rogeruiz)
 
 To translate Equinox to another language:
 - Fork the main branch 
