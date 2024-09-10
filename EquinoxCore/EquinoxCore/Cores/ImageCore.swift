@@ -186,7 +186,7 @@ public final class ImageCoreImpl: ImageCore {
 
     private var lossyCompressionQuality: Double {
         let lossless = 1.0
-        let lossy = 0.9999999
+        let lossy = 0.999_999_9
 
         // This works around a bug in macOS 14.4.1 and later where encoding HEIC on Intel devices fails.
         //
