@@ -1,0 +1,141 @@
+"menu.main.about" = "About %@";
+"menu.main.preferences" = "Preferences...";
+"menu.main.hide" = "Hide %@";
+"menu.main.hide.others" = "Hide Others";
+"menu.main.show.all" = "Show All";
+"menu.main.quit" = "Quit %@";
+
+"menu.file" = "File";
+"menu.file.new" = "New";
+
+"menu.edit" = "Edit";
+"menu.edit.undo" = "Undo";
+"menu.edit.redo" = "Redo";
+"menu.edit.cut" = "Cut";
+"menu.edit.copy" = "Copy";
+"menu.edit.paste" = "Paste";
+"menu.edit.select.all" = "Select All";
+"menu.edit.delete" = "Delete";
+
+"menu.window" = "Window";
+"menu.window.minimize" = "Minimize";
+"menu.window.zoom" = "Zoom";
+"menu.window.show.all" = "Show All";
+
+"menu.help" = "Help";
+"menu.help.githubProject" = "GitHub project";
+"menu.help.githubFAQ" = "Frequently Asked Questions";
+"menu.help.githubIssue" = "Report an issue";
+"menu.help.equinoxWebsite" = "Equinox website";
+"menu.help.macAppStoreReview" = "Rate Equinox on the Mac App Store";
+"menu.help.productHunt" = "Equinox on Product Hunt";
+
+"welcome.title" = "Welcome to Equinox";
+"welcome.welcome" = "Welcome to %@";
+"welcome.version" = "Version %@";
+"welcome.github" = "Github";
+"welcome.choose.type" = "Choose type";
+"welcome.choose.type.description" = "Select a suitable type for your wallpaper";
+"welcome.types.solar" = "Solar";
+"welcome.types.solar.description" = "Create wallpaper based on solar calculations. The desktop picture changes throughout the day, based on the position of the sun in the sky.";
+"welcome.types.time" = "Time";
+"welcome.types.time.description" = "Create wallpaper based on time calculations. The desktop picture changes throughout the day, based on time you choose.";
+"welcome.types.appearance" = "Appearance";
+"welcome.types.appearance.description" = "Create wallpaper based on system appearance. You need two images: one for light and one for dark mode.";
+
+"wallpaper.main.solar" = "Solar";
+"wallpaper.main.time" = "Time";
+"wallpaper.main.appearance" = "Appearance";
+"wallpaper.main.calculator" = "Calculator";
+"wallpaper.main.create" = "Create";
+"wallpaper.main.browse" = "Browse image files";
+"wallpaper.main.validate" = "Please fill in all fields";
+
+"wallpaper.gallery.drag.title" = "Drag and drop your images";
+"wallpaper.gallery.drag.supplementary" = "Files should be png, jpeg, tiff, or heif.";
+"wallpaper.gallery.or" = "or";
+"wallpaper.gallery.browse" = "Browse";
+"wallpaper.gallery.azimuth" = "Azimuth:";
+"wallpaper.gallery.azimuth.value" = "Value";
+"wallpaper.gallery.altitude" = "Altitude:";
+"wallpaper.gallery.altitude.value" = "Value";
+"wallpaper.gallery.time" = "Time:";
+"wallpaper.gallery.tooltip.appearance.title" = "Appearance";
+"wallpaper.gallery.tooltip.appearance.description" = "Graphic mode. Only one image can be a light or dark appearance.";
+"wallpaper.gallery.tooltip.primary.title" = "Primary";
+"wallpaper.gallery.tooltip.primary.description" = "The primary image will be shown as a wallpaper thumbnail.";
+"wallpaper.gallery.wrong.images.type" = "Some files (%d) have the wrong image type. Only png, jpeg, tiff, and heic are supported";
+
+"wallpaper.appearance.auto.title" = "Automatic";
+"wallpaper.appearance.auto.description" = "Default wallpaper image";
+"wallpaper.appearance.light.title" = "Light (Still)";
+"wallpaper.appearance.light.description" = "Display image in static light mode";
+"wallpaper.appearance.dark.title" = "Dark (Still)";
+"wallpaper.appearance.dark.description" = "Display image in static dark mode";
+
+"wallpaper.create.success" = "Success";
+"wallpaper.create.success.description" = "Drag or save your wallpaper wherever you want";
+"wallpaper.create.failure" = "Failure";
+"wallpaper.create.failure.description" = "Oops! Something went wrong";
+"wallpaper.create.save" = "Save";
+"wallpaper.create.set" = "Set";
+"wallpaper.create.share" = "Share";
+"wallpaper.create.new" = "New";
+"wallpaper.create.cancel" = "Cancel";
+"wallpaper.create.solar.based" = "Solar-based";
+"wallpaper.create.time.based" = "Time-based";
+"wallpaper.create.appearance.based" = "Appearance-based";
+"wallpaper.create.file.saved" = "Wallpaper saved";
+"wallpaper.create.new.title" = "Create new wallpaper?";
+"wallpaper.create.new.description" = "Would you like to create a new type of wallpaper or repeat the current one?";
+"wallpaper.create.title" = "Create";
+"wallpaper.create.repeat.title" = "Repeat";
+"wallpaper.create.set.error" = "Can't save the wallpaper.";
+"wallpaper.create.set.success" = "You successfully set up the wallpaper";
+"wallpaper.create.cant.share" = "Can't share the wallpaper!";
+
+"wallpaper.set.title" = "Set up before set";
+"wallpaper.set.description.title.old" = "You need to set “Dynamic” type in your “Desktop & Screen Saver” macOS Preferences before you set the wallpaper.";
+"wallpaper.set.description.title" = "You need to set “Dynamic” type in your “Wallpaper” macOS Preferences before you set the wallpaper.";
+"wallpaper.set.todo.old" = "1. Open “Desktop & Screen Saver” macOS Preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set its type to “Dynamic”.\n3. Press “Continue”.";
+"wallpaper.set.todo" = "1. Open “Wallpaper” macOS Preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set its type to “Dynamic”.\n3. Press “Continue”.";
+"wallpaper.set.todo.link.old" = "“Desktop & Screen Saver”";
+"wallpaper.set.todo.link" = "“Wallpaper”";
+"wallpaper.set.continue" = "Continue";
+"wallpaper.set.skip" = "Don’t show this message again";
+
+"solar.main.title" = "Solar calculator";
+"solar.main.location.header" = "Location";
+"solar.main.date.header" = "Date";
+"solar.main.result.header" = "Result";
+"solar.main.latitude" = "Latitude:";
+"solar.main.longitude" = "Longitude:";
+"solar.main.date" = "Date:";
+"solar.main.altitude" = "Altitude:";
+"solar.main.azimuth" = "Azimuth:";
+"solar.main.value" = "Value";
+"solar.main.copied" = "Copied";
+"solar.main.sun.timeline" = "Sun timeline";
+"solar.main.timezone" = "Time zones";
+"solar.main.location.error" = "Oops! Something went wrong while getting your location. Please try again";
+"solar.main.dst.title" = "DST";
+"solar.main.dst.tooltip.title" = "Daylight Saving Time";
+"solar.main.dst.tooltip.description" = "Clocks go forward one hour in the spring and back one hour in the fall";
+"solar.main.abbreviation.tooltip.title" = "GMT offset";
+"solar.main.abbreviation.tooltip.description" = "The difference in time between Greenwich Mean Time (GMT) and the local time at a specific location, expressed in hours and minutes";
+"solar.main.drag.and.drop.tooltip.title" = "Drag and drop";
+"solar.main.drag.and.drop.tooltip.description" = "Drag and drop or copy the result over your image";
+
+"tip.tips" = "TIPS";
+"tip.started" = "Get started";
+"tip.ok" = "Got it";
+"tip.solar.title" = "Solar wallpaper";
+"tip.solar.description" = "The main feature of this type of wallpaper is that it takes the position of the sun into account. Depending on the time of year, you will see the most relevant image on your desktop.\nDon't worry about calculations. With the help of the “Solar calculator,” you only need to know where and when you took a photo.";
+"tip.time.title" = "Time wallpaper";
+"tip.time.description" = "Time is the key to this type of wallpaper. The desktop picture changes throughout the day, based on the time you choose.";
+"tip.appearance.title" = "Appearance wallpaper";
+"tip.appearance.description" = "This type of wallpaper is as simple as it is. The desktop picture changes throughout the day, based on system appearance change. You need two images: one for light and one for dark mode.";
+"tip.calculator.title" = "Solar calculator";
+"tip.calculator.description" = "It will help you calculate the position of the sun in the sky.\n1. Choose the place, date, and time on the sun timeline when you took a photo. If you don't know the exact time, you can use the sun timeline to see how high or low the position of the sun in the sky is and match it with the photos you have.\n2. Drag and drop or copy the result over your image.";
+
+"dock.new" = "New";
