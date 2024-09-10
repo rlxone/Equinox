@@ -126,16 +126,16 @@
 "solar.main.drag.and.drop.tooltip.title" = "Drag and drop";
 "solar.main.drag.and.drop.tooltip.description" = "Drag and drop or copy the result over your image";
 
-"tip.tips" = "TIPS";
-"tip.started" = "Get started";
-"tip.ok" = "Got it";
-"tip.solar.title" = "Solar wallpaper";
+"tip.tips" = "CONSEJOS";
+"tip.started" = "Comienza ahora";
+"tip.ok" = "Valé";
+"tip.solar.title" = "Fondo de pantalla en basado solar";
 "tip.solar.description" = "The main feature of this type of wallpaper is that it takes the position of the sun into account. Depending on the time of year, you will see the most relevant image on your desktop.\nDon't worry about calculations. With the help of the “Solar calculator,” you only need to know where and when you took a photo.";
-"tip.time.title" = "Time wallpaper";
-"tip.time.description" = "Time is the key to this type of wallpaper. The desktop picture changes throughout the day, based on the time you choose.";
-"tip.appearance.title" = "Appearance wallpaper";
-"tip.appearance.description" = "This type of wallpaper is as simple as it is. The desktop picture changes throughout the day, based on system appearance change. You need two images: one for light and one for dark mode.";
-"tip.calculator.title" = "Solar calculator";
-"tip.calculator.description" = "It will help you calculate the position of the sun in the sky.\n1. Choose the place, date, and time on the sun timeline when you took a photo. If you don't know the exact time, you can use the sun timeline to see how high or low the position of the sun in the sky is and match it with the photos you have.\n2. Drag and drop or copy the result over your image.";
+"tip.time.title" = "Fondo de pantalla de tiempo";
+"tip.time.description" = "El tiempo es la clave para este fondo de pantalla. La imagen del escritorio cambia a lo largo del día, según la hora que elijia.";
+"tip.appearance.title" = "Fondo de pantalla de apariencia";
+"tip.appearance.description" = "Este tipo de fondo de pantalla es tan simple como es. La imagen del escritorio cambia a lo largo del día, en función del cambio de apariencia del sistema. Necesitas dos imágenes: una para el modo claro y otra para el modo oscuro.";
+"tip.calculator.title" = "Calculadora Solar";
+"tip.calculator.description" = "Te ayudará a calcular la posición del sol en el cielo.\n1. Elige el lugar, la fecha y la hora en la línea de tiempo del sol cuando tomaste la foto. Si no sabes la hora exacta, puedes usar la línea de tiempo solar para ver qué tan alta o baja es la posición del sol en el cielo y compararla con las fotos que tienes.\n2. Arrastrar y soltar o copiar el resultado sobre su imagen.";
 
 "dock.new" = "New";
