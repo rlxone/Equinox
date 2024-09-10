@@ -27,7 +27,7 @@
 "menu.help.githubFAQ" = "Preguntas Frecuentes";
 "menu.help.githubIssue" = "Reportar un Issue";
 "menu.help.equinoxWebsite" = "Equinox sitio";
-"menu.help.macAppStoreReview" = "Califica Equinox en Mac App Store";
+"menu.help.macAppStoreReview" = "Califica Equinox en la Mac App Store";
 "menu.help.productHunt" = "Equinox en Product Hunt";
 
 "welcome.title" = "Bienvenido a Equinox";
@@ -74,9 +74,9 @@
 "wallpaper.appearance.dark.description" = "Image de visualización en modo oscuro estática";
 
 "wallpaper.create.success" = "Éxito";
-"wallpaper.create.success.description" = "Drag or save your wallpaper wherever you want";
+"wallpaper.create.success.description" = "Arrastrar o guardar el fondo de pantalla donde quieras";
 "wallpaper.create.failure" = "Fallo";
-"wallpaper.create.failure.description" = "Oops! Something went wrong";
+"wallpaper.create.failure.description" = "¡Que lastima! Algo salió mal.";
 "wallpaper.create.save" = "Guardar";
 "wallpaper.create.set" = "Colocar";
 "wallpaper.create.share" = "Compartir";
@@ -94,37 +94,37 @@
 "wallpaper.create.set.success" = "Configuraste el fondo de pantalla exitosamente";
 "wallpaper.create.cant.share" = "¡No se pude compartir el fondo de pantalla!";
 
-"wallpaper.set.title" = "Set up before set";
-"wallpaper.set.description.title.old" = "You need to set “Dynamic” type in your “Desktop & Screen Saver” macOS Preferences before you set the wallpaper.";
-"wallpaper.set.description.title" = "You need to set “Dynamic” type in your “Wallpaper” macOS Preferences before you set the wallpaper.";
-"wallpaper.set.todo.old" = "1. Open “Desktop & Screen Saver” macOS Preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set its type to “Dynamic”.\n3. Press “Continue”.";
-"wallpaper.set.todo" = "1. Open “Wallpaper” macOS Preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set its type to “Dynamic”.\n3. Press “Continue”.";
-"wallpaper.set.todo.link.old" = "“Desktop & Screen Saver”";
-"wallpaper.set.todo.link" = "“Wallpaper”";
-"wallpaper.set.continue" = "Continue";
-"wallpaper.set.skip" = "Don’t show this message again";
+"wallpaper.set.title" = "Preparación antes de la puesta en marcha";
+"wallpaper.set.description.title.old" = "Es necesario configurar el tipo «Dynamico» en su preferencia de macOS llamada «Escritorio y protector de pantalla» antes de configurar el fondo de pantalla.";
+"wallpaper.set.description.title" = "Es necesario configurar el tipo «Dynamico» en su preferencia de macOS llamada «Fondo de pantalla» antes de configurar el fondo de pantalla.";
+"wallpaper.set.todo.old" = "1. Abra las Preferencias de macOS “Escritorio y protector de pantalla”.\n2. Elija cualquier fondo de pantalla de “Escritorio dinámico” y establezca su tipo en “Dinámico”.\n3. Presione “Continuar”.";
+"wallpaper.set.todo" = "1. Abra las Preferencias de macOS &quot;Fondo de pantalla&quot;.\n2. Elija cualquier fondo de pantalla de “Escritorio dinámico” y establezca su tipo en “Dinámico”.\n3. Presione “Continuar”.";
+"wallpaper.set.todo.link.old" = "«Escritorio y protector de pantalla»";
+"wallpaper.set.todo.link" = "«Fondo de pantalla»";
+"wallpaper.set.continue" = "Continuar";
+"wallpaper.set.skip" = "No vuelva a mostrar este mensaje";
 
-"solar.main.title" = "Solar calculator";
-"solar.main.location.header" = "Location";
-"solar.main.date.header" = "Date";
-"solar.main.result.header" = "Result";
-"solar.main.latitude" = "Latitude:";
-"solar.main.longitude" = "Longitude:";
-"solar.main.date" = "Date:";
-"solar.main.altitude" = "Altitude:";
-"solar.main.azimuth" = "Azimuth:";
-"solar.main.value" = "Value";
-"solar.main.copied" = "Copied";
-"solar.main.sun.timeline" = "Sun timeline";
-"solar.main.timezone" = "Time zones";
-"solar.main.location.error" = "Oops! Something went wrong while getting your location. Please try again";
+"solar.main.title" = "Calculadora solar";
+"solar.main.location.header" = "Ubicación";
+"solar.main.date.header" = "Fecha";
+"solar.main.result.header" = "Resultado";
+"solar.main.latitude" = "Latitud:";
+"solar.main.longitude" = "Longitud:";
+"solar.main.date" = "Fecha:";
+"solar.main.altitude" = "Altitud:";
+"solar.main.azimuth" = "Acimut:";
+"solar.main.value" = "Valor";
+"solar.main.copied" = "Copiado";
+"solar.main.sun.timeline" = "Línea de tiempo solar";
+"solar.main.timezone" = "Zonas horarias";
+"solar.main.location.error" = "¡Que lastima! Algo salío mal al obtener tu ubicación. Por favor, inténtalo de nuevo";
 "solar.main.dst.title" = "DST";
-"solar.main.dst.tooltip.title" = "Daylight Saving Time";
-"solar.main.dst.tooltip.description" = "Clocks go forward one hour in the spring and back one hour in the fall";
-"solar.main.abbreviation.tooltip.title" = "GMT offset";
-"solar.main.abbreviation.tooltip.description" = "The difference in time between Greenwich Mean Time (GMT) and the local time at a specific location, expressed in hours and minutes";
-"solar.main.drag.and.drop.tooltip.title" = "Drag and drop";
-"solar.main.drag.and.drop.tooltip.description" = "Drag and drop or copy the result over your image";
+"solar.main.dst.tooltip.title" = "DST (horario de verando)";
+"solar.main.dst.tooltip.description" = "Los relojes avanzan una hora en primavera y retroceden una hora un otoño";
+"solar.main.abbreviation.tooltip.title" = "Compensación GMT";
+"solar.main.abbreviation.tooltip.description" = "La diferencia de tiempo entre la hora media de Greenwich (GMT) y la hora local en un lugar";
+"solar.main.drag.and.drop.tooltip.title" = "Arrastrar y soltar";
+"solar.main.drag.and.drop.tooltip.description" = "Arrastrar y soltar o copiar el resultado sobre tu imagen";
 
 "tip.tips" = "CONSEJOS";
 "tip.started" = "Comienza ahora";
@@ -135,7 +135,7 @@
 "tip.time.description" = "El tiempo es la clave para este fondo de pantalla. La imagen del escritorio cambia a lo largo del día, según la hora que elijia.";
 "tip.appearance.title" = "Fondo de pantalla de apariencia";
 "tip.appearance.description" = "Este tipo de fondo de pantalla es tan simple como es. La imagen del escritorio cambia a lo largo del día, en función del cambio de apariencia del sistema. Necesitas dos imágenes: una para el modo claro y otra para el modo oscuro.";
-"tip.calculator.title" = "Calculadora Solar";
+"tip.calculator.title" = "Calculadora solar";
 "tip.calculator.description" = "Te ayudará a calcular la posición del sol en el cielo.\n1. Elige el lugar, la fecha y la hora en la línea de tiempo del sol cuando tomaste la foto. Si no sabes la hora exacta, puedes usar la línea de tiempo solar para ver qué tan alta o baja es la posición del sol en el cielo y compararla con las fotos que tienes.\n2. Arrastrar y soltar o copiar el resultado sobre su imagen.";
 
 "dock.new" = "Nuevo";
