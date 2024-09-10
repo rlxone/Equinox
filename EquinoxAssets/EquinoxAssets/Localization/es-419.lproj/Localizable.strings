@@ -138,4 +138,4 @@
 "tip.calculator.title" = "Calculadora Solar";
 "tip.calculator.description" = "Te ayudará a calcular la posición del sol en el cielo.\n1. Elige el lugar, la fecha y la hora en la línea de tiempo del sol cuando tomaste la foto. Si no sabes la hora exacta, puedes usar la línea de tiempo solar para ver qué tan alta o baja es la posición del sol en el cielo y compararla con las fotos que tienes.\n2. Arrastrar y soltar o copiar el resultado sobre su imagen.";
 
-"dock.new" = "New";
+"dock.new" = "Nuevo";
