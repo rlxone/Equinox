@@ -30,18 +30,18 @@
 "menu.help.macAppStoreReview" = "앱스토어에서 Equinox 평가하기";
 "menu.help.productHunt" = "Product Hunt에서 Equinox 확인하기";
 
-"welcome.title" = "Welcome to Equinox";
-"welcome.welcome" = "Welcome to %@";
-"welcome.version" = "Version %@";
+"welcome.title" = "Equinox에 오신 것을 환영합니다.";
+"welcome.welcome" = "%@님, 환영합니다";
+"welcome.version" = "버전 %@";
 "welcome.github" = "Github";
-"welcome.choose.type" = "Choose type";
-"welcome.choose.type.description" = "Select a suitable type for your wallpaper";
-"welcome.types.solar" = "Solar";
-"welcome.types.solar.description" = "Create wallpaper based on solar calculations. The desktop picture changes throughout the day, based on the position of the sun in the sky.";
-"welcome.types.time" = "Time";
-"welcome.types.time.description" = "Create wallpaper based on time calculations. The desktop picture changes throughout the day, based on time you choose.";
-"welcome.types.appearance" = "Appearance";
-"welcome.types.appearance.description" = "Create wallpaper based on system appearance. You need two images: one for light and one for dark mode.";
+"welcome.choose.type" = "유형 선택";
+"welcome.choose.type.description" = "만들고 싶은 배경화면의 유형을 선택하세요";
+"welcome.types.solar" = "태양";
+"welcome.types.solar.description" = "태양 계산으로 변하는 배경화면을 만듭니다. 태양의 위치에 따라 배경화면이 변합니다.";
+"welcome.types.time" = "시간";
+"welcome.types.time.description" = "시간 계산을 기반으로 배경화면을 만듭니다. 사용자가 선택한 시간에 따라 배경화면이 변합니다.";
+"welcome.types.appearance" = "화면 모드";
+"welcome.types.appearance.description" = "화면 모드를 기반으로 배경화면을 만듭니다. 총 두장의 이미지가 필요합니다: 라이트모드, 다크모드";
 
 "wallpaper.main.solar" = "Solar";
 "wallpaper.main.time" = "Time";
