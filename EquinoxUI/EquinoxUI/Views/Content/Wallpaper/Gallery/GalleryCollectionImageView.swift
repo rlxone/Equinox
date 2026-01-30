@@ -95,7 +95,7 @@ extension GalleryCollectionImageView {
         }
         static var numberCornerRadius: CGFloat {
             if #available(macOS 26, *) {
-                return 8
+                return 6
             }
             return 4
         }
