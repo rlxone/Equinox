@@ -70,7 +70,12 @@ extension SolarTimelineView {
     }
     
     private enum Constants {
-        static let contentCornerRadius: CGFloat = 8
+        static var contentCornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 16
+            }
+            return 8
+        }
         static let contentBorderWidth: CGFloat = 1
         static let titleTopOffset: CGFloat = 16
         static let titleLeadingOffset: CGFloat = 20

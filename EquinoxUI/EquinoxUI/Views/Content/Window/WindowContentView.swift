@@ -44,7 +44,7 @@ extension WindowContentView {
     private enum Constants {
         static var titleBarHeight: CGFloat {
             if #available(macOS 26.0, *) {
-                return 48
+                return 46
             }
             return 38
         }

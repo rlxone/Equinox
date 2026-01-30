@@ -76,9 +76,19 @@ extension SolarLocationView {
     }
 
     private enum Constants {
-        static let contentCornerRadius: CGFloat = 8
+        static var contentCornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 16
+            }
+            return 8
+        }
         static let contentBorderWidth: CGFloat = 1
-        static let fieldCornerRadius: CGFloat = 4
+        static var fieldCornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 8
+            }
+            return 4
+        }
         static let defaultEdgeInsets: NSEdgeInsets = .init(top: 0, left: 12, bottom: 0, right: 8)
         static let locationHeaderLabelLeadingOffset: CGFloat = 20
         static let locationHeaderLabelTopOffset: CGFloat = 16

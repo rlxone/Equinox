@@ -68,7 +68,7 @@ extension TooltipView {
 
 // MARK: - TooltipView
 
-public final class TooltipView: VisualEffectView {
+public final class TooltipView: GlassView {
     private lazy var titleLabel = StyledLabel()
     private lazy var descriptionLabel = StyledLabel()
     
@@ -86,7 +86,7 @@ public final class TooltipView: VisualEffectView {
     // MARK: - Initializer
     
     public init() {
-        super.init(material: .toolTip, blendingMode: .withinWindow)
+        super.init(style: .regular, fallbackVisualEffect: (material: .toolTip, blendingMode: .withinWindow))
         setup()
     }
     

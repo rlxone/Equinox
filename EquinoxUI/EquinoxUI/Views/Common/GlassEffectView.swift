@@ -28,11 +28,23 @@
 
 import AppKit
 
+public enum GlassEffectStyle {
+    case clear
+    case regular
+}
+
 @available(macOS 26.0, *)
 public class GlassEffectView: NSGlassEffectView {
-    public init(style: NSGlassEffectView.Style) {
+    public init(style: GlassEffectStyle) {
         super.init(frame: .zero)
-        self.style = style
+        
+        switch style {
+        case .clear:
+            self.style = .clear
+        case .regular:
+            self.style = .regular
+        }
+        
         setup()
     }
 

@@ -94,7 +94,12 @@ extension SetContentView {
     }
     
     private enum Constants {
-        static let cornerRadius: CGFloat = 20
+        static var cornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 32
+            }
+            return 20
+        }
         static let viewWidth: CGFloat = 500
         static let imageAspect: CGFloat = 9 / 16
         static let textHorizontalOffset: CGFloat = 32

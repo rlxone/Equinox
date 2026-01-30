@@ -55,7 +55,7 @@ extension RoundedTitleView {
     }
     
     private enum Constants {
-        static let cornerRadius: CGFloat = 6
+        static var cornerRadius: CGFloat = 6
         static let borderWidth: CGFloat = 1
         static let horizontalPadding: CGFloat = 8
         static let verticalPadding: CGFloat = 4
