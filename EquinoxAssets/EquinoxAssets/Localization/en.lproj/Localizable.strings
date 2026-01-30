@@ -34,7 +34,7 @@
 "welcome.welcome" = "Welcome to %@";
 "welcome.version" = "Version %@";
 "welcome.github" = "GitHub";
-"welcome.choose.type" = "Choose a Type";
+"welcome.choose.type" = "Choose a type";
 "welcome.choose.type.description" = "Select the type that best fits your wallpaper";
 "welcome.types.solar" = "Solar";
 "welcome.types.solar.description" = "Create a wallpaper based on solar calculations. The desktop picture changes throughout the day based on the sun’s position in the sky.";

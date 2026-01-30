@@ -129,7 +129,7 @@ public final class GalleryCollectionImageView: DashedView {
         lineWidth = Constants.lineWidth
         cornerRadius = Constants.cornerRadius
 
-        imageView.imageContentsGravity = .resizeAspectFill
+        imageView.imageContentsGravity = .resize
         imageView.wantsLayer = true
         imageView.layer?.cornerRadius = Constants.cornerRadius
         numberBlurView.wantsLayer = true
