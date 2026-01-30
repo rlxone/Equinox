@@ -83,6 +83,7 @@
 		3D8467CF2899BCDA00D19E32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D916CE328B1682700D29FFF /* HelpMenuLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpMenuLinks.swift; sourceTree = "<group>"; };
 		54D640AB2BAC5C29002761BF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D99A54562C907D65007CC8FA /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E341F5472A9C8FBA007637CB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F3003222213081F0008D1352 /* Equinox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equinox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3003225213081F0008D1352 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -372,6 +373,7 @@
 				"zh-Hans",
 				"zh-HK",
 				"zh-Hant",
+				"es-419",
 			);
 			mainGroup = F3003219213081F0008D1352;
 			packageReferences = (
@@ -482,6 +484,7 @@
 				128D6B812973A88F00FD5677 /* zh-Hans */,
 				F6048FE12BA9AA8200712EE5 /* zh-HK */,
 				54D640AB2BAC5C29002761BF /* zh-Hant */,
+				D99A54562C907D65007CC8FA /* es-419 */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
