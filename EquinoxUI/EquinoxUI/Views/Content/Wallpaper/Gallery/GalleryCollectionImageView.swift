@@ -81,8 +81,24 @@ extension GalleryCollectionImageView {
     private enum Constants {
         static let lineWidth: CGFloat = 1
         static let highlightLineWidth: CGFloat = 4
-        static let cornerRadius: CGFloat = 4
-        static let numberCornerRadius: CGFloat = 4
+        static var cornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 8
+            }
+            return 4
+        }
+        static var normalSizeCornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 16
+            }
+            return 8
+        }
+        static var numberCornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 6
+            }
+            return 4
+        }
         static let numberLabelHorizontalOffset: CGFloat = 8
         static let numberLabelVerticalOffset: CGFloat = 4
         static let numberViewNormalOffset: CGFloat = 12
@@ -129,7 +145,7 @@ public final class GalleryCollectionImageView: DashedView {
         lineWidth = Constants.lineWidth
         cornerRadius = Constants.cornerRadius
 
-        imageView.imageContentsGravity = .resizeAspectFill
+        imageView.imageContentsGravity = .resize
         imageView.wantsLayer = true
         imageView.layer?.cornerRadius = Constants.cornerRadius
         numberBlurView.wantsLayer = true
@@ -192,6 +208,13 @@ public final class GalleryCollectionImageView: DashedView {
         didSet {
             runWithEffectiveAppearance {
                 stylize()
+            }
+            
+            switch size {
+            case .normal:
+                cornerRadius = Constants.normalSizeCornerRadius
+            case .small:
+                cornerRadius = Constants.cornerRadius
             }
         }
     }

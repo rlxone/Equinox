@@ -78,11 +78,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0CB7DA3A2D5C4C4B00068B2F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		128D6B812973A88F00FD5677 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3D8467CD2899BB0C00D19E32 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D8467CF2899BCDA00D19E32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D916CE328B1682700D29FFF /* HelpMenuLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpMenuLinks.swift; sourceTree = "<group>"; };
 		54D640AB2BAC5C29002761BF /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D99A54562C907D65007CC8FA /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E341F5472A9C8FBA007637CB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F3003222213081F0008D1352 /* Equinox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equinox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3003225213081F0008D1352 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -372,6 +374,8 @@
 				"zh-Hans",
 				"zh-HK",
 				"zh-Hant",
+				ko,
+				"es-419",
 			);
 			mainGroup = F3003219213081F0008D1352;
 			packageReferences = (
@@ -482,6 +486,8 @@
 				128D6B812973A88F00FD5677 /* zh-Hans */,
 				F6048FE12BA9AA8200712EE5 /* zh-HK */,
 				54D640AB2BAC5C29002761BF /* zh-Hant */,
+				0CB7DA3A2D5C4C4B00068B2F /* ko */,
+				D99A54562C907D65007CC8FA /* es-419 */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -625,7 +631,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Equinox/Resources/Info.plist;
@@ -634,7 +640,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlxone.equinox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -651,7 +657,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Equinox/Resources/Info.plist;
@@ -660,7 +666,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlxone.equinox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

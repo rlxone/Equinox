@@ -60,7 +60,7 @@ extension GalleryCollectionFooterView {
 
 // MARK: - Class
 
-public final class GalleryCollectionFooterView: VisualEffectView {
+public final class GalleryCollectionFooterView: GlassView {
     private lazy var infoLabel = StyledLabel()
 
     private lazy var backgroundView: View = {
@@ -72,7 +72,7 @@ public final class GalleryCollectionFooterView: VisualEffectView {
     // MARK: - Initializer
     
     public init() {
-        super.init(material: .toolTip, blendingMode: .withinWindow)
+        super.init(style: .regular, fallbackVisualEffect: (material: .toolTip, blendingMode: .withinWindow))
         setup()
     }
 
@@ -81,7 +81,7 @@ public final class GalleryCollectionFooterView: VisualEffectView {
     public override func layout() {
         super.layout()
         let cornerRadius = bounds.height / 2
-        layer?.cornerRadius = cornerRadius
+        self.cornerRadius = cornerRadius
         backgroundView.layer?.cornerRadius = cornerRadius
     }
     

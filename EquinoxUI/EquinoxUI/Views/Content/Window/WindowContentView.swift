@@ -42,7 +42,12 @@ extension WindowContentView {
     }
 
     private enum Constants {
-        static let titleBarHeight: CGFloat = 38
+        static var titleBarHeight: CGFloat {
+            if #available(macOS 26.0, *) {
+                return 46
+            }
+            return 38
+        }
         static let notificationDelay = 3
         static let notificationTopOffset: CGFloat = 86
         static let hiddenNotificationTopOffset: CGFloat = 16

@@ -54,7 +54,12 @@ extension GalleryCollectionTimeView {
     }
 
     private enum Constants {
-        static let cornerRadius: CGFloat = 4
+        static var cornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 8
+            }
+            return 4
+        }
         static let borderWidth: CGFloat = 1
         static let timePickerLeadingOffset: CGFloat = 4
         static let timeLabelLeadingOffset: CGFloat = 11

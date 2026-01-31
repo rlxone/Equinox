@@ -133,13 +133,6 @@ public final class GalleryCollectionView: NSScrollView {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // MARK: - Life Cycle
-
-    public override func layout() {
-        super.layout()
-        collectionView.collectionViewLayout?.invalidateLayout()
-    }
-
     // MARK: - Setup
 
     private func setup() {

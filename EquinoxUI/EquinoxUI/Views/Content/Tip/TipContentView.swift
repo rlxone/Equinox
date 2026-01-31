@@ -65,7 +65,12 @@ extension TipContentView {
     }
     
     private enum Constants {
-        static let cornerRadius: CGFloat = 20
+        static var cornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 32
+            }
+            return 20
+        }
         static let viewWidth: CGFloat = 500
         static let imageAspect: CGFloat = 9 / 16
         static let statusViewLeadingOffset: CGFloat = 20
@@ -90,10 +95,15 @@ extension TipContentView {
 public final class TipContentView: View {
     private lazy var titleLabel = StyledLabel()
     private lazy var descriptionLabel = StyledLabel()
-    private lazy var imageView = ImageView()
     private lazy var statusLabel = StyledLabel()
     private lazy var lineView = LineView()
     private lazy var button = PushButton()
+    
+    private lazy var imageView: ImageView = {
+        let imageView = ImageView()
+        imageView.imageContentsGravity = .resize
+        return imageView
+    }()
     
     private lazy var overlayView: OverlayView = {
         let view = OverlayView()
@@ -108,8 +118,8 @@ public final class TipContentView: View {
         return view
     }()
     
-    private lazy var statusVisualEffectView: VisualEffectView = {
-        let view = VisualEffectView(material: .hudWindow, blendingMode: .withinWindow)
+    private lazy var statusGlassView: GlassView = {
+        let view = GlassView(style: .regular, fallbackVisualEffect: (material: .hudWindow, blendingMode: .withinWindow))
         view.wantsLayer = true
         return view
     }()
@@ -125,7 +135,7 @@ public final class TipContentView: View {
     
     public override func layout() {
         super.layout()
-        statusVisualEffectView.layer?.cornerRadius = statusVisualEffectView.frame.height / 2
+        statusGlassView.cornerRadius = statusGlassView.frame.height / 2
     }
     
     public override var wantsUpdateLayer: Bool {
@@ -151,7 +161,7 @@ public final class TipContentView: View {
         visualEffectView.contentView.addSubview(titleLabel)
         visualEffectView.contentView.addSubview(descriptionLabel)
         visualEffectView.contentView.addSubview(imageView)
-        visualEffectView.contentView.addSubview(statusVisualEffectView)
+        visualEffectView.contentView.addSubview(statusGlassView)
         visualEffectView.contentView.addSubview(statusLabel)
         visualEffectView.contentView.addSubview(lineView)
         visualEffectView.contentView.addSubview(button)
@@ -183,29 +193,29 @@ public final class TipContentView: View {
     
     private func setupStatusConstraints() {
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        statusVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        statusGlassView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            statusVisualEffectView.leadingAnchor.constraint(
+            statusGlassView.leadingAnchor.constraint(
                 equalTo: visualEffectView.contentView.leadingAnchor,
                 constant: Constants.statusViewLeadingOffset
             ),
-            statusVisualEffectView.topAnchor.constraint(equalTo: visualEffectView.contentView.topAnchor, constant: Constants.statusViewTopOffset),
+            statusGlassView.topAnchor.constraint(equalTo: visualEffectView.contentView.topAnchor, constant: Constants.statusViewTopOffset),
             
             statusLabel.leadingAnchor.constraint(
-                equalTo: statusVisualEffectView.contentView.leadingAnchor,
+                equalTo: statusGlassView.contentView.leadingAnchor,
                 constant: Constants.statusLabelHorizontalOffset
             ),
             statusLabel.trailingAnchor.constraint(
-                equalTo: statusVisualEffectView.contentView.trailingAnchor,
+                equalTo: statusGlassView.contentView.trailingAnchor,
                 constant: -Constants.statusLabelHorizontalOffset
             ),
             statusLabel.topAnchor.constraint(
-                equalTo: statusVisualEffectView.contentView.topAnchor,
+                equalTo: statusGlassView.contentView.topAnchor,
                 constant: Constants.statusLabelVerticalOffset
             ),
             statusLabel.bottomAnchor.constraint(
-                equalTo: statusVisualEffectView.contentView.bottomAnchor,
+                equalTo: statusGlassView.contentView.bottomAnchor,
                 constant: -Constants.statusLabelVerticalOffset
             )
         ])

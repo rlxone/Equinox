@@ -94,7 +94,12 @@ extension SetContentView {
     }
     
     private enum Constants {
-        static let cornerRadius: CGFloat = 20
+        static var cornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 32
+            }
+            return 20
+        }
         static let viewWidth: CGFloat = 500
         static let imageAspect: CGFloat = 9 / 16
         static let textHorizontalOffset: CGFloat = 32
@@ -118,9 +123,14 @@ extension SetContentView {
 public final class SetContentView: View {
     private lazy var titleLabel = StyledLabel()
     private lazy var descriptionLabel = StyledLabel()
-    private lazy var imageView = ImageView()
     private lazy var lineView = LineView()
     private lazy var button = PushButton()
+    
+    private lazy var imageView: ImageView = {
+        let imageView = ImageView()
+        imageView.imageContentsGravity = .resize
+        return imageView
+    }()
     
     private lazy var skipButton: NSButton = {
         let button = NSButton()

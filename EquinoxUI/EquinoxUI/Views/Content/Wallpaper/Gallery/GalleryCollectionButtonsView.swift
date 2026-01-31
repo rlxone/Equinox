@@ -77,7 +77,12 @@ extension GalleryCollectionButtonsView {
     }
 
     private enum Constants {
-        static let cornerRadius: CGFloat = 4
+        static var cornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 8
+            }
+            return 4
+        }
         static let borderWidth: CGFloat = 1
         static let buttonSize: CGFloat = 24
         static let tooltipPresentDelayMilliseconds = 1_000

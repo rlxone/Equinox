@@ -69,9 +69,19 @@ extension CreateContentView {
     }
     
     private enum Constants {
-        static let overlayCornerRadius: CGFloat = 16
+        static var overlayCornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 32
+            }
+            return 16
+        }
         static let overlayBorderWidth: CGFloat = 1
-        static let imageCornerRadius: CGFloat = 8
+        static var imageCornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 20
+            }
+            return 8
+        }
         static let compactHeight: CGFloat = 330
         static let regularHeight: CGFloat = 546
         static let headerViewTopOffset: CGFloat = 40
@@ -82,7 +92,12 @@ extension CreateContentView {
         static let imageWidthMultiplier: CGFloat = 9 / 16
         static let borderOffset: CGFloat = 0.5
         static let progressOffset: CGFloat = 1.5
-        static let borderCornerRadius: CGFloat = 9
+        static var borderCornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 21
+            }
+            return 9
+        }
         static let progressLineWidth: CGFloat = 3
         static let borderLineWidth: CGFloat = 1
         static let completeContraintAnimationDuration: TimeInterval = 0.3
@@ -100,12 +115,12 @@ public final class CreateContentView: View {
         return view
     }()
     
-    private lazy var overlayView: VisualEffectView = {
-        let visualEffectView = VisualEffectView(material: .headerView, blendingMode: .withinWindow)
-        visualEffectView.wantsLayer = true
-        visualEffectView.layer?.cornerRadius = Constants.overlayCornerRadius
-        visualEffectView.layer?.borderWidth = Constants.overlayBorderWidth
-        return visualEffectView
+    private lazy var overlayView: GlassView = {
+        let glassView = GlassView(style: .regular, fallbackVisualEffect: (material: .headerView, blendingMode: .withinWindow))
+        glassView.wantsLayer = true
+        glassView.cornerRadius = Constants.overlayCornerRadius
+        glassView.layer?.borderWidth = Constants.overlayBorderWidth
+        return glassView
     }()
     
     private lazy var shadowOverlayView = VisualEffectView(material: .hudWindow, blendingMode: .withinWindow)

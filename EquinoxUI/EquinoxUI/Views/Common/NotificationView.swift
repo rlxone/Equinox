@@ -66,8 +66,8 @@ extension NotificationView {
 public final class NotificationView: View {
     private lazy var notificationLabel = StyledLabel()
 
-    private lazy var visualEffectView: VisualEffectView = {
-        let view = VisualEffectView(material: .popover, blendingMode: .withinWindow)
+    private lazy var glassView: GlassView = {
+        let view = GlassView(style: .regular, fallbackVisualEffect: (material: .popover, blendingMode: .withinWindow))
         view.wantsLayer = true
         view.layer?.borderWidth = Constants.borderWidth
         return view
@@ -105,7 +105,7 @@ public final class NotificationView: View {
         let radius = bounds.height / 2
         let path = NSBezierPath(roundedRect: bounds, xRadius: radius, yRadius: radius)
 
-        visualEffectView.layer?.cornerRadius = radius
+        glassView.cornerRadius = radius
         shadowLayer.bounds = bounds
         shadowLayer.shadowPath = path.path
 
@@ -147,25 +147,25 @@ public final class NotificationView: View {
         wantsLayer = true
         layer?.masksToBounds = false
 
-        addSubview(visualEffectView)
-        visualEffectView.addSubview(notificationLabel)
+        addSubview(glassView)
+        glassView.addSubview(notificationLabel)
         layer?.insertSublayer(shadowLayer, at: 0)
     }
 
     private func setupConstraints() {
-        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        glassView.translatesAutoresizingMaskIntoConstraints = false
         notificationLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            visualEffectView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            visualEffectView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            visualEffectView.topAnchor.constraint(equalTo: topAnchor),
-            visualEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            glassView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            glassView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            glassView.topAnchor.constraint(equalTo: topAnchor),
+            glassView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            notificationLabel.leadingAnchor.constraint(equalTo: visualEffectView.leadingAnchor, constant: Constants.horizontalPadding),
-            notificationLabel.trailingAnchor.constraint(equalTo: visualEffectView.trailingAnchor, constant: -Constants.horizontalPadding),
-            notificationLabel.topAnchor.constraint(equalTo: visualEffectView.topAnchor, constant: Constants.verticalPadding),
-            notificationLabel.bottomAnchor.constraint(equalTo: visualEffectView.bottomAnchor, constant: -Constants.verticalPadding)
+            notificationLabel.leadingAnchor.constraint(equalTo: glassView.leadingAnchor, constant: Constants.horizontalPadding),
+            notificationLabel.trailingAnchor.constraint(equalTo: glassView.trailingAnchor, constant: -Constants.horizontalPadding),
+            notificationLabel.topAnchor.constraint(equalTo: glassView.topAnchor, constant: Constants.verticalPadding),
+            notificationLabel.bottomAnchor.constraint(equalTo: glassView.bottomAnchor, constant: -Constants.verticalPadding)
         ])
     }
 
@@ -193,7 +193,7 @@ public final class NotificationView: View {
     // MARK: - Private
 
     private func stylize() {
-        visualEffectView.layer?.borderColor = style?.ownStyle.borderColor.cgColor
+        glassView.layer?.borderColor = style?.ownStyle.borderColor.cgColor
         notificationLabel.style = style?.textStyle
     }
 }

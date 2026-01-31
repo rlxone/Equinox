@@ -26,6 +26,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import AppKit
 import EquinoxAssets
 import EquinoxUI
 
@@ -197,10 +198,17 @@ extension TooltipWindow.Style {
 
 extension GalleryCollectionFooterItem.Style {
     static var `default`: GalleryCollectionFooterItem.Style {
+        let backgroundColor: NSColor
+        if #available(macOS 26.0, *) {
+            backgroundColor = Color.wallpaperFooterBackground.withAlphaComponent(0)
+        } else {
+            backgroundColor = Color.wallpaperFooterBackground
+        }
+
         return .init(
             footerStyle: .init(
                 ownStyle: .init(
-                    backgroundColor: Color.wallpaperFooterBackground
+                    backgroundColor: backgroundColor
                 ),
                 infoStyle: .init(
                     font: Font.callout(.regular),

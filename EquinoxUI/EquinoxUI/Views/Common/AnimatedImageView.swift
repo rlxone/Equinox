@@ -48,13 +48,13 @@ extension AnimatedImageView {
 public class AnimatedImageView: View {
     private lazy var foregroundImageView: ImageView = {
         let imageView = ImageView()
-        imageView.imageContentsGravity = .resizeAspectFill
+        imageView.imageContentsGravity = .resize
         return imageView
     }()
 
     private lazy var backgroundImageView: ImageView = {
         let imageView = ImageView()
-        imageView.imageContentsGravity = .resizeAspectFill
+        imageView.imageContentsGravity = .resize
         return imageView
     }()
 

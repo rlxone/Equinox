@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Artboard@500.png",
+      "filename" : "Artboard@500.heic",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Artboard@1000.png",
+      "filename" : "Artboard@1000.heic",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Artboard.png",
+      "filename" : "Artboard.heic",
       "idiom" : "universal",
       "scale" : "3x"
     }

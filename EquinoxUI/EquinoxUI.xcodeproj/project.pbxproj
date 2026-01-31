@@ -80,6 +80,8 @@
 		F3CBF494267F940500087660 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBF493267F940500087660 /* View.swift */; };
 		F3D2EE44267DEDAA009704C5 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2EE43267DEDAA009704C5 /* VisualEffectView.swift */; };
 		F3D2EE47267DF125009704C5 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D2EE46267DF125009704C5 /* Window.swift */; };
+		F3D8837D2F2D092B00430D31 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8837C2F2D092900430D31 /* GlassView.swift */; };
+		F3D883802F2D0B2200430D31 /* GlassEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8837F2F2D0B2200430D31 /* GlassEffectView.swift */; };
 		F3D9F23926C064A900CF816C /* SolarMainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9F23826C064A900CF816C /* SolarMainContentView.swift */; };
 		F3E0D71A267CF1C90077DBAB /* WindowContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0D719267CF1C90077DBAB /* WindowContentView.swift */; };
 		F3E7B04326A4EE4600287C60 /* AppearanceContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7B04226A4EE4600287C60 /* AppearanceContentView.swift */; };
@@ -170,6 +172,8 @@
 		F3D2EE2C267DD29B009704C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3D2EE43267DEDAA009704C5 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		F3D2EE46267DF125009704C5 /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
+		F3D8837C2F2D092900430D31 /* GlassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassView.swift; sourceTree = "<group>"; };
+		F3D8837F2F2D0B2200430D31 /* GlassEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassEffectView.swift; sourceTree = "<group>"; };
 		F3D9F23826C064A900CF816C /* SolarMainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarMainContentView.swift; sourceTree = "<group>"; };
 		F3E0D719267CF1C90077DBAB /* WindowContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowContentView.swift; sourceTree = "<group>"; };
 		F3E7B04226A4EE4600287C60 /* AppearanceContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceContentView.swift; sourceTree = "<group>"; };
@@ -256,6 +260,8 @@
 		F3765730267FF4B900AC4191 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F3D8837F2F2D0B2200430D31 /* GlassEffectView.swift */,
+				F3D8837C2F2D092900430D31 /* GlassView.swift */,
 				F3CBF493267F940500087660 /* View.swift */,
 				F3D2EE43267DEDAA009704C5 /* VisualEffectView.swift */,
 				F34E06B0267AB80C00F004EF /* StackView.swift */,
@@ -578,6 +584,7 @@
 				F342CC2726B32C47001E0DF8 /* GalleryCollectionCoordinatesView.swift in Sources */,
 				F342CC1F26AEEF57001E0DF8 /* TagView.swift in Sources */,
 				F3140D072682BBF10058EB60 /* CreateContentView.swift in Sources */,
+				F3D883802F2D0B2200430D31 /* GlassEffectView.swift in Sources */,
 				F30C86D226D6947100F93E60 /* ContainerButton.swift in Sources */,
 				F356C8B72734B97D00E915C6 /* TipContentView.swift in Sources */,
 				F34E06D9267B886800F004EF /* ToolBarView.swift in Sources */,
@@ -586,6 +593,7 @@
 				F32C649A26FB68D8002F5817 /* GalleryCollectionFooterView.swift in Sources */,
 				F399A5032686319B00ED45EF /* DragView.swift in Sources */,
 				F3D2EE44267DEDAA009704C5 /* VisualEffectView.swift in Sources */,
+				F3D8837D2F2D092B00430D31 /* GlassView.swift in Sources */,
 				F34E06B1267AB80C00F004EF /* StackView.swift in Sources */,
 				F3AC40FB26D152F0000A7253 /* GalleryModel.swift in Sources */,
 				F3FEC7E627277F2800C8F439 /* InteractiveLineChart.swift in Sources */,

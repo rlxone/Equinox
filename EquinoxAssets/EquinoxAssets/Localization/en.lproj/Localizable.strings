@@ -23,36 +23,36 @@
 "menu.window.show.all" = "Show All";
 
 "menu.help" = "Help";
-"menu.help.githubProject" = "GitHub project";
+"menu.help.githubProject" = "GitHub Project";
 "menu.help.githubFAQ" = "Frequently Asked Questions";
-"menu.help.githubIssue" = "Report an issue";
-"menu.help.equinoxWebsite" = "Equinox website";
+"menu.help.githubIssue" = "Report an Issue";
+"menu.help.equinoxWebsite" = "Equinox Website";
 "menu.help.macAppStoreReview" = "Rate Equinox on the Mac App Store";
 "menu.help.productHunt" = "Equinox on Product Hunt";
 
 "welcome.title" = "Welcome to Equinox";
 "welcome.welcome" = "Welcome to %@";
 "welcome.version" = "Version %@";
-"welcome.github" = "Github";
-"welcome.choose.type" = "Choose type";
-"welcome.choose.type.description" = "Select a suitable type for your wallpaper";
+"welcome.github" = "GitHub";
+"welcome.choose.type" = "Choose a type";
+"welcome.choose.type.description" = "Select the type that best fits your wallpaper";
 "welcome.types.solar" = "Solar";
-"welcome.types.solar.description" = "Create wallpaper based on solar calculations. The desktop picture changes throughout the day, based on the position of the sun in the sky.";
+"welcome.types.solar.description" = "Create a wallpaper based on solar calculations. The desktop picture changes throughout the day based on the sun’s position in the sky.";
 "welcome.types.time" = "Time";
-"welcome.types.time.description" = "Create wallpaper based on time calculations. The desktop picture changes throughout the day, based on time you choose.";
+"welcome.types.time.description" = "Create a wallpaper based on time calculations. The desktop picture changes throughout the day based on the time you choose.";
 "welcome.types.appearance" = "Appearance";
-"welcome.types.appearance.description" = "Create wallpaper based on system appearance. You need two images: one for light and one for dark mode.";
+"welcome.types.appearance.description" = "Create a wallpaper based on system appearance. You need two images: one for Light Mode and one for Dark Mode.";
 
 "wallpaper.main.solar" = "Solar";
 "wallpaper.main.time" = "Time";
 "wallpaper.main.appearance" = "Appearance";
 "wallpaper.main.calculator" = "Calculator";
 "wallpaper.main.create" = "Create";
-"wallpaper.main.browse" = "Browse image files";
+"wallpaper.main.browse" = "Browse Image Files";
 "wallpaper.main.validate" = "Please fill in all fields";
 
 "wallpaper.gallery.drag.title" = "Drag and drop your images";
-"wallpaper.gallery.drag.supplementary" = "Files should be png, jpeg, tiff, or heif.";
+"wallpaper.gallery.drag.supplementary" = "Files should be PNG, JPEG, TIFF, or HEIC.";
 "wallpaper.gallery.or" = "or";
 "wallpaper.gallery.browse" = "Browse";
 "wallpaper.gallery.azimuth" = "Azimuth:";
@@ -61,22 +61,22 @@
 "wallpaper.gallery.altitude.value" = "Value";
 "wallpaper.gallery.time" = "Time:";
 "wallpaper.gallery.tooltip.appearance.title" = "Appearance";
-"wallpaper.gallery.tooltip.appearance.description" = "Graphic mode. Only one image can be a light or dark appearance.";
+"wallpaper.gallery.tooltip.appearance.description" = "Graphic mode. Only one image can be set as Light or Dark appearance.";
 "wallpaper.gallery.tooltip.primary.title" = "Primary";
 "wallpaper.gallery.tooltip.primary.description" = "The primary image will be shown as a wallpaper thumbnail.";
-"wallpaper.gallery.wrong.images.type" = "Some files (%d) have the wrong image type. Only png, jpeg, tiff, and heic are supported";
+"wallpaper.gallery.wrong.images.type" = "Some files (%d) have an unsupported image type. Only PNG, JPEG, TIFF, and HEIC are supported.";
 
 "wallpaper.appearance.auto.title" = "Automatic";
-"wallpaper.appearance.auto.description" = "Default wallpaper image";
+"wallpaper.appearance.auto.description" = "Use the default wallpaper image";
 "wallpaper.appearance.light.title" = "Light (Still)";
-"wallpaper.appearance.light.description" = "Display image in static light mode";
+"wallpaper.appearance.light.description" = "Show a static image in Light Mode";
 "wallpaper.appearance.dark.title" = "Dark (Still)";
-"wallpaper.appearance.dark.description" = "Display image in static dark mode";
+"wallpaper.appearance.dark.description" = "Show a static image in Dark Mode";
 
 "wallpaper.create.success" = "Success";
-"wallpaper.create.success.description" = "Drag or save your wallpaper wherever you want";
+"wallpaper.create.success.description" = "Drag your wallpaper out or save it wherever you want";
 "wallpaper.create.failure" = "Failure";
-"wallpaper.create.failure.description" = "Oops! Something went wrong";
+"wallpaper.create.failure.description" = "Oops! Something went wrong.";
 "wallpaper.create.save" = "Save";
 "wallpaper.create.set" = "Set";
 "wallpaper.create.share" = "Share";
@@ -90,15 +90,15 @@
 "wallpaper.create.new.description" = "Would you like to create a new type of wallpaper or repeat the current one?";
 "wallpaper.create.title" = "Create";
 "wallpaper.create.repeat.title" = "Repeat";
-"wallpaper.create.set.error" = "Can't save the wallpaper.";
-"wallpaper.create.set.success" = "You successfully set up the wallpaper";
-"wallpaper.create.cant.share" = "Can't share the wallpaper!";
+"wallpaper.create.set.error" = "Can’t set the wallpaper.";
+"wallpaper.create.set.success" = "Wallpaper set successfully";
+"wallpaper.create.cant.share" = "Can’t share the wallpaper.";
 
-"wallpaper.set.title" = "Set up before set";
-"wallpaper.set.description.title.old" = "You need to set “Dynamic” type in your “Desktop & Screen Saver” macOS Preferences before you set the wallpaper.";
-"wallpaper.set.description.title" = "You need to set “Dynamic” type in your “Wallpaper” macOS Preferences before you set the wallpaper.";
-"wallpaper.set.todo.old" = "1. Open “Desktop & Screen Saver” macOS Preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set its type to “Dynamic”.\n3. Press “Continue”.";
-"wallpaper.set.todo" = "1. Open “Wallpaper” macOS Preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set its type to “Dynamic”.\n3. Press “Continue”.";
+"wallpaper.set.title" = "Before You Set the Wallpaper";
+"wallpaper.set.description.title.old" = "You need to set the “Dynamic” type in macOS “Desktop & Screen Saver” preferences before you can set the wallpaper.";
+"wallpaper.set.description.title" = "You need to set the “Dynamic” type in macOS “Wallpaper” settings before you can set the wallpaper.";
+"wallpaper.set.todo.old" = "1. Open macOS “Desktop & Screen Saver” preferences.\n2. Choose any “Dynamic Desktop” wallpaper and set its type to “Dynamic”.\n3. Click “Continue”.";
+"wallpaper.set.todo" = "1. Open macOS “Wallpaper” settings.\n2. Choose any “Dynamic Desktop” wallpaper and set its type to “Dynamic”.\n3. Click “Continue”.";
 "wallpaper.set.todo.link.old" = "“Desktop & Screen Saver”";
 "wallpaper.set.todo.link" = "“Wallpaper”";
 "wallpaper.set.continue" = "Continue";
@@ -116,15 +116,15 @@
 "solar.main.value" = "Value";
 "solar.main.copied" = "Copied";
 "solar.main.sun.timeline" = "Sun timeline";
-"solar.main.timezone" = "Time zones";
-"solar.main.location.error" = "Oops! Something went wrong while getting your location. Please try again";
+"solar.main.timezone" = "Time Zones";
+"solar.main.location.error" = "Oops! Something went wrong while getting your location. Please try again.";
 "solar.main.dst.title" = "DST";
 "solar.main.dst.tooltip.title" = "Daylight Saving Time";
-"solar.main.dst.tooltip.description" = "Clocks go forward one hour in the spring and back one hour in the fall";
+"solar.main.dst.tooltip.description" = "Clocks go forward one hour in the spring and back one hour in the fall.";
 "solar.main.abbreviation.tooltip.title" = "GMT offset";
 "solar.main.abbreviation.tooltip.description" = "The difference in time between Greenwich Mean Time (GMT) and the local time at a specific location, expressed in hours and minutes";
 "solar.main.drag.and.drop.tooltip.title" = "Drag and drop";
-"solar.main.drag.and.drop.tooltip.description" = "Drag and drop or copy the result over your image";
+"solar.main.drag.and.drop.tooltip.description" = "Drag and drop or copy the result onto your image";
 
 "tip.tips" = "TIPS";
 "tip.started" = "Get started";
@@ -134,8 +134,8 @@
 "tip.time.title" = "Time wallpaper";
 "tip.time.description" = "Time is the key to this type of wallpaper. The desktop picture changes throughout the day, based on the time you choose.";
 "tip.appearance.title" = "Appearance wallpaper";
-"tip.appearance.description" = "This type of wallpaper is as simple as it is. The desktop picture changes throughout the day, based on system appearance change. You need two images: one for light and one for dark mode.";
+"tip.appearance.description" = "This type of wallpaper is as simple as it gets. The desktop picture changes throughout the day based on changes to the system appearance. You need two images: one for Light Mode and one for Dark Mode.";
 "tip.calculator.title" = "Solar calculator";
-"tip.calculator.description" = "It will help you calculate the position of the sun in the sky.\n1. Choose the place, date, and time on the sun timeline when you took a photo. If you don't know the exact time, you can use the sun timeline to see how high or low the position of the sun in the sky is and match it with the photos you have.\n2. Drag and drop or copy the result over your image.";
+"tip.calculator.description" = "It will help you calculate the position of the sun in the sky.\n1. Choose the place, date, and time on the sun timeline for when you took the photo. If you don't know the exact time, use the sun timeline to see how high or low the sun is in the sky and match it to your photos.\n2. Drag and drop or copy the result onto your image.";
 
 "dock.new" = "New";

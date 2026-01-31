@@ -66,7 +66,12 @@ extension PushButton {
     }
 
     private enum Constants {
-        static let cornerRadius: CGFloat = 5
+        static var cornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 7
+            }
+            return 5
+        }
         static let borderWidth: CGFloat = 1
         static let innerShadowOffset: CGFloat = 0.5
         static let disabledAlphaValue: CGFloat = 0.5
@@ -81,7 +86,12 @@ extension PushButton {
         static let shadow2Radius: CGFloat = 1
         static let shadow2BackgroundColor = CGColor.clear
         static let borderAnchorPoint = CGPoint.zero
-        static let borderCornerRadius: CGFloat = 6
+        static var borderCornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 8
+            }
+            return 6
+        }
         static let borderBackgroundColor = CGColor.clear
         static let innerShadowOpacity: Float = 1
         static let innerShadowRadius: CGFloat = 0

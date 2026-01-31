@@ -46,6 +46,12 @@ extension TitleBarView {
 
     private enum Constants {
         static let titleLineHeight: CGFloat = 1
+        static var titleLabelOffset: CGFloat {
+            if #available(macOS 26.0, *) {
+                return 2.5
+            }
+            return 0
+        }
     }
 }
 
@@ -88,7 +94,7 @@ public final class TitleBarView: View {
             blurView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.titleLineHeight),
 
             titleLabel.centerXAnchor.constraint(equalTo: blurView.contentView.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: blurView.contentView.centerYAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: blurView.contentView.centerYAnchor, constant: Constants.titleLabelOffset),
 
             titleLineView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.titleLineHeight),
             titleLineView.leadingAnchor.constraint(equalTo: leadingAnchor),
