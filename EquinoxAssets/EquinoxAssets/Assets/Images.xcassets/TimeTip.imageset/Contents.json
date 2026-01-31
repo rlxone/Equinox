@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "time-1.png",
+      "filename" : "Artboard.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "time-2.png",
+      "filename" : "Artboard@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "time-3.png",
+      "filename" : "Artboard@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

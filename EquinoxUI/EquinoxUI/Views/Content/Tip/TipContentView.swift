@@ -95,10 +95,15 @@ extension TipContentView {
 public final class TipContentView: View {
     private lazy var titleLabel = StyledLabel()
     private lazy var descriptionLabel = StyledLabel()
-    private lazy var imageView = ImageView()
     private lazy var statusLabel = StyledLabel()
     private lazy var lineView = LineView()
     private lazy var button = PushButton()
+    
+    private lazy var imageView: ImageView = {
+        let imageView = ImageView()
+        imageView.imageContentsGravity = .resize
+        return imageView
+    }()
     
     private lazy var overlayView: OverlayView = {
         let view = OverlayView()
