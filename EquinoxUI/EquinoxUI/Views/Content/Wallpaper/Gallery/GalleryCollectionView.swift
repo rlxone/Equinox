@@ -104,7 +104,6 @@ public final class GalleryCollectionView: NSScrollView {
         return collectionView
     }()
     private lazy var collectionLayout = GalleryCollectionLayout()
-    private lazy var semaphore = DispatchSemaphore(value: 0)
     
     private lazy var dataSource: GalleryCollectionDataSource = {
         let dataSource = GalleryCollectionDataSource(collectionView: collectionView)
@@ -112,11 +111,7 @@ public final class GalleryCollectionView: NSScrollView {
         return dataSource
     }()
     
-    private lazy var operationQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
+    private var footerHideWorkItem: DispatchWorkItem?
 
     // MARK: - Initializer
 
@@ -285,28 +280,25 @@ public final class GalleryCollectionView: NSScrollView {
 
     private func updateFooterPin(footerView: GalleryCollectionFooterItem) {
         let offset = documentVisibleRect.origin.y + frame.height
-
-        operationQueue.cancelAllOperations()
+        let shouldAutoHide = offset < collectionLayout.collectionViewContentSize.height - Constants.pinFooterOffset
+        
         footerView.animate(isHidden: false)
-
-        if offset < collectionLayout.collectionViewContentSize.height - Constants.pinFooterOffset {
-            let operation = BlockOperation()
-            operation.addExecutionBlock { [weak self, weak operation] in
-                guard let operation = operation, !operation.isCancelled else {
-                    return
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + Constants.footerAnimationDelay) { [weak self, weak operation] in
-                    guard let operation = operation, !operation.isCancelled else {
-                        self?.semaphore.signal()
-                        return
-                    }
-                    footerView.animate(isHidden: true)
-                    self?.semaphore.signal()
-                }
-                self?.semaphore.wait()
-            }
-            operationQueue.addOperation(operation)
+        
+        footerHideWorkItem?.cancel()
+        footerHideWorkItem = nil
+        
+        guard shouldAutoHide else { return }
+        
+        let work = DispatchWorkItem { [weak footerView] in
+            footerView?.animate(isHidden: true)
         }
+        
+        footerHideWorkItem = work
+        
+        DispatchQueue.main.asyncAfter(
+            deadline: .now() + Constants.footerAnimationDelay,
+            execute: work
+        )
     }
     
     @objc
