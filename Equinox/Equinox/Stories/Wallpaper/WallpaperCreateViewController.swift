@@ -250,23 +250,36 @@ final class WallpaperCreateViewController: ViewController {
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.nameFieldStringValue = Constants.imageFilename
+        if #available(macOS 11.0, *) {
+            savePanel.allowedContentTypes = [.heic]
+        } else {
+            // Fallback on earlier versions
+        }
+        savePanel.canSelectHiddenExtension = true
+        savePanel.isExtensionHidden = false
 
         savePanel.beginSheetModal(for: window) { [weak self] result in
             guard
                 let self = self,
                 let createdImage = self.createdImage,
                 result == .OK,
-                let url = savePanel.directoryURL?.appendingPathComponent(savePanel.nameFieldStringValue)
+                let panelURL = savePanel.url
             else {
                 return
             }
+
+            let finalURL = panelURL.pathExtension.isEmpty
+                ? panelURL.appendingPathExtension("heic")
+                : panelURL
+
             do {
-                try createdImage.write(to: url)
+                try createdImage.write(to: finalURL, options: .atomic)
                 if notify {
                     self.delegate?.createViewControllerShouldNotify(Localization.Wallpaper.Create.fileSaved)
                 }
-                completion?(url)
+                completion?(finalURL)
             } catch {
+                self.delegate?.createViewControllerShouldNotify(Localization.Wallpaper.Create.failureDescription)
                 completion?(nil)
             }
         }
