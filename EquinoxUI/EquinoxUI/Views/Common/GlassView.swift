@@ -32,7 +32,10 @@ public class GlassView: View {
     public let contentView: NSView
     private let effectView: NSView
 
-    public init(style: GlassEffectStyle, fallbackVisualEffect: (material: NSVisualEffectView.Material, blendingMode: NSVisualEffectView.BlendingMode)) {
+    public init(
+        style: GlassEffectStyle,
+        fallbackVisualEffect: (material: NSVisualEffectView.Material, blendingMode: NSVisualEffectView.BlendingMode)
+    ) {
         if #available(macOS 26.0, *) {
             let view = GlassEffectView(style: style)
             contentView = view.contentView ?? NSView()
