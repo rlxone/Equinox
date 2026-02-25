@@ -43,7 +43,6 @@ opt_in_rules:
     - function_parameter_count
     - identical_operands
     - implicit_getter
-    - inert_defer
     - large_tuple
     - last_where
     - leading_whitespace
@@ -60,7 +59,7 @@ opt_in_rules:
     - number_separator
     - opening_brace
     - operator_usage_whitespace
-    - operator_whitespace
+    - function_name_whitespace
     - private_over_fileprivate
     - protocol_property_accessors_order
     - redundant_discardable_let

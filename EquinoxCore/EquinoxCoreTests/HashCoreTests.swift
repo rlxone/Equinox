@@ -29,8 +29,6 @@
 import EquinoxCore
 import XCTest
 
-// swiftlint:disable force_unwrapping
-
 class HashCoreTests: XCTestCase {
     private var hashCore: HashCoreImpl!
     
@@ -40,7 +38,7 @@ class HashCoreTests: XCTestCase {
     
     func testHash() {
         // Given
-        let data = "test".data(using: .utf8)!
+        let data = Data("test".utf8)
         let result = "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
         
         // When

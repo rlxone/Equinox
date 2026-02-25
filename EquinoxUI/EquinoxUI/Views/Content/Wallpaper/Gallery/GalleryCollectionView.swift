@@ -287,7 +287,9 @@ public final class GalleryCollectionView: NSScrollView {
         footerHideWorkItem?.cancel()
         footerHideWorkItem = nil
         
-        guard shouldAutoHide else { return }
+        guard shouldAutoHide else {
+            return
+        }
         
         let work = DispatchWorkItem { [weak footerView] in
             footerView?.animate(isHidden: true)

@@ -29,8 +29,6 @@
 import EquinoxCore
 import XCTest
 
-// swiftlint:disable force_unwrapping
-
 class ImageCoreTests: XCTestCase {
     private var imageCore: ImageCoreImpl!
     private lazy var testBundle = Bundle(for: type(of: self))
@@ -41,6 +39,7 @@ class ImageCoreTests: XCTestCase {
     
     func testCreateSolarImage() throws {
         // Given
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "image", ofType: "png")!
         let url = URL(fileURLWithPath: path)
         let imageAttributes: [ImageAttributes] = [
@@ -72,6 +71,7 @@ class ImageCoreTests: XCTestCase {
     
     func testCreateTimeImage() throws {
         // Given
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "image", ofType: "png")!
         let url = URL(fileURLWithPath: path)
         let imageAttributes: [ImageAttributes] = [
@@ -103,6 +103,7 @@ class ImageCoreTests: XCTestCase {
     
     func testCreateAppearanceImage() throws {
         // Given
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "image", ofType: "png")!
         let url = URL(fileURLWithPath: path)
         let imageAttributes: [ImageAttributes] = [
@@ -134,6 +135,7 @@ class ImageCoreTests: XCTestCase {
     
     func testGetImageFormat() throws {
         // Given
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
         let result = ImageFormatType.heic
@@ -147,6 +149,7 @@ class ImageCoreTests: XCTestCase {
     
     func testValidateImage() throws {
         // Given
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
         

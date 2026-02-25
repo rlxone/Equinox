@@ -117,12 +117,12 @@ final class TooltipPresenter {
         delayedShowTooltipTask?.cancel()
         delayedShowTooltipTask = nil
         
-        let work = DispatchWorkItem(block: { [weak self] in
+        let work = DispatchWorkItem { [weak self] in
             guard let self, self.isMouseEntered else {
                 return
             }
             self.showTooltip()
-        })
+        }
         delayedShowTooltipTask = work
         
         let deadline: DispatchTime = .now() + .milliseconds(self.presentDelayMilliseconds)

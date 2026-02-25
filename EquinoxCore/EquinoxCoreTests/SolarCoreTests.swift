@@ -29,8 +29,6 @@
 import EquinoxCore
 import XCTest
 
-// swiftlint:disable force_unwrapping
-
 class SolarCoreTests: XCTestCase {
     private var solarCore: SolarCoreImpl!
     
@@ -40,10 +38,10 @@ class SolarCoreTests: XCTestCase {
     
     func testAzimuth() {
         // Given
-        let longitude = -87.623_177
-        let latitude = 41.881_832
+        let longitude = -87.623177
+        let latitude = 41.881832
         let date = getDate(day: 28, month: 9, year: 2_021, hour: 12, minute: 0, second: 0)
-        let result = 94.810_576_292_661_34
+        let result = 94.81057629266134
         
         // When
         let azimuth = solarCore.azimuth(latitude: latitude, longitude: longitude, date: date, timezone: 0, dlstime: 0)
@@ -54,10 +52,10 @@ class SolarCoreTests: XCTestCase {
     
     func testAltitude() {
         // Given
-        let longitude = -87.623_177
-        let latitude = 41.881_832
+        let longitude = -87.623177
+        let latitude = 41.881832
         let date = getDate(day: 28, month: 9, year: 2_021, hour: 12, minute: 0, second: 0)
-        let result = 2.316_156_681_523_694
+        let result = 2.316156681523694
         
         // When
         let altitude = solarCore.altitude(latitude: latitude, longitude: longitude, date: date, timezone: 0, dlstime: 0)
@@ -81,6 +79,7 @@ class SolarCoreTests: XCTestCase {
         var calendar = Calendar.current
         calendar.timeZone = timeZone
         
+        // swiftlint:disable:next force_unwrapping
         let date = calendar.date(from: dateComponents)!
         return date
     }
