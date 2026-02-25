@@ -279,7 +279,6 @@ final class WallpaperCreateViewController: ViewController {
                 }
                 completion?(finalURL)
             } catch {
-                self.delegate?.createViewControllerShouldNotify(Localization.Wallpaper.Create.failureDescription)
                 completion?(nil)
             }
         }
