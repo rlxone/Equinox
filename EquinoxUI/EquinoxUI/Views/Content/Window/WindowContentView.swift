@@ -51,8 +51,7 @@ extension WindowContentView {
 
 public final class WindowContentView: VisualEffectView {
     private lazy var notificationView = NotificationView()
-    private lazy var notificationQueue = OperationQueue()
-    private lazy var notificationSemaphore = DispatchSemaphore(value: 0)
+    private var dismissWorkItem: DispatchWorkItem?
     private weak var notificationTopConstraint: NSLayoutConstraint?
     public lazy var containerView = NSView()
 
@@ -98,7 +97,7 @@ public final class WindowContentView: VisualEffectView {
     
     private func setupActions() {
         notificationView.action = { [weak self] in
-            self?.notificationQueue.cancelAllOperations()
+            self?.dismissWorkItem?.cancel()
             self?.animateDismiss()
         }
     }
@@ -113,32 +112,19 @@ public final class WindowContentView: VisualEffectView {
 
     public func notify(_ text: String) {
         notificationView.text = text
-
-        notificationQueue.cancelAllOperations()
-        let operation = BlockOperation()
-
-        operation.addExecutionBlock { [weak self, weak operation] in
-            guard let operation = operation, !operation.isCancelled else {
-                return
-            }
-            
-            OperationQueue.main.addOperation {
-                self?.animatePresent()
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Constants.notificationDelay)) { [weak operation] in
-                guard let operation = operation, !operation.isCancelled else {
-                    self?.notificationSemaphore.signal()
-                    return
-                }
-                self?.animateDismiss()
-                self?.notificationSemaphore.signal()
-            }
-            
-            self?.notificationSemaphore.wait()
+        animatePresent()
+        
+        dismissWorkItem?.cancel()
+        
+        let work = DispatchWorkItem { [weak self] in
+            self?.animateDismiss()
         }
-
-        notificationQueue.addOperation(operation)
+        dismissWorkItem = work
+        
+        DispatchQueue.main.asyncAfter(
+            deadline: .now() + .seconds(Constants.notificationDelay),
+            execute: work
+        )
     }
     
     // MARK: - Private

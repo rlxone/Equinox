@@ -29,8 +29,6 @@
 import EquinoxCore
 import XCTest
 
-// swiftlint:disable force_unwrapping
-
 struct TestMetadata: Codable {
     struct Pair: Codable {
         let key: String
@@ -50,6 +48,7 @@ class MetadataCoreTests: XCTestCase {
     
     func testGenerateSolarMetadata() throws {
         // Given
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
         let imageAttributes: [ImageAttributes] = [
@@ -84,6 +83,7 @@ class MetadataCoreTests: XCTestCase {
     
     func testGenerateTimeSmallMetadata() throws {
         // Given
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
         let imageAttributes: [ImageAttributes] = [
@@ -118,6 +118,7 @@ class MetadataCoreTests: XCTestCase {
     
     func testGenerateTimeLargeMetadata() throws {
         // Given
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
         let imagesCount = 24 * 12
@@ -159,6 +160,7 @@ class MetadataCoreTests: XCTestCase {
     
     func testGenerateAppearanceMetadata() throws {
         // Given
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
         let imageAttributes: [ImageAttributes] = [
@@ -193,6 +195,7 @@ class MetadataCoreTests: XCTestCase {
     
     func testImageMetadata() {
         // Given
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "image", ofType: "heic")!
         let url = URL(fileURLWithPath: path)
         
@@ -207,6 +210,7 @@ class MetadataCoreTests: XCTestCase {
     }
     
     private func getTestMetadata(key: String) -> String? {
+        // swiftlint:disable:next force_unwrapping
         let path = testBundle.path(forResource: "metadata", ofType: "json")!
         let url = URL(fileURLWithPath: path)
         do {
@@ -235,6 +239,7 @@ class MetadataCoreTests: XCTestCase {
         var calendar = Calendar.current
         calendar.timeZone = timezone
         
+        // swiftlint:disable:next force_unwrapping
         let date = calendar.date(from: dateComponents)!
         return date
     }

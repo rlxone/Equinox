@@ -1,0 +1,141 @@
+"menu.main.about" = "Über %@";
+"menu.main.preferences" = "Einstellungen...";
+"menu.main.hide" = "%@ ausblenden";
+"menu.main.hide.others" = "Andere ausblenden";
+"menu.main.show.all" = "Alle einblenden";
+"menu.main.quit" = "%@ beenden";
+
+"menu.file" = "Ablage";
+"menu.file.new" = "Neu";
+
+"menu.edit" = "Bearbeiten";
+"menu.edit.undo" = "Rückgängig";
+"menu.edit.redo" = "Wiederholen";
+"menu.edit.cut" = "Ausschneiden";
+"menu.edit.copy" = "Kopieren";
+"menu.edit.paste" = "Einfügen";
+"menu.edit.select.all" = "Alles auswählen";
+"menu.edit.delete" = "Löschen";
+
+"menu.window" = "Fenster";
+"menu.window.minimize" = "Minimieren";
+"menu.window.zoom" = "Zoomen";
+"menu.window.show.all" = "Alle anzeigen";
+
+"menu.help" = "Hilfe";
+"menu.help.githubProject" = "GitHub-Projekt";
+"menu.help.githubFAQ" = "Häufig gestellte Fragen";
+"menu.help.githubIssue" = "Problem melden";
+"menu.help.equinoxWebsite" = "Equinox-Website";
+"menu.help.macAppStoreReview" = "Equinox im Mac App Store bewerten";
+"menu.help.productHunt" = "Equinox auf Product Hunt";
+
+"welcome.title" = "Willkommen bei Equinox";
+"welcome.welcome" = "Willkommen bei %@";
+"welcome.version" = "Version %@";
+"welcome.github" = "GitHub";
+"welcome.choose.type" = "Wähle den Typ";
+"welcome.choose.type.description" = "Wähle die Art von Hintergrundbild, die du erstellen willst";
+"welcome.types.solar" = "Sonnenabhängig";
+"welcome.types.solar.description" = "Erstelle ein Hintergrundbild auf Basis von Solarberechnungen. Das Hintergrundbild wechselt abhängig von der Position der Sonne über den Tag hinweg.";
+"welcome.types.time" = "Zeitabhängig";
+"welcome.types.time.description" = "Erstelle ein Hintergrundbild auf Basis der Uhrzeit. Das Hintergrundbild wechselt abhängig von der Uhrzeit über den Tag hinweg.";
+"welcome.types.appearance" = "Erscheinungsbild";
+"welcome.types.appearance.description" = "Erstelle ein Hintergrundbild basierend auf dem System-Erscheinungsbild. Du benötigst zwei Bilder: eines für den Hellmodus und eines für den Dunkelmodus.";
+
+"wallpaper.main.solar" = "Sonnenabhängig";
+"wallpaper.main.time" = "Zeitabhängig";
+"wallpaper.main.appearance" = "Erscheinungsbild";
+"wallpaper.main.calculator" = "Rechner";
+"wallpaper.main.create" = "Erstellen";
+"wallpaper.main.browse" = "Bilddateien durchsuchen";
+"wallpaper.main.validate" = "Bitte fülle alle Felder aus";
+
+"wallpaper.gallery.drag.title" = "Ziehe deine Bilder hierher";
+"wallpaper.gallery.drag.supplementary" = "Erlaubte Dateiformate: PNG, JPEG, TIFF oder HEIC.";
+"wallpaper.gallery.or" = "oder";
+"wallpaper.gallery.browse" = "Durchsuchen";
+"wallpaper.gallery.azimuth" = "Azimut:";
+"wallpaper.gallery.azimuth.value" = "Wert";
+"wallpaper.gallery.altitude" = "Höhe:";
+"wallpaper.gallery.altitude.value" = "Wert";
+"wallpaper.gallery.time" = "Uhrzeit:";
+"wallpaper.gallery.tooltip.appearance.title" = "Erscheinungsbild";
+"wallpaper.gallery.tooltip.appearance.description" = "Grafikmodus. Nur ein Bild kann als helles oder dunkles Erscheinungsbild festgelegt werden.";
+"wallpaper.gallery.tooltip.primary.title" = "Primär";
+"wallpaper.gallery.tooltip.primary.description" = "Das primäre Bild wird als Hintergrundbild-Vorschau angezeigt.";
+"wallpaper.gallery.wrong.images.type" = "Einige Dateien (%d) haben einen nicht unterstützten Bildtyp. Unterstützt werden nur PNG, JPEG, TIFF und HEIC.";
+
+"wallpaper.appearance.auto.title" = "Automatisch";
+"wallpaper.appearance.auto.description" = "Das Standard-Hintergrundbild verwenden";
+"wallpaper.appearance.light.title" = "Hell (Statisch)";
+"wallpaper.appearance.light.description" = "Im Hellmodus ein statisches Bild anzeigen";
+"wallpaper.appearance.dark.title" = "Dunkel (Statisch)";
+"wallpaper.appearance.dark.description" = "Im Dunkelmodus ein statisches Bild anzeigen";
+
+"wallpaper.create.success" = "Erfolg";
+"wallpaper.create.success.description" = "Ziehe dein Hintergrundbild heraus oder speichere es, wo du möchtest";
+"wallpaper.create.failure" = "Fehler";
+"wallpaper.create.failure.description" = "Ups! Etwas ist schiefgelaufen.";
+"wallpaper.create.save" = "Speichern";
+"wallpaper.create.set" = "Festlegen";
+"wallpaper.create.share" = "Teilen";
+"wallpaper.create.new" = "Neu";
+"wallpaper.create.cancel" = "Abbrechen";
+"wallpaper.create.solar.based" = "Sonnenbasiert";
+"wallpaper.create.time.based" = "Zeitbasiert";
+"wallpaper.create.appearance.based" = "Erscheinungsbildbasiert";
+"wallpaper.create.file.saved" = "Hintergrundbild gespeichert";
+"wallpaper.create.new.title" = "Neues Hintergrundbild erstellen?";
+"wallpaper.create.new.description" = "Möchtest du einen neuen Hintergrundbildtyp erstellen oder den aktuellen wiederholen?";
+"wallpaper.create.title" = "Erstellen";
+"wallpaper.create.repeat.title" = "Wiederholen";
+"wallpaper.create.set.error" = "Das Hintergrundbild kann nicht festgelegt werden.";
+"wallpaper.create.set.success" = "Hintergrundbild erfolgreich festgelegt";
+"wallpaper.create.cant.share" = "Das Hintergrundbild kann nicht geteilt werden.";
+
+"wallpaper.set.title" = "Bevor du das Hintergrundbild festlegst";
+"wallpaper.set.description.title.old" = "Du musst in den macOS-Einstellungen unter „Schreibtisch & Bildschirmschoner“ den Typ „Dynamisch“ auswählen, bevor du das Hintergrundbild festlegen kannst.";
+"wallpaper.set.description.title" = "Du musst in den macOS-Einstellungen unter „Hintergrundbild“ den Typ „Dynamisch“ auswählen, bevor du das Hintergrundbild festlegen kannst.";
+"wallpaper.set.todo.old" = "1. Öffne die macOS-Einstellungen „Schreibtisch & Bildschirmschoner“.\n2. Wähle ein beliebiges Hintergrundbild aus „Dynamischer Schreibtisch“ und setze den Typ auf „Dynamisch“.\n3. Klicke auf „Weiter“.";
+"wallpaper.set.todo" = "1. Öffne die macOS-Einstellungen „Hintergrundbild“.\n2. Wähle ein beliebiges Hintergrundbild aus „Dynamischer Schreibtisch“ und setze den Typ auf „Dynamisch“.\n3. Klicke auf „Weiter“.";
+"wallpaper.set.todo.link.old" = "„Schreibtisch & Bildschirmschoner“";
+"wallpaper.set.todo.link" = "„Hintergrundbild“";
+"wallpaper.set.continue" = "Weiter";
+"wallpaper.set.skip" = "Diese Meldung nicht mehr anzeigen";
+
+"solar.main.title" = "Solarrechner";
+"solar.main.location.header" = "Ort";
+"solar.main.date.header" = "Datum";
+"solar.main.result.header" = "Ergebnis";
+"solar.main.latitude" = "Breitengrad:";
+"solar.main.longitude" = "Längengrad:";
+"solar.main.date" = "Datum:";
+"solar.main.altitude" = "Höhe:";
+"solar.main.azimuth" = "Azimut:";
+"solar.main.value" = "Wert";
+"solar.main.copied" = "Kopiert";
+"solar.main.sun.timeline" = "Sonnenverlauf";
+"solar.main.timezone" = "Zeitzonen";
+"solar.main.location.error" = "Ups! Beim Abrufen deines Standorts ist etwas schiefgelaufen. Bitte versuche es erneut.";
+"solar.main.dst.title" = "Sommerzeit";
+"solar.main.dst.tooltip.title" = "Sommerzeit";
+"solar.main.dst.tooltip.description" = "Im Frühjahr werden die Uhren um eine Stunde vorgestellt und im Herbst um eine Stunde zurückgestellt.";
+"solar.main.abbreviation.tooltip.title" = "GMT-Versatz";
+"solar.main.abbreviation.tooltip.description" = "Der Zeitunterschied zwischen Greenwich Mean Time (GMT) und der lokalen Zeit an einem bestimmten Ort, ausgedrückt in Stunden und Minuten.";
+"solar.main.drag.and.drop.tooltip.title" = "Drag-and-drop";
+"solar.main.drag.and.drop.tooltip.description" = "Ziehe das Ergebnis auf dein Bild oder kopiere es";
+
+"tip.tips" = "TIPPS";
+"tip.started" = "Loslegen";
+"tip.ok" = "Verstanden";
+"tip.solar.title" = "Solar-Hintergrundbild";
+"tip.solar.description" = "Die Hauptfunktion dieses Hintergrundbildtyps ist, dass die Position der Sonne berücksichtigt wird. Je nach Jahreszeit siehst du auf deinem Schreibtisch das passendste Bild.\nMach dir keine Sorgen wegen Berechnungen. Mit dem „Solarrechner“ musst du nur wissen, wo und wann du ein Foto aufgenommen hast.";
+"tip.time.title" = "Zeit-Hintergrundbild";
+"tip.time.description" = "Die Zeit ist das Schlüsselelement dieses Hintergrundbildtyps. Das Schreibtischbild ändert sich im Laufe des Tages basierend auf der von dir gewählten Uhrzeit.";
+"tip.appearance.title" = "Erscheinungsbild-Hintergrundbild";
+"tip.appearance.description" = "Dieser Hintergrundbildtyp ist so einfach wie möglich. Das Schreibtischbild ändert sich im Laufe des Tages entsprechend Änderungen am System-Erscheinungsbild. Du brauchst zwei Bilder: eines für den Hellmodus und eines für den Dunkelmodus.";
+"tip.calculator.title" = "Solarrechner";
+"tip.calculator.description" = "Er hilft dir, die Position der Sonne am Himmel zu berechnen.\n1. Wähle den Ort, das Datum und die Uhrzeit auf der Sonnen-Zeitleiste für den Zeitpunkt aus, an dem du das Foto gemacht hast. Wenn du die genaue Uhrzeit nicht kennst, nutze die Sonnen-Zeitleiste, um zu sehen, wie hoch oder tief die Sonne am Himmel steht, und gleiche das mit deinen Fotos ab.\n2. Ziehe das Ergebnis auf dein Bild oder kopiere es.";
+
+"dock.new" = "Neu";

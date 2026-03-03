@@ -343,6 +343,10 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
     }
 
     func refreshCollectionData(_ index: Int, field: GalleryModel.MutateField, sender: Any?) {
+        guard dataController.data.items.indices.contains(index) else {
+            return
+        }
+
         let model = dataController.data.items[index]
 
         switch field {
