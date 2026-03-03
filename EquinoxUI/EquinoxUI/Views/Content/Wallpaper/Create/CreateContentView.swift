@@ -103,7 +103,7 @@ extension CreateContentView {
         static let completeContraintAnimationDuration: TimeInterval = 0.3
         static let animatedImageViewCenterYOffset: CGFloat = 43
         static let shadowAnimatedImageViewBlurRadius: CGFloat = 32
-        static let shadowAnimatedImageViewAlpha: CGFloat = 0.75
+        static let shadowAnimatedImageViewAlpha: CGFloat = 1
     }
 }
 
