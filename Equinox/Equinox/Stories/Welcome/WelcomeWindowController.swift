@@ -49,7 +49,8 @@ extension WelcomeWindowController {
 
 final class WelcomeWindowController: WindowController {
     private var contentWindow: Window?
-
+    private var toolBarController: ToolbarController?
+    
     init() {
         super.init(window: nil)
         setupWindow()
@@ -63,6 +64,10 @@ final class WelcomeWindowController: WindowController {
         
         contentWindow = Window(contentViewController: controller, minSize: Constants.minSize)
         contentWindow?.styleMask.remove(.resizable)
+        let toolBarController = ToolbarController(identifier: NSToolbar.Identifier("WelcomeToolbar"))
+        self.toolBarController = toolBarController
+        contentWindow?.toolbar = toolBarController.toolbar
+        contentWindow?.titlebarAppearsTransparent = true
         
         window = contentWindow
         window?.title = Localization.Welcome.title

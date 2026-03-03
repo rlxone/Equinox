@@ -30,6 +30,8 @@
 "menu.help.macAppStoreReview" = "在 Mac App Store 上為 Equinox 評分";
 "menu.help.productHunt" = "在 Product Hunt 上的 Equinox";
 
+"toolbar.more" = "更多";
+
 "welcome.title" = "歡迎使用 Equinox";
 "welcome.welcome" = "歡迎使用 %@";
 "welcome.version" = "版本 %@";
@@ -139,3 +141,19 @@
 "tip.calculator.description" = "能夠幫助您計算太陽在空中的位置。\n1. 在太陽時間軸上選擇您拍攝照片時的地點、日期，和時間。如果您不知道確切時間，您可以使用太陽時間軸來查看太陽在空中的高度，並與您的圖片比對。\n2. 將結果拖放或複製到您的圖片。";
 
 "dock.new" = "新增";
+
+"toolbar.new.label" = "新增";
+"toolbar.new.palette" = "新增";
+"toolbar.new.tooltip" = "新增背景圖片";
+
+"toolbar.help.label" = "幫助";
+"toolbar.help.palette" = "幫助";
+"toolbar.help.tooltip" = "幫助";
+
+"toolbar.calculator.label" = "計算器";
+"toolbar.calculator.palette" = "日照計算器";
+"toolbar.calculator.tooltip" = "日照計算器";
+
+"wallpaper.toolbar.solar.title" = "日照背景圖片";
+"wallpaper.toolbar.time.title" = "時間背景圖片";
+"wallpaper.toolbar.appearance.title" = "外觀背景圖片";

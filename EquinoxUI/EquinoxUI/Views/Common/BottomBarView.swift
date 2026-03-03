@@ -31,8 +31,6 @@ import AppKit
 // MARK: - Enums, Structs
 
 extension BottomBarView {
-    public typealias HelpAction = () -> Void
-    
     public struct Style {
         let buttonStyle: PushButton.Style
         let lineStyle: LineView.Style
@@ -55,15 +53,6 @@ extension BottomBarView {
 public final class BottomBarView: VisualEffectView {
     private lazy var button = PushButton()
     private lazy var lineView = LineView()
-    
-    private lazy var helpButton: NSButton = {
-        let button = NSButton()
-        button.bezelStyle = .helpButton
-        button.title = String()
-        button.target = self
-        button.action = #selector(helpButtonAction)
-        return button
-    }()
 
     // MARK: - Initializer
 
@@ -82,13 +71,11 @@ public final class BottomBarView: VisualEffectView {
     private func setupView() {
         addSubview(button)
         addSubview(lineView)
-        addSubview(helpButton)
     }
     
     private func setupConstraints() {
         button.translatesAutoresizingMaskIntoConstraints = false
         lineView.translatesAutoresizingMaskIntoConstraints = false
-        helpButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             button.widthAnchor.constraint(equalToConstant: Constants.buttonWidth),
@@ -99,10 +86,7 @@ public final class BottomBarView: VisualEffectView {
             lineView.topAnchor.constraint(equalTo: topAnchor),
             lineView.leadingAnchor.constraint(equalTo: leadingAnchor),
             lineView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
-            
-            helpButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            helpButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32)
+            lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight)
         ])
     }
 
@@ -137,14 +121,5 @@ public final class BottomBarView: VisualEffectView {
         set {
             button.isEnabled = newValue
         }
-    }
-    
-    public var helpAction: HelpAction?
-    
-    // MARK: - Private
-    
-    @objc
-    private func helpButtonAction(_ sender: NSButton) {
-        helpAction?()
     }
 }

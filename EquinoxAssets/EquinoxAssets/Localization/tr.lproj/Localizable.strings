@@ -30,6 +30,8 @@
 "menu.help.macAppStoreReview" = "Mac App Store'da Equinox'u değerlendirin";
 "menu.help.productHunt" = "Product Hunt'da Equinox";
 
+"toolbar.more" = "Daha Fazla";
+
 "welcome.title" = "Equinox'a Hoş Geldiniz";
 "welcome.welcome" = "%@'a Hoşgeldiniz";
 "welcome.version" = "Versiyon %@";
@@ -139,3 +141,19 @@
 "tip.calculator.description" = "Güneşin gökyüzündeki konumunu hesaplamanıza yardımcı olacaktır.\n1. Güneş zaman çizelgesinde fotoğraf çektiğiniz yeri, tarihi ve saati seçin. Tam zamanı bilmiyorsanız, güneşin gökyüzündeki konumunun ne kadar yüksek veya alçak olduğunu görmek için güneş zaman çizelgesini kullanabilir ve bunu elinizdeki fotoğraflarla eşleştirebilirsiniz.\n2. Sonucu sürükleyip bırakın veya görüntünün üzerine kopyalayın.";
 
 "dock.new" = "Yeni";
+
+"toolbar.new.label" = "Yeni";
+"toolbar.new.palette" = "Yeni";
+"toolbar.new.tooltip" = "Yeni Duvar Kağıdı";
+
+"toolbar.help.label" = "Yardım";
+"toolbar.help.palette" = "Yardım";
+"toolbar.help.tooltip" = "Yardım";
+
+"toolbar.calculator.label" = "Hesaplayıcı";
+"toolbar.calculator.palette" = "Güneş hesaplayıcı";
+"toolbar.calculator.tooltip" = "Güneş hesaplayıcı";
+
+"wallpaper.toolbar.solar.title" = "Güneş duvar kağıdı";
+"wallpaper.toolbar.time.title" = "Zaman duvar kağıdı";
+"wallpaper.toolbar.appearance.title" = "Görünüm duvar kağıdı";

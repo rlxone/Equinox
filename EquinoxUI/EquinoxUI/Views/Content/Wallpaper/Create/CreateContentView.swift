@@ -102,6 +102,8 @@ extension CreateContentView {
         static let borderLineWidth: CGFloat = 1
         static let completeContraintAnimationDuration: TimeInterval = 0.3
         static let animatedImageViewCenterYOffset: CGFloat = 43
+        static let shadowAnimatedImageViewBlurRadius: CGFloat = 32
+        static let shadowAnimatedImageViewAlpha: CGFloat = 0.75
     }
 }
 
@@ -123,7 +125,13 @@ public final class CreateContentView: View {
         return glassView
     }()
     
-    private lazy var shadowOverlayView = VisualEffectView(material: .hudWindow, blendingMode: .withinWindow)
+    private lazy var shadowOverlayView: GlassView = {
+        let view = GlassView(style: .clear, fallbackVisualEffect: (material: .hudWindow, blendingMode: .withinWindow))
+        if #available(macOS 26, *) {
+            view.alphaValue = 0
+        }
+        return view
+    }()
     
     private lazy var headerView: CreateHeaderView = {
         let view = CreateHeaderView()
@@ -149,7 +157,12 @@ public final class CreateContentView: View {
     
     private lazy var shadowAnimatedImageView: AnimatedImageView = {
         let view = AnimatedImageView()
+        view.masksToBounds = false
         view.cornerRadius = Constants.imageCornerRadius
+        if #available(macOS 26, *) {
+            view.blurRadius = Constants.shadowAnimatedImageViewBlurRadius
+            view.alphaValue = Constants.shadowAnimatedImageViewAlpha
+        }
         return view
     }()
     

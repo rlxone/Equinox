@@ -30,6 +30,8 @@
 "menu.help.macAppStoreReview" = "Califica Equinox en la Mac App Store";
 "menu.help.productHunt" = "Equinox en Product Hunt";
 
+"toolbar.more" = "Más";
+
 "welcome.title" = "Bienvenido a Equinox";
 "welcome.welcome" = "Bienvenido a %@";
 "welcome.version" = "Versión %@";
@@ -139,3 +141,19 @@
 "tip.calculator.description" = "Te ayudará a calcular la posición del sol en el cielo.\n1. Elige el lugar, la fecha y la hora en la línea de tiempo del sol cuando tomaste la foto. Si no sabes la hora exacta, puedes usar la línea de tiempo solar para ver qué tan alta o baja es la posición del sol en el cielo y compararla con las fotos que tienes.\n2. Arrastrar y soltar o copiar el resultado sobre su imagen.";
 
 "dock.new" = "Nuevo";
+
+"toolbar.new.label" = "Nuevo";
+"toolbar.new.palette" = "Nuevo";
+"toolbar.new.tooltip" = "Nuevo fondo de pantalla";
+
+"toolbar.help.label" = "Ayuda";
+"toolbar.help.palette" = "Ayuda";
+"toolbar.help.tooltip" = "Ayuda";
+
+"toolbar.calculator.label" = "Calculadora";
+"toolbar.calculator.palette" = "Calculadora solar";
+"toolbar.calculator.tooltip" = "Calculadora solar";
+
+"wallpaper.toolbar.solar.title" = "Fondo de pantalla en basado solar";
+"wallpaper.toolbar.time.title" = "Fondo de pantalla de tiempo";
+"wallpaper.toolbar.appearance.title" = "Fondo de pantalla de apariencia";

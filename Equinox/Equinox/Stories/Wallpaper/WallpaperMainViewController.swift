@@ -35,9 +35,6 @@ import EquinoxUI
 
 protocol WallpaperMainViewControllerDelegate: AnyObject {
     func mainViewControllerCreateWasInteracted(_ imageAttributes: [ImageAttributes])
-    func mainViewControllerCalculatorWasInteracted()
-    func mainViewControllerBackWasInteracted()
-    func mainViewControllerHelpWasInteracted()
     func mainViewControllerShouldNotify(_ text: String)
 }
 
@@ -104,22 +101,6 @@ final class WallpaperMainViewController: ViewController {
 
     private func setupView() {
         addGalleryController()
-        
-        switch type {
-        case .solar:
-            contentView.toolBarTitle = Localization.Wallpaper.Main.solar
-            contentView.menuItems = [
-                .button(title: Localization.Wallpaper.Main.calculator) { [weak self] _ in
-                    self?.delegate?.mainViewControllerCalculatorWasInteracted()
-                }
-            ]
-
-        case .time:
-            contentView.toolBarTitle = Localization.Wallpaper.Main.time
-
-        case .appearance:
-            contentView.toolBarTitle = Localization.Wallpaper.Main.appearance
-        }
 
         contentView.createButtonTitle = Localization.Wallpaper.Main.create
         contentView.isCreateButtonEnabled = false
@@ -140,14 +121,6 @@ final class WallpaperMainViewController: ViewController {
                 }
                 self.delegate?.mainViewControllerCreateWasInteracted(imageAttributes)
             }
-        }
-
-        contentView.toolBarBackButtonAction = { [weak self] _ in
-            self?.delegate?.mainViewControllerBackWasInteracted()
-        }
-        
-        contentView.helpAction = { [weak self] in
-            self?.delegate?.mainViewControllerHelpWasInteracted()
         }
     }
 

@@ -30,6 +30,8 @@
 "menu.help.macAppStoreReview" = "Noter Equinox sur le Mac App Store";
 "menu.help.productHunt" = "Equinox sur Product Hunt";
 
+"toolbar.more" = "Plus";
+
 "welcome.title" = "Bienvenue dans Equinox";
 "welcome.welcome" = "Bienvenue dans %@";
 "welcome.version" = "Version %@";
@@ -139,3 +141,19 @@
 "tip.calculator.description" = "Cela vous aide à calculer la position du soleil dans le ciel.\n1. Indiquez le lieu, la date et l'heure où la photo a été prise sur le graphique chronologique du soleil. Si vous ne connaissez pas l'heure exacte vous pouvez utiliser le graphique chronologique pour voir la hauteur du soleil dans le ciel afin de le caler en fonction de la photo.\n2. Glisser et déposer ou copier le résultat par dessus votre image.";
 
 "dock.new" = "Nouveau";
+
+"toolbar.new.label" = "Nouveau";
+"toolbar.new.palette" = "Nouveau";
+"toolbar.new.tooltip" = "Nouveau fond d'écran";
+
+"toolbar.help.label" = "Aide";
+"toolbar.help.palette" = "Aide";
+"toolbar.help.tooltip" = "Aide";
+
+"toolbar.calculator.label" = "Calculatrice";
+"toolbar.calculator.palette" = "Calculatrice solaire";
+"toolbar.calculator.tooltip" = "Calculatrice solaire";
+
+"wallpaper.toolbar.solar.title" = "Fond d'écran solaire";
+"wallpaper.toolbar.time.title" = "Fond d'écran temps";
+"wallpaper.toolbar.appearance.title" = "Fond d'écran apparence";

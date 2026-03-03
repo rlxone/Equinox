@@ -30,6 +30,8 @@
 "menu.help.macAppStoreReview" = "在 Mac App Store 上给 Equinox 评分";
 "menu.help.productHunt" = "Product Hunt 上的 Equinox";
 
+"toolbar.more" = "更多";
+
 "welcome.title" = "欢迎来到 Equinox";
 "welcome.welcome" = "欢迎来到 %@";
 "welcome.version" = "版本 %@";
@@ -139,3 +141,19 @@
 "tip.calculator.description" = "它可以帮助你计算出太阳在天空中的位置。\n1. 在太阳时间轴上选择你拍摄照片的地点、日期和时间。如果你不知道确切的时间，你可以使用太阳时间线来查看太阳在天空中的位置有多高或多低，并将其与你的照片相匹配。\n2. 将结果拖放或复制到你的图像上。";
 
 "dock.new" = "新建";
+
+"toolbar.new.label" = "新建";
+"toolbar.new.palette" = "新建";
+"toolbar.new.tooltip" = "新墙纸";
+
+"toolbar.help.label" = "帮助";
+"toolbar.help.palette" = "帮助";
+"toolbar.help.tooltip" = "帮助";
+
+"toolbar.calculator.label" = "计算器";
+"toolbar.calculator.palette" = "日照计算器";
+"toolbar.calculator.tooltip" = "日照计算器";
+
+"wallpaper.toolbar.solar.title" = "日照墙纸";
+"wallpaper.toolbar.time.title" = "时间墙纸";
+"wallpaper.toolbar.appearance.title" = "外观墙纸";

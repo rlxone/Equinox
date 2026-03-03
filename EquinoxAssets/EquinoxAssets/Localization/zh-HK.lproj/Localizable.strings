@@ -53,6 +53,9 @@
 "menu.help.productHunt" = "Product Hunt 上的 Equinox";
 
 /* (No Comment) */
+"toolbar.more" = "更多";
+
+/* (No Comment) */
 "menu.main.about" = "關於 %@";
 
 /* (No Comment) */
@@ -382,3 +385,18 @@
 /* (No Comment) */
 "welcome.welcome" = "歡迎使用 %@";
 
+"toolbar.new.label" = "新增";
+"toolbar.new.palette" = "新增";
+"toolbar.new.tooltip" = "新增背景圖片";
+
+"toolbar.help.label" = "輔助說明";
+"toolbar.help.palette" = "輔助說明";
+"toolbar.help.tooltip" = "輔助說明";
+
+"toolbar.calculator.label" = "計算機";
+"toolbar.calculator.palette" = "太陽計算機";
+"toolbar.calculator.tooltip" = "太陽計算機";
+
+"wallpaper.toolbar.solar.title" = "太陽背景圖片";
+"wallpaper.toolbar.time.title" = "時間背景圖片";
+"wallpaper.toolbar.appearance.title" = "外觀背景圖片";

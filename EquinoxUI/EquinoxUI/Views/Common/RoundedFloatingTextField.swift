@@ -86,7 +86,7 @@ extension RoundedFloatingTextField {
 
 public final class RoundedFloatingTextField: View {
     private lazy var titleLabel = Label()
-    private lazy var copyButton = PushButton()
+    private lazy var copyButton = PushButton(contentSize: .default)
 
     private lazy var textField: FloatingTextField = {
         let textField = FloatingTextField()

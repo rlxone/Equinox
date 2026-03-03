@@ -32,22 +32,14 @@ import AppKit
 
 extension WindowContentView {
     public struct Style {
-        let titleBarStyle: TitleBarView.Style
         let notificationStyle: NotificationView.Style
 
-        public init(titleBarStyle: TitleBarView.Style, notificationStyle: NotificationView.Style) {
-            self.titleBarStyle = titleBarStyle
+        public init(notificationStyle: NotificationView.Style) {
             self.notificationStyle = notificationStyle
         }
     }
 
     private enum Constants {
-        static var titleBarHeight: CGFloat {
-            if #available(macOS 26.0, *) {
-                return 46
-            }
-            return 38
-        }
         static let notificationDelay = 3
         static let notificationTopOffset: CGFloat = 86
         static let hiddenNotificationTopOffset: CGFloat = 16
@@ -58,7 +50,6 @@ extension WindowContentView {
 // MARK: - Class
 
 public final class WindowContentView: VisualEffectView {
-    private lazy var titleBarView = TitleBarView()
     private lazy var notificationView = NotificationView()
     private lazy var notificationQueue = OperationQueue()
     private lazy var notificationSemaphore = DispatchSemaphore(value: 0)
@@ -83,30 +74,23 @@ public final class WindowContentView: VisualEffectView {
     private func setupView() {
         addSubview(containerView)
         addSubview(notificationView)
-        addSubview(titleBarView)
     }
 
     private func setupConstraints() {
-        titleBarView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
         notificationView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             notificationView.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            titleBarView.topAnchor.constraint(equalTo: topAnchor),
-            titleBarView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleBarView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            titleBarView.heightAnchor.constraint(equalToConstant: Constants.titleBarHeight),
-
-            containerView.topAnchor.constraint(equalTo: titleBarView.bottomAnchor),
+            containerView.topAnchor.constraint(equalTo: topAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
 
         notificationTopConstraint = notificationView.topAnchor.constraint(
-            equalTo: titleBarView.bottomAnchor,
+            equalTo: topAnchor,
             constant: -Constants.notificationTopOffset
         )
         notificationTopConstraint?.isActive = true
@@ -123,27 +107,7 @@ public final class WindowContentView: VisualEffectView {
     
     public var style: Style? {
         didSet {
-            titleBarView.style = style?.titleBarStyle
             notificationView.style = style?.notificationStyle
-        }
-    }
-    
-    public override var active: Bool {
-        get {
-            return super.active
-        }
-        set {
-            super.active = newValue
-            titleBarView.active = newValue
-        }
-    }
-
-    public var title: String {
-        get {
-            return titleBarView.title
-        }
-        set {
-            titleBarView.title = newValue
         }
     }
 

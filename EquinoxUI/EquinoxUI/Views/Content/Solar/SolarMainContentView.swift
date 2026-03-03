@@ -33,7 +33,6 @@ import MapKit
 
 extension SolarMainContentView {
     public typealias CoordinateChangeAction = (CLLocationCoordinate2D) -> Void
-    public typealias HelpAction = (NSButton) -> Void
 
     public struct Style {
         public struct OwnStyle {
@@ -79,13 +78,11 @@ extension SolarMainContentView {
         static let resultTopOffset: CGFloat = 20
         static let resultLeadingOffset: CGFloat = 20
         static let resultTrailingOffset: CGFloat = 20
+        static let resultBottomOffset: CGFloat = 30
         static let pinCenterXOffset: CGFloat = 8
         static let pinCenterYOffset: CGFloat = 15
         static let pinWidth: CGFloat = 32
         static let pinHeight: CGFloat = 39
-        static let helpTopOffset: CGFloat = 20
-        static let helpTrailingOffset: CGFloat = 20
-        static let helpBottomOffset: CGFloat = 20
     }
     
     enum TooltipIdentifier: String {
@@ -112,15 +109,6 @@ public final class SolarMainContentView: VisualEffectView {
     }()
     private lazy var lineView = LineView()
     private lazy var tooltipHandler = SolarTooltipHander()
-    
-    private lazy var helpButton: NSButton = {
-        let button = NSButton()
-        button.bezelStyle = .helpButton
-        button.title = String()
-        button.action = #selector(helpButtonAction(_:))
-        button.target = self
-        return button
-    }()
 
     private lazy var pinImageView: ImageView = {
         let imageView = ImageView()
@@ -356,8 +344,6 @@ public final class SolarMainContentView: VisualEffectView {
         }
     }
     
-    public var helpAction: HelpAction?
-    
     public var daylightSavingTimeTooltipTitle: String? {
         didSet {
             tooltipHandler.daylightSavingTimeTitle = daylightSavingTimeTooltipTitle
@@ -404,11 +390,6 @@ public final class SolarMainContentView: VisualEffectView {
         pinImageView.image = style?.ownStyle.pinImage
         tooltipHandler.style = style?.tooltipStyle
     }
-    
-    @objc
-    private func helpButtonAction(_ sender: NSButton) {
-        helpAction?(sender)
-    }
 }
 
 // MARK: - Setup
@@ -423,7 +404,6 @@ extension SolarMainContentView {
         addSubview(mapView)
         addSubview(overlayView)
         addSubview(pinImageView)
-        addSubview(helpButton)
 
         overlayView.addSubview(locationView)
         overlayView.addSubview(timelineView)
@@ -439,7 +419,6 @@ extension SolarMainContentView {
         resultView.translatesAutoresizingMaskIntoConstraints = false
         lineView.translatesAutoresizingMaskIntoConstraints = false
         pinImageView.translatesAutoresizingMaskIntoConstraints = false
-        helpButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -467,15 +446,12 @@ extension SolarMainContentView {
             resultView.topAnchor.constraint(equalTo: timelineView.bottomAnchor, constant: Constants.resultTopOffset),
             resultView.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: Constants.resultLeadingOffset),
             resultView.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.resultTrailingOffset),
+            resultView.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor, constant: -Constants.resultBottomOffset),
             
             pinImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: Constants.pinCenterXOffset),
             pinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: -Constants.pinCenterYOffset),
             pinImageView.widthAnchor.constraint(equalToConstant: Constants.pinWidth),
-            pinImageView.heightAnchor.constraint(equalToConstant: Constants.pinHeight),
-            
-            helpButton.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: Constants.helpTopOffset),
-            helpButton.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor, constant: -Constants.helpBottomOffset),
-            helpButton.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -Constants.helpTrailingOffset)
+            pinImageView.heightAnchor.constraint(equalToConstant: Constants.pinHeight)
         ])
     }
 }

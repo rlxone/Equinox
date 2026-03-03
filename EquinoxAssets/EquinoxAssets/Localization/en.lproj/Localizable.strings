@@ -30,6 +30,8 @@
 "menu.help.macAppStoreReview" = "Rate Equinox on the Mac App Store";
 "menu.help.productHunt" = "Equinox on Product Hunt";
 
+"toolbar.more" = "More";
+
 "welcome.title" = "Welcome to Equinox";
 "welcome.welcome" = "Welcome to %@";
 "welcome.version" = "Version %@";
@@ -139,3 +141,19 @@
 "tip.calculator.description" = "It will help you calculate the position of the sun in the sky.\n1. Choose the place, date, and time on the sun timeline for when you took the photo. If you don't know the exact time, use the sun timeline to see how high or low the sun is in the sky and match it to your photos.\n2. Drag and drop or copy the result onto your image.";
 
 "dock.new" = "New";
+
+"toolbar.new.label" = "New";
+"toolbar.new.palette" = "New";
+"toolbar.new.tooltip" = "New Wallpaper";
+
+"toolbar.help.label" = "Help";
+"toolbar.help.palette" = "Help";
+"toolbar.help.tooltip" = "Help";
+
+"toolbar.calculator.label" = "Calculator";
+"toolbar.calculator.palette" = "Solar calculator";
+"toolbar.calculator.tooltip" = "Solar calculator";
+
+"wallpaper.toolbar.solar.title" = "Solar Wallpaper";
+"wallpaper.toolbar.time.title" = "Time Wallpaper";
+"wallpaper.toolbar.appearance.title" = "Appearance Wallpaper";

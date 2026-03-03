@@ -115,7 +115,7 @@ extension SolarLocationView {
 public final class SolarLocationView: View {
     private lazy var locationHeaderLabel = StyledLabel()
     private lazy var dateHeaderLabel = StyledLabel()
-    private lazy var locationButton = PushButton()
+    private lazy var locationButton = PushButton(contentSize: .default)
 
     private lazy var latitudeTextField: RoundedFloatingTextField = {
         let view = RoundedFloatingTextField()

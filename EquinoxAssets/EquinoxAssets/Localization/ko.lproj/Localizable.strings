@@ -30,6 +30,8 @@
 "menu.help.macAppStoreReview" = "앱스토어에서 Equinox 평가하기";
 "menu.help.productHunt" = "Product Hunt에서 Equinox 확인하기";
 
+"toolbar.more" = "더 보기";
+
 "welcome.title" = "Equinox에 오신 것을 환영합니다.";
 "welcome.welcome" = "%@에 오신 것을 환영합니다.";
 "welcome.version" = "버전 %@";
@@ -139,3 +141,19 @@
 "tip.calculator.description" = "이 계산기는 태양의 위치를 계산하는데 도움을 줍니다.\n1. 사진을 촬영한 장소, 날짜, 시간을 태양 타임라인에서 선택하세요. 만약 정확한 시간을 모른다면, 직접 타임라인으로 태양의 높낮이를 확인하고 사진과 비교하여 시간을 찾아낼 수 있습니다.\n2. 결과를 사진으로 드래그 & 드랍하거나 복사하여 사용하세요.";
 
 "dock.new" = "새로운 Dock";
+
+"toolbar.new.label" = "새 파일";
+"toolbar.new.palette" = "새 배경화면 만들기";
+"toolbar.new.tooltip" = "새 배경화면";
+
+"toolbar.help.label" = "도움말";
+"toolbar.help.palette" = "도움말";
+"toolbar.help.tooltip" = "도움말";
+
+"toolbar.calculator.label" = "계산기";
+"toolbar.calculator.palette" = "태양 계산기";
+"toolbar.calculator.tooltip" = "태양 계산기";
+
+"wallpaper.toolbar.solar.title" = "태양 위치 기반 배경화면";
+"wallpaper.toolbar.time.title" = "시간 기반 배경화면";
+"wallpaper.toolbar.appearance.title" = "화면 모드 기반 배경화면";

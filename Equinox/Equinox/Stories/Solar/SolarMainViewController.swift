@@ -36,7 +36,6 @@ import EquinoxUI
 
 protocol SolarMainViewControllerDelegatae: AnyObject {
     func solarViewControllerShouldNotify(_ text: String)
-    func solarViewControllerHelpWasInteracted()
 }
 
 // MARK: - Enums, Structs
@@ -148,10 +147,6 @@ final class SolarMainViewController: ViewController {
 
         contentView.copyAction = { [weak self] _ in
             self?.copyAction()
-        }
-        
-        contentView.helpAction = { [weak self] _ in
-            self?.delegate?.solarViewControllerHelpWasInteracted()
         }
         
         contentView.timezoneChangeAction = { [weak self] timezone in

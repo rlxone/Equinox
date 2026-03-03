@@ -50,10 +50,10 @@ public final class Window: NSWindow {
     // MARK: - Setup
 
     private func setup() {
-        titlebarAppearsTransparent = true
+        if #available(macOS 11.0, *) {
+            toolbarStyle = .unified
+        }
         titleVisibility = .hidden
-        toolbar = NSToolbar()
-        toolbar?.showsBaselineSeparator = false
         standardWindowButton(.zoomButton)?.isEnabled = false
     }
 }

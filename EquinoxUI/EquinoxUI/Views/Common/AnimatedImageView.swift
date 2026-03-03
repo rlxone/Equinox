@@ -77,6 +77,11 @@ public class AnimatedImageView: View {
 
     public override func layout() {
         super.layout()
+
+        guard masksToBounds else {
+            return
+        }
+
         maskedLayer.bounds = bounds
         maskedLayer.path = .init(
             roundedRect: bounds,
@@ -122,7 +127,17 @@ public class AnimatedImageView: View {
     
     public var cornerRadius: CGFloat = 0 {
         didSet {
-            needsLayout = true
+            if masksToBounds {
+                needsLayout = true
+            } else {
+                layer?.cornerRadius = cornerRadius
+            }
+        }
+    }
+    
+    public var blurRadius: CGFloat = 0 {
+        didSet {
+            applyBlur(radius: blurRadius)
         }
     }
     
@@ -133,6 +148,12 @@ public class AnimatedImageView: View {
     
     public var isEnabled: Bool {
         return foregroundImageView.isEnabled && backgroundImageView.isEnabled
+    }
+    
+    public var masksToBounds = true {
+        didSet {
+            needsLayout = true
+        }
     }
     
     // MARK: - Private
@@ -179,5 +200,22 @@ public class AnimatedImageView: View {
         foregroundImageView.layer?.add(animation, forKey: nil)
         
         CATransaction.commit()
+    }
+    
+    private func applyBlur(radius: CGFloat) {
+        guard let blur = CIFilter(name: "CIGaussianBlur") else {
+            return
+        }
+        
+        wantsLayer = true
+        layerUsesCoreImageFilters = true
+
+        guard let layer else {
+            return
+        }
+
+        layer.masksToBounds = false
+        blur.setValue(radius, forKey: kCIInputRadiusKey)
+        layer.filters = [blur]
     }
 }

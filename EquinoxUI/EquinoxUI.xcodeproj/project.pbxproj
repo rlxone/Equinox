@@ -28,7 +28,6 @@
 		F342CC2726B32C47001E0DF8 /* GalleryCollectionCoordinatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F342CC2626B32C47001E0DF8 /* GalleryCollectionCoordinatesView.swift */; };
 		F342CC2926B32CDA001E0DF8 /* GalleryCollectionTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F342CC2826B32CDA001E0DF8 /* GalleryCollectionTimeView.swift */; };
 		F342CC2B26B32D07001E0DF8 /* GalleryCollectionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F342CC2A26B32D07001E0DF8 /* GalleryCollectionButtonsView.swift */; };
-		F34E06A9267A82BA00F004EF /* TitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06A8267A82BA00F004EF /* TitleBarView.swift */; };
 		F34E06AB267A83B200F004EF /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06AA267A83B200F004EF /* LineView.swift */; };
 		F34E06AD267A8D0000F004EF /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06AC267A8D0000F004EF /* Label.swift */; };
 		F34E06B1267AB80C00F004EF /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06B0267AB80C00F004EF /* StackView.swift */; };
@@ -44,7 +43,6 @@
 		F34E06CF267B855F00F004EF /* GalleryCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06CE267B855F00F004EF /* GalleryCollectionViewItem.swift */; };
 		F34E06D1267B857400F004EF /* GalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06D0267B857400F004EF /* GalleryCollectionView.swift */; };
 		F34E06D7267B87A700F004EF /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06D6267B87A700F004EF /* MainContentView.swift */; };
-		F34E06D9267B886800F004EF /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06D8267B886800F004EF /* ToolBarView.swift */; };
 		F34E06DB267B890700F004EF /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E06DA267B890700F004EF /* BottomBarView.swift */; };
 		F356C8A9272B318900E915C6 /* InteractiveLineChartCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8A8272B318900E915C6 /* InteractiveLineChartCurve.swift */; };
 		F356C8AB272F479500E915C6 /* SubMenuPopUpButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356C8AA272F479400E915C6 /* SubMenuPopUpButtonCell.swift */; };
@@ -54,7 +52,6 @@
 		F360471826EAEF5A0009F725 /* GalleryCollectionTooltipHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360471726EAEF5A0009F725 /* GalleryCollectionTooltipHandler.swift */; };
 		F36AD5E426E530C900314A02 /* GalleryCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD5E326E530C900314A02 /* GalleryCollectionLayout.swift */; };
 		F36AD5E626E576BE00314A02 /* GalleryCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AD5E526E576BE00314A02 /* GalleryCollectionDataSource.swift */; };
-		F376572C267FC94400AC4191 /* TitleLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376572B267FC94400AC4191 /* TitleLineView.swift */; };
 		F37657322680008B00AC4191 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37657312680008B00AC4191 /* TitleLabel.swift */; };
 		F37657342680048800AC4191 /* StyledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37657332680048800AC4191 /* StyledLabel.swift */; };
 		F3837F0D2698E87C00671585 /* GalleryInternalCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3837F0C2698E87C00671585 /* GalleryInternalCollectionView.swift */; };
@@ -118,7 +115,6 @@
 		F342CC2626B32C47001E0DF8 /* GalleryCollectionCoordinatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionCoordinatesView.swift; sourceTree = "<group>"; };
 		F342CC2826B32CDA001E0DF8 /* GalleryCollectionTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionTimeView.swift; sourceTree = "<group>"; };
 		F342CC2A26B32D07001E0DF8 /* GalleryCollectionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionButtonsView.swift; sourceTree = "<group>"; };
-		F34E06A8267A82BA00F004EF /* TitleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarView.swift; sourceTree = "<group>"; };
 		F34E06AA267A83B200F004EF /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		F34E06AC267A8D0000F004EF /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		F34E06B0267AB80C00F004EF /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
@@ -134,7 +130,6 @@
 		F34E06CE267B855F00F004EF /* GalleryCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewItem.swift; sourceTree = "<group>"; };
 		F34E06D0267B857400F004EF /* GalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionView.swift; sourceTree = "<group>"; };
 		F34E06D6267B87A700F004EF /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
-		F34E06D8267B886800F004EF /* ToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
 		F34E06DA267B890700F004EF /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		F356C8A8272B318900E915C6 /* InteractiveLineChartCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveLineChartCurve.swift; sourceTree = "<group>"; };
 		F356C8AA272F479400E915C6 /* SubMenuPopUpButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuPopUpButtonCell.swift; sourceTree = "<group>"; };
@@ -144,7 +139,6 @@
 		F360471726EAEF5A0009F725 /* GalleryCollectionTooltipHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionTooltipHandler.swift; sourceTree = "<group>"; };
 		F36AD5E326E530C900314A02 /* GalleryCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionLayout.swift; sourceTree = "<group>"; };
 		F36AD5E526E576BE00314A02 /* GalleryCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionDataSource.swift; sourceTree = "<group>"; };
-		F376572B267FC94400AC4191 /* TitleLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLineView.swift; sourceTree = "<group>"; };
 		F37657312680008B00AC4191 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
 		F37657332680048800AC4191 /* StyledLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledLabel.swift; sourceTree = "<group>"; };
 		F3837F0C2698E87C00671585 /* GalleryInternalCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryInternalCollectionView.swift; sourceTree = "<group>"; };
@@ -291,12 +285,9 @@
 				F3BD018126C1F0AC0090D864 /* RoundedDatePicker.swift */,
 				F37657312680008B00AC4191 /* TitleLabel.swift */,
 				F3A73750268F837700515952 /* BorderProgressView.swift */,
-				F34E06D8267B886800F004EF /* ToolBarView.swift */,
 				F34E06DA267B890700F004EF /* BottomBarView.swift */,
 				F399A5022686319B00ED45EF /* DragView.swift */,
 				F30C86D126D6947100F93E60 /* ContainerButton.swift */,
-				F34E06A8267A82BA00F004EF /* TitleBarView.swift */,
-				F376572B267FC94400AC4191 /* TitleLineView.swift */,
 				F3FEC7E527277F2800C8F439 /* InteractiveLineChart.swift */,
 				F356C8A8272B318900E915C6 /* InteractiveLineChartCurve.swift */,
 				F356C8AE272F596500E915C6 /* SubMenuPopUpButton.swift */,
@@ -548,9 +539,7 @@
 				F3D9F23926C064A900CF816C /* SolarMainContentView.swift in Sources */,
 				F3A73751268F837700515952 /* BorderProgressView.swift in Sources */,
 				F3140D0F268374EB0058EB60 /* TabItemView.swift in Sources */,
-				F34E06A9267A82BA00F004EF /* TitleBarView.swift in Sources */,
 				F34E06CB267B7B3100F004EF /* NSBezierPath.swift in Sources */,
-				F376572C267FC94400AC4191 /* TitleLineView.swift in Sources */,
 				F3AC410726D3E27C000A7253 /* TypeView.swift in Sources */,
 				F356C8AF272F596500E915C6 /* SubMenuPopUpButton.swift in Sources */,
 				F342CC2B26B32D07001E0DF8 /* GalleryCollectionButtonsView.swift in Sources */,
@@ -587,7 +576,6 @@
 				F3D883802F2D0B2200430D31 /* GlassEffectView.swift in Sources */,
 				F30C86D226D6947100F93E60 /* ContainerButton.swift in Sources */,
 				F356C8B72734B97D00E915C6 /* TipContentView.swift in Sources */,
-				F34E06D9267B886800F004EF /* ToolBarView.swift in Sources */,
 				F34E06D7267B87A700F004EF /* MainContentView.swift in Sources */,
 				F3E7B04326A4EE4600287C60 /* AppearanceContentView.swift in Sources */,
 				F32C649A26FB68D8002F5817 /* GalleryCollectionFooterView.swift in Sources */,

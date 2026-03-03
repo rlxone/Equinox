@@ -32,22 +32,17 @@ import AppKit
 
 extension MainContentView {
     public struct Style {
-        let toolBarStyle: ToolBarView.Style
         let bottomBarStyle: BottomBarView.Style
 
         public init(
-            toolBarStyle: ToolBarView.Style,
             bottomBarStyle: BottomBarView.Style
         ) {
-            self.toolBarStyle = toolBarStyle
             self.bottomBarStyle = bottomBarStyle
         }
     }
 
     private enum Constants {
-        static let toolBarHeight: CGFloat = 74
         static let bottomBarHeight: CGFloat = 74
-        static let lineHeight: CGFloat = 1
     }
 }
 
@@ -55,8 +50,6 @@ extension MainContentView {
 
 public final class MainContentView: View {
     private lazy var visualEffectView = VisualEffectView(material: .windowBackground, blendingMode: .behindWindow)
-    private lazy var toolBarView = ToolBarView()
-    private lazy var lineView = LineView()
     private lazy var bottomBarView = BottomBarView()
     
     // MARK: - Initializer
@@ -76,15 +69,11 @@ public final class MainContentView: View {
     private func setupView() {
         addSubview(visualEffectView)
         visualEffectView.contentView.addSubview(containerView)
-        visualEffectView.contentView.addSubview(toolBarView)
-        visualEffectView.contentView.addSubview(lineView)
         visualEffectView.contentView.addSubview(bottomBarView)
     }
 
     private func setupConstraints() {
         visualEffectView.translatesAutoresizingMaskIntoConstraints = false
-        toolBarView.translatesAutoresizingMaskIntoConstraints = false
-        lineView.translatesAutoresizingMaskIntoConstraints = false
         bottomBarView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -93,23 +82,13 @@ public final class MainContentView: View {
             visualEffectView.topAnchor.constraint(equalTo: topAnchor),
             visualEffectView.trailingAnchor.constraint(equalTo: trailingAnchor),
             visualEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            toolBarView.leadingAnchor.constraint(equalTo: visualEffectView.contentView.leadingAnchor),
-            toolBarView.trailingAnchor.constraint(equalTo: visualEffectView.contentView.trailingAnchor),
-            toolBarView.topAnchor.constraint(equalTo: visualEffectView.contentView.topAnchor),
-            toolBarView.heightAnchor.constraint(equalToConstant: Constants.toolBarHeight),
-
-            lineView.leadingAnchor.constraint(equalTo: visualEffectView.contentView.leadingAnchor),
-            lineView.trailingAnchor.constraint(equalTo: visualEffectView.contentView.trailingAnchor),
-            lineView.bottomAnchor.constraint(equalTo: toolBarView.bottomAnchor),
-            lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
 
             bottomBarView.leadingAnchor.constraint(equalTo: visualEffectView.contentView.leadingAnchor),
             bottomBarView.trailingAnchor.constraint(equalTo: visualEffectView.contentView.trailingAnchor),
             bottomBarView.bottomAnchor.constraint(equalTo: visualEffectView.contentView.bottomAnchor),
             bottomBarView.heightAnchor.constraint(equalToConstant: Constants.bottomBarHeight),
 
-            containerView.topAnchor.constraint(equalTo: toolBarView.bottomAnchor),
+            containerView.topAnchor.constraint(equalTo: visualEffectView.contentView.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: bottomBarView.topAnchor),
             containerView.leadingAnchor.constraint(equalTo: visualEffectView.contentView.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: visualEffectView.contentView.trailingAnchor)
@@ -120,7 +99,6 @@ public final class MainContentView: View {
 
     public var style: Style? {
         didSet {
-            toolBarView.style = style?.toolBarStyle
             bottomBarView.style = style?.bottomBarStyle
         }
     }
@@ -133,31 +111,6 @@ public final class MainContentView: View {
         }
         set {
             visualEffectView.active = newValue
-            toolBarView.active = newValue
-        }
-    }
-
-    public var toolBarTitle: String {
-        get {
-            return toolBarView.largeTitleText
-        }
-        set {
-            toolBarView.largeTitleText = newValue
-        }
-    }
-
-    public var isToolBarBackButtonEnabled: Bool {
-        get {
-            return toolBarView.isBackButtonEnabled
-        }
-        set {
-            toolBarView.isBackButtonEnabled = newValue
-        }
-    }
-
-    public var toolBarBackButtonAction: Button.Action? {
-        didSet {
-            toolBarView.backButtonAction = toolBarBackButtonAction
         }
     }
 
@@ -182,21 +135,6 @@ public final class MainContentView: View {
         }
         set {
             bottomBarView.isButtonEnabled = newValue
-        }
-    }
-
-    public var menuItems: [MenuView.Item] {
-        get {
-            return toolBarView.menuItems
-        }
-        set {
-            toolBarView.menuItems = newValue
-        }
-    }
-    
-    public var helpAction: BottomBarView.HelpAction? {
-        didSet {
-            bottomBarView.helpAction = helpAction
         }
     }
 }

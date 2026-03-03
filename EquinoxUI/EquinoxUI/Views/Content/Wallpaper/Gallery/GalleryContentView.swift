@@ -55,14 +55,27 @@ extension GalleryContentView {
 public final class GalleryContentView: View {
     private lazy var dragView = DragView()
     private lazy var galleryCollectionView = GalleryCollectionView()
-    
+    private weak var dragViewTopConstraint: NSLayoutConstraint?
+
     // MARK: - Initializer
-    
+
     public override init() {
         super.init()
         setup()
     }
     
+    // MARK: - Life Cycle
+    
+    public override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        
+        if dragViewTopConstraint == nil, let window = window {
+            let topAnchor = (window.contentLayoutGuide as? NSLayoutGuide)?.topAnchor ?? topAnchor
+            dragViewTopConstraint = dragView.topAnchor.constraint(equalTo: topAnchor)
+            dragViewTopConstraint?.isActive = true
+        }
+    }
+
     // MARK: - Setup
 
     private func setup() {
@@ -74,7 +87,7 @@ public final class GalleryContentView: View {
         addSubview(galleryCollectionView)
         addSubview(dragView)
     }
-    
+
     private func setupConstraints() {
         dragView.translatesAutoresizingMaskIntoConstraints = false
         galleryCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,16 +95,15 @@ public final class GalleryContentView: View {
         NSLayoutConstraint.activate([
             dragView.leadingAnchor.constraint(equalTo: leadingAnchor),
             dragView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            dragView.topAnchor.constraint(equalTo: topAnchor),
             dragView.bottomAnchor.constraint(equalTo: bottomAnchor),
-
+            
             galleryCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             galleryCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             galleryCollectionView.topAnchor.constraint(equalTo: topAnchor),
             galleryCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
+
     // MARK: - Public
 
     public var style: Style? {
@@ -193,7 +205,7 @@ public final class GalleryContentView: View {
             galleryCollectionView.isSelectionEnabled = newValue
         }
     }
-    
+
     public var selectedIndexPaths: Set<IndexPath> {
         get {
             return galleryCollectionView.selectedIndexPaths

@@ -89,6 +89,28 @@ public enum Localization {
     public enum Dock {
         public static let new = Localization.localizedString(key: "dock.new")
     }
+
+    public enum Toolbar {
+        public enum New {
+            public static let label = Localization.localizedString(key: "toolbar.new.label")
+            public static let palette = Localization.localizedString(key: "toolbar.new.palette")
+            public static let toolTip = Localization.localizedString(key: "toolbar.new.tooltip")
+        }
+
+        public enum Help {
+            public static let label = Localization.localizedString(key: "toolbar.help.label")
+            public static let palette = Localization.localizedString(key: "toolbar.help.palette")
+            public static let toolTip = Localization.localizedString(key: "toolbar.help.tooltip")
+        }
+
+        public enum Calculator {
+            public static let label = Localization.localizedString(key: "toolbar.calculator.label")
+            public static let palette = Localization.localizedString(key: "toolbar.calculator.palette")
+            public static let toolTip = Localization.localizedString(key: "toolbar.calculator.tooltip")
+        }
+
+        public static let more = Localization.localizedString(key: "toolbar.more")
+    }
     
     public enum Welcome {
         public static func welcome(param1: String) -> String {
@@ -111,6 +133,12 @@ public enum Localization {
     }
     
     public enum Wallpaper {
+        public enum Toolbar {
+            public static let solarTitle = Localization.localizedString(key: "wallpaper.toolbar.solar.title")
+            public static let timeTitle = Localization.localizedString(key: "wallpaper.toolbar.time.title")
+            public static let appearanceTitle = Localization.localizedString(key: "wallpaper.toolbar.appearance.title")
+        }
+
         public enum Main {
             public static let solar = Localization.localizedString(key: "wallpaper.main.solar")
             public static let time = Localization.localizedString(key: "wallpaper.main.time")
