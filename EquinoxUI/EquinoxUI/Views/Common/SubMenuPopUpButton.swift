@@ -213,8 +213,7 @@ public final class SubMenuPopUpButton: NSPopUpButton {
         if
             let supplementaryTitle = item.supplementaryTitle,
             let supplementaryTitleFont = style.supplementaryTitleFont,
-            let supplementaryTitleColor = style.supplementaryTitleColor
-        {
+            let supplementaryTitleColor = style.supplementaryTitleColor {
             let supplementaryString = NSAttributedString(
                 string: supplementaryTitle,
                 attributes: [

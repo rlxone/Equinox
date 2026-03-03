@@ -93,6 +93,10 @@ final class WallpaperGalleryDataController {
     }
     
     func make(_ urls: [URL], insertIndexPath: IndexPath) -> [(indexPath: IndexPath, model: GalleryModel)] {
+        guard urls.count > 0 else {
+            return []
+        }
+        
         let calendar = getCurrentCalendar
         let startTime = calendar.startOfDay(for: Date())
         var newData: [(IndexPath, GalleryModel)] = []

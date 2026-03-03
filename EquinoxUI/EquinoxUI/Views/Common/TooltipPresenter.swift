@@ -53,12 +53,7 @@ final class TooltipPresenter {
     private var tooltipWindow: TooltipWindow?
     private var isTooltipVisible = false
     private var isMouseEntered = false
-    private var operationQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
-    private var semaphore = DispatchSemaphore(value: 0)
+    private var delayedShowTooltipTask: DispatchWorkItem?
     
     init(view: NSView) {
         self.view = view
@@ -80,7 +75,7 @@ final class TooltipPresenter {
         guard let view = view, let window = view.window else {
             return
         }
-        operationQueue.cancelAllOperations()
+        delayedShowTooltipTask?.cancel()
         if let area = trackingArea {
             view.removeTrackingArea(area)
         }
@@ -106,44 +101,37 @@ final class TooltipPresenter {
     
     func mouseUp() {
         isMouseEntered = false
-        operationQueue.cancelAllOperations()
+        delayedShowTooltipTask?.cancel()
         hideTooltip()
     }
 
     func mouseDown() {
         isMouseEntered = false
-        operationQueue.cancelAllOperations()
+        delayedShowTooltipTask?.cancel()
         hideTooltip()
     }
     
     func mouseEntered() {
         isMouseEntered = true
-
-        operationQueue.cancelAllOperations()
-        let operation = BlockOperation()
-
-        operation.addExecutionBlock { [weak self, weak operation] in
-            guard let self = self, let operation = operation, !operation.isCancelled else {
+        
+        delayedShowTooltipTask?.cancel()
+        delayedShowTooltipTask = nil
+        
+        let work = DispatchWorkItem { [weak self] in
+            guard let self, self.isMouseEntered else {
                 return
             }
-            let deadline: DispatchTime = .now() + .milliseconds(self.presentDelayMilliseconds)
-            DispatchQueue.main.asyncAfter(deadline: deadline) { [weak operation] in
-                guard let operation = operation, !operation.isCancelled else {
-                    self.semaphore.signal()
-                    return
-                }
-                self.showTooltip()
-                self.semaphore.signal()
-            }
-            self.semaphore.wait()
+            self.showTooltip()
         }
-
-        operationQueue.addOperation(operation)
+        delayedShowTooltipTask = work
+        
+        let deadline: DispatchTime = .now() + .milliseconds(self.presentDelayMilliseconds)
+        DispatchQueue.main.asyncAfter(deadline: deadline, execute: work)
     }
     
     func mouseExited() {
         isMouseEntered = false
-        operationQueue.cancelAllOperations()
+        delayedShowTooltipTask?.cancel()
         hideTooltip()
     }
     
