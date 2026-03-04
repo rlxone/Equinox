@@ -83,7 +83,7 @@ extension GalleryCollectionImageView {
         static let highlightLineWidth: CGFloat = 4
         static var cornerRadius: CGFloat {
             if #available(macOS 26, *) {
-                return 8
+                return 10
             }
             return 4
         }
@@ -110,7 +110,7 @@ extension GalleryCollectionImageView {
 
 public final class GalleryCollectionImageView: DashedView {
     private lazy var imageView = ImageView()
-    private lazy var numberBlurView = VisualEffectView(material: .contentBackground, blendingMode: .withinWindow)
+    private lazy var numberBlurView = VisualEffectView(material: .toolTip, blendingMode: .withinWindow)
     private lazy var numberLabel = StyledLabel()
 
     private var numberStickConstraint: NSLayoutConstraint?
@@ -182,18 +182,6 @@ public final class GalleryCollectionImageView: DashedView {
         didSet {
             runWithEffectiveAppearance {
                 stylize()
-            }
-        }
-    }
-
-    public var viewAppearance: Appearance = .default {
-        didSet {
-            switch viewAppearance {
-            case .vibrant:
-                numberBlurView.material = .toolTip
-
-            case .default:
-                numberBlurView.material = .contentBackground
             }
         }
     }

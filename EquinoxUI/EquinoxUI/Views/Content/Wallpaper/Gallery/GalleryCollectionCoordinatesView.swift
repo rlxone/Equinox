@@ -67,7 +67,7 @@ extension GalleryCollectionCoordinatesView {
     private enum Constants {
         static var cornerRadius: CGFloat {
             if #available(macOS 26, *) {
-                return 8
+                return 10
             }
             return 4
         }
@@ -77,12 +77,16 @@ extension GalleryCollectionCoordinatesView {
         static let separatorOffset: CGFloat = 1
         static let edgeInsets: NSEdgeInsets = .init(top: 0, left: 11, bottom: 0, right: 8)
         static let flashAnimationDuration: TimeInterval = 0.35
+        static let shadowOffset: CGSize = CGSize(width: 0, height: -10)
+        static let shadowRadius: CGFloat = 10
+        static let shadowOpacity: Float = 0.06
     }
 }
 
 // MARK: - Class
 
 public final class GalleryCollectionCoordinatesView: View {
+    private lazy var backgroundView = View()
     private lazy var altitudeLabel = StyledLabel()
     private lazy var azimuthLabel = StyledLabel()
     private lazy var separatorView = LineView()
@@ -107,6 +111,16 @@ public final class GalleryCollectionCoordinatesView: View {
         return textField
     }()
     
+    private lazy var shadowLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.fillColor = nil
+        layer.anchorPoint = .zero
+        layer.shadowOffset = Constants.shadowOffset
+        layer.shadowRadius = Constants.shadowRadius
+        layer.shadowOpacity = Constants.shadowOpacity
+        return layer
+    }()
+    
     // MARK: - Initializer
 
     public override init() {
@@ -125,6 +139,14 @@ public final class GalleryCollectionCoordinatesView: View {
         stylize()
     }
     
+    public override func layout() {
+        super.layout()
+
+        let path = NSBezierPath(roundedRect: bounds, xRadius: Constants.cornerRadius, yRadius: Constants.cornerRadius)
+        shadowLayer.bounds = bounds
+        shadowLayer.shadowPath = path.path
+    }
+    
     // MARK: - Setup
     
     private func setup() {
@@ -135,13 +157,20 @@ public final class GalleryCollectionCoordinatesView: View {
     private func setupView() {
         wantsLayer = true
         layer?.cornerRadius = Constants.cornerRadius
-        layer?.borderWidth = Constants.borderWidth
+        
+        backgroundView.wantsLayer = true
+        backgroundView.layer?.cornerRadius = Constants.cornerRadius
+        backgroundView.layer?.borderWidth = Constants.borderWidth
+        
+        layer?.masksToBounds = false
+        layer?.insertSublayer(shadowLayer, at: 0)
         
         altitudeContainer.addSubview(altitudeLabel)
         altitudeContainer.addSubview(altitudeTextField)
         azimuthContainer.addSubview(azimuthLabel)
         azimuthContainer.addSubview(azimuthTextField)
         
+        addSubview(backgroundView)
         addSubview(altitudeContainer)
         addSubview(azimuthContainer)
         addSubview(separatorView)
@@ -151,6 +180,7 @@ public final class GalleryCollectionCoordinatesView: View {
     }
 
     private func setupConstraints() {
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         altitudeContainer.translatesAutoresizingMaskIntoConstraints = false
         azimuthContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -161,6 +191,11 @@ public final class GalleryCollectionCoordinatesView: View {
         azimuthTextField.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
             separatorView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.separatorOffset),
             separatorView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.separatorOffset),
             separatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
@@ -203,7 +238,7 @@ public final class GalleryCollectionCoordinatesView: View {
     }
     
     public func flash() {
-        guard let style = style, let currentBorderColor = layer?.borderColor else {
+        guard let style = style, let currentBorderColor = backgroundView.layer?.borderColor else {
             return
         }
         
@@ -214,7 +249,7 @@ public final class GalleryCollectionCoordinatesView: View {
         borderColorAnimation.fromValue = currentBorderColor
         borderColorAnimation.toValue = style.ownStyle.flashColor.cgColor
         
-        layer?.add(borderColorAnimation, forKey: nil)
+        backgroundView.layer?.add(borderColorAnimation, forKey: nil)
     }
     
     public var azimuth: String? {
@@ -264,8 +299,8 @@ public final class GalleryCollectionCoordinatesView: View {
         altitudeLabel.style = style?.altitudeStyle
         azimuthLabel.style = style?.azimuthStyle
         
-        layer?.backgroundColor = style?.ownStyle.stackBackgroundColor.cgColor
-        layer?.borderColor = style?.ownStyle.stackBorderColor.cgColor
+        backgroundView.layer?.backgroundColor = style?.ownStyle.stackBackgroundColor.cgColor
+        backgroundView.layer?.borderColor = style?.ownStyle.stackBorderColor.cgColor
         
         altitudeTextField.font = style?.altitudeStyle.font
         azimuthTextField.font = style?.azimuthStyle.font

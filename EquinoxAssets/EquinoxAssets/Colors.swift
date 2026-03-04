@@ -82,6 +82,7 @@ public enum Color {
     public static let tipOverlay = bundleColor(named: "TipOverlay")
     public static let tipSeparator = bundleColor(named: "TipSeparator")
     public static let lightBlue = bundleColor(named: "LightBlue")
+    public static let pushButtonHighlight = bundleColor(named: "PushButtonHighlight")
 }
 
 // MARK: - Color

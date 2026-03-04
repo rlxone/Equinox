@@ -26,6 +26,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+// swiftlint:disable file_length
+
 import AppKit
 
 // MARK: - Enums, Structs
@@ -111,22 +113,13 @@ extension PushButton {
 
 // MARK: - Class
 
+// swiftlint:disable:next type_body_length
 public final class PushButton: Button {
     private var isMouseDown = false
     private let styleOption: StyleOption
     private let contentSizeOption: ContentSizeOption
     private lazy var titleLabel = Label()
     private lazy var imageView = ImageView()
-    
-    private var usesNativeButton: Bool {
-        switch styleOption {
-        case .automatic:
-            if #available(macOS 26, *) {
-                return true
-            }
-            return false
-        }
-    }
 
     private lazy var contentView: View = {
         let view = View()
@@ -375,17 +368,6 @@ public final class PushButton: Button {
         addSubview(contentView)
         contentView.addSubview(titleLabel)
     }
-    
-    private func setupNativeView() {
-        setButtonType(.momentaryPushIn)
-        isBordered = true
-        
-        if #available(macOS 14.0, *) {
-            bezelStyle = .push
-        }
-        
-        applyNativeControlSize()
-    }
 
     private func setupConstraints() {
         guard !usesNativeButton else {
@@ -485,6 +467,43 @@ public final class PushButton: Button {
             }
         }
     }
+
+    private func addImageView() {
+        addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+}
+
+// MARK: - Native Look
+
+extension PushButton {
+    private func setupNativeView() {
+        setButtonType(.momentaryPushIn)
+        isBordered = true
+        
+        if #available(macOS 14.0, *) {
+            bezelStyle = .push
+        }
+        
+        applyNativeControlSize()
+    }
+    
+    private var usesNativeButton: Bool {
+        switch styleOption {
+        case .automatic:
+            if #available(macOS 26, *) {
+                return true
+            }
+            return false
+        }
+    }
     
     private func stylizeNative() {
         updateNativeImagePosition()
@@ -566,17 +585,5 @@ public final class PushButton: Button {
                 controlSize = .regular
             }
         }
-    }
-
-    private func addImageView() {
-        addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
     }
 }

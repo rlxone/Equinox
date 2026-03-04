@@ -79,7 +79,7 @@ extension SolarResultView {
         }
         static var fieldCornerRadius: CGFloat {
             if #available(macOS 26, *) {
-                return 8
+                return 10
             }
             return 4
         }
@@ -99,12 +99,16 @@ extension SolarResultView {
         static let altitudeTextFieldTrailingOffset: CGFloat = 20
         static let altitudeTextFieldHeight: CGFloat = 40
         static let tooltipPresentDelayMilliseconds = 100
+        static let shadowOffset: CGSize = CGSize(width: 0, height: -10)
+        static let shadowRadius: CGFloat = 10
+        static let shadowOpacity: Float = 0.06
     }
 }
 
 // MARK: - Class
 
 public final class SolarResultView: View {
+    private lazy var backgroundView = View()
     private lazy var resultHeaderLabel = StyledLabel()
     private lazy var dragImageView: ImageView = {
         let imageView = ImageView()
@@ -132,6 +136,16 @@ public final class SolarResultView: View {
         return view
     }()
     
+    private lazy var shadowLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.fillColor = nil
+        layer.anchorPoint = .zero
+        layer.shadowOffset = Constants.shadowOffset
+        layer.shadowRadius = Constants.shadowRadius
+        layer.shadowOpacity = Constants.shadowOpacity
+        return layer
+    }()
+    
     // MARK: - Initializer
 
     public override init() {
@@ -155,6 +169,14 @@ public final class SolarResultView: View {
         stylize()
     }
     
+    public override func layout() {
+        super.layout()
+
+        let path = NSBezierPath(roundedRect: bounds, xRadius: Constants.contentCornerRadius, yRadius: Constants.contentCornerRadius)
+        shadowLayer.bounds = bounds
+        shadowLayer.shadowPath = path.path
+    }
+    
     // MARK: - Setup
 
     private func setup() {
@@ -164,9 +186,14 @@ public final class SolarResultView: View {
 
     private func setupView() {
         wantsLayer = true
-        layer?.cornerRadius = Constants.contentCornerRadius
-        layer?.borderWidth = Constants.borderWidth
+        layer?.masksToBounds = false
+        layer?.insertSublayer(shadowLayer, at: 0)
+        
+        backgroundView.wantsLayer = true
+        backgroundView.layer?.cornerRadius = Constants.contentCornerRadius
+        backgroundView.layer?.borderWidth = Constants.borderWidth
 
+        addSubview(backgroundView)
         addSubview(resultHeaderLabel)
         addSubview(altitudeTextField)
         addSubview(azimuthTextField)
@@ -174,12 +201,18 @@ public final class SolarResultView: View {
     }
 
     private func setupConstraints() {
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         resultHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
         altitudeTextField.translatesAutoresizingMaskIntoConstraints = false
         azimuthTextField.translatesAutoresizingMaskIntoConstraints = false
         dragImageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.rightAnchor.constraint(equalTo: rightAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
             dragImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.dragImageViewLeadingOffset),
             dragImageView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.dragImageViewTopOffset),
             dragImageView.widthAnchor.constraint(equalToConstant: Constants.dragImageViewWidth),
@@ -287,7 +320,7 @@ public final class SolarResultView: View {
         azimuthTextField.style = style?.textFieldStyle
         dragImageView.image = style?.ownStyle.dragImage
 
-        layer?.backgroundColor = style?.ownStyle.contentBackgroundColor.cgColor
-        layer?.borderColor = style?.ownStyle.contentBackgroundBorderColor.cgColor
+        backgroundView.layer?.backgroundColor = style?.ownStyle.contentBackgroundColor.cgColor
+        backgroundView.layer?.borderColor = style?.ownStyle.contentBackgroundBorderColor.cgColor
     }
 }
