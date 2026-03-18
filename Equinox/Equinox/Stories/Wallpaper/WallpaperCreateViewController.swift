@@ -252,8 +252,6 @@ final class WallpaperCreateViewController: ViewController {
         savePanel.nameFieldStringValue = Constants.imageFilename
         if #available(macOS 11.0, *) {
             savePanel.allowedContentTypes = [.heic]
-        } else {
-            // Fallback on earlier versions
         }
         savePanel.canSelectHiddenExtension = true
         savePanel.isExtensionHidden = false

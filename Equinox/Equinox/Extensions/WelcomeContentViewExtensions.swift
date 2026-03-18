@@ -72,8 +72,18 @@ extension WelcomeContentView.Style {
                 color: Color.secondaryLabel
             ),
             githubStyle: .init(
-                font: Font.title3(.semibold),
+                font: Font.title3(.medium),
                 color: Color.secondaryLabel
+            ),
+            supportStyle: .init(
+                font: Font.title3(.medium),
+                color: Color.label
+            ),
+            githubContainerButtonStyle: .init(
+                backgroundColor: Color.clear
+            ),
+            supportContainerButtonStyle: .init(
+                backgroundColor: Color.containerButtonBackground
             )
         )
     }

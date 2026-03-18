@@ -83,6 +83,11 @@ public enum Color {
     public static let tipSeparator = bundleColor(named: "TipSeparator")
     public static let lightBlue = bundleColor(named: "LightBlue")
     public static let pushButtonHighlight = bundleColor(named: "PushButtonHighlight")
+    public static let containerButtonBackground = bundleColor(named: "ContainerButtonBackground")
+    public static let supportOptionBackground = bundleColor(named: "SupportOptionBackground")
+    public static let supportOptionBackgroundHighlight = bundleColor(named: "SupportOptionBackgroundHighlight")
+    public static let supportOptionBorder = bundleColor(named: "SupportOptionBorder")
+    public static let supportOptionBorderHighlight = bundleColor(named: "SupportOptionBorderHighlight")
 }
 
 // MARK: - Color

@@ -39,7 +39,7 @@ extension GalleryCollectionLayout {
                 return NSEdgeInsets(top: 10, left: 40, bottom: 0, right: 40)
             }
             
-            return NSEdgeInsets(top: 40, left: 40, bottom: 0, right: 40)
+            return NSEdgeInsets(top: 20, left: 40, bottom: 0, right: 40)
         }
         static let maxRowItemsCount = 4
         static let midRowItemsCount = 3

@@ -31,9 +31,19 @@ import AppKit
 // MARK: - Enums, Structs
 
 extension ContainerButton {
+    public struct Style {
+        let backgroundColor: NSColor
+
+        public init(
+            backgroundColor: NSColor
+        ) {
+            self.backgroundColor = backgroundColor
+        }
+    }
+    
     private enum Constants {
         static let interactionAnimationDuration: TimeInterval = 0.2
-        static let highlightAlphaValue: CGFloat = 0.5
+        static let highlightAlphaValue: CGFloat = 0.75
     }
 }
 
@@ -61,11 +71,25 @@ public final class ContainerButton: Button {
         return isInteractionsEnabled ? super.hitTest(point) : nil
     }
     
+    public override func layout() {
+        super.layout()
+        let cornerRadius = bounds.height / 2
+        layer?.cornerRadius = cornerRadius
+    }
+    
+    public override var wantsUpdateLayer: Bool {
+        return true
+    }
+
+    public override func updateLayer() {
+        super.updateLayer()
+        stylize()
+    }
+    
     // MARK: - Setup
 
     private func setup() {
         wantsLayer = true
-        layer?.backgroundColor = .clear
         isBordered = false
         title = String()
     }
@@ -74,7 +98,19 @@ public final class ContainerButton: Button {
     
     public var isInteractionsEnabled = true
     
+    public var style: Style? {
+        didSet {
+            runWithEffectiveAppearance {
+                self.stylize()
+            }
+        }
+    }
+    
     // MARK: - Private
+    
+    private func stylize() {
+        layer?.backgroundColor = style?.backgroundColor.cgColor
+    }
     
     private func animateInteractions(isMouseDown: Bool) {
         NSAnimationContext.runAnimationGroup { context in

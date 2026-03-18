@@ -36,6 +36,7 @@
 "welcome.welcome" = "%@'a Hoşgeldiniz";
 "welcome.version" = "Versiyon %@";
 "welcome.github" = "Github";
+"welcome.support" = "Equinox'u Destekle";
 "welcome.choose.type" = "Tür Seçin";
 "welcome.choose.type.description" = "Duvar kağıdınız için uygun bir tür seçin";
 "welcome.types.solar" = "Güneş";
@@ -157,3 +158,25 @@
 "wallpaper.toolbar.solar.title" = "Güneş duvar kağıdı";
 "wallpaper.toolbar.time.title" = "Zaman duvar kağıdı";
 "wallpaper.toolbar.appearance.title" = "Görünüm duvar kağıdı";
+
+"support.title" = "Equinox'u Destekle";
+"support.localProduct.title" = "Bağış";
+"support.shared.title.thankYou" = "Desteğiniz için teşekkürler!";
+"support.shared.description.openSource" = "Equinox, 5 yılı aşkın süredir geliştirdiğim açık kaynaklı bir proje.";
+"support.shared.close" = "Kapat";
+"support.supported.description.first" = "Equinox'u zaten desteklediniz, teşekkürler!";
+"support.supported.description.third" = "Projeyi tekrar desteklemek isterseniz, istediğiniz zaman bir kez daha bahşiş bırakabilirsiniz.";
+"support.unsupported.title" = "Equinox'u beğeniyor musunuz?";
+"support.unsupported.description.second" = "Kullanmaktan memnunsanız, küçük bir bahşişle geleceğini destekleyebilirsiniz.";
+"support.unsupported.description.third" = "Bahşişler herhangi bir özelliğin kilidini açmaz, yalnızca geliştirmeyi destekler.";
+"support.noProducts.title" = "Bir sorun oluştu";
+"support.noProducts.description.first" = "Bahşiş seçenekleri yüklenemedi.";
+"support.noProducts.description.second" = "Lütfen bağlantınızı kontrol edin veya kısa bir süre sonra tekrar deneyin.";
+"support.noProducts.description.third" = "Equinox'u desteklediğiniz için teşekkürler.";
+"support.purchaseSuccess.description.first" = "Desteğiniz çok değerli. Equinox, 5 yılı aşkın süredir geliştirdiğim açık kaynaklı bir proje.";
+"support.purchaseSuccess.description.second" = "Bu tür bahşişler uygulamayı ayakta tutmaya yardımcı olur: hataları düzeltmek, geliştirmek ve yeni güncellemeler yayınlamak.";
+"support.purchaseSuccess.description.third" = "Bu satın alma özelliklerin kilidini açmaz, yalnızca geliştirmeyi destekler.";
+"support.purchaseFailure.title" = "Sorun değil";
+"support.purchaseFailure.description.first" = "Satın alma iptal edildi.";
+"support.purchaseFailure.description.second" = "İsterseniz Equinox'u istediğiniz zaman destekleyebilirsiniz.";
+"support.purchaseFailure.description.third" = "Uygulamayı kullandığınız için teşekkürler!";

@@ -36,6 +36,7 @@
 "welcome.welcome" = "Bienvenido a %@";
 "welcome.version" = "Versión %@";
 "welcome.github" = "GitHub";
+"welcome.support" = "Apoyar Equinox";
 "welcome.choose.type" = "Elegir tipo";
 "welcome.choose.type.description" = "Seleccione un tipo adecuado para su fondo de pantalla";
 "welcome.types.solar" = "Solar";
@@ -157,3 +158,25 @@
 "wallpaper.toolbar.solar.title" = "Fondo de pantalla en basado solar";
 "wallpaper.toolbar.time.title" = "Fondo de pantalla de tiempo";
 "wallpaper.toolbar.appearance.title" = "Fondo de pantalla de apariencia";
+
+"support.title" = "Apoya Equinox";
+"support.localProduct.title" = "Donación";
+"support.shared.title.thankYou" = "¡Gracias por tu apoyo!";
+"support.shared.description.openSource" = "Equinox es un proyecto de código abierto que mantengo desde hace más de 5 años.";
+"support.shared.close" = "Cerrar";
+"support.supported.description.first" = "Ya apoyaste a Equinox. ¡Gracias!";
+"support.supported.description.third" = "Si quieres volver a apoyar el proyecto, puedes dejar otra propina en cualquier momento.";
+"support.unsupported.title" = "¿Disfrutas Equinox?";
+"support.unsupported.description.second" = "Si te gusta usarlo, puedes apoyar su futuro con una pequeña propina.";
+"support.unsupported.description.third" = "Las propinas no desbloquean funciones; simplemente apoyan el desarrollo.";
+"support.noProducts.title" = "Algo salió mal";
+"support.noProducts.description.first" = "No se pudieron cargar las opciones de propina.";
+"support.noProducts.description.second" = "Revisa tu conexión o vuelve a intentarlo en un momento.";
+"support.noProducts.description.third" = "Gracias por apoyar Equinox.";
+"support.purchaseSuccess.description.first" = "Tu apoyo significa mucho. Equinox es un proyecto de código abierto que mantengo desde hace más de 5 años.";
+"support.purchaseSuccess.description.second" = "Propinas como esta ayudan a mantener viva la app: corrigiendo errores, mejorándola y lanzando nuevas actualizaciones.";
+"support.purchaseSuccess.description.third" = "Esta compra no desbloquea funciones; simplemente apoya el desarrollo.";
+"support.purchaseFailure.title" = "No te preocupes";
+"support.purchaseFailure.description.first" = "La compra fue cancelada.";
+"support.purchaseFailure.description.second" = "Puedes apoyar Equinox cuando quieras.";
+"support.purchaseFailure.description.third" = "¡Gracias por usar la app!";

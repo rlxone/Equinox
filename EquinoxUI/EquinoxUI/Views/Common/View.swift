@@ -69,6 +69,10 @@ public class View: NSView, Tooltipable {
         tooltipPresenter?.mouseExited()
     }
     
+    public override func hitTest(_ point: NSPoint) -> NSView? {
+        return isUserInteractionsEnabled ? super.hitTest(point) : nil
+    }
+    
     // MARK: - Public
 
     public var isUserInteractionsEnabled = true

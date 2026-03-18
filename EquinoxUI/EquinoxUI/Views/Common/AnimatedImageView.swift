@@ -34,18 +34,12 @@ public protocol AnimatedImageViewDelegate: AnyObject {
     func numberOfImages() -> Int
     func image(for index: Int, completion: @escaping (NSImage?) -> Void)
 }
-
-// MARK: - Enums, Structs
-
-extension AnimatedImageView {
-    private enum Constants {
-        static let animationDuration: TimeInterval = 1.5
-    }
-}
  
 // MARK: - Class
 
 public class AnimatedImageView: View {
+    private let animationDuration: TimeInterval
+    
     private lazy var foregroundImageView: ImageView = {
         let imageView = ImageView()
         imageView.imageContentsGravity = .resize
@@ -68,7 +62,8 @@ public class AnimatedImageView: View {
 
     // MARK: - Initializer
 
-    public override init() {
+    public init(animationDuration: TimeInterval = 1.5) {
+        self.animationDuration = animationDuration
         super.init()
         setup()
     }
@@ -193,7 +188,7 @@ public class AnimatedImageView: View {
         let animation = CABasicAnimation(keyPath: "opacity")
         animation.fromValue = 1
         animation.toValue = 0
-        animation.duration = Constants.animationDuration
+        animation.duration = animationDuration
         animation.timingFunction = .init(name: .easeInEaseOut)
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false

@@ -45,31 +45,42 @@ extension WelcomeContentView {
         let welcomeStyle: StyledLabel.Style
         let versionStyle: StyledLabel.Style
         let githubStyle: StyledLabel.Style
+        let supportStyle: StyledLabel.Style
+        let githubContainerButtonStyle: ContainerButton.Style
+        let supportContainerButtonStyle: ContainerButton.Style
         
         public init(
             ownStyle: WelcomeContentView.Style.OwnStyle,
             typeStyle: TypeView.Style,
             welcomeStyle: StyledLabel.Style,
             versionStyle: StyledLabel.Style,
-            githubStyle: StyledLabel.Style
+            githubStyle: StyledLabel.Style,
+            supportStyle: StyledLabel.Style,
+            githubContainerButtonStyle: ContainerButton.Style,
+            supportContainerButtonStyle: ContainerButton.Style
         ) {
             self.ownStyle = ownStyle
             self.typeStyle = typeStyle
             self.welcomeStyle = welcomeStyle
             self.versionStyle = versionStyle
             self.githubStyle = githubStyle
+            self.supportStyle = supportStyle
+            self.githubContainerButtonStyle = githubContainerButtonStyle
+            self.supportContainerButtonStyle = supportContainerButtonStyle
         }
     }
     
     private enum Constants {
         static let welcomeVisualEffectViewWidth: CGFloat = 444
-        static let iconImageViewTopOffset: CGFloat = 64
+        static let iconImageViewTopOffset: CGFloat = 48
         static let iconImageViewWidth: CGFloat = 164
         static let iconImageViewHeight: CGFloat = 164
         static let welcomeLabelTopOffset: CGFloat = 16
         static let versionLabelTopOffset: CGFloat = 2
-        static let githubButtonTopOffset: CGFloat = 16
-        static let githubLabelContainerOffset: CGFloat = 8
+        static let buttonsTopOffset: CGFloat = 16
+        static let githubButtonLabelContainerOffset: CGFloat = 8
+        static let supportButtonLabelHorizontalOffset: CGFloat = 16
+        static let supportButtonLabelVerticalOffset: CGFloat = 8
     }
 }
 
@@ -87,6 +98,11 @@ public final class WelcomeContentView: View {
     private lazy var githubLabel = StyledLabel()
     private lazy var githubButton = ContainerButton()
     
+    private lazy var supportLabel = StyledLabel()
+    private lazy var supportButton = ContainerButton()
+    
+    private lazy var buttonsStackView = StackView()
+    
     // MARK: - Initializer
     
     public override init() {
@@ -102,12 +118,21 @@ public final class WelcomeContentView: View {
     }
     
     private func setupView() {
+        githubLabel.alignment = .center
+        supportLabel.alignment = .center
+        
+        buttonsStackView.orientation = .vertical
+        
+        buttonsStackView.addArrangedSubview(supportButton)
+        buttonsStackView.addArrangedSubview(githubButton)
+        
         addSubview(welcomeVisualEffectView)
         welcomeVisualEffectView.contentView.addSubview(iconImageView)
         welcomeVisualEffectView.contentView.addSubview(welcomeLabel)
         welcomeVisualEffectView.contentView.addSubview(versionLabel)
-        welcomeVisualEffectView.contentView.addSubview(githubButton)
+        welcomeVisualEffectView.contentView.addSubview(buttonsStackView)
         githubButton.addSubview(githubLabel)
+        supportButton.addSubview(supportLabel)
         
         addSubview(sidebarVisualEffectView)
         sidebarVisualEffectView.contentView.addSubview(typeView)
@@ -140,8 +165,11 @@ public final class WelcomeContentView: View {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         versionLabel.translatesAutoresizingMaskIntoConstraints = false
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         githubButton.translatesAutoresizingMaskIntoConstraints = false
         githubLabel.translatesAutoresizingMaskIntoConstraints = false
+        supportButton.translatesAutoresizingMaskIntoConstraints = false
+        supportLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             iconImageView.centerXAnchor.constraint(equalTo: welcomeVisualEffectView.contentView.centerXAnchor),
@@ -155,13 +183,30 @@ public final class WelcomeContentView: View {
             versionLabel.centerXAnchor.constraint(equalTo: welcomeVisualEffectView.contentView.centerXAnchor),
             versionLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: Constants.versionLabelTopOffset),
             
-            githubButton.centerXAnchor.constraint(equalTo: welcomeVisualEffectView.contentView.centerXAnchor),
-            githubButton.topAnchor.constraint(equalTo: versionLabel.bottomAnchor, constant: Constants.githubButtonTopOffset),
+            buttonsStackView.centerXAnchor.constraint(equalTo: welcomeVisualEffectView.contentView.centerXAnchor),
+            buttonsStackView.topAnchor.constraint(equalTo: versionLabel.bottomAnchor, constant: Constants.buttonsTopOffset),
             
-            githubLabel.leadingAnchor.constraint(equalTo: githubButton.leadingAnchor, constant: Constants.githubLabelContainerOffset),
-            githubLabel.trailingAnchor.constraint(equalTo: githubButton.trailingAnchor, constant: -Constants.githubLabelContainerOffset),
-            githubLabel.topAnchor.constraint(equalTo: githubButton.topAnchor, constant: Constants.githubLabelContainerOffset),
-            githubLabel.bottomAnchor.constraint(equalTo: githubButton.bottomAnchor, constant: -Constants.githubLabelContainerOffset)
+            githubLabel.leadingAnchor.constraint(equalTo: githubButton.leadingAnchor, constant: Constants.githubButtonLabelContainerOffset),
+            githubLabel.trailingAnchor.constraint(equalTo: githubButton.trailingAnchor, constant: -Constants.githubButtonLabelContainerOffset),
+            githubLabel.topAnchor.constraint(equalTo: githubButton.topAnchor, constant: Constants.githubButtonLabelContainerOffset),
+            githubLabel.bottomAnchor.constraint(equalTo: githubButton.bottomAnchor, constant: -Constants.githubButtonLabelContainerOffset),
+
+            supportLabel.leadingAnchor.constraint(
+                equalTo: supportButton.leadingAnchor,
+                constant: Constants.supportButtonLabelHorizontalOffset
+            ),
+            supportLabel.trailingAnchor.constraint(
+                equalTo: supportButton.trailingAnchor,
+                constant: -Constants.supportButtonLabelHorizontalOffset
+            ),
+            supportLabel.topAnchor.constraint(
+                equalTo: supportButton.topAnchor,
+                constant: Constants.supportButtonLabelVerticalOffset
+            ),
+            supportLabel.bottomAnchor.constraint(
+                equalTo: supportButton.bottomAnchor,
+                constant: -Constants.supportButtonLabelVerticalOffset
+            )
         ])
     }
     
@@ -210,6 +255,12 @@ public final class WelcomeContentView: View {
         }
     }
     
+    public var supportText: String? {
+        didSet {
+            supportLabel.stringValue = supportText ?? String()
+        }
+    }
+    
     public var githubText: String? {
         didSet {
             githubLabel.stringValue = githubText ?? String()
@@ -234,6 +285,12 @@ public final class WelcomeContentView: View {
         }
     }
     
+    public var supportAction: Button.Action? {
+        didSet {
+            supportButton.onAction = supportAction
+        }
+    }
+    
     public var typeAction: TypeView.Action? {
         didSet {
             typeView.action = typeAction
@@ -248,5 +305,8 @@ public final class WelcomeContentView: View {
         welcomeLabel.style = style?.welcomeStyle
         versionLabel.style = style?.versionStyle
         githubLabel.style = style?.githubStyle
+        supportLabel.style = style?.supportStyle
+        githubButton.style = style?.githubContainerButtonStyle
+        supportButton.style = style?.supportContainerButtonStyle
     }
 }

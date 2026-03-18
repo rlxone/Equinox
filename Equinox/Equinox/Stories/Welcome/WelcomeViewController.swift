@@ -34,6 +34,7 @@ import EquinoxUI
 
 protocol WelcomeViewControllerDelegate: AnyObject {
     func welcomeViewControllerTypeWasSelected(type: WallpaperType)
+    func welcomeViewControllerSupportWasInteracted()
 }
 
 // MARK: - Enums, Structs
@@ -75,6 +76,7 @@ final class WelcomeViewController: ViewController {
         contentView.welcomeText = Localization.Welcome.welcome(param1: NSApplication.appName)
         contentView.versionText = Localization.Welcome.version(param1: NSApplication.appVersion)
         contentView.githubText = Localization.Welcome.github
+        contentView.supportText = Localization.Welcome.support
         contentView.typeHeaderText = Localization.Welcome.choose
         contentView.typeDescriptionText = Localization.Welcome.select
         
@@ -118,6 +120,9 @@ final class WelcomeViewController: ViewController {
                 return
             }
             NSWorkspace.shared.open(url)
+        }
+        contentView.supportAction = { [weak self] _ in
+            self?.delegate?.welcomeViewControllerSupportWasInteracted()
         }
     }
     

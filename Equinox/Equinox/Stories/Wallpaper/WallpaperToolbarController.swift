@@ -88,18 +88,34 @@ extension WallpaperToolbarController: NSToolbarDelegate {
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         switch wallpaperType {
         case .solar:
-            return [.title, .flexibleSpace, .new, .space, .calculator, .space, .links, .help]
+            if #available(macOS 26, *) {
+                return [.title, .flexibleSpace, .new, .space, .calculator, .space, .links, .help]
+            } else {
+                return [.title, .flexibleSpace, .new, .calculator, .links, .help]
+            }
         case .time, .appearance:
-            return [.title, .flexibleSpace, .new, .space, .links, .help]
+            if #available(macOS 26, *) {
+                return [.title, .flexibleSpace, .new, .space, .links, .help]
+            } else {
+                return [.title, .flexibleSpace, .new, .links, .help]
+            }
         }
     }
 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         switch wallpaperType {
         case .solar:
-            return [.title, .flexibleSpace, .new, .space, .calculator, .space, .links, .help]
+            if #available(macOS 26, *) {
+                return [.title, .flexibleSpace, .new, .space, .calculator, .space, .links, .help]
+            } else {
+                return [.title, .flexibleSpace, .new, .calculator, .links, .help]
+            }
         case .time, .appearance:
-            return [.title, .flexibleSpace, .new, .space, .links, .help]
+            if #available(macOS 26, *) {
+                return [.title, .flexibleSpace, .new, .space, .links, .help]
+            } else {
+                return [.title, .flexibleSpace, .new, .links, .help]
+            }
         }
     }
 

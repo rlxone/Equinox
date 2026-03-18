@@ -36,6 +36,7 @@
 "welcome.welcome" = "欢迎来到 %@";
 "welcome.version" = "版本 %@";
 "welcome.github" = "Github";
+"welcome.support" = "支持 Equinox";
 "welcome.choose.type" = "选择类型";
 "welcome.choose.type.description" = "选择最适合你的墙纸类型";
 "welcome.types.solar" = "日照";
@@ -157,3 +158,25 @@
 "wallpaper.toolbar.solar.title" = "日照墙纸";
 "wallpaper.toolbar.time.title" = "时间墙纸";
 "wallpaper.toolbar.appearance.title" = "外观墙纸";
+
+"support.title" = "支持 Equinox";
+"support.localProduct.title" = "捐赠";
+"support.shared.title.thankYou" = "感谢你的支持！";
+"support.shared.description.openSource" = "Equinox 是我维护了 5 年多的开源项目。";
+"support.shared.close" = "关闭";
+"support.supported.description.first" = "你已经支持过 Equinox 了，感谢支持！";
+"support.supported.description.third" = "如果你还想再次支持这个项目，随时都可以再打赏一次。";
+"support.unsupported.title" = "喜欢 Equinox 吗？";
+"support.unsupported.description.second" = "如果你用得开心，可以用一笔小额打赏支持它的未来。";
+"support.unsupported.description.third" = "打赏不会解锁任何功能，它只是用于支持开发。";
+"support.noProducts.title" = "出了点问题";
+"support.noProducts.description.first" = "无法加载打赏选项。";
+"support.noProducts.description.second" = "请检查网络连接，或稍后再试。";
+"support.noProducts.description.third" = "感谢你支持 Equinox。";
+"support.purchaseSuccess.description.first" = "你的支持意义重大。Equinox 是我维护了 5 年多的开源项目。";
+"support.purchaseSuccess.description.second" = "这样的打赏能帮助应用持续发展：修复问题、持续改进，并发布新版本更新。";
+"support.purchaseSuccess.description.third" = "这次购买不会解锁功能，它只是用于支持开发。";
+"support.purchaseFailure.title" = "没关系";
+"support.purchaseFailure.description.first" = "购买已取消。";
+"support.purchaseFailure.description.second" = "如果你愿意，随时都可以支持 Equinox。";
+"support.purchaseFailure.description.third" = "感谢使用这款应用！";

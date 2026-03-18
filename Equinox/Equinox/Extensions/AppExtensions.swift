@@ -36,4 +36,13 @@ extension NSApplication {
     static var appVersion: String {
         return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? String()
     }
+    
+    static let isAppStoreBuild: Bool = {
+        let distribution = Bundle.main.object(forInfoDictionaryKey: "AppDistribution") as? String
+        return distribution == "app_store"
+    }()
+    
+    var isDarkMode: Bool {
+        return effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+    }
 }

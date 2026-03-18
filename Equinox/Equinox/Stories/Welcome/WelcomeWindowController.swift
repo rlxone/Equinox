@@ -35,13 +35,14 @@ import EquinoxUI
 
 protocol WelcomeWindowControllerDelegate: AnyObject {
     func welcomeWindowControllerTypeWasSelected(type: WallpaperType)
+    func welcomeWindowControllerSupportWasInteracted()
 }
 
 // MARK: - Enums, Structs
 
 extension WelcomeWindowController {
     private enum Constants {
-        static let minSize = NSSize(width: 846, height: 395)
+        static let minSize = NSSize(width: 846, height: 405)
     }
 }
 
@@ -86,5 +87,9 @@ final class WelcomeWindowController: WindowController {
 extension WelcomeWindowController: WelcomeRootViewControllerDelegate {
     func rootViewControllerTypeWasSelected(type: WallpaperType) {
         delegate?.welcomeWindowControllerTypeWasSelected(type: type)
+    }
+    
+    func rootViewControllerSupportWasInteracted() {
+        delegate?.welcomeWindowControllerSupportWasInteracted()
     }
 }

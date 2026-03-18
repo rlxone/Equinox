@@ -41,7 +41,7 @@ extension WindowContentView {
 
     private enum Constants {
         static let notificationDelay = 3
-        static let notificationTopOffset: CGFloat = 86
+        static let notificationTopOffset: CGFloat = 16
         static let hiddenNotificationTopOffset: CGFloat = 16
         static let presentAnimationDuration: TimeInterval = 0.2
     }
@@ -61,6 +61,18 @@ public final class WindowContentView: VisualEffectView {
         super.init(material: .windowBackground, blendingMode: .behindWindow)
         setup()
     }
+    
+    // MARK: Life Cycle
+    
+    public override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        
+        if notificationTopConstraint == nil, let window = window {
+            let topAnchor = (window.contentLayoutGuide as? NSLayoutGuide)?.topAnchor ?? topAnchor
+            notificationTopConstraint = notificationView.topAnchor.constraint(equalTo: topAnchor, constant: -Constants.notificationTopOffset)
+            notificationTopConstraint?.isActive = true
+        }
+    }
 
     // MARK: - Setup
 
@@ -71,6 +83,8 @@ public final class WindowContentView: VisualEffectView {
     }
 
     private func setupView() {
+        notificationView.alphaValue = 0
+        
         addSubview(containerView)
         addSubview(notificationView)
     }
@@ -87,12 +101,6 @@ public final class WindowContentView: VisualEffectView {
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-
-        notificationTopConstraint = notificationView.topAnchor.constraint(
-            equalTo: topAnchor,
-            constant: -Constants.notificationTopOffset
-        )
-        notificationTopConstraint?.isActive = true
     }
     
     private func setupActions() {
@@ -134,6 +142,7 @@ public final class WindowContentView: VisualEffectView {
             context.duration = Constants.presentAnimationDuration
             context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
 
+            self.notificationView.animator().alphaValue = 1
             self.notificationTopConstraint?.animator().constant = Constants.hiddenNotificationTopOffset
         }
     }
@@ -143,6 +152,7 @@ public final class WindowContentView: VisualEffectView {
             context.duration = Constants.presentAnimationDuration
             context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
 
+            self.notificationView.animator().alphaValue = 0
             self.notificationTopConstraint?.animator().constant = -Constants.notificationTopOffset
         }
     }

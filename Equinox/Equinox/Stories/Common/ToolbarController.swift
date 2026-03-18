@@ -60,6 +60,8 @@ extension NSToolbarItem.Identifier {
 }
 
 extension NSToolbarItem {
+    private static let toolbarFallbackImageBoundingSize = NSSize(width: 16, height: 16)
+
     static func title(text: String) -> NSToolbarItem {
         let titleLabel = Label(labelWithString: text)
         titleLabel.font = Font.title3(.semibold)
@@ -77,40 +79,40 @@ extension NSToolbarItem {
         item.visibilityPriority = .high
         return item
     }
-    
+
     static func new() -> NSToolbarItem {
         let item = NSToolbarItem(itemIdentifier: .new)
         item.label = Localization.Toolbar.New.label
         item.paletteLabel = Localization.Toolbar.New.palette
         item.toolTip = Localization.Toolbar.New.toolTip
         item.image = getToolbarImage(systemSymbolName: "plus", fallbackImage: Image.plus)
-        item.visibilityPriority = .high
+        configureToolbarButtonItem(item)
         
         return item
     }
-    
+
     static func help() -> NSToolbarItem {
         let item = NSToolbarItem(itemIdentifier: .help)
         item.label = Localization.Toolbar.Help.label
         item.paletteLabel = Localization.Toolbar.Help.palette
         item.toolTip = Localization.Toolbar.Help.toolTip
         item.image = getToolbarImage(systemSymbolName: "questionmark", fallbackImage: Image.questionMark)
-        item.visibilityPriority = .high
+        configureToolbarButtonItem(item)
         
         return item
     }
-    
+
     static func calculator() -> NSToolbarItem {
         let item = NSToolbarItem(itemIdentifier: .calculator)
         item.label = Localization.Toolbar.Calculator.label
         item.paletteLabel = Localization.Toolbar.Calculator.palette
         item.toolTip = Localization.Toolbar.Calculator.toolTip
         item.image = getToolbarImage(systemSymbolName: "graph.2d", fallbackImage: Image.calculator)
-        item.visibilityPriority = .high
+        configureToolbarButtonItem(item)
 
         return item
     }
-    
+
     static func links(target: AnyObject, action: Selector) -> NSToolbarItem {
         let menu = makeHelpLinksMenu(target: target, action: action)
         let label = Localization.Toolbar.more
@@ -124,7 +126,7 @@ extension NSToolbarItem {
             item.paletteLabel = label
             item.toolTip = toolTip
             item.image = getToolbarImage(systemSymbolName: "ellipsis", fallbackImage: Image.ellipsis)
-            item.visibilityPriority = .high
+            configureToolbarButtonItem(item)
             
             return item
         }
@@ -135,7 +137,7 @@ extension NSToolbarItem {
         button.title = ""
         button.bezelStyle = .texturedRounded
         button.imagePosition = .imageOnly
-        
+
         item.image = getToolbarImage(systemSymbolName: "ellipsis", fallbackImage: Image.ellipsis)
         item.view = button
         item.label = label
@@ -144,13 +146,38 @@ extension NSToolbarItem {
         item.visibilityPriority = .high
         return item
     }
-    
-    private static func getToolbarImage(systemSymbolName: String, fallbackImage: NSImage) -> NSImage {
-        var image: NSImage?
-        if #available(macOS 11.0, *) {
-            image = NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: nil)
+
+    private static func configureToolbarButtonItem(_ item: NSToolbarItem) {
+        if #available(macOS 10.15, *) {
+            item.isBordered = true
         }
-        return image ?? fallbackImage
+        item.visibilityPriority = .high
+    }
+
+    private static func getToolbarImage(
+        systemSymbolName: String,
+        fallbackImage: NSImage
+    ) -> NSImage {
+        if #available(macOS 11.0, *),
+           let image = NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: nil) {
+            return image
+        }
+
+        let image = (fallbackImage.copy() as? NSImage) ?? fallbackImage
+        image.isTemplate = true
+        let size = image.size
+        guard size.width > 0, size.height > 0 else {
+            return image
+        }
+        let scale = min(
+            toolbarFallbackImageBoundingSize.width / size.width,
+            toolbarFallbackImageBoundingSize.height / size.height,
+            1
+        )
+        if scale < 1 {
+            image.size = NSSize(width: size.width * scale, height: size.height * scale)
+        }
+        return image
     }
 }
 

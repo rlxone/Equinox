@@ -34,6 +34,7 @@
 "welcome.welcome" = "Willkommen bei %@";
 "welcome.version" = "Version %@";
 "welcome.github" = "GitHub";
+"welcome.support" = "Equinox unterstützen";
 "welcome.choose.type" = "Wähle den Typ";
 "welcome.choose.type.description" = "Wähle die Art von Hintergrundbild, die du erstellen willst";
 "welcome.types.solar" = "Sonnenabhängig";
@@ -139,3 +140,25 @@
 "tip.calculator.description" = "Er hilft dir, die Position der Sonne am Himmel zu berechnen.\n1. Wähle den Ort, das Datum und die Uhrzeit auf der Sonnen-Zeitleiste für den Zeitpunkt aus, an dem du das Foto gemacht hast. Wenn du die genaue Uhrzeit nicht kennst, nutze die Sonnen-Zeitleiste, um zu sehen, wie hoch oder tief die Sonne am Himmel steht, und gleiche das mit deinen Fotos ab.\n2. Ziehe das Ergebnis auf dein Bild oder kopiere es.";
 
 "dock.new" = "Neu";
+
+"support.title" = "Equinox unterstützen";
+"support.localProduct.title" = "Spende";
+"support.shared.title.thankYou" = "Danke für deine Unterstützung!";
+"support.shared.description.openSource" = "Equinox ist ein Open-Source-Projekt, das ich seit über 5 Jahren pflege.";
+"support.shared.close" = "Schließen";
+"support.supported.description.first" = "Du hast Equinox bereits unterstützt - danke!";
+"support.supported.description.third" = "Wenn du das Projekt erneut unterstützen möchtest, kannst du jederzeit ein weiteres Trinkgeld geben.";
+"support.unsupported.title" = "Gefällt dir Equinox?";
+"support.unsupported.description.second" = "Wenn dir die App gefällt, kannst du ihre Zukunft mit einem kleinen Trinkgeld unterstützen.";
+"support.unsupported.description.third" = "Trinkgelder schalten keine Funktionen frei - sie unterstützen einfach die Weiterentwicklung.";
+"support.noProducts.title" = "Etwas ist schiefgelaufen";
+"support.noProducts.description.first" = "Die Trinkgeldoptionen konnten nicht geladen werden.";
+"support.noProducts.description.second" = "Bitte überprüfe deine Verbindung oder versuche es in einem Moment erneut.";
+"support.noProducts.description.third" = "Danke, dass du Equinox unterstützt.";
+"support.purchaseSuccess.description.first" = "Deine Unterstützung bedeutet viel. Equinox ist ein Open-Source-Projekt, das ich seit über 5 Jahren pflege.";
+"support.purchaseSuccess.description.second" = "Solche Trinkgelder helfen, die App am Leben zu halten - Bugs zu beheben, sie zu verbessern und neue Updates zu veröffentlichen.";
+"support.purchaseSuccess.description.third" = "Dieser Kauf schaltet keine Funktionen frei - er unterstützt einfach die Weiterentwicklung.";
+"support.purchaseFailure.title" = "Kein Problem";
+"support.purchaseFailure.description.first" = "Der Kauf wurde abgebrochen.";
+"support.purchaseFailure.description.second" = "Du kannst Equinox jederzeit unterstützen, wenn du möchtest.";
+"support.purchaseFailure.description.third" = "Danke, dass du die App nutzt!";

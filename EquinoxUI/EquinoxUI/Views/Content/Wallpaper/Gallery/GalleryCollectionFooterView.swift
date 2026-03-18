@@ -34,19 +34,9 @@ extension GalleryCollectionFooterView {
     public typealias Action = () -> Void
     
     public struct Style {
-        public struct OwnStyle {
-            let backgroundColor: NSColor
-
-            public init(backgroundColor: NSColor) {
-                self.backgroundColor = backgroundColor
-            }
-        }
-        
-        let ownStyle: OwnStyle
         let infoStyle: StyledLabel.Style
 
-        public init(ownStyle: OwnStyle, infoStyle: StyledLabel.Style) {
-            self.ownStyle = ownStyle
+        public init(infoStyle: StyledLabel.Style) {
             self.infoStyle = infoStyle
         }
     }
@@ -65,12 +55,6 @@ extension GalleryCollectionFooterView {
 
 public final class GalleryCollectionFooterView: View {
     private lazy var infoLabel = StyledLabel()
-
-    private lazy var backgroundView: View = {
-        let view = View()
-        view.wantsLayer = true
-        return view
-    }()
     
     private lazy var glassView: GlassView = {
         let view = GlassView(style: .regular, fallbackVisualEffect: (material: .toolTip, blendingMode: .withinWindow))
@@ -213,7 +197,6 @@ public final class GalleryCollectionFooterView: View {
     // MARK: - Private
 
     private func stylize() {
-        backgroundView.layer?.backgroundColor = style?.ownStyle.backgroundColor.cgColor
         infoLabel.style = style?.infoStyle
     }
 }

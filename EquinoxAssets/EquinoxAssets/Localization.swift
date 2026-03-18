@@ -122,6 +122,7 @@ public enum Localization {
         
         public static let title = Localization.localizedString(key: "welcome.title")
         public static let github = Localization.localizedString(key: "welcome.github")
+        public static let support = Localization.localizedString(key: "welcome.support")
         public static let choose = Localization.localizedString(key: "welcome.choose.type")
         public static let select = Localization.localizedString(key: "welcome.choose.type.description")
         public static let solar = Localization.localizedString(key: "welcome.types.solar")
@@ -241,6 +242,51 @@ public enum Localization {
             public static let abbreviationTooltipDescription = Localization.localizedString(key: "solar.main.abbreviation.tooltip.description")
             public static let dragAndDropTooltipTitle = Localization.localizedString(key: "solar.main.drag.and.drop.tooltip.title")
             public static let dragAndDropTooltipDescription = Localization.localizedString(key: "solar.main.drag.and.drop.tooltip.description")
+        }
+    }
+
+    public enum Support {
+        public static let title = Localization.localizedString(key: "support.title")
+
+        public enum LocalProduct {
+            public static let title = Localization.localizedString(key: "support.localProduct.title")
+        }
+
+        public enum Shared {
+            public static let thankYouTitle = Localization.localizedString(key: "support.shared.title.thankYou")
+            public static let openSourceDescription = Localization.localizedString(key: "support.shared.description.openSource")
+            public static let close = Localization.localizedString(key: "support.shared.close")
+        }
+
+        public enum Supported {
+            public static let firstDescription = Localization.localizedString(key: "support.supported.description.first")
+            public static let thirdDescription = Localization.localizedString(key: "support.supported.description.third")
+        }
+
+        public enum Unsupported {
+            public static let title = Localization.localizedString(key: "support.unsupported.title")
+            public static let secondDescription = Localization.localizedString(key: "support.unsupported.description.second")
+            public static let thirdDescription = Localization.localizedString(key: "support.unsupported.description.third")
+        }
+
+        public enum NoProducts {
+            public static let title = Localization.localizedString(key: "support.noProducts.title")
+            public static let firstDescription = Localization.localizedString(key: "support.noProducts.description.first")
+            public static let secondDescription = Localization.localizedString(key: "support.noProducts.description.second")
+            public static let thirdDescription = Localization.localizedString(key: "support.noProducts.description.third")
+        }
+
+        public enum PurchaseSuccess {
+            public static let firstDescription = Localization.localizedString(key: "support.purchaseSuccess.description.first")
+            public static let secondDescription = Localization.localizedString(key: "support.purchaseSuccess.description.second")
+            public static let thirdDescription = Localization.localizedString(key: "support.purchaseSuccess.description.third")
+        }
+
+        public enum PurchaseFailure {
+            public static let title = Localization.localizedString(key: "support.purchaseFailure.title")
+            public static let firstDescription = Localization.localizedString(key: "support.purchaseFailure.description.first")
+            public static let secondDescription = Localization.localizedString(key: "support.purchaseFailure.description.second")
+            public static let thirdDescription = Localization.localizedString(key: "support.purchaseFailure.description.third")
         }
     }
     

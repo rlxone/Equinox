@@ -106,6 +106,9 @@ final class WallpaperWindowController: WindowController {
         self.toolbarController = toolbarController
         self.toolbarController?.delegate = self
         contentWindow?.toolbar = toolbarController.toolbar
+        if #available(macOS 11.0, *) {
+            contentWindow?.titlebarSeparatorStyle = .none
+        }
 
         window = contentWindow
         window?.setContentSize(Constants.regularSize)
