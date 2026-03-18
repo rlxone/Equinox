@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		F32C64AB27028479002F5817 /* EquinoxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B334CD267DC5B90025AB04 /* EquinoxCore.framework */; };
 		F32C64B427028505002F5817 /* ImageCacheCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32C64B327028505002F5817 /* ImageCacheCoreTests.swift */; };
-		F3348F522702912D00695C8A /* HashCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3348F512702912D00695C8A /* HashCoreTests.swift */; };
 		F3348F54270296AF00695C8A /* SolarCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3348F53270296AF00695C8A /* SolarCoreTests.swift */; };
 		F3348F5B27029E2100695C8A /* MetadataCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3348F5A27029E2100695C8A /* MetadataCoreTests.swift */; };
 		F3348F612702B13700695C8A /* image.heic in Resources */ = {isa = PBXBuildFile; fileRef = F3348F602702B0B400695C8A /* image.heic */; };
@@ -27,7 +26,6 @@
 		F37EAD702F61000100A1B2C3 /* SupportServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37EAD6F2F61000100A1B2C3 /* SupportServiceTests.swift */; };
 		F38D5B142741B0950065E13D /* StorageCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38D5B132741B0950065E13D /* StorageCoreTests.swift */; };
 		F399A513268B553500ED45EF /* ImageCacheCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399A512268B553500ED45EF /* ImageCacheCore.swift */; };
-		F399A517268B58C900ED45EF /* HashCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399A516268B58C900ED45EF /* HashCore.swift */; };
 		F3BD018826C34F240090D864 /* SolarCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD018726C34F240090D864 /* SolarCore.swift */; };
 		F3BD019026C352980090D864 /* SolarNOAA in Frameworks */ = {isa = PBXBuildFile; productRef = F3BD018F26C352980090D864 /* SolarNOAA */; };
 		F3BD019426C352EF0090D864 /* SolarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD019326C352EF0090D864 /* SolarService.swift */; };
@@ -66,7 +64,6 @@
 /* Begin PBXFileReference section */
 		F32C64A727028479002F5817 /* EquinoxCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EquinoxCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32C64B327028505002F5817 /* ImageCacheCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheCoreTests.swift; sourceTree = "<group>"; };
-		F3348F512702912D00695C8A /* HashCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashCoreTests.swift; sourceTree = "<group>"; };
 		F3348F53270296AF00695C8A /* SolarCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarCoreTests.swift; sourceTree = "<group>"; };
 		F3348F5A27029E2100695C8A /* MetadataCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataCoreTests.swift; sourceTree = "<group>"; };
 		F3348F602702B0B400695C8A /* image.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = image.heic; sourceTree = "<group>"; };
@@ -84,7 +81,6 @@
 		F37EAD6F2F61000100A1B2C3 /* SupportServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportServiceTests.swift; sourceTree = "<group>"; };
 		F38D5B132741B0950065E13D /* StorageCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageCoreTests.swift; sourceTree = "<group>"; };
 		F399A512268B553500ED45EF /* ImageCacheCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheCore.swift; sourceTree = "<group>"; };
-		F399A516268B58C900ED45EF /* HashCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashCore.swift; sourceTree = "<group>"; };
 		F3B334CD267DC5B90025AB04 /* EquinoxCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EquinoxCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B334D1267DC5B90025AB04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3BD018726C34F240090D864 /* SolarCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarCore.swift; sourceTree = "<group>"; };
@@ -137,7 +133,6 @@
 				F374BA4F292E7D2300CE69FF /* Mocks */,
 				F3348F5F2702B09600695C8A /* Resources */,
 				F32C64B327028505002F5817 /* ImageCacheCoreTests.swift */,
-				F3348F512702912D00695C8A /* HashCoreTests.swift */,
 				F3348F53270296AF00695C8A /* SolarCoreTests.swift */,
 				F3348F5A27029E2100695C8A /* MetadataCoreTests.swift */,
 				F3348F642702B5A000695C8A /* ImageCoreTests.swift */,
@@ -211,7 +206,6 @@
 				F3D2EDEE267DCD9C009704C5 /* FileCore.swift */,
 				F3D2EDED267DCD9C009704C5 /* MetadataCore.swift */,
 				F399A512268B553500ED45EF /* ImageCacheCore.swift */,
-				F399A516268B58C900ED45EF /* HashCore.swift */,
 				F3BD018726C34F240090D864 /* SolarCore.swift */,
 				F356C8BA2736E72E00E915C6 /* StorageCore.swift */,
 			);
@@ -388,7 +382,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F38D5B142741B0950065E13D /* StorageCoreTests.swift in Sources */,
-				F3348F522702912D00695C8A /* HashCoreTests.swift in Sources */,
 				F32C64B427028505002F5817 /* ImageCacheCoreTests.swift in Sources */,
 				F3348F652702B5A000695C8A /* ImageCoreTests.swift in Sources */,
 				F3348F54270296AF00695C8A /* SolarCoreTests.swift in Sources */,
@@ -421,7 +414,6 @@
 				F3EC93B926CC153D0032FA39 /* ImageService.swift in Sources */,
 				F3D2EE11267DCD9C009704C5 /* ImageType.swift in Sources */,
 				F376FEAB2F5BA8D4001DBB99 /* SupportService.swift in Sources */,
-				F399A517268B58C900ED45EF /* HashCore.swift in Sources */,
 				F3D2EE07267DCD9C009704C5 /* FileError.swift in Sources */,
 				F3D2EE15267DCD9C009704C5 /* FileService.swift in Sources */,
 				F3D2EE0F267DCD9C009704C5 /* ImageAttributes.swift in Sources */,
