@@ -165,6 +165,7 @@ public class SupportServiceImpl: NSObject, SupportService {
     private let supportProductIdentifiers: Set<String>
 
     private var products: [SupportStoreProduct] = []
+    private var activeProductsRequest: SKProductsRequest?
     private var loadProductsCompletion: ((Result<[ProductItem], StoreError>) -> Void)?
     
     private var purchasingItem: ProductItem?
@@ -191,6 +192,7 @@ public class SupportServiceImpl: NSObject, SupportService {
     }
     
     deinit {
+        activeProductsRequest?.cancel()
         paymentQueue.remove(self)
     }
     
@@ -203,6 +205,7 @@ public class SupportServiceImpl: NSObject, SupportService {
 
         loadProductsCompletion = completion
         let request = SKProductsRequest(productIdentifiers: supportProductIdentifiers)
+        activeProductsRequest = request
         request.delegate = self
         request.start()
     }
@@ -229,10 +232,33 @@ public class SupportServiceImpl: NSObject, SupportService {
         return purchasingItem != nil || purchaseCompletion != nil
     }
 
+    var hasActiveProductsRequest: Bool {
+        return activeProductsRequest != nil
+    }
+
     func cacheProducts(_ products: [SupportStoreProduct]) {
         self.products = products.sorted { lhs, rhs in
             lhs.priceValue < rhs.priceValue
         }
+    }
+
+    func completeProductLoading(with result: Result<[SupportStoreProduct], StoreError>) {
+        switch result {
+        case .success(let products):
+            guard !products.isEmpty else {
+                loadProductsCompletion?(.failure(.emptyProducts))
+                break
+            }
+
+            cacheProducts(products)
+            let items = self.products.map { $0.productItem() }
+            loadProductsCompletion?(.success(items))
+        case .failure(let error):
+            loadProductsCompletion?(.failure(error))
+        }
+
+        loadProductsCompletion = nil
+        activeProductsRequest = nil
     }
 
     @discardableResult
@@ -310,21 +336,11 @@ public class SupportServiceImpl: NSObject, SupportService {
 
 extension SupportServiceImpl: SKProductsRequestDelegate {
     public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        guard !response.products.isEmpty else {
-            loadProductsCompletion?(.failure(.emptyProducts))
-            loadProductsCompletion = nil
-            return
-        }
-        
-        cacheProducts(response.products.map(StoreKitProduct.init(product:)))
-        let items = products.map { $0.productItem() }
-        loadProductsCompletion?(.success(items))
-        loadProductsCompletion = nil
+        completeProductLoading(with: .success(response.products.map(StoreKitProduct.init(product:))))
     }
     
     public func request(_ request: SKRequest, didFailWithError error: any Error) {
-        loadProductsCompletion?(.failure(.general))
-        loadProductsCompletion = nil
+        completeProductLoading(with: .failure(.general))
     }
 }
 

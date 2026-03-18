@@ -67,6 +67,45 @@ final class SupportServiceTests: XCTestCase {
         XCTAssertEqual(queue.removedObserverIdentifiers.first, serviceIdentifier)
     }
 
+    func testLoadProductsRetainsRequestUntilCompletion() {
+        let product = MockSupportStoreProduct(id: SupportProductIdentifier.supportTier1.rawValue)
+        var loadedItems: [ProductItem]?
+
+        supportService.loadProducts { result in
+            if case .success(let items) = result {
+                loadedItems = items
+            }
+        }
+
+        XCTAssertTrue(supportService.hasActiveProductsRequest)
+
+        supportService.completeProductLoading(with: .success([product]))
+
+        XCTAssertEqual(loadedItems?.map(\.id), [product.productIdentifier])
+        XCTAssertFalse(supportService.hasActiveProductsRequest)
+    }
+
+    func testLoadProductsFailureClearsActiveRequestAndReportsError() {
+        var loadError: StoreError?
+
+        supportService.loadProducts { result in
+            if case .failure(let error) = result {
+                loadError = error
+            }
+        }
+
+        XCTAssertTrue(supportService.hasActiveProductsRequest)
+
+        supportService.request(SKRequest(), didFailWithError: NSError(domain: "SupportServiceTests", code: 1))
+
+        if case .general? = loadError {
+            XCTAssertTrue(true)
+        } else {
+            XCTFail("Expected general store error")
+        }
+        XCTAssertFalse(supportService.hasActiveProductsRequest)
+    }
+
     func testPurchaseEnqueuesPaymentForCachedProduct() {
         let product = MockSupportStoreProduct(id: SupportProductIdentifier.supportTier1.rawValue)
         supportService.cacheProducts([product])
