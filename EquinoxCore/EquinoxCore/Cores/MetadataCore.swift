@@ -86,8 +86,8 @@ public final class MetadataCoreImpl: MetadataCore {
         }
         
         if let exifDictionary = exifDictionary {
-            date = getDate(from: exifDictionary)
             timezone = getTimezone(from: exifDictionary)
+            date = getDate(from: exifDictionary, timezone: timezone)
         }
         
         return ExifMetadata(
@@ -208,11 +208,11 @@ public final class MetadataCoreImpl: MetadataCore {
         return (latitude, longitude)
     }
     
-    private func getDate(from exifData: [String: Any]) -> Date? {
+    private func getDate(from exifData: [String: Any], timezone: TimeZone?) -> Date? {
         let dateString = exifData[kCGImagePropertyExifDateTimeOriginal as String] as? String
         
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        dateFormatter.timeZone = timezone ?? TimeZone(secondsFromGMT: 0)
         dateFormatter.dateFormat = "yyyy:MM:dd HH:mm:ss"
         
         var date: Date?

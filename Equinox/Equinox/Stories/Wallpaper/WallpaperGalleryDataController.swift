@@ -31,12 +31,6 @@ import EquinoxAssets
 import EquinoxCore
 import EquinoxUI
 
-extension WallpaperGalleryDataController {
-    private enum Constants {
-        static let oneDaySeconds = 24 * 60 * 60
-    }
-}
-
 final class WallpaperGalleryDataController {
     private let type: WallpaperType
     private let fileService: FileService
@@ -104,15 +98,36 @@ final class WallpaperGalleryDataController {
         let oneImageInterval = oneDaySeconds / urls.count
         
         for (index, url) in urls.enumerated() {
-            let newIndex = insertIndexPath.item + index
+            let importedItems = importedWallpaperItems(for: url)
+
+            if !importedItems.isEmpty {
+                for importedItem in importedItems {
+                    let newIndex = insertIndexPath.item + newData.count
+                    let indexPath = IndexPath(item: newIndex, section: insertIndexPath.section)
+                    let count = data.items.count + newData.count
+                    let model = GalleryModel(
+                        number: newIndex + 1,
+                        url: importedItem.url,
+                        appearance: .all,
+                        primary: isPrimaryIndex(count),
+                        azimuth: importedItem.azimuth,
+                        altitude: importedItem.altitude,
+                        time: importedItem.time
+                    )
+                    newData.append((indexPath, model))
+                }
+                continue
+            }
+
+            let newIndex = insertIndexPath.item + newData.count
             let indexPath = IndexPath(item: newIndex, section: insertIndexPath.section)
-            let count = data.items.count + index
-            
+            let count = data.items.count + newData.count
+
             let isPrimary = isPrimaryIndex(count)
             let imageData = calculateImageData(url)
             let addingInterval = data.items.isEmpty ? oneImageInterval * index : 0
             let time = calendar.date(byAdding: .second, value: addingInterval, to: startTime)
-            
+
             let model = GalleryModel(
                 number: newIndex + 1,
                 url: url,
@@ -122,7 +137,7 @@ final class WallpaperGalleryDataController {
                 altitude: imageData?.altitude,
                 time: time
             )
-            
+
             newData.append((indexPath, model))
         }
         
@@ -171,8 +186,7 @@ final class WallpaperGalleryDataController {
             return nil
         }
         let timezone = metadata.timezone ?? .current
-        let endOfDate = endOfDay(date: date)
-        let timezoneHours = timezone.secondsFromGMT(for: endOfDate) / 60 / 60
+        let timezoneHours = timezone.secondsFromGMT(for: date) / 60 / 60
         guard
             let solarAzimuth = try? solarService.azimuth(
                 latitude: latitude,
@@ -196,6 +210,19 @@ final class WallpaperGalleryDataController {
         return (azimuth, altitude)
     }
 
+    private func importedWallpaperItems(for url: URL) -> [ImportedWallpaperItem] {
+        switch type {
+        case .solar:
+            return imageProvider.getWallpaperItems(for: url)?.filter { $0.azimuth != nil && $0.altitude != nil } ?? []
+
+        case .time:
+            return imageProvider.getWallpaperItems(for: url)?.filter { $0.time != nil } ?? []
+
+        case .appearance:
+            return []
+        }
+    }
+
     private func calculateFilesize(_ url: URL) -> UInt64? {
         do {
             let filesize = try fileService.getFilesize(url)
@@ -216,12 +243,5 @@ final class WallpaperGalleryDataController {
     private func roundDouble(_ value: Double, places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return round(value * divisor) / divisor
-    }
-    
-    private func endOfDay(date: Date) -> Date {
-        let calendar = getCurrentCalendar
-        let endOfDayTimeInterval = TimeInterval(Constants.oneDaySeconds - 1)
-        let endOfDay = calendar.startOfDay(for: date).addingTimeInterval(endOfDayTimeInterval)
-        return endOfDay
     }
 }
