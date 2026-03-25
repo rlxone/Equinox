@@ -297,6 +297,12 @@ public final class WelcomeContentView: View {
         }
     }
     
+    public var isSupportButtonHidden: Bool = false {
+        didSet {
+            supportButton.isHidden = isSupportButtonHidden
+        }
+    }
+    
     // MARK: - Private
     
     private func stylize() {

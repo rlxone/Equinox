@@ -106,8 +106,11 @@ final class WelcomeViewController: ViewController {
         }
 
         contentView.selectedTypeIndex = WallpaperType.solar.rawValue
+
+        let isSupportButtonHidden = !NSApplication.isInstallerBuild && !NSApplication.isAppStoreBuild
+        contentView.isSupportButtonHidden = isSupportButtonHidden
     }
-    
+
     private func setupActions() {
         contentView.typeAction = { [weak self] selectedIndex in
             guard let type = WallpaperType(rawValue: selectedIndex) else {

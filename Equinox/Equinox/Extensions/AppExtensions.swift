@@ -42,6 +42,11 @@ extension NSApplication {
         return distribution == "app_store"
     }()
     
+    static let isInstallerBuild: Bool = {
+        let distribution = Bundle.main.object(forInfoDictionaryKey: "AppDistribution") as? String
+        return distribution == "installer"
+    }()
+    
     var isDarkMode: Bool {
         return effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
     }
