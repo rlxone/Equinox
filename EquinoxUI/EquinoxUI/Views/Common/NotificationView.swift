@@ -53,9 +53,9 @@ extension NotificationView {
 
     private enum Constants {
         static let borderWidth: CGFloat = 1
-        static let shadowOpacity: Float = 0.15
-        static let shadowRadius: CGFloat = 8
-        static let shadowOffset = CGSize(width: 0, height: -2)
+        static let shadowOpacity: Float = 0.1
+        static let shadowRadius: CGFloat = 10
+        static let shadowOffset = CGSize(width: 0, height: -10)
         static let horizontalPadding: CGFloat = 12
         static let verticalPadding: CGFloat = 8
     }
@@ -69,7 +69,9 @@ public final class NotificationView: View {
     private lazy var glassView: GlassView = {
         let view = GlassView(style: .regular, fallbackVisualEffect: (material: .popover, blendingMode: .withinWindow))
         view.wantsLayer = true
-        view.layer?.borderWidth = Constants.borderWidth
+        if #unavailable(macOS 26) {
+            view.layer?.borderWidth = Constants.borderWidth
+        }
         return view
     }()
     
@@ -193,7 +195,9 @@ public final class NotificationView: View {
     // MARK: - Private
 
     private func stylize() {
-        glassView.layer?.borderColor = style?.ownStyle.borderColor.cgColor
+        if #unavailable(macOS 26) {
+            glassView.layer?.borderColor = style?.ownStyle.borderColor.cgColor
+        }
         notificationLabel.style = style?.textStyle
     }
 }

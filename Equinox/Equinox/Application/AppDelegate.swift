@@ -62,6 +62,7 @@ extension AppDelegate: NSApplicationDelegate {
 // MARK: - ApplicationMenuDelegate
 
 extension AppDelegate: ApplicationMenuDelegate {
+    @objc
     func applicationMenuNew(_ sender: Any?) {
         storiesController.new()
     }

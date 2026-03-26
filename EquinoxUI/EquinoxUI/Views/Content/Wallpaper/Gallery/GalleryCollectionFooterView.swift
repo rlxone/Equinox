@@ -34,19 +34,9 @@ extension GalleryCollectionFooterView {
     public typealias Action = () -> Void
     
     public struct Style {
-        public struct OwnStyle {
-            let backgroundColor: NSColor
-
-            public init(backgroundColor: NSColor) {
-                self.backgroundColor = backgroundColor
-            }
-        }
-        
-        let ownStyle: OwnStyle
         let infoStyle: StyledLabel.Style
 
-        public init(ownStyle: OwnStyle, infoStyle: StyledLabel.Style) {
-            self.ownStyle = ownStyle
+        public init(infoStyle: StyledLabel.Style) {
             self.infoStyle = infoStyle
         }
     }
@@ -55,24 +45,44 @@ extension GalleryCollectionFooterView {
         static let infoHorizontalOffset: CGFloat = 12
         static let infoVerticalOffset: CGFloat = 8
         static let animationDuration: TimeInterval = 0.3
+        static let shadowOpacity: Float = 0.07
+        static let shadowRadius: CGFloat = 10
+        static let shadowOffset = CGSize(width: 0, height: -10)
     }
 }
 
 // MARK: - Class
 
-public final class GalleryCollectionFooterView: GlassView {
+public final class GalleryCollectionFooterView: View {
     private lazy var infoLabel = StyledLabel()
-
-    private lazy var backgroundView: View = {
-        let view = View()
+    
+    private lazy var glassView: GlassView = {
+        let view = GlassView(style: .regular, fallbackVisualEffect: (material: .toolTip, blendingMode: .withinWindow))
         view.wantsLayer = true
         return view
     }()
     
+    private lazy var shadowLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.fillColor = nil
+        layer.anchorPoint = .zero
+        layer.shadowOffset = Constants.shadowOffset
+        layer.shadowRadius = Constants.shadowRadius
+        layer.shadowOpacity = Constants.shadowOpacity
+        return layer
+    }()
+
+    private lazy var shadowMaskLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.anchorPoint = .zero
+        layer.fillRule = .evenOdd
+        return layer
+    }()
+    
     // MARK: - Initializer
     
-    public init() {
-        super.init(style: .regular, fallbackVisualEffect: (material: .toolTip, blendingMode: .withinWindow))
+    public override init() {
+        super.init()
         setup()
     }
 
@@ -80,9 +90,25 @@ public final class GalleryCollectionFooterView: GlassView {
 
     public override func layout() {
         super.layout()
-        let cornerRadius = bounds.height / 2
-        self.cornerRadius = cornerRadius
-        backgroundView.layer?.cornerRadius = cornerRadius
+
+        let radius = bounds.height / 2
+        let path = NSBezierPath(roundedRect: bounds, xRadius: radius, yRadius: radius)
+
+        glassView.cornerRadius = radius
+        shadowLayer.bounds = bounds
+        shadowLayer.shadowPath = path.path
+
+        path.appendRoundedRect(
+            bounds.insetBy(
+                dx: -Constants.shadowRadius * 2,
+                dy: -Constants.shadowRadius * 2 - abs(Constants.shadowOffset.height)),
+            xRadius: 0,
+            yRadius: 0
+        )
+
+        shadowMaskLayer.path = path.path
+        shadowMaskLayer.bounds = bounds
+        shadowLayer.mask = shadowMaskLayer
     }
     
     public override func mouseDown(with event: NSEvent) {
@@ -110,31 +136,33 @@ public final class GalleryCollectionFooterView: GlassView {
 
     private func setupView() {
         wantsLayer = true
+        layer?.masksToBounds = false
         
-        contentView.addSubview(backgroundView)
-        backgroundView.addSubview(infoLabel)
+        addSubview(glassView)
+        glassView.addSubview(infoLabel)
+        layer?.insertSublayer(shadowLayer, at: 0)
     }
 
     private func setupConstraints() {
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        glassView.translatesAutoresizingMaskIntoConstraints = false
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            backgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            backgroundView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            glassView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            glassView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            glassView.topAnchor.constraint(equalTo: topAnchor),
+            glassView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             infoLabel.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
+                equalTo: glassView.contentView.leadingAnchor,
                 constant: Constants.infoHorizontalOffset
             ),
             infoLabel.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
+                equalTo: glassView.contentView.trailingAnchor,
                 constant: -Constants.infoHorizontalOffset
             ),
-            infoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.infoVerticalOffset),
-            infoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.infoVerticalOffset)
+            infoLabel.topAnchor.constraint(equalTo: glassView.contentView.topAnchor, constant: Constants.infoVerticalOffset),
+            infoLabel.bottomAnchor.constraint(equalTo: glassView.contentView.bottomAnchor, constant: -Constants.infoVerticalOffset)
         ])
     }
     
@@ -169,7 +197,6 @@ public final class GalleryCollectionFooterView: GlassView {
     // MARK: - Private
 
     private func stylize() {
-        backgroundView.layer?.backgroundColor = style?.ownStyle.backgroundColor.cgColor
         infoLabel.style = style?.infoStyle
     }
 }

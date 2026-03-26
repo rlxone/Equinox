@@ -156,7 +156,7 @@ public final class TipContentView: View {
     
     private func setupView() {
         addSubview(overlayView)
-        overlayView.addSubview(visualEffectView)
+        addSubview(visualEffectView)
         
         visualEffectView.contentView.addSubview(titleLabel)
         visualEffectView.contentView.addSubview(descriptionLabel)

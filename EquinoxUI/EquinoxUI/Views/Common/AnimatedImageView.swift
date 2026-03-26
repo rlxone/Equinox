@@ -34,18 +34,12 @@ public protocol AnimatedImageViewDelegate: AnyObject {
     func numberOfImages() -> Int
     func image(for index: Int, completion: @escaping (NSImage?) -> Void)
 }
-
-// MARK: - Enums, Structs
-
-extension AnimatedImageView {
-    private enum Constants {
-        static let animationDuration: TimeInterval = 1.5
-    }
-}
  
 // MARK: - Class
 
 public class AnimatedImageView: View {
+    private let animationDuration: TimeInterval
+    
     private lazy var foregroundImageView: ImageView = {
         let imageView = ImageView()
         imageView.imageContentsGravity = .resize
@@ -68,7 +62,8 @@ public class AnimatedImageView: View {
 
     // MARK: - Initializer
 
-    public override init() {
+    public init(animationDuration: TimeInterval = 1.5) {
+        self.animationDuration = animationDuration
         super.init()
         setup()
     }
@@ -77,6 +72,11 @@ public class AnimatedImageView: View {
 
     public override func layout() {
         super.layout()
+
+        guard masksToBounds else {
+            return
+        }
+
         maskedLayer.bounds = bounds
         maskedLayer.path = .init(
             roundedRect: bounds,
@@ -122,7 +122,17 @@ public class AnimatedImageView: View {
     
     public var cornerRadius: CGFloat = 0 {
         didSet {
-            needsLayout = true
+            if masksToBounds {
+                needsLayout = true
+            } else {
+                layer?.cornerRadius = cornerRadius
+            }
+        }
+    }
+    
+    public var blurRadius: CGFloat = 0 {
+        didSet {
+            applyBlur(radius: blurRadius)
         }
     }
     
@@ -133,6 +143,12 @@ public class AnimatedImageView: View {
     
     public var isEnabled: Bool {
         return foregroundImageView.isEnabled && backgroundImageView.isEnabled
+    }
+    
+    public var masksToBounds = true {
+        didSet {
+            needsLayout = true
+        }
     }
     
     // MARK: - Private
@@ -172,12 +188,29 @@ public class AnimatedImageView: View {
         let animation = CABasicAnimation(keyPath: "opacity")
         animation.fromValue = 1
         animation.toValue = 0
-        animation.duration = Constants.animationDuration
+        animation.duration = animationDuration
         animation.timingFunction = .init(name: .easeInEaseOut)
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false
         foregroundImageView.layer?.add(animation, forKey: nil)
         
         CATransaction.commit()
+    }
+    
+    private func applyBlur(radius: CGFloat) {
+        guard let blur = CIFilter(name: "CIGaussianBlur") else {
+            return
+        }
+        
+        wantsLayer = true
+        layerUsesCoreImageFilters = true
+
+        guard let layer else {
+            return
+        }
+
+        layer.masksToBounds = false
+        blur.setValue(radius, forKey: kCIInputRadiusKey)
+        layer.filters = [blur]
     }
 }

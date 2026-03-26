@@ -88,12 +88,16 @@ extension SolarTimelineView {
         static let timezoneStackViewSpacing: CGFloat = 8
         static let chartInsets = NSEdgeInsets(top: 14, left: 25, bottom: 14, right: 25)
         static let tooltipPresentDelayMilliseconds = 300
+        static let shadowOffset: CGSize = CGSize(width: 0, height: -10)
+        static let shadowRadius: CGFloat = 10
+        static let shadowOpacity: Float = 0.06
     }
 }
 
 // MARK: - Class
 
 public final class SolarTimelineView: View {
+    private lazy var backgroundView = View()
     private lazy var interactiveLineChart: InteractiveLineChart = {
         let chart = InteractiveLineChart()
         chart.chartInsets = Constants.chartInsets
@@ -124,11 +128,31 @@ public final class SolarTimelineView: View {
         return view
     }()
     
+    private lazy var shadowLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.fillColor = nil
+        layer.anchorPoint = .zero
+        layer.shadowOffset = Constants.shadowOffset
+        layer.shadowRadius = Constants.shadowRadius
+        layer.shadowOpacity = Constants.shadowOpacity
+        return layer
+    }()
+    
     // MARK: - Initializer
     
     public override init() {
         super.init()
         setup()
+    }
+    
+    // MARK: - Life Cycle
+    
+    public override func layout() {
+        super.layout()
+
+        let path = NSBezierPath(roundedRect: bounds, xRadius: Constants.contentCornerRadius, yRadius: Constants.contentCornerRadius)
+        shadowLayer.bounds = bounds
+        shadowLayer.shadowPath = path.path
     }
     
     // MARK: - Setup
@@ -140,9 +164,14 @@ public final class SolarTimelineView: View {
     
     private func setupView() {
         wantsLayer = true
-        layer?.cornerRadius = Constants.contentCornerRadius
-        layer?.borderWidth = Constants.contentBorderWidth
+        layer?.masksToBounds = false
+        layer?.insertSublayer(shadowLayer, at: 0)
+
+        backgroundView.wantsLayer = true
+        backgroundView.layer?.cornerRadius = Constants.contentCornerRadius
+        backgroundView.layer?.borderWidth = Constants.contentBorderWidth
         
+        addSubview(backgroundView)
         addSubview(titleLabel)
         addSubview(interactiveLineChart)
         addSubview(timezoneStackView)
@@ -153,11 +182,17 @@ public final class SolarTimelineView: View {
     }
     
     private func setupConstraints() {
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         interactiveLineChart.translatesAutoresizingMaskIntoConstraints = false
         timezoneStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.titleLeadingOffset),
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.titleTopOffset),
             
@@ -256,7 +291,7 @@ public final class SolarTimelineView: View {
         timezoneDaylightSavingTimeTitleView.style = style?.timezoneDaylightSavingTimeStyle
         timezoneButton.style = style?.timezoneMenuStyle
         
-        layer?.backgroundColor = style?.ownStyle.contentBackgroundColor.cgColor
-        layer?.borderColor = style?.ownStyle.contentBackgroundBorderColor.cgColor
+        backgroundView.layer?.backgroundColor = style?.ownStyle.contentBackgroundColor.cgColor
+        backgroundView.layer?.borderColor = style?.ownStyle.contentBackgroundBorderColor.cgColor
     }
 }

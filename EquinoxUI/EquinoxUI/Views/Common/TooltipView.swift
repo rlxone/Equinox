@@ -56,7 +56,13 @@ extension TooltipView {
     }
     
     private enum Constants {
-        static let cornerRadius: CGFloat = 8
+        static var cornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 12
+            }
+
+            return 8
+        }
         static let borderWidth: CGFloat = 1
         static let stackViewSpacing: CGFloat = 6
         static let stackViewHorizontalPadding: CGFloat = 10

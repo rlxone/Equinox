@@ -32,25 +32,6 @@ import EquinoxUI
 extension MainContentView.Style {
     static var `default`: MainContentView.Style {
         return .init(
-            toolBarStyle: .init(
-                ownStyle: .init(
-                    backImage: Image.back,
-                    backImageColor: Color.secondaryLabel
-                ),
-                titleStyle: .init(
-                    font: Font.largeTitle(.heavy),
-                    color: Color.label
-                ),
-                menuStyle: .init(
-                    buttonStyle: .default,
-                    lineStyle: .init(
-                        color: Color.separator
-                    )
-                ),
-                lineView: .init(
-                    color: Color.separator
-                )
-            ),
             bottomBarStyle: .init(
                 buttonStyle: .default,
                 lineStyle: .init(

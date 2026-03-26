@@ -49,7 +49,11 @@ extension StoriesControllerImpl {
 // MARK: - Class
 
 final class StoriesControllerImpl: NSObject {
+    private lazy var storageCore: StorageCore = StorageCoreImpl(userDefaults: .standard)
+    private lazy var supportService: SupportService = SupportServiceImpl(storageCore: storageCore)
+
     private var welcomeWindowController: WelcomeWindowController?
+    private var supportWindowController: SupportWindowController?
     private var wallpaperWindowControllers = [WallpaperWindowController]()
     private var solarWindowController: SolarWindowController?
 }
@@ -82,7 +86,6 @@ extension StoriesControllerImpl: StoriesController {
         let fileCore = FileCoreImpl()
         let metadataCore = MetadataCoreImpl()
         let solarCore = SolarCoreImpl()
-        let storageCore = StorageCoreImpl(userDefaults: .standard)
         
         let windowController = WallpaperWindowController(
             type: selectedType,
@@ -115,10 +118,21 @@ extension StoriesControllerImpl: StoriesController {
         } else {
             let controller = SolarWindowController(
                 solarService: SolarServiceImpl(solarCore: SolarCoreImpl()),
-                settingsService: SettingsServiceImpl(storageCore: StorageCoreImpl(userDefaults: .standard))
+                settingsService: SettingsServiceImpl(storageCore: storageCore)
             )
             controller.window?.delegate = self
             solarWindowController = controller
+        }
+    }
+    
+    private func presentSupport() {
+        if let supportWindowController = supportWindowController {
+            supportWindowController.window?.makeKeyAndOrderFront(self)
+        } else {
+            let controller = SupportWindowController(supportService: supportService)
+            controller.delegate = self
+            controller.window?.delegate = self
+            supportWindowController = controller
         }
     }
 }
@@ -140,7 +154,9 @@ extension StoriesControllerImpl: NSWindowDelegate {
         if closeWindow == welcomeWindowController?.window {
             welcomeWindowController = nil
         }
-        
+        if closeWindow == supportWindowController?.window {
+            supportWindowController = nil
+        }
         return true
     }
 }
@@ -153,6 +169,10 @@ extension StoriesControllerImpl: WelcomeWindowControllerDelegate {
         welcomeWindowController = nil
         presentWallpaper(selectedType: type)
     }
+    
+    func welcomeWindowControllerSupportWasInteracted() {
+        presentSupport()
+    }
 }
 
 // MARK: - WallpaperWindowControllerDelegate
@@ -164,5 +184,14 @@ extension StoriesControllerImpl: WallpaperWindowControllerDelegate {
     
     func wallpaperWindowControllerCalculatorWasInteracted() {
         presentSolar()
+    }
+}
+
+// MARK: - SupportWindowControllerDelegate
+
+extension StoriesControllerImpl: SupportWindowControllerDelegate {
+    func supportWindowDidClose() {
+        supportWindowController?.close()
+        supportWindowController = nil
     }
 }

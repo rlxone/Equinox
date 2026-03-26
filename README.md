@@ -44,6 +44,15 @@
 <div><h1></h1></div>
 
 <div align="center">
+  <p><i>If you enjoy using Equinox, you can support the project with a small donation. It helps me maintain the app, fix bugs, and keep updates coming. Thank you ❤️</i></p>
+  <a href="https://www.paypal.com/donate/?hosted_button_id=UZNTZDS85EB9W">
+    <img src="repo/paypal.png" height="48" alt="Donate with PayPal" />
+  </a>
+</div>
+
+<div><h2></h2></div>
+
+<div align="center">
   <img src="repo/screen.png" alt="Equinox screenshot" />
 </div>
 

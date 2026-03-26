@@ -30,10 +30,13 @@
 "menu.help.macAppStoreReview" = "Noter Equinox sur le Mac App Store";
 "menu.help.productHunt" = "Equinox sur Product Hunt";
 
+"toolbar.more" = "Plus";
+
 "welcome.title" = "Bienvenue dans Equinox";
 "welcome.welcome" = "Bienvenue dans %@";
 "welcome.version" = "Version %@";
 "welcome.github" = "Github";
+"welcome.support" = "Soutenir Equinox";
 "welcome.choose.type" = "Chosir type";
 "welcome.choose.type.description" = "Selectionnez le type de fond d'écran";
 "welcome.types.solar" = "Solaire";
@@ -139,3 +142,41 @@
 "tip.calculator.description" = "Cela vous aide à calculer la position du soleil dans le ciel.\n1. Indiquez le lieu, la date et l'heure où la photo a été prise sur le graphique chronologique du soleil. Si vous ne connaissez pas l'heure exacte vous pouvez utiliser le graphique chronologique pour voir la hauteur du soleil dans le ciel afin de le caler en fonction de la photo.\n2. Glisser et déposer ou copier le résultat par dessus votre image.";
 
 "dock.new" = "Nouveau";
+
+"toolbar.new.label" = "Nouveau";
+"toolbar.new.palette" = "Nouveau";
+"toolbar.new.tooltip" = "Nouveau fond d'écran";
+
+"toolbar.help.label" = "Aide";
+"toolbar.help.palette" = "Aide";
+"toolbar.help.tooltip" = "Aide";
+
+"toolbar.calculator.label" = "Calculatrice";
+"toolbar.calculator.palette" = "Calculatrice solaire";
+"toolbar.calculator.tooltip" = "Calculatrice solaire";
+
+"wallpaper.toolbar.solar.title" = "Fond d'écran solaire";
+"wallpaper.toolbar.time.title" = "Fond d'écran temps";
+"wallpaper.toolbar.appearance.title" = "Fond d'écran apparence";
+
+"support.title" = "Soutenir Equinox";
+"support.localProduct.title" = "Don";
+"support.shared.title.thankYou" = "Merci pour votre soutien !";
+"support.shared.description.openSource" = "Equinox est un projet open source que je maintiens depuis plus de 5 ans.";
+"support.shared.close" = "Fermer";
+"support.supported.description.first" = "Vous avez déjà soutenu Equinox - merci !";
+"support.supported.description.third" = "Si vous souhaitez soutenir à nouveau le projet, vous pouvez laisser un autre pourboire à tout moment.";
+"support.unsupported.title" = "Vous aimez Equinox ?";
+"support.unsupported.description.second" = "Si vous aimez l'utiliser, vous pouvez soutenir son avenir avec un petit pourboire.";
+"support.unsupported.description.third" = "Les pourboires ne débloquent aucune fonctionnalité - ils soutiennent simplement le développement.";
+"support.noProducts.title" = "Un problème est survenu";
+"support.noProducts.description.first" = "Impossible de charger les options de pourboire.";
+"support.noProducts.description.second" = "Veuillez vérifier votre connexion ou réessayer dans un instant.";
+"support.noProducts.description.third" = "Merci de soutenir Equinox.";
+"support.purchaseSuccess.description.first" = "Votre soutien compte beaucoup. Equinox est un projet open source que je maintiens depuis plus de 5 ans.";
+"support.purchaseSuccess.description.second" = "Des pourboires comme celui-ci aident à faire vivre l'app : corriger des bugs, l'améliorer et proposer de nouvelles mises à jour.";
+"support.purchaseSuccess.description.third" = "Cet achat ne débloque aucune fonctionnalité - il soutient simplement le développement.";
+"support.purchaseFailure.title" = "Pas de souci";
+"support.purchaseFailure.description.first" = "L'achat a été annulé.";
+"support.purchaseFailure.description.second" = "Vous pouvez soutenir Equinox à tout moment si vous le souhaitez.";
+"support.purchaseFailure.description.third" = "Merci d'utiliser l'app !";

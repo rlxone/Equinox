@@ -36,16 +36,6 @@ public protocol MetadataCore {
     func getImageMetadata(for url: URL) throws -> ExifMetadata
 }
 
-// MARK: - Enums, Structs
-
-extension MetadataCoreImpl {
-    private enum MetadataTag: String, CaseIterable {
-        case latitude
-        case longitude
-        case date
-    }
-}
-
 // MARK: - Class
 
 public final class MetadataCoreImpl: MetadataCore {

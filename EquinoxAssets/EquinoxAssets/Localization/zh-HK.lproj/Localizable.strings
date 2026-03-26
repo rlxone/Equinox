@@ -53,6 +53,9 @@
 "menu.help.productHunt" = "Product Hunt 上的 Equinox";
 
 /* (No Comment) */
+"toolbar.more" = "更多";
+
+/* (No Comment) */
 "menu.main.about" = "關於 %@";
 
 /* (No Comment) */
@@ -356,6 +359,9 @@
 "welcome.github" = "Github";
 
 /* (No Comment) */
+"welcome.support" = "支持 Equinox";
+
+/* (No Comment) */
 "welcome.title" = "歡迎使用 Equinox";
 
 /* (No Comment) */
@@ -382,3 +388,40 @@
 /* (No Comment) */
 "welcome.welcome" = "歡迎使用 %@";
 
+"toolbar.new.label" = "新增";
+"toolbar.new.palette" = "新增";
+"toolbar.new.tooltip" = "新增背景圖片";
+
+"toolbar.help.label" = "輔助說明";
+"toolbar.help.palette" = "輔助說明";
+"toolbar.help.tooltip" = "輔助說明";
+
+"toolbar.calculator.label" = "計算機";
+"toolbar.calculator.palette" = "太陽計算機";
+"toolbar.calculator.tooltip" = "太陽計算機";
+
+"wallpaper.toolbar.solar.title" = "太陽背景圖片";
+"wallpaper.toolbar.time.title" = "時間背景圖片";
+"wallpaper.toolbar.appearance.title" = "外觀背景圖片";
+
+"support.title" = "支持 Equinox";
+"support.localProduct.title" = "贊助";
+"support.shared.title.thankYou" = "感謝你的支持！";
+"support.shared.description.openSource" = "Equinox 是我維護超過 5 年的開源專案。";
+"support.shared.close" = "關閉";
+"support.supported.description.first" = "你已經支持過 Equinox，謝謝你！";
+"support.supported.description.third" = "如果你想再次支持這個專案，隨時都可以再贊助一次。";
+"support.unsupported.title" = "喜歡 Equinox 嗎？";
+"support.unsupported.description.second" = "如果你喜歡使用它，可以用一筆小額贊助支持它的未來發展。";
+"support.unsupported.description.third" = "贊助不會解鎖任何功能，只是用來支持開發。";
+"support.noProducts.title" = "發生錯誤";
+"support.noProducts.description.first" = "無法載入贊助選項。";
+"support.noProducts.description.second" = "請檢查網絡連線，或稍後再試。";
+"support.noProducts.description.third" = "感謝你支持 Equinox。";
+"support.purchaseSuccess.description.first" = "你的支持非常重要。Equinox 是我維護超過 5 年的開源專案。";
+"support.purchaseSuccess.description.second" = "這類贊助有助讓應用程式持續發展：修正錯誤、改進體驗，並推出新更新。";
+"support.purchaseSuccess.description.third" = "這次購買不會解鎖任何功能，只是用來支持開發。";
+"support.purchaseFailure.title" = "不用擔心";
+"support.purchaseFailure.description.first" = "購買已取消。";
+"support.purchaseFailure.description.second" = "如果你願意，隨時都可以支持 Equinox。";
+"support.purchaseFailure.description.third" = "感謝你使用這個應用程式！";

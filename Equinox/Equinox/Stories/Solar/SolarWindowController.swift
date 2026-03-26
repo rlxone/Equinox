@@ -36,7 +36,7 @@ import EquinoxUI
 extension SolarWindowController {
     private enum Constants {
         static let minSize = NSSize(width: 600, height: 680)
-        static let regularSize = NSSize(width: 650, height: 880)
+        static let regularSize = NSSize(width: 650, height: 830)
     }
 }
 
@@ -47,7 +47,9 @@ final class SolarWindowController: WindowController {
     private let settingsService: SettingsService
 
     private var contentWindow: Window?
+    private var solarRootViewController: SolarRootViewController?
     private var contentController: WindowViewController?
+    private var toolbarController: SolarToolbarController?
     
     // MARK: - Initializer
     
@@ -63,15 +65,22 @@ final class SolarWindowController: WindowController {
     private func setupWindow() {
         let rootController = SolarRootViewController(solarService: solarService, settingsService: settingsService)
         rootController.delegate = self
+        solarRootViewController = rootController
         let title = Localization.Solar.Main.title
         
-        let windowController = WindowViewController(contentViewController: rootController, windowTitle: title)
+        let windowController = WindowViewController(contentViewController: rootController)
         contentController = windowController
 
         contentWindow = Window(
             contentViewController: windowController,
             minSize: Constants.minSize
         )
+        contentWindow?.styleMask.remove(.fullSizeContentView)
+
+        let toolbarController = SolarToolbarController(title: title)
+        toolbarController.delegate = self
+        self.toolbarController = toolbarController
+        contentWindow?.toolbar = toolbarController.toolbar
 
         window = contentWindow
         window?.setContentSize(Constants.regularSize)
@@ -87,5 +96,13 @@ final class SolarWindowController: WindowController {
 extension SolarWindowController: SolarRootViewControllerDelegate {
     func rootViewControllerShouldNotify(_ text: String) {
         contentController?.notify(text)
+    }
+}
+
+// MARK: - SolarToolbarControllerDelegate
+
+extension SolarWindowController: SolarToolbarControllerDelegate {
+    func solarToolbarControllerHelpWasInteracted(_ controller: SolarToolbarController) {
+        solarRootViewController?.presentTip(firstPresent: false, animated: true)
     }
 }

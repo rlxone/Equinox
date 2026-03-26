@@ -29,6 +29,17 @@
 import AppKit
 
 public class Label: NSTextField {
+    private enum Constants {
+        static let minimumScaleFactor: CGFloat = 0.5
+        static let binarySearchSteps = 10
+    }
+
+    private var baseFont: NSFont?
+    private var isApplyingFittedFont = false
+    private var originalLineBreakMode: NSLineBreakMode?
+    private var originalWraps: Bool?
+    private var originalUsesSingleLineMode: Bool?
+
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setup()
@@ -45,5 +56,161 @@ public class Label: NSTextField {
         isEditable = false
         drawsBackground = false
         isBordered = false
+        baseFont = font
+    }
+    
+    // MARK: Public
+
+    public override var font: NSFont? {
+        didSet {
+            guard !isApplyingFittedFont else {
+                return
+            }
+
+            baseFont = font
+            updateFontToFitWidthIfNeeded()
+        }
+    }
+
+    public override var stringValue: String {
+        didSet {
+            updateFontToFitWidthIfNeeded()
+        }
+    }
+
+    public var adjustsFontSizeToFitWidth: Bool = false {
+        didSet {
+            updateLineBreakBehaviorForFontAdjustment()
+            updateFontToFitWidthIfNeeded()
+        }
+    }
+
+    public override func layout() {
+        super.layout()
+        updateFontToFitWidthIfNeeded()
+    }
+}
+
+// MARK: - Adjust Font Size To Fit Width
+
+extension Label {
+    private func updateFontToFitWidthIfNeeded() {
+        guard let baseFont else {
+            return
+        }
+
+        guard adjustsFontSizeToFitWidth else {
+            applyFont(baseFont)
+            return
+        }
+
+        guard !stringValue.isEmpty else {
+            applyFont(baseFont)
+            return
+        }
+
+        let drawingRect = cell?.drawingRect(forBounds: bounds) ?? bounds
+        let availableWidth = max(0, drawingRect.width)
+        guard availableWidth > 0 else {
+            return
+        }
+
+        let maxSize = baseFont.pointSize
+        let minSize = max(1, maxSize * Constants.minimumScaleFactor)
+
+        if textWidth(for: baseFont, height: drawingRect.height) <= availableWidth {
+            applyFont(baseFont)
+            return
+        }
+
+        var low = minSize
+        var high = maxSize
+
+        for _ in 0..<Constants.binarySearchSteps {
+            let middle = (low + high) / 2
+            let candidateFont = makeFont(from: baseFont, size: middle)
+
+            if textWidth(for: candidateFont, height: drawingRect.height) <= availableWidth {
+                low = middle
+            } else {
+                high = middle
+            }
+        }
+
+        applyFont(makeFont(from: baseFont, size: floor(low)))
+    }
+
+    private func textWidth(for font: NSFont, height: CGFloat) -> CGFloat {
+        let attributed = NSMutableAttributedString(attributedString: attributedStringValue)
+        let fullRange = NSRange(location: 0, length: attributed.length)
+        attributed.addAttribute(.font, value: font, range: fullRange)
+
+        guard let cellCopy = cell?.copy() as? NSTextFieldCell else {
+            return ceil(attributed.size().width)
+        }
+
+        cellCopy.attributedStringValue = attributed
+        cellCopy.wraps = false
+        cellCopy.usesSingleLineMode = true
+        cellCopy.lineBreakMode = .byClipping
+
+        let fittingBounds = NSRect(
+            x: 0,
+            y: 0,
+            width: CGFloat.greatestFiniteMagnitude,
+            height: max(1, height)
+        )
+
+        return ceil(cellCopy.cellSize(forBounds: fittingBounds).width)
+    }
+
+    private func applyFont(_ font: NSFont) {
+        guard self.font != font else {
+            return
+        }
+
+        isApplyingFittedFont = true
+        self.font = font
+        isApplyingFittedFont = false
+    }
+
+    private func makeFont(from font: NSFont, size: CGFloat) -> NSFont {
+        if #available(macOS 10.15, *) {
+            return font.withSize(size)
+        }
+
+        return NSFont(descriptor: font.fontDescriptor, size: size) ?? font
+    }
+
+    private func updateLineBreakBehaviorForFontAdjustment() {
+        guard let cell else {
+            return
+        }
+
+        if adjustsFontSizeToFitWidth {
+            if originalLineBreakMode == nil {
+                originalLineBreakMode = cell.lineBreakMode
+                originalWraps = cell.wraps
+                originalUsesSingleLineMode = cell.usesSingleLineMode
+            }
+
+            cell.wraps = false
+            cell.usesSingleLineMode = true
+            cell.lineBreakMode = .byClipping
+        } else {
+            if let originalWraps {
+                cell.wraps = originalWraps
+            }
+            if let originalUsesSingleLineMode {
+                cell.usesSingleLineMode = originalUsesSingleLineMode
+            }
+            if let originalLineBreakMode {
+                cell.lineBreakMode = originalLineBreakMode
+            }
+
+            originalWraps = nil
+            originalUsesSingleLineMode = nil
+            originalLineBreakMode = nil
+        }
     }
 }

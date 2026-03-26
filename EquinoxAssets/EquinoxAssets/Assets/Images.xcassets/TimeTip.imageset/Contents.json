@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Artboard.heic",
+      "filename" : "Frame 10.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Artboard@2x.heic",
+      "filename" : "Frame 10-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Artboard@3x.heic",
+      "filename" : "Frame 10-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

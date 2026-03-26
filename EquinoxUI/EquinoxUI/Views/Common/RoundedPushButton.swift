@@ -71,13 +71,37 @@ extension RoundedPushButton {
         static let disabledAlphaValue: CGFloat = 0.5
         static let shadow1AnchorPoint: CGPoint = .zero
         static let shadow1Offset = CGSize(width: 0, height: 0.25)
-        static let shadow1Opacity: Float = 0.3
+        static var shadow1Opacity: Float {
+            if #available(macOS 26, *) {
+                return 0
+            } else {
+                return 0.3
+            }
+        }
         static let shadow1Radius: CGFloat = 0.5
         static let shadow1BackgroundColor = CGColor.clear
         static let shadow2AnchorPoint = CGPoint.zero
-        static let shadow2Offset = CGSize(width: 0, height: 1)
-        static let shadow2Opacity: Float = 0.1
-        static let shadow2Radius: CGFloat = 1
+        static var shadow2Offset: CGSize {
+            if #available(macOS 26, *) {
+                return CGSize(width: 0, height: 10)
+            } else {
+                return CGSize(width: 0, height: 1)
+            }
+        }
+        static var shadow2Opacity: Float {
+            if #available(macOS 26, *) {
+                return 0.08
+            } else {
+                return 0.1
+            }
+        }
+        static var shadow2Radius: CGFloat {
+            if #available(macOS 26, *) {
+                return 10
+            } else {
+                return 1
+            }
+        }
         static let shadow2BackgroundColor = CGColor.clear
         static let borderAnchorPoint = CGPoint.zero
         static let borderBackgroundColor = CGColor.clear
@@ -186,7 +210,7 @@ public final class RoundedPushButton: Button {
         )
         
         path.appendRoundedRect(
-            bounds.insetBy(dx: -Constants.borderWidth * 2, dy: -Constants.borderWidth * 2),
+            bounds.insetBy(dx: -Constants.shadow2Radius * 2, dy: -Constants.shadow2Radius * 2),
             xRadius: cornerRadius,
             yRadius: cornerRadius
         )
@@ -366,9 +390,17 @@ public final class RoundedPushButton: Button {
         if isMouseDown {
             contentView.layer?.backgroundColor = style?.accentColor.cgColor
             if NSColor.currentControlTint == .graphiteControlTint {
-                imageView.contentTintColor = style?.graphiteHighlightTextColor
+                if #available(macOS 26, *) {
+                    imageView.contentTintColor = style?.highlightTextColor
+                } else {
+                    imageView.contentTintColor = style?.graphiteHighlightTextColor
+                }
             } else {
-                imageView.contentTintColor = style?.highlightTextColor
+                if #available(macOS 26, *) {
+                    imageView.contentTintColor = style?.textColor
+                } else {
+                    imageView.contentTintColor = style?.highlightTextColor
+                }
             }
         } else {
             contentView.layer?.backgroundColor = style?.backgroundColor.cgColor

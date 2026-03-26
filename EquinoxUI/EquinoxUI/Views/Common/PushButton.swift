@@ -26,6 +26,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+// swiftlint:disable file_length
+
 import AppKit
 
 // MARK: - Enums, Structs
@@ -64,6 +66,17 @@ extension PushButton {
             self.innerShadowColor = innerShadowColor
         }
     }
+    
+    public enum StyleOption {
+        case automatic
+    }
+    
+    public enum ContentSizeOption {
+        case automatic
+        case `default`
+        case large
+        case extraLarge
+    }
 
     private enum Constants {
         static var cornerRadius: CGFloat {
@@ -100,8 +113,11 @@ extension PushButton {
 
 // MARK: - Class
 
+// swiftlint:disable:next type_body_length
 public final class PushButton: Button {
     private var isMouseDown = false
+    private let styleOption: StyleOption
+    private let contentSizeOption: ContentSizeOption
     private lazy var titleLabel = Label()
     private lazy var imageView = ImageView()
 
@@ -168,15 +184,25 @@ public final class PushButton: Button {
 
     // MARK: - Initializer
 
-    public override init() {
+    public init(style: StyleOption = .automatic, contentSize: ContentSizeOption = .automatic) {
+        self.styleOption = style
+        self.contentSizeOption = contentSize
         super.init()
         setup()
+    }
+    
+    public override convenience init() {
+        self.init(style: .automatic, contentSize: .automatic)
     }
 
     // MARK: - Life Cycle
 
     public override func layout() {
         super.layout()
+        
+        guard !usesNativeButton else {
+            return
+        }
 
         let path = NSBezierPath(
             roundedRect: contentView.bounds,
@@ -237,13 +263,23 @@ public final class PushButton: Button {
 
     public override func updateLayer() {
         super.updateLayer()
-        stylize()
+        
+        if usesNativeButton {
+            stylizeNative()
+        } else {
+            stylize()
+        }
     }
 
     public override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
 
         guard isEnabled else {
+            return
+        }
+        
+        if usesNativeButton {
+            trackNativeClick()
             return
         }
 
@@ -276,11 +312,13 @@ public final class PushButton: Button {
     }
 
     public override func mouseUp(with event: NSEvent) {
-        super.mouseUp(with: event)
-
-        guard isEnabled else {
+        guard !usesNativeButton else {
+            isMouseDown = false
+            highlight(false)
             return
         }
+        
+        super.mouseUp(with: event)
 
         isMouseDown = false
         runWithEffectiveAppearance {
@@ -294,9 +332,13 @@ public final class PushButton: Button {
         }
         set {
             super.isEnabled = newValue
-            alphaValue = newValue ? 1 : Constants.disabledAlphaValue
+            alphaValue = usesNativeButton ? 1 : (newValue ? 1 : Constants.disabledAlphaValue)
             runWithEffectiveAppearance {
-                stylize()
+                if self.usesNativeButton {
+                    self.stylizeNative()
+                } else {
+                    self.stylize()
+                }
             }
         }
     }
@@ -309,6 +351,11 @@ public final class PushButton: Button {
     }
 
     private func setupView() {
+        if usesNativeButton {
+            setupNativeView()
+            return
+        }
+        
         wantsLayer = true
         layer?.masksToBounds = false
         contentView.layer?.masksToBounds = true
@@ -323,6 +370,10 @@ public final class PushButton: Button {
     }
 
     private func setupConstraints() {
+        guard !usesNativeButton else {
+            return
+        }
+        
         contentView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -342,30 +393,50 @@ public final class PushButton: Button {
     public var style: Style? {
         didSet {
             runWithEffectiveAppearance {
-                stylize()
+                if self.usesNativeButton {
+                    self.stylizeNative()
+                } else {
+                    self.stylize()
+                }
             }
         }
     }
 
     public override var title: String {
         get {
+            if usesNativeButton {
+                return super.title
+            }
             return titleLabel.stringValue
         }
         set {
-            super.title = String()
-            titleLabel.stringValue = newValue
+            if usesNativeButton {
+                super.title = newValue
+                updateNativeImagePosition()
+            } else {
+                super.title = String()
+                titleLabel.stringValue = newValue
+            }
         }
     }
 
     public override var image: NSImage? {
         get {
+            if usesNativeButton {
+                return super.image
+            }
             return imageView.image
         }
         set {
-            imageView.image = newValue
-            imageView.removeFromSuperview()
-            if newValue != nil {
-                addImageView()
+            if usesNativeButton {
+                super.image = newValue
+                updateNativeImagePosition()
+            } else {
+                imageView.image = newValue
+                imageView.removeFromSuperview()
+                if newValue != nil {
+                    addImageView()
+                }
             }
         }
     }
@@ -407,5 +478,112 @@ public final class PushButton: Button {
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+}
+
+// MARK: - Native Look
+
+extension PushButton {
+    private func setupNativeView() {
+        setButtonType(.momentaryPushIn)
+        isBordered = true
+        
+        if #available(macOS 14.0, *) {
+            bezelStyle = .push
+        }
+        
+        applyNativeControlSize()
+    }
+    
+    private var usesNativeButton: Bool {
+        switch styleOption {
+        case .automatic:
+            if #available(macOS 26, *) {
+                return true
+            }
+            return false
+        }
+    }
+    
+    private func stylizeNative() {
+        updateNativeImagePosition()
+    }
+    
+    private func updateNativeImagePosition() {
+        let hasTitle = !super.title.isEmpty
+        let hasImage = super.image != nil
+        
+        switch (hasTitle, hasImage) {
+        case (true, true):
+            imagePosition = .imageLeft
+        case (true, false):
+            imagePosition = .noImage
+        case (false, true):
+            imagePosition = .imageOnly
+        case (false, false):
+            imagePosition = .noImage
+        }
+    }
+    
+    private func trackNativeClick() {
+        isMouseDown = true
+        highlight(true)
+        
+        while isMouseDown {
+            guard let nextEvent = window?.nextEvent(matching: [.leftMouseDragged, .leftMouseUp]) else {
+                continue
+            }
+            
+            let mouseLocation = convert(nextEvent.locationInWindow, from: nil)
+            let isInside = bounds.contains(mouseLocation)
+            
+            switch nextEvent.type {
+            case .leftMouseDragged:
+                highlight(isInside)
+                
+            case .leftMouseUp:
+                highlight(false)
+                if isInside {
+                    onAction?(self)
+                }
+                isMouseDown = false
+                return
+                
+            default:
+                break
+            }
+        }
+    }
+    
+    private func applyNativeControlSize() {
+        switch contentSizeOption {
+        case .automatic:
+            if #available(macOS 26.0, *) {
+                controlSize = .extraLarge
+            } else if #available(macOS 11.0, *) {
+                controlSize = .large
+            } else {
+                controlSize = .regular
+            }
+            
+        case .default:
+            controlSize = .regular
+            
+        case .large:
+            if #available(macOS 11.0, *) {
+                controlSize = .large
+            } else {
+                controlSize = .regular
+            }
+            
+        case .extraLarge:
+            if #available(macOS 26.0, *) {
+                controlSize = .extraLarge
+            } else if #available(macOS 11.0, *) {
+                controlSize = .large
+            } else {
+                controlSize = .regular
+            }
+        }
     }
 }

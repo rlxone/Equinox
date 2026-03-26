@@ -96,41 +96,11 @@ final class WallpaperRootViewController: ViewController {
 
     weak var delegate: WallpaperRootViewControllerDelegate?
     
-    // MARK: - Private
-
-    private func presentMainController() {
-        let controller = WallpaperMainViewController(
-            type: type,
-            fileService: fileService,
-            solarService: solarService,
-            imageProvider: imageProvider
-        )
-        controller.delegate = self
-        let navigationController = NavigationController(rootViewController: controller)
-        self.navigationController = navigationController
-        addChildController(navigationController, container: view)
-    }
-    
-    private func presentTipControllerIfNeeded(animated: Bool) {
-        let hasWalkthrough: Bool
-        
-        switch type {
-        case .solar:
-            hasWalkthrough = settingsService.hasWalkthrough(type: .solarWallpaper)
-            
-        case .time:
-            hasWalkthrough = settingsService.hasWalkthrough(type: .timeWallpaper)
-            
-        case .appearance:
-            hasWalkthrough = settingsService.hasWalkthrough(type: .appearanceWallpaper)
+    public func presentTipController(firstPresent: Bool, animated: Bool) {
+        guard tipViewController == nil else {
+            return
         }
         
-        if !hasWalkthrough {
-            presentTipController(firstPresent: true, animated: animated)
-        }
-    }
-    
-    private func presentTipController(firstPresent: Bool, animated: Bool) {
         var title: String
         var description: String
         var image: NSImage
@@ -168,6 +138,40 @@ final class WallpaperRootViewController: ViewController {
         tipViewController = controller
         
         self.navigationController?.present(controller, animated: animated)
+    }
+    
+    // MARK: - Private
+
+    private func presentMainController() {
+        let controller = WallpaperMainViewController(
+            type: type,
+            fileService: fileService,
+            solarService: solarService,
+            imageProvider: imageProvider
+        )
+        controller.delegate = self
+        let navigationController = NavigationController(rootViewController: controller)
+        self.navigationController = navigationController
+        addChildController(navigationController, container: view)
+    }
+    
+    private func presentTipControllerIfNeeded(animated: Bool) {
+        let hasWalkthrough: Bool
+        
+        switch type {
+        case .solar:
+            hasWalkthrough = settingsService.hasWalkthrough(type: .solarWallpaper)
+            
+        case .time:
+            hasWalkthrough = settingsService.hasWalkthrough(type: .timeWallpaper)
+            
+        case .appearance:
+            hasWalkthrough = settingsService.hasWalkthrough(type: .appearanceWallpaper)
+        }
+        
+        if !hasWalkthrough {
+            presentTipController(firstPresent: true, animated: animated)
+        }
     }
     
     private func presentSetController() {
@@ -210,10 +214,6 @@ extension WallpaperRootViewController: WallpaperMainViewControllerDelegate {
     
     func mainViewControllerShouldNotify(_ text: String) {
         delegate?.rootViewControllerShouldNotify(text)
-    }
-    
-    func mainViewControllerHelpWasInteracted() {
-        presentTipController(firstPresent: false, animated: true)
     }
 }
 

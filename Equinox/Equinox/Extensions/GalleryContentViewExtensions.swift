@@ -198,18 +198,8 @@ extension TooltipWindow.Style {
 
 extension GalleryCollectionFooterItem.Style {
     static var `default`: GalleryCollectionFooterItem.Style {
-        let backgroundColor: NSColor
-        if #available(macOS 26.0, *) {
-            backgroundColor = Color.wallpaperFooterBackground.withAlphaComponent(0)
-        } else {
-            backgroundColor = Color.wallpaperFooterBackground
-        }
-
         return .init(
             footerStyle: .init(
-                ownStyle: .init(
-                    backgroundColor: backgroundColor
-                ),
                 infoStyle: .init(
                     font: Font.callout(.regular),
                     color: Color.label

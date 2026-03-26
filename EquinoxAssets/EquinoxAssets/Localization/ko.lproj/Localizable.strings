@@ -30,10 +30,13 @@
 "menu.help.macAppStoreReview" = "앱스토어에서 Equinox 평가하기";
 "menu.help.productHunt" = "Product Hunt에서 Equinox 확인하기";
 
+"toolbar.more" = "더 보기";
+
 "welcome.title" = "Equinox에 오신 것을 환영합니다.";
 "welcome.welcome" = "%@에 오신 것을 환영합니다.";
 "welcome.version" = "버전 %@";
 "welcome.github" = "Github";
+"welcome.support" = "Equinox 지원하기";
 "welcome.choose.type" = "유형 선택";
 "welcome.choose.type.description" = "만들고 싶은 배경화면의 유형을 선택하세요";
 "welcome.types.solar" = "태양";
@@ -139,3 +142,41 @@
 "tip.calculator.description" = "이 계산기는 태양의 위치를 계산하는데 도움을 줍니다.\n1. 사진을 촬영한 장소, 날짜, 시간을 태양 타임라인에서 선택하세요. 만약 정확한 시간을 모른다면, 직접 타임라인으로 태양의 높낮이를 확인하고 사진과 비교하여 시간을 찾아낼 수 있습니다.\n2. 결과를 사진으로 드래그 & 드랍하거나 복사하여 사용하세요.";
 
 "dock.new" = "새로운 Dock";
+
+"toolbar.new.label" = "새 파일";
+"toolbar.new.palette" = "새 배경화면 만들기";
+"toolbar.new.tooltip" = "새 배경화면";
+
+"toolbar.help.label" = "도움말";
+"toolbar.help.palette" = "도움말";
+"toolbar.help.tooltip" = "도움말";
+
+"toolbar.calculator.label" = "계산기";
+"toolbar.calculator.palette" = "태양 계산기";
+"toolbar.calculator.tooltip" = "태양 계산기";
+
+"wallpaper.toolbar.solar.title" = "태양 위치 기반 배경화면";
+"wallpaper.toolbar.time.title" = "시간 기반 배경화면";
+"wallpaper.toolbar.appearance.title" = "화면 모드 기반 배경화면";
+
+"support.title" = "Equinox 후원하기";
+"support.localProduct.title" = "후원";
+"support.shared.title.thankYou" = "후원해 주셔서 감사합니다!";
+"support.shared.description.openSource" = "Equinox는 제가 5년 넘게 유지보수해 온 오픈소스 프로젝트입니다.";
+"support.shared.close" = "닫기";
+"support.supported.description.first" = "이미 Equinox를 후원해 주셨어요. 감사합니다!";
+"support.supported.description.third" = "프로젝트를 다시 후원하고 싶다면 언제든지 팁을 한 번 더 남길 수 있어요.";
+"support.unsupported.title" = "Equinox를 즐겁게 사용하고 계신가요?";
+"support.unsupported.description.second" = "사용이 마음에 드신다면 작은 팁으로 앞으로의 개발을 후원할 수 있어요.";
+"support.unsupported.description.third" = "팁은 기능을 잠금 해제하지 않으며, 개발을 후원하는 데 사용됩니다.";
+"support.noProducts.title" = "문제가 발생했습니다";
+"support.noProducts.description.first" = "팁 옵션을 불러오지 못했습니다.";
+"support.noProducts.description.second" = "네트워크 연결을 확인하거나 잠시 후 다시 시도해 주세요.";
+"support.noProducts.description.third" = "Equinox를 후원해 주셔서 감사합니다.";
+"support.purchaseSuccess.description.first" = "여러분의 후원은 큰 힘이 됩니다. Equinox는 제가 5년 넘게 유지보수해 온 오픈소스 프로젝트입니다.";
+"support.purchaseSuccess.description.second" = "이런 팁은 버그를 고치고, 앱을 개선하고, 새로운 업데이트를 제공하는 데 큰 도움이 됩니다.";
+"support.purchaseSuccess.description.third" = "이 구매는 기능을 잠금 해제하지 않으며, 개발을 후원하는 데 사용됩니다.";
+"support.purchaseFailure.title" = "걱정 마세요";
+"support.purchaseFailure.description.first" = "구매가 취소되었습니다.";
+"support.purchaseFailure.description.second" = "원하실 때 언제든지 Equinox를 후원하실 수 있어요.";
+"support.purchaseFailure.description.third" = "앱을 사용해 주셔서 감사합니다!";

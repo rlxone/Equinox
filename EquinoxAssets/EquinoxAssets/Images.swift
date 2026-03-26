@@ -51,6 +51,16 @@ public enum Image {
     public static let appearanceTip = Bundler.current.bundle.image(forResource: "AppearanceTip")!
     public static let calculatorTip = Bundler.current.bundle.image(forResource: "CalculatorTip")!
     public static let setTip = Bundler.current.bundle.image(forResource: "SetTip")!
+    public static let calculator = Bundler.current.bundle.image(forResource: "Calculator")!
+    public static let plus = Bundler.current.bundle.image(forResource: "Plus")!
+    public static let questionMark = Bundler.current.bundle.image(forResource: "QuestionMark")!
+    public static let ellipsis = Bundler.current.bundle.image(forResource: "Ellipsis")!
+    public static let support1 = Bundler.current.bundle.image(forResource: "Support1")!
+    public static let support2 = Bundler.current.bundle.image(forResource: "Support2")!
+    public static let avatar = Bundler.current.bundle.image(forResource: "Avatar")!
+    public static let avatarSuccess = Bundler.current.bundle.image(forResource: "AvatarSuccess")!
+    public static let confettiParticle = Bundler.current.bundle.image(forResource: "ConfettiParticle")!
+    public static let heartParticle = Bundler.current.bundle.image(forResource: "HeartParticle")!
 }
 
 // swiftlint:enable force_unwrapping

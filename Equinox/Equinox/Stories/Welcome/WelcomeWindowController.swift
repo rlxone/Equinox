@@ -35,13 +35,14 @@ import EquinoxUI
 
 protocol WelcomeWindowControllerDelegate: AnyObject {
     func welcomeWindowControllerTypeWasSelected(type: WallpaperType)
+    func welcomeWindowControllerSupportWasInteracted()
 }
 
 // MARK: - Enums, Structs
 
 extension WelcomeWindowController {
     private enum Constants {
-        static let minSize = NSSize(width: 846, height: 395)
+        static let minSize = NSSize(width: 846, height: 405)
     }
 }
 
@@ -49,7 +50,8 @@ extension WelcomeWindowController {
 
 final class WelcomeWindowController: WindowController {
     private var contentWindow: Window?
-
+    private var toolBarController: ToolbarController?
+    
     init() {
         super.init(window: nil)
         setupWindow()
@@ -63,6 +65,10 @@ final class WelcomeWindowController: WindowController {
         
         contentWindow = Window(contentViewController: controller, minSize: Constants.minSize)
         contentWindow?.styleMask.remove(.resizable)
+        let toolBarController = ToolbarController(identifier: NSToolbar.Identifier("WelcomeToolbar"))
+        self.toolBarController = toolBarController
+        contentWindow?.toolbar = toolBarController.toolbar
+        contentWindow?.titlebarAppearsTransparent = true
         
         window = contentWindow
         window?.title = Localization.Welcome.title
@@ -81,5 +87,9 @@ final class WelcomeWindowController: WindowController {
 extension WelcomeWindowController: WelcomeRootViewControllerDelegate {
     func rootViewControllerTypeWasSelected(type: WallpaperType) {
         delegate?.welcomeWindowControllerTypeWasSelected(type: type)
+    }
+    
+    func rootViewControllerSupportWasInteracted() {
+        delegate?.welcomeWindowControllerSupportWasInteracted()
     }
 }

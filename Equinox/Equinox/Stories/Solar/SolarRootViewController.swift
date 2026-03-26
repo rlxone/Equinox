@@ -77,25 +77,11 @@ final class SolarRootViewController: ViewController {
     
     weak var delegate: SolarRootViewControllerDelegate?
     
-    // MARK: - Private
-    
-    private func presentTypeController() {
-        let controller = SolarMainViewController(solarService: solarService)
-        controller.delegate = self
-        let navigationController = NavigationController(rootViewController: controller)
-        self.navigationController = navigationController
-        addChildController(navigationController, container: view)
-    }
-    
-    private func presentTipIfNeeded() {
-        let hasWalkthrough = settingsService.hasWalkthrough(type: .solarCalculator)
-        
-        if !hasWalkthrough {
-            presentTip(firstPresent: true, animated: false)
+    public func presentTip(firstPresent: Bool, animated: Bool) {
+        guard tipViewController == nil else {
+            return
         }
-    }
-    
-    private func presentTip(firstPresent: Bool, animated: Bool) {
+        
         let title = Localization.Tip.Calculator.title
         let description = Localization.Tip.Calculator.description
         let image = Image.calculatorTip
@@ -115,6 +101,24 @@ final class SolarRootViewController: ViewController {
         tipViewController = controller
         
         navigationController?.present(controller, animated: animated)
+    }
+    
+    // MARK: - Private
+    
+    private func presentTypeController() {
+        let controller = SolarMainViewController(solarService: solarService)
+        controller.delegate = self
+        let navigationController = NavigationController(rootViewController: controller)
+        self.navigationController = navigationController
+        addChildController(navigationController, container: view)
+    }
+    
+    private func presentTipIfNeeded() {
+        let hasWalkthrough = settingsService.hasWalkthrough(type: .solarCalculator)
+        
+        if !hasWalkthrough {
+            presentTip(firstPresent: true, animated: false)
+        }
     }
 }
 

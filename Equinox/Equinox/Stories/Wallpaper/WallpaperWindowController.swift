@@ -43,7 +43,7 @@ protocol WallpaperWindowControllerDelegate: AnyObject {
 extension WallpaperWindowController {
     private enum Constants {
         static let regularSize = NSSize(width: 930, height: 756)
-        static let minSize = NSSize(width: 800, height: 650)
+        static let minSize = NSSize(width: 930, height: 650)
     }
 }
 
@@ -59,6 +59,8 @@ final class WallpaperWindowController: WindowController {
 
     private var contentWindow: Window?
     private var contentController: WindowViewController?
+    private var wallpaperRootViewController: WallpaperRootViewController?
+    private var toolbarController: WallpaperToolbarController?
 
     init(
         type: WallpaperType,
@@ -81,7 +83,6 @@ final class WallpaperWindowController: WindowController {
     // MARK: - Setup
     
     private func setupWindow() {
-        let title = NSApplication.appName
         let controller = WallpaperRootViewController(
             type: type,
             fileService: fileService,
@@ -91,8 +92,9 @@ final class WallpaperWindowController: WindowController {
             imageProvider: imageProvider
         )
         controller.delegate = self
+        wallpaperRootViewController = controller
 
-        let windowController = WindowViewController(contentViewController: controller, windowTitle: title)
+        let windowController = WindowViewController(contentViewController: controller)
         contentController = windowController
 
         contentWindow = Window(
@@ -100,14 +102,23 @@ final class WallpaperWindowController: WindowController {
             minSize: Constants.minSize
         )
 
+        let toolbarController = WallpaperToolbarController(wallpaperType: type)
+        self.toolbarController = toolbarController
+        self.toolbarController?.delegate = self
+        contentWindow?.toolbar = toolbarController.toolbar
+        if #available(macOS 11.0, *) {
+            contentWindow?.titlebarSeparatorStyle = .none
+        }
+
         window = contentWindow
         window?.setContentSize(Constants.regularSize)
-        setWindowTitle(appName: title)
+        setWindowTitle()
         window?.makeKeyAndOrderFront(self)
         window?.center()
     }
     
-    private func setWindowTitle(appName: String) {
+    private func setWindowTitle() {
+        let appName = NSApplication.appName
         var title: String
         
         switch type {
@@ -116,7 +127,7 @@ final class WallpaperWindowController: WindowController {
             
         case .time:
             title = "\(appName) - \(Localization.Wallpaper.Main.time)"
-            
+
         case .appearance:
             title = "\(appName) - \(Localization.Wallpaper.Main.appearance)"
         }
@@ -143,5 +154,17 @@ extension WallpaperWindowController: WallpaperRootViewControllerDelegate {
 
     func rootViewControllerShouldNotify(_ text: String) {
         contentController?.notify(text)
+    }
+}
+
+// MARK: - WallpaperToolbarControllerDelegate
+
+extension WallpaperWindowController: WallpaperToolbarControllerDelegate {
+    func wallpaperToolbarControllerCalculatorWasInteracted(_ controller: WallpaperToolbarController) {
+        delegate?.wallpaperWindowControllerCalculatorWasInteracted()
+    }
+    
+    func wallpaperToolbarControllerHelpWasInteracted(_ controller: WallpaperToolbarController) {
+        wallpaperRootViewController?.presentTipController(firstPresent: false, animated: true)
     }
 }

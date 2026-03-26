@@ -38,13 +38,10 @@ public enum Color {
     public static let clear = NSColor.clear
     public static let controlAccent = NSColor.controlAccentColor
 
-    public static let titleBorder1 = bundleColor(named: "TitleBorder1")
-    public static let titleBorder2 = bundleColor(named: "TitleBorder2")
     public static let separator = bundleColor(named: "Separator")
     public static let appearanceSeparator = bundleColor(named: "AppearanceSeparator")
     public static let wallpaperContent = bundleColor(named: "WallpaperContent")
     public static let wallpaperContentBorder = bundleColor(named: "WallpaperContentBorder")
-    public static let wallpaperDash = bundleColor(named: "WallpaperDash")
     public static let wallpaperButtonBorder = bundleColor(named: "WallpaperButtonBorder")
     public static let wallpaperPrimaryBackground = bundleColor(named: "WallpaperPrimaryBackground")
     public static let wallpaperDynamicLight = bundleColor(named: "WallpaperDynamicLight")
@@ -55,10 +52,6 @@ public enum Color {
     public static let buttonTextHighlight = bundleColor(named: "ButtonTextHighlight")
     public static let buttonTextGraphiteHighlight = bundleColor(named: "ButtonTextGraphiteHighlight")
     public static let buttonInnerShadow = bundleColor(named: "ButtonInnerShadow")
-    public static let tabContent = bundleColor(named: "TabContent")
-    public static let tabBorder = bundleColor(named: "TabBorder")
-    public static let tabTextHighlight = bundleColor(named: "TabTextHighlight")
-    public static let tabTextGraphiteHighlight = bundleColor(named: "TabTextGraphiteHighlight")
     public static let dragDash = bundleColor(named: "DragDash")
     public static let dragBackground = bundleColor(named: "DragBackground")
     public static let tooltipBorder = bundleColor(named: "TooltipBorder")
@@ -71,17 +64,21 @@ public enum Color {
     public static let typeSeparator = bundleColor(named: "TypeSeparator")
     public static let typeSelectedTint = bundleColor(named: "TypeSelectedTint")
     public static let typeImageContent = bundleColor(named: "TypeImageContent")
-    public static let wallpaperFooterBackground = bundleColor(named: "WallpaperFooterBackground")
     public static let createOverlay = bundleColor(named: "CreateOverlay")
     public static let createSeparator = bundleColor(named: "CreateSeparator")
     public static let createOverlayBorder = bundleColor(named: "CreateOverlayBorder")
     public static let createDescriptionBackground = bundleColor(named: "CreateDescriptionBackground")
     public static let solarLine = bundleColor(named: "SolarLine")
     public static let solarChart = bundleColor(named: "SolarChart")
-    public static let solarProgress = bundleColor(named: "SolarProgress")
     public static let tipOverlay = bundleColor(named: "TipOverlay")
     public static let tipSeparator = bundleColor(named: "TipSeparator")
     public static let lightBlue = bundleColor(named: "LightBlue")
+    public static let pushButtonHighlight = bundleColor(named: "PushButtonHighlight")
+    public static let containerButtonBackground = bundleColor(named: "ContainerButtonBackground")
+    public static let supportOptionBackground = bundleColor(named: "SupportOptionBackground")
+    public static let supportOptionBackgroundHighlight = bundleColor(named: "SupportOptionBackgroundHighlight")
+    public static let supportOptionBorder = bundleColor(named: "SupportOptionBorder")
+    public static let supportOptionBorderHighlight = bundleColor(named: "SupportOptionBorderHighlight")
 }
 
 // MARK: - Color

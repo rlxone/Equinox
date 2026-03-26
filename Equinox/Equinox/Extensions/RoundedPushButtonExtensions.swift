@@ -26,18 +26,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import AppKit
 import EquinoxAssets
 import EquinoxUI
 
 extension RoundedPushButton.Style {
     static var `default`: RoundedPushButton.Style {
+        let accentColor: NSColor
+
+        if #available(macOS 26, *) {
+            accentColor = Color.pushButtonHighlight
+        } else {
+            accentColor = Color.controlAccent
+        }
+
         return .init(
             font: Font.body(.regular),
             textColor: Color.label,
             disabledTextColor: Color.secondaryLabel,
             highlightTextColor: Color.buttonTextHighlight,
             graphiteHighlightTextColor: Color.buttonTextGraphiteHighlight,
-            accentColor: Color.controlAccent,
+            accentColor: accentColor,
             backgroundColor: Color.buttonBackground,
             borderColor: Color.buttonBorder,
             innerShadowColor: Color.buttonInnerShadow

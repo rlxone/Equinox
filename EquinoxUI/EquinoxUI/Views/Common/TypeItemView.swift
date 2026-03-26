@@ -71,7 +71,13 @@ extension TypeItemView {
     
     private enum Constants {
         static let descriptionLabelLayoutWidth: CGFloat = 300
-        static let cornerRadius: CGFloat = 8
+        static var cornerRadius: CGFloat {
+            if #available(macOS 26, *) {
+                return 16
+            } else {
+                return 8
+            }
+        }
         static let imageViewLeadingOffset: CGFloat = 16
         static let imageViewTopOffset: CGFloat = 16
         static let imageViewWidth: CGFloat = 32

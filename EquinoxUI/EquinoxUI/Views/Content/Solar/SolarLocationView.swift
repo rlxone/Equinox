@@ -85,7 +85,7 @@ extension SolarLocationView {
         static let contentBorderWidth: CGFloat = 1
         static var fieldCornerRadius: CGFloat {
             if #available(macOS 26, *) {
-                return 8
+                return 10
             }
             return 4
         }
@@ -109,13 +109,17 @@ extension SolarLocationView {
         static let datePickerHeight: CGFloat = 40
         static let datePickerWidth: CGFloat = 140
         static let datePickerTrailingOffset: CGFloat = 20
+        static let shadowOffset: CGSize = CGSize(width: 0, height: -10)
+        static let shadowRadius: CGFloat = 10
+        static let shadowOpacity: Float = 0.06
     }
 }
 
 public final class SolarLocationView: View {
+    private lazy var backgroundView = View()
     private lazy var locationHeaderLabel = StyledLabel()
     private lazy var dateHeaderLabel = StyledLabel()
-    private lazy var locationButton = PushButton()
+    private lazy var locationButton = PushButton(contentSize: .default)
 
     private lazy var latitudeTextField: RoundedFloatingTextField = {
         let view = RoundedFloatingTextField()
@@ -142,6 +146,16 @@ public final class SolarLocationView: View {
         return view
     }()
     
+    private lazy var shadowLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.fillColor = nil
+        layer.anchorPoint = .zero
+        layer.shadowOffset = Constants.shadowOffset
+        layer.shadowRadius = Constants.shadowRadius
+        layer.shadowOpacity = Constants.shadowOpacity
+        return layer
+    }()
+    
     // MARK: - Initializer
     
     public override init() {
@@ -160,6 +174,14 @@ public final class SolarLocationView: View {
         stylize()
     }
     
+    public override func layout() {
+        super.layout()
+
+        let path = NSBezierPath(roundedRect: bounds, xRadius: Constants.contentCornerRadius, yRadius: Constants.contentCornerRadius)
+        shadowLayer.bounds = bounds
+        shadowLayer.shadowPath = path.path
+    }
+    
     // MARK: - Setup
 
     private func setup() {
@@ -170,9 +192,14 @@ public final class SolarLocationView: View {
 
     private func setupView() {
         wantsLayer = true
-        layer?.cornerRadius = Constants.contentCornerRadius
-        layer?.borderWidth = Constants.contentBorderWidth
+        layer?.masksToBounds = false
+        layer?.insertSublayer(shadowLayer, at: 0)
+        
+        backgroundView.wantsLayer = true
+        backgroundView.layer?.cornerRadius = Constants.contentCornerRadius
+        backgroundView.layer?.borderWidth = Constants.contentBorderWidth
 
+        addSubview(backgroundView)
         addSubview(locationHeaderLabel)
         addSubview(dateHeaderLabel)
         addSubview(latitudeTextField)
@@ -188,6 +215,7 @@ public final class SolarLocationView: View {
     }
 
     private func setupConstraints() {
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         locationHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
         dateHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
         latitudeTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -196,6 +224,11 @@ public final class SolarLocationView: View {
         locationButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
             locationHeaderLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.locationHeaderLabelLeadingOffset),
             locationHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.locationHeaderLabelTopOffset),
 
@@ -324,8 +357,8 @@ public final class SolarLocationView: View {
         locationButton.style = style?.pushButtonStyle
         locationButton.image = style?.ownStyle.locationImage
 
-        layer?.backgroundColor = style?.ownStyle.contentBackgroundColor.cgColor
-        layer?.borderColor = style?.ownStyle.contentBackgroundBorderColor.cgColor
+        backgroundView.layer?.backgroundColor = style?.ownStyle.contentBackgroundColor.cgColor
+        backgroundView.layer?.borderColor = style?.ownStyle.contentBackgroundBorderColor.cgColor
     }
 }
 

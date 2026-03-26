@@ -30,10 +30,13 @@
 "menu.help.macAppStoreReview" = "Rate Equinox on the Mac App Store";
 "menu.help.productHunt" = "Equinox on Product Hunt";
 
+"toolbar.more" = "More";
+
 "welcome.title" = "Welcome to Equinox";
 "welcome.welcome" = "Welcome to %@";
 "welcome.version" = "Version %@";
 "welcome.github" = "GitHub";
+"welcome.support" = "Support Equinox";
 "welcome.choose.type" = "Choose a type";
 "welcome.choose.type.description" = "Select the type that best fits your wallpaper";
 "welcome.types.solar" = "Solar";
@@ -139,3 +142,41 @@
 "tip.calculator.description" = "It will help you calculate the position of the sun in the sky.\n1. Choose the place, date, and time on the sun timeline for when you took the photo. If you don't know the exact time, use the sun timeline to see how high or low the sun is in the sky and match it to your photos.\n2. Drag and drop or copy the result onto your image.";
 
 "dock.new" = "New";
+
+"toolbar.new.label" = "New";
+"toolbar.new.palette" = "New";
+"toolbar.new.tooltip" = "New Wallpaper";
+
+"toolbar.help.label" = "Help";
+"toolbar.help.palette" = "Help";
+"toolbar.help.tooltip" = "Help";
+
+"toolbar.calculator.label" = "Calculator";
+"toolbar.calculator.palette" = "Solar calculator";
+"toolbar.calculator.tooltip" = "Solar calculator";
+
+"wallpaper.toolbar.solar.title" = "Solar Wallpaper";
+"wallpaper.toolbar.time.title" = "Time Wallpaper";
+"wallpaper.toolbar.appearance.title" = "Appearance Wallpaper";
+
+"support.title" = "Support Equinox";
+"support.localProduct.title" = "Donation";
+"support.shared.title.thankYou" = "Thank you for your support!";
+"support.shared.description.openSource" = "Equinox is an open-source project I’ve been maintaining for over 5 years.";
+"support.shared.close" = "Close";
+"support.supported.description.first" = "You’ve already supported Equinox - thank you!";
+"support.supported.description.third" = "If you’d like to support the project again, you can leave another tip anytime.";
+"support.unsupported.title" = "Enjoying Equinox?";
+"support.unsupported.description.second" = "If you enjoy using it, you can support its future with a small tip.";
+"support.unsupported.description.third" = "Tips don’t unlock any features - they simply support development.";
+"support.noProducts.title" = "Something Went Wrong";
+"support.noProducts.description.first" = "The tip options couldn't be loaded.";
+"support.noProducts.description.second" = "Please check your connection or try again in a moment.";
+"support.noProducts.description.third" = "Thank you for supporting Equinox.";
+"support.purchaseSuccess.description.first" = "Your support means a lot. Equinox is an open-source project I’ve been maintaining for over 5 years.";
+"support.purchaseSuccess.description.second" = "Tips like this help keep the app alive — fixing bugs, improving it, and shipping new updates.";
+"support.purchaseSuccess.description.third" = "This purchase doesn’t unlock features — it simply supports development.";
+"support.purchaseFailure.title" = "No worries";
+"support.purchaseFailure.description.first" = "The purchase was cancelled.";
+"support.purchaseFailure.description.second" = "You can support Equinox anytime if you’d like.";
+"support.purchaseFailure.description.third" = "Thank you for using the app!";

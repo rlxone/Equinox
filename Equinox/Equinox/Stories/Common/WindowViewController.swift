@@ -31,23 +31,11 @@ import EquinoxAssets
 import EquinoxUI
 
 final class WindowViewController: ViewController {
-    private let windowTitle: String
     private let contentViewController: ViewController
 
     private lazy var contentView: WindowContentView = {
         let view = WindowContentView()
         view.style = .init(
-            titleBarStyle: .init(
-                titleStyle: .init(
-                    font: Font.body(.medium),
-                    activeColor: Color.label,
-                    inactiveColor: Color.tertiaryLabel
-                ),
-                titleLineStyle: .init(
-                    firstColor: Color.titleBorder1,
-                    secondColor: Color.titleBorder2
-                )
-            ),
             notificationStyle: .init(
                 ownStyle: .init(
                     borderColor: Color.notificationBorder
@@ -63,8 +51,7 @@ final class WindowViewController: ViewController {
 
     // MARK: - Initializer
 
-    init(contentViewController: ViewController, windowTitle: String) {
-        self.windowTitle = windowTitle
+    init(contentViewController: ViewController) {
         self.contentViewController = contentViewController
         super.init()
         setup()
@@ -83,13 +70,8 @@ final class WindowViewController: ViewController {
     // MARK: - Setup
 
     private func setup() {
-        setupView()
         setupController()
         setupNotifications()
-    }
-
-    private func setupView() {
-        contentView.title = windowTitle
     }
 
     private func setupController() {

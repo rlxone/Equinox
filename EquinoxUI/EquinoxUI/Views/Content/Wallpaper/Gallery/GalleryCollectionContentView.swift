@@ -139,7 +139,6 @@ public final class GalleryCollectionContentView: View {
     private func setupSolarView() {
         buttonsView.orientation = .vertical
         buttonsView.viewAppearance = .default
-        imageView.viewAppearance = .default
         imageView.size = .small
         imageView.position = .bottomLeft
         let coordinatesView = GalleryCollectionCoordinatesView()
@@ -150,7 +149,6 @@ public final class GalleryCollectionContentView: View {
     private func setupTimeView() {
         buttonsView.orientation = .horizontal
         buttonsView.viewAppearance = .default
-        imageView.viewAppearance = .default
         imageView.size = .small
         imageView.position = .bottomLeft
         let timeView = GalleryCollectionTimeView()
@@ -161,7 +159,6 @@ public final class GalleryCollectionContentView: View {
     private func setupAppearanceView() {
         buttonsView.orientation = .vertical
         buttonsView.viewAppearance = .vibrant
-        imageView.viewAppearance = .vibrant
         imageView.size = .normal
         imageView.position = .topLeft
     }

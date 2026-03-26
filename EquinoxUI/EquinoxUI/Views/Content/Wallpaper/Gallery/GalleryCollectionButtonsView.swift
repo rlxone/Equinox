@@ -79,13 +79,16 @@ extension GalleryCollectionButtonsView {
     private enum Constants {
         static var cornerRadius: CGFloat {
             if #available(macOS 26, *) {
-                return 8
+                return 10
             }
             return 4
         }
         static let borderWidth: CGFloat = 1
         static let buttonSize: CGFloat = 24
         static let tooltipPresentDelayMilliseconds = 1_000
+        static let shadowOffset: CGSize = CGSize(width: 0, height: -10)
+        static let shadowRadius: CGFloat = 10
+        static let shadowOpacity: Float = 0.06
     }
 }
 
@@ -122,6 +125,16 @@ public final class GalleryCollectionButtonsView: View {
         return stackView
     }()
     
+    private lazy var shadowLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.fillColor = nil
+        layer.anchorPoint = .zero
+        layer.shadowOffset = Constants.shadowOffset
+        layer.shadowRadius = Constants.shadowRadius
+        layer.shadowOpacity = Constants.shadowOpacity
+        return layer
+    }()
+    
     // MARK: - Initializer
 
     public override init() {
@@ -140,6 +153,14 @@ public final class GalleryCollectionButtonsView: View {
         stylize()
     }
     
+    public override func layout() {
+        super.layout()
+
+        let path = NSBezierPath(roundedRect: bounds, xRadius: Constants.cornerRadius, yRadius: Constants.cornerRadius)
+        shadowLayer.bounds = bounds
+        shadowLayer.shadowPath = path.path
+    }
+    
     // MARK: - Setup
 
     private func setup() {
@@ -152,6 +173,10 @@ public final class GalleryCollectionButtonsView: View {
         addSubview(visualEffectView)
         addSubview(stackView)
 
+        wantsLayer = true
+        layer?.masksToBounds = false
+        layer?.insertSublayer(shadowLayer, at: 0)
+        
         visualEffectView.isHidden = true
 
         stackView.addView(dynamicButton, in: .center)

@@ -79,6 +79,9 @@ extension RoundedFloatingTextField {
         static let copyButtonWidth: CGFloat = 23
         static let copyButtonHeight: CGFloat = 23
         static let borderWidth: CGFloat = 1
+        static let shadowOffset: CGSize = CGSize(width: 0, height: -10)
+        static let shadowRadius: CGFloat = 10
+        static let shadowOpacity: Float = 0.06
     }
 }
 
@@ -86,7 +89,8 @@ extension RoundedFloatingTextField {
 
 public final class RoundedFloatingTextField: View {
     private lazy var titleLabel = Label()
-    private lazy var copyButton = PushButton()
+    private lazy var copyButton = PushButton(contentSize: .default)
+    private lazy var backgroundView = View()
 
     private lazy var textField: FloatingTextField = {
         let textField = FloatingTextField()
@@ -103,11 +107,31 @@ public final class RoundedFloatingTextField: View {
         return stackView
     }()
     
+    private lazy var shadowLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.fillColor = nil
+        layer.anchorPoint = .zero
+        layer.shadowOffset = Constants.shadowOffset
+        layer.shadowRadius = Constants.shadowRadius
+        layer.shadowOpacity = Constants.shadowOpacity
+        return layer
+    }()
+    
     // MARK: - Initializer
 
     public override init() {
         super.init()
         setup()
+    }
+    
+    // MARK: - Life Cycle
+    
+    public override func layout() {
+        super.layout()
+
+        let path = NSBezierPath(roundedRect: bounds, xRadius: cornerRadius, yRadius: cornerRadius)
+        shadowLayer.bounds = bounds
+        shadowLayer.shadowPath = path.path
     }
     
     // MARK: - Setup
@@ -119,8 +143,13 @@ public final class RoundedFloatingTextField: View {
 
     private func setupView() {
         wantsLayer = true
-        layer?.borderWidth = Constants.borderWidth
+        layer?.masksToBounds = false
+        layer?.insertSublayer(shadowLayer, at: 0)
 
+        backgroundView.wantsLayer = true
+        backgroundView.layer?.borderWidth = Constants.borderWidth
+
+        addSubview(backgroundView)
         addSubview(stackView)
         stackView.addView(titleLabel, in: .leading)
         stackView.addView(textField, in: .leading)
@@ -128,10 +157,16 @@ public final class RoundedFloatingTextField: View {
     }
 
     private func setupConstraints() {
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         copyButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.topAnchor.constraint(equalTo: topAnchor),
@@ -156,7 +191,8 @@ public final class RoundedFloatingTextField: View {
 
     public var cornerRadius: CGFloat = 0 {
         didSet {
-            layer?.cornerRadius = cornerRadius
+            needsLayout = true
+            backgroundView.layer?.cornerRadius = cornerRadius
         }
     }
 
@@ -229,8 +265,8 @@ public final class RoundedFloatingTextField: View {
     // MARK: - Private
 
     private func stylize() {
-        layer?.backgroundColor = style?.ownStyle.backgroundColor.cgColor
-        layer?.borderColor = style?.ownStyle.borderColor.cgColor
+        backgroundView.layer?.backgroundColor = style?.ownStyle.backgroundColor.cgColor
+        backgroundView.layer?.borderColor = style?.ownStyle.borderColor.cgColor
         titleLabel.font = style?.ownStyle.textFont
         titleLabel.textColor = style?.ownStyle.textColor
         textField.font = style?.ownStyle.textFont
