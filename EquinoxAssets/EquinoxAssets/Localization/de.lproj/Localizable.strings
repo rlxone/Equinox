@@ -38,7 +38,7 @@
 "welcome.choose.type" = "Wähle den Typ";
 "welcome.choose.type.description" = "Wähle die Art von Hintergrundbild, die du erstellen willst";
 "welcome.types.solar" = "Sonnenabhängig";
-"welcome.types.solar.description" = "Erstelle ein Hintergrundbild auf Basis von Solarberechnungen. Das Hintergrundbild wechselt abhängig von der Position der Sonne über den Tag hinweg.";
+"welcome.types.solar.description" = "Erstelle ein Hintergrundbild auf Basis von Sonnenstandsberechnungen. Das Hintergrundbild wechselt abhängig von der Position der Sonne über den Tag hinweg.";
 "welcome.types.time" = "Zeitabhängig";
 "welcome.types.time.description" = "Erstelle ein Hintergrundbild auf Basis der Uhrzeit. Das Hintergrundbild wechselt abhängig von der Uhrzeit über den Tag hinweg.";
 "welcome.types.appearance" = "Erscheinungsbild";
@@ -83,9 +83,9 @@
 "wallpaper.create.share" = "Teilen";
 "wallpaper.create.new" = "Neu";
 "wallpaper.create.cancel" = "Abbrechen";
-"wallpaper.create.solar.based" = "Sonnenbasiert";
-"wallpaper.create.time.based" = "Zeitbasiert";
-"wallpaper.create.appearance.based" = "Erscheinungsbildbasiert";
+"wallpaper.create.solar.based" = "Sonnenabhängig";
+"wallpaper.create.time.based" = "Zeitabhängig";
+"wallpaper.create.appearance.based" = "Erscheinungsbildabhängig";
 "wallpaper.create.file.saved" = "Hintergrundbild gespeichert";
 "wallpaper.create.new.title" = "Neues Hintergrundbild erstellen?";
 "wallpaper.create.new.description" = "Möchtest du einen neuen Hintergrundbildtyp erstellen oder den aktuellen wiederholen?";
@@ -105,7 +105,7 @@
 "wallpaper.set.continue" = "Weiter";
 "wallpaper.set.skip" = "Diese Meldung nicht mehr anzeigen";
 
-"solar.main.title" = "Solarrechner";
+"solar.main.title" = "Sonnenstandsrechner";
 "solar.main.location.header" = "Ort";
 "solar.main.date.header" = "Datum";
 "solar.main.result.header" = "Ergebnis";
@@ -130,13 +130,13 @@
 "tip.tips" = "TIPPS";
 "tip.started" = "Loslegen";
 "tip.ok" = "Verstanden";
-"tip.solar.title" = "Solar-Hintergrundbild";
-"tip.solar.description" = "Die Hauptfunktion dieses Hintergrundbildtyps ist, dass die Position der Sonne berücksichtigt wird. Je nach Jahreszeit siehst du auf deinem Schreibtisch das passendste Bild.\nMach dir keine Sorgen wegen Berechnungen. Mit dem „Solarrechner“ musst du nur wissen, wo und wann du ein Foto aufgenommen hast.";
-"tip.time.title" = "Zeit-Hintergrundbild";
+"tip.solar.title" = "Sonnenabhängiges Hintergrundbild";
+"tip.solar.description" = "Die Hauptfunktion dieses Hintergrundbildtyps ist, dass die Position der Sonne berücksichtigt wird. Je nach Jahreszeit siehst du auf deinem Schreibtisch das passendste Bild.\nMach dir keine Sorgen wegen Berechnungen. Mit dem „Sonnenstandsrechner“ musst du nur wissen, wo und wann du ein Foto aufgenommen hast.";
+"tip.time.title" = "Zeitabhängiges Hintergrundbild";
 "tip.time.description" = "Die Zeit ist das Schlüsselelement dieses Hintergrundbildtyps. Das Schreibtischbild ändert sich im Laufe des Tages basierend auf der von dir gewählten Uhrzeit.";
-"tip.appearance.title" = "Erscheinungsbild-Hintergrundbild";
+"tip.appearance.title" = "Erscheinungsbildabhängiges-Hintergrundbild";
 "tip.appearance.description" = "Dieser Hintergrundbildtyp ist so einfach wie möglich. Das Schreibtischbild ändert sich im Laufe des Tages entsprechend Änderungen am System-Erscheinungsbild. Du brauchst zwei Bilder: eines für den Hellmodus und eines für den Dunkelmodus.";
-"tip.calculator.title" = "Solarrechner";
+"tip.calculator.title" = "Sonnenstandsrechner";
 "tip.calculator.description" = "Er hilft dir, die Position der Sonne am Himmel zu berechnen.\n1. Wähle den Ort, das Datum und die Uhrzeit auf der Sonnen-Zeitleiste für den Zeitpunkt aus, an dem du das Foto gemacht hast. Wenn du die genaue Uhrzeit nicht kennst, nutze die Sonnen-Zeitleiste, um zu sehen, wie hoch oder tief die Sonne am Himmel steht, und gleiche das mit deinen Fotos ab.\n2. Ziehe das Ergebnis auf dein Bild oder kopiere es.";
 
 "dock.new" = "Neu";
@@ -162,3 +162,17 @@
 "support.purchaseFailure.description.first" = "Der Kauf wurde abgebrochen.";
 "support.purchaseFailure.description.second" = "Du kannst Equinox jederzeit unterstützen, wenn du möchtest.";
 "support.purchaseFailure.description.third" = "Danke, dass du die App nutzt!";
+
+"toolbar.more" = "Mehr";
+"toolbar.new.label" = "Neu";
+"toolbar.new.palette" = "Neu";
+"toolbar.new.tooltip" = "Neues Hintergrundbild";
+"toolbar.help.label" = "Hilfe";
+"toolbar.help.palette" = "Hilfe";
+"toolbar.help.tooltip" = "Hilfe";
+"toolbar.calculator.label" = "Rechner";
+"toolbar.calculator.palette" = "Sonnenstandsrechner";
+"toolbar.calculator.tooltip" = "Sonnenstandsrechner";
+"wallpaper.toolbar.solar.title" = "Sonnenabhängiges Hintergrundbild";
+"wallpaper.toolbar.time.title" = "Zeitabhängiges Hintergrundbild ";
+"wallpaper.toolbar.appearance.title" = "Erscheinungsbildabhängiges Hintergrundbild";
