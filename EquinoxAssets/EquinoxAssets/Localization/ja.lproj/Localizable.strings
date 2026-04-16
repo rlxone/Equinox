@@ -1,0 +1,182 @@
+"menu.main.about" = "%@について";
+"menu.main.preferences" = "環境設定...";
+"menu.main.hide" = "%@を隠す";
+"menu.main.hide.others" = "ほかを隠す";
+"menu.main.show.all" = "すべてを表示";
+"menu.main.quit" = "%@を終了";
+
+"menu.file" = "ファイル";
+"menu.file.new" = "新規";
+
+"menu.edit" = "編集";
+"menu.edit.undo" = "取り消す";
+"menu.edit.redo" = "やり直す";
+"menu.edit.cut" = "カット";
+"menu.edit.copy" = "コピー";
+"menu.edit.paste" = "ペースト";
+"menu.edit.select.all" = "すべてを選択";
+"menu.edit.delete" = "削除";
+
+"menu.window" = "ウインドウ";
+"menu.window.minimize" = "しまう";
+"menu.window.zoom" = "ズーム";
+"menu.window.show.all" = "すべてを表示";
+
+"menu.help" = "ヘルプ";
+"menu.help.githubProject" = "GitHubプロジェクト";
+"menu.help.githubFAQ" = "よくある質問";
+"menu.help.githubIssue" = "問題を報告する";
+"menu.help.equinoxWebsite" = "Equinox ウェブサイト";
+"menu.help.macAppStoreReview" = "Mac App StoreでEquinoxを評価する";
+"menu.help.productHunt" = "Product HuntのEquinox";
+
+"toolbar.more" = "その他";
+
+"welcome.title" = "Equinoxへようこそ";
+"welcome.welcome" = "%@へようこそ";
+"welcome.version" = "バージョン %@";
+"welcome.github" = "GitHub";
+"welcome.support" = "Equinoxをサポート";
+"welcome.choose.type" = "タイプを選択";
+"welcome.choose.type.description" = "壁紙に合ったタイプを選択してください";
+"welcome.types.solar" = "ソーラー";
+"welcome.types.solar.description" = "太陽計算に基づく壁紙を作成します。太陽の位置に応じて、デスクトップ画像が一日中変化します。";
+"welcome.types.time" = "時刻";
+"welcome.types.time.description" = "時刻計算に基づく壁紙を作成します。設定した時刻に応じて、デスクトップ画像が一日中変化します。";
+"welcome.types.appearance" = "外観";
+"welcome.types.appearance.description" = "システムの外観に基づく壁紙を作成します。ライトモードとダークモードの2枚の画像が必要です。";
+
+"wallpaper.main.solar" = "ソーラー";
+"wallpaper.main.time" = "時刻";
+"wallpaper.main.appearance" = "外観";
+"wallpaper.main.calculator" = "計算機";
+"wallpaper.main.create" = "作成";
+"wallpaper.main.browse" = "画像ファイルを参照";
+"wallpaper.main.validate" = "すべての項目を入力してください";
+
+"wallpaper.gallery.drag.title" = "画像をドラッグ＆ドロップ";
+"wallpaper.gallery.drag.supplementary" = "PNG、JPEG、TIFF、HEIC形式のファイルを使用してください。";
+"wallpaper.gallery.or" = "または";
+"wallpaper.gallery.browse" = "参照";
+"wallpaper.gallery.azimuth" = "方位角:";
+"wallpaper.gallery.azimuth.value" = "値";
+"wallpaper.gallery.altitude" = "高度:";
+"wallpaper.gallery.altitude.value" = "値";
+"wallpaper.gallery.time" = "時刻:";
+"wallpaper.gallery.tooltip.appearance.title" = "外観";
+"wallpaper.gallery.tooltip.appearance.description" = "グラフィックモード。ライト/ダークモード用の外観に設定できる画像は1枚のみです。";
+"wallpaper.gallery.tooltip.primary.title" = "プライマリ";
+"wallpaper.gallery.tooltip.primary.description" = "プライマリ画像は壁紙のサムネイルとして表示されます。";
+"wallpaper.gallery.wrong.images.type" = "対応していない形式のファイルが %d 個あります。PNG、JPEG、TIFF、HEICのみ対応しています。";
+
+"wallpaper.appearance.auto.title" = "自動";
+"wallpaper.appearance.auto.description" = "デフォルトの壁紙画像を使用";
+"wallpaper.appearance.light.title" = "ライト（静止）";
+"wallpaper.appearance.light.description" = "ライトモードで静止画像を表示";
+"wallpaper.appearance.dark.title" = "ダーク（静止）";
+"wallpaper.appearance.dark.description" = "ダークモードで静止画像を表示";
+
+"wallpaper.create.success" = "成功";
+"wallpaper.create.success.description" = "壁紙をドラッグするか、好きな場所に保存してください";
+"wallpaper.create.failure" = "失敗";
+"wallpaper.create.failure.description" = "おっと！問題が発生しました。";
+"wallpaper.create.save" = "保存";
+"wallpaper.create.set" = "設定";
+"wallpaper.create.share" = "共有";
+"wallpaper.create.new" = "新規";
+"wallpaper.create.cancel" = "キャンセル";
+"wallpaper.create.solar.based" = "ソーラーベース";
+"wallpaper.create.time.based" = "時刻ベース";
+"wallpaper.create.appearance.based" = "外観ベース";
+"wallpaper.create.file.saved" = "壁紙を保存しました";
+"wallpaper.create.new.title" = "新しい壁紙を作成しますか？";
+"wallpaper.create.new.description" = "新しいタイプの壁紙を作成しますか？それとも現在のタイプで繰り返しますか？";
+"wallpaper.create.title" = "作成";
+"wallpaper.create.repeat.title" = "繰り返す";
+"wallpaper.create.set.error" = "壁紙を設定できません。";
+"wallpaper.create.set.success" = "壁紙を設定しました";
+"wallpaper.create.cant.share" = "壁紙を共有できません。";
+
+"wallpaper.set.title" = "壁紙を設定する前に";
+"wallpaper.set.description.title.old" = "壁紙を設定する前に、macOS の「デスクトップとスクリーンセーバー」環境設定で「ダイナミック」タイプを選択してください。";
+"wallpaper.set.description.title" = "壁紙を適用する前に、macOS の「壁紙」設定で「ダイナミック」タイプを選択してください。";
+"wallpaper.set.todo.old" = "1. macOS の「デスクトップとスクリーンセーバー」環境設定を開きます。\n2. 「ダイナミックデスクトップ」壁紙を選択し、タイプを「ダイナミック」に設定します。\n3. 「続ける」をクリックします。";
+"wallpaper.set.todo" = "1. macOS の「壁紙」設定を開きます。\n2. 「ダイナミックデスクトップ」壁紙を選択し、タイプを「ダイナミック」に設定します。\n3. 「続ける」をクリックします。";
+"wallpaper.set.todo.link.old" = "「デスクトップとスクリーンセーバー」";
+"wallpaper.set.todo.link" = "「壁紙」";
+"wallpaper.set.continue" = "続ける";
+"wallpaper.set.skip" = "次回から表示しない";
+
+"solar.main.title" = "ソーラー計算機";
+"solar.main.location.header" = "場所";
+"solar.main.date.header" = "日付";
+"solar.main.result.header" = "結果";
+"solar.main.latitude" = "緯度:";
+"solar.main.longitude" = "経度:";
+"solar.main.date" = "日付:";
+"solar.main.altitude" = "高度:";
+"solar.main.azimuth" = "方位角:";
+"solar.main.value" = "値";
+"solar.main.copied" = "コピーしました";
+"solar.main.sun.timeline" = "太陽タイムライン";
+"solar.main.timezone" = "タイムゾーン";
+"solar.main.location.error" = "おっと！位置情報の取得中に問題が発生しました。もう一度お試しください。";
+"solar.main.dst.title" = "DST";
+"solar.main.dst.tooltip.title" = "夏時間（Daylight Saving Time）";
+"solar.main.dst.tooltip.description" = "春に1時間進め、秋に1時間戻します。";
+"solar.main.abbreviation.tooltip.title" = "GMTオフセット";
+"solar.main.abbreviation.tooltip.description" = "グリニッジ標準時（GMT）と特定の場所の現地時刻との差を時間と分で表した値";
+"solar.main.drag.and.drop.tooltip.title" = "ドラッグ＆ドロップ";
+"solar.main.drag.and.drop.tooltip.description" = "結果を画像にドラッグ＆ドロップするかコピーしてください";
+
+"tip.tips" = "ヒント";
+"tip.started" = "始めましょう";
+"tip.ok" = "了解";
+"tip.solar.title" = "ソーラー壁紙";
+"tip.solar.description" = "この壁紙タイプは太陽の位置を考慮します。時期に応じて最適な画像がデスクトップに表示されます。\n計算は心配無用。「ソーラー計算機」を使えば、写真を撮った場所と時間だけわかれば大丈夫です。";
+"tip.time.title" = "時刻壁紙";
+"tip.time.description" = "時刻がこの壁紙タイプの核心です。設定した時刻に応じて、デスクトップ画像が一日中変化します。";
+"tip.appearance.title" = "外観壁紙";
+"tip.appearance.description" = "最もシンプルな壁紙タイプです。システムの外観変化に応じて、デスクトップ画像が一日中変わります。ライトモードとダークモードの2枚の画像が必要です。";
+"tip.calculator.title" = "ソーラー計算機";
+"tip.calculator.description" = "空の太陽の位置を計算するのに役立ちます。\n1. 写真を撮った場所、日付、時刻を太陽タイムラインで選択してください。正確な時刻がわからない場合は、タイムラインで太陽の高さを確認して写真と照合してください。\n2. 結果を画像にドラッグ＆ドロップするかコピーしてください。";
+
+"dock.new" = "新規";
+
+"toolbar.new.label" = "新規";
+"toolbar.new.palette" = "新規";
+"toolbar.new.tooltip" = "新しい壁紙";
+
+"toolbar.help.label" = "ヘルプ";
+"toolbar.help.palette" = "ヘルプ";
+"toolbar.help.tooltip" = "ヘルプ";
+
+"toolbar.calculator.label" = "計算機";
+"toolbar.calculator.palette" = "ソーラー計算機";
+"toolbar.calculator.tooltip" = "ソーラー計算機";
+
+"wallpaper.toolbar.solar.title" = "ソーラー壁紙";
+"wallpaper.toolbar.time.title" = "時刻壁紙";
+"wallpaper.toolbar.appearance.title" = "外観壁紙";
+
+"support.title" = "Equinoxをサポート";
+"support.localProduct.title" = "寄付";
+"support.shared.title.thankYou" = "サポートありがとうございます！";
+"support.shared.description.openSource" = "Equinoxは私が5年以上メンテナンスしているオープンソースプロジェクトです。";
+"support.shared.close" = "閉じる";
+"support.supported.description.first" = "すでにEquinoxをサポートいただいています。ありがとうございます！";
+"support.supported.description.third" = "またサポートしたい場合は、いつでもチップを贈ることができます。";
+"support.unsupported.title" = "Equinoxを楽しんでいますか？";
+"support.unsupported.description.second" = "お楽しみいただけているなら、小さなチップで今後の開発を支援できます。";
+"support.unsupported.description.third" = "チップは機能のアンロックではなく、開発を支援するためのものです。";
+"support.noProducts.title" = "問題が発生しました";
+"support.noProducts.description.first" = "チップオプションを読み込めませんでした。";
+"support.noProducts.description.second" = "接続を確認するか、しばらくしてからもう一度お試しください。";
+"support.noProducts.description.third" = "Equinoxをサポートいただきありがとうございます。";
+"support.purchaseSuccess.description.first" = "あなたのサポートはとても励みになります。Equinoxは私が5年以上メンテナンスしているオープンソースプロジェクトです。";
+"support.purchaseSuccess.description.second" = "このようなチップがアプリを支え、バグの修正・改善・アップデートのリリースに役立っています。";
+"support.purchaseSuccess.description.third" = "このご購入は機能をアンロックするものではなく、開発を支援するものです。";
+"support.purchaseFailure.title" = "ご心配なく";
+"support.purchaseFailure.description.first" = "購入はキャンセルされました。";
+"support.purchaseFailure.description.second" = "ご希望の際はいつでもEquinoxをサポートできます。";
+"support.purchaseFailure.description.third" = "アプリをご利用いただきありがとうございます！";
