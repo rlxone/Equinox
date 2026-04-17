@@ -45,7 +45,7 @@ public final class SolarCoreImpl: SolarCore {
     // MARK: - Public
 
     public func altitude(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) -> Double {
-        let calendar = getCurrentCalendar
+        let calendar = makeCalendar(timezone: timezone, dlstime: dlstime)
         
         let year = calendar.component(.year, from: date)
         let month = calendar.component(.month, from: date)
@@ -69,7 +69,7 @@ public final class SolarCoreImpl: SolarCore {
     }
     
     public func azimuth(latitude: Double, longitude: Double, date: Date, timezone: Int, dlstime: Int) -> Double {
-        let calendar = getCurrentCalendar
+        let calendar = makeCalendar(timezone: timezone, dlstime: dlstime)
         
         let year = calendar.component(.year, from: date)
         let month = calendar.component(.month, from: date)
@@ -90,5 +90,14 @@ public final class SolarCoreImpl: SolarCore {
             timezone: timezone,
             dlstime: dlstime
         )
+    }
+
+    private func makeCalendar(timezone: Int, dlstime: Int) -> Calendar {
+        var calendar = getCurrentCalendar
+        let secondsFromGMT = (timezone + dlstime) * 60 * 60
+        if let effectiveTimeZone = TimeZone(secondsFromGMT: secondsFromGMT) {
+            calendar.timeZone = effectiveTimeZone
+        }
+        return calendar
     }
 }

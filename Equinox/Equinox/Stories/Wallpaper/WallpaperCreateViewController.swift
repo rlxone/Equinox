@@ -46,7 +46,8 @@ protocol WallpaperCreateViewControllerDelegate: AnyObject {
 extension WallpaperCreateViewController {
     private enum Constants {
         static let thumbnailSize = NSSize(width: 768, height: 425.25)
-        static let imageFilename = "wallpaper.heic"
+        static let imageFilename = "wallpaper"
+        static let imageExtension = "heic"
         static let defaultDelay: TimeInterval = 0.3
     }
 }
@@ -267,8 +268,8 @@ final class WallpaperCreateViewController: ViewController {
             }
 
             let finalURL = panelURL.pathExtension.isEmpty
-                ? panelURL.appendingPathExtension("heic")
-                : panelURL
+                ? panelURL.appendingPathExtension(Constants.imageExtension)
+                : panelURL.deletingPathExtension().appendingPathExtension(Constants.imageExtension)
 
             do {
                 try createdImage.write(to: finalURL, options: .atomic)

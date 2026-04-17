@@ -77,7 +77,9 @@ final class SolarDateAndTimeController {
     }
     
     func setTimezone(identifier: String) {
+        let previousTimezone = currentTimezone.underlyingTimezone
         currentTimezone = cachedTimezones[identifier] ?? currentTimezone
+        currentDate = merge(date: currentDate, seconds: currentTime, sourceTimezone: previousTimezone) ?? currentDate
     }
     
     var selectedTimezone: ExtendedTimezone {
@@ -87,6 +89,10 @@ final class SolarDateAndTimeController {
     var selectedDate: Date {
         return currentDate
     }
+
+    var selectedTimeZone: TimeZone {
+        currentTimezone.underlyingTimezone
+    }
     
     var continentTimezones: [String: [ExtendedTimezone]] {
         return convertToContinentTimezones(timezones: cachedTimezones)
@@ -95,7 +101,7 @@ final class SolarDateAndTimeController {
     var abbreviation: String {
         return getGMTHours(
             from: currentTimezone.underlyingTimezone,
-            date: endOfDay
+            date: currentDate
         )
     }
     
@@ -110,16 +116,16 @@ final class SolarDateAndTimeController {
     func abbreviation(identifier: String) -> String {
         return getGMTHours(
             from: timezone(identifier: identifier).underlyingTimezone,
-            date: endOfDay
+            date: currentDate
         )
     }
     
     var isDaylightSavingTime: Bool {
-        return currentTimezone.underlyingTimezone.isDaylightSavingTime(for: endOfDay)
+        return currentTimezone.underlyingTimezone.isDaylightSavingTime(for: currentDate)
     }
     
     var secondsFromGMT: Int {
-        currentTimezone.underlyingTimezone.secondsFromGMT(for: endOfDay)
+        currentTimezone.underlyingTimezone.secondsFromGMT(for: currentDate)
     }
     
     func convertToHours(seconds: Int) -> Int {
@@ -141,7 +147,7 @@ final class SolarDateAndTimeController {
     // MARK: - Private
     
     private var endOfDay: Date {
-        let calendar = getCurrentCalendar
+        let calendar = makeCalendar(timezone: currentTimezone.underlyingTimezone)
         let endOfDayTimeInterval = TimeInterval(Constants.oneDaySeconds - 1)
         let endOfDay = calendar.startOfDay(for: currentDate).addingTimeInterval(endOfDayTimeInterval)
         return endOfDay
@@ -173,24 +179,16 @@ final class SolarDateAndTimeController {
         return timezonesDictionary
     }
     
-    private func merge(date: Date, seconds: Int) -> Date? {
-        let calendar = getCurrentCalendar
-        
-        let startTime = calendar.startOfDay(for: date)
-        let timeDate = calendar.date(byAdding: .second, value: seconds, to: startTime) ?? date
-        
-        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
-        let timeComponents = calendar.dateComponents([.hour, .minute, .second], from: timeDate)
+    private func merge(date: Date, seconds: Int, sourceTimezone: TimeZone? = nil) -> Date? {
+        let sourceCalendar = makeCalendar(timezone: sourceTimezone ?? currentTimezone.underlyingTimezone)
+        let targetCalendar = makeCalendar(timezone: currentTimezone.underlyingTimezone)
+        let dateComponents = sourceCalendar.dateComponents([.year, .month, .day], from: date)
 
-        var mergedComponents = DateComponents()
-        mergedComponents.year = dateComponents.year
-        mergedComponents.month = dateComponents.month
-        mergedComponents.day = dateComponents.day
-        mergedComponents.hour = timeComponents.hour
-        mergedComponents.minute = timeComponents.minute
-        mergedComponents.second = timeComponents.second
-        
-        return calendar.date(from: mergedComponents)
+        guard let startOfDay = targetCalendar.date(from: dateComponents) else {
+            return nil
+        }
+
+        return targetCalendar.date(byAdding: .second, value: seconds, to: startOfDay)
     }
     
     private func getGMTHours(from timezone: TimeZone, date: Date) -> String {
@@ -211,5 +209,11 @@ final class SolarDateAndTimeController {
         }
         
         return string
+    }
+
+    private func makeCalendar(timezone: TimeZone) -> Calendar {
+        var calendar = getCurrentCalendar
+        calendar.timeZone = timezone
+        return calendar
     }
 }
