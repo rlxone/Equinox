@@ -153,6 +153,7 @@ Equinox is translated into:
 - Korean, by [R3pic](https://github.com/R3pic)
 - Spanish (Latin America) by [rogeruiz](https://github.com/rogeruiz)
 - Japanese — by [monta-gh](https://github.com/monta-gh)
+- Russian — by [Ilya Mudriy](https://github.com/MudriyIlya)
 
 To translate Equinox into another language:
 
