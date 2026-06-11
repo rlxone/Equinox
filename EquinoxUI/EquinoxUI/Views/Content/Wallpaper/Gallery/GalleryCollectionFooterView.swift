@@ -58,6 +58,7 @@ public final class GalleryCollectionFooterView: View {
     
     private lazy var glassView: GlassView = {
         let view = GlassView(style: .regular, fallbackVisualEffect: (material: .toolTip, blendingMode: .withinWindow))
+        view.isEffectInteractive = true
         view.wantsLayer = true
         return view
     }()
@@ -137,6 +138,7 @@ public final class GalleryCollectionFooterView: View {
     private func setupView() {
         wantsLayer = true
         layer?.masksToBounds = false
+        infoLabel.isUserInteractionsEnabled = false
         
         addSubview(glassView)
         glassView.addSubview(infoLabel)
