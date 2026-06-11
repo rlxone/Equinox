@@ -81,4 +81,19 @@ public class GlassView: View {
             layer?.cornerRadius = newValue
         }
     }
+    
+    public var isEffectInteractive: Bool {
+        get {
+            if #available(macOS 27.0, *), let glassEffectView = effectView as? GlassEffectView {
+                return glassEffectView.effectIsInteractive
+            } else {
+                return false
+            }
+        }
+        set {
+            if #available(macOS 27.0, *), let glassEffectView = effectView as? GlassEffectView {
+                glassEffectView.effectIsInteractive = newValue
+            }
+        }
+    }
 }

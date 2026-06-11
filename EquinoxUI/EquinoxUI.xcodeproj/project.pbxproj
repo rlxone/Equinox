@@ -730,7 +730,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlxone.EquinoxUI;
@@ -887,7 +887,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlxone.EquinoxUI;
@@ -918,7 +918,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlxone.EquinoxUI;
@@ -1008,7 +1008,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlxone.EquinoxUI;
