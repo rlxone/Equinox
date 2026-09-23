@@ -22,4 +22,4 @@ function build_scheme()
 
 cd "$(dirname "$0")/../"
 
-build_scheme $workspace_name 'Equinox' 'platform=macOS,arch=x86_64'
+build_scheme $workspace_name 'Equinox' 'platform=macOS'
