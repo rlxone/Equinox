@@ -28,4 +28,4 @@ function test_scheme()
 
 cd "$(dirname "$0")/../"
 
-test_scheme $workspace_name 'EquinoxCoreTests' 'platform=macOS,arch=x86_64'
+test_scheme $workspace_name 'EquinoxCoreTests' 'platform=macOS'

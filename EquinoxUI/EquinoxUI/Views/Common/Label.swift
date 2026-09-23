@@ -78,11 +78,17 @@ public class Label: NSTextField {
         }
     }
 
+    public var isUserInteractionsEnabled = true
+
     public var adjustsFontSizeToFitWidth: Bool = false {
         didSet {
             updateLineBreakBehaviorForFontAdjustment()
             updateFontToFitWidthIfNeeded()
         }
+    }
+
+    public override func hitTest(_ point: NSPoint) -> NSView? {
+        return isUserInteractionsEnabled ? super.hitTest(point) : nil
     }
 
     public override func layout() {

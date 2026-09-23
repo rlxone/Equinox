@@ -69,6 +69,7 @@ public final class NotificationView: View {
     private lazy var glassView: GlassView = {
         let view = GlassView(style: .regular, fallbackVisualEffect: (material: .popover, blendingMode: .withinWindow))
         view.wantsLayer = true
+        view.isEffectInteractive = true
         if #unavailable(macOS 26) {
             view.layer?.borderWidth = Constants.borderWidth
         }
@@ -148,6 +149,7 @@ public final class NotificationView: View {
     private func setupView() {
         wantsLayer = true
         layer?.masksToBounds = false
+        notificationLabel.isUserInteractionsEnabled = false
 
         addSubview(glassView)
         glassView.addSubview(notificationLabel)

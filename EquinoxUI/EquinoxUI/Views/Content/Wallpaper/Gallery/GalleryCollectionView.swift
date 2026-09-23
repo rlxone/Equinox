@@ -91,6 +91,14 @@ extension GalleryCollectionView {
         static let visibilityAnimationDuration: TimeInterval = 0.2
         static let footerAnimationDelay: TimeInterval = 1
     }
+
+    // macOS 26 scroll edge effects are backed by this AppKit internal view.
+    private enum ScrollPocket {
+        static let className = "NSScrollPocket"
+        static let edgeKey = "edge"
+        static let edgeSelector = Selector((edgeKey))
+        static let bottomEdge = 1
+    }
 }
 
 // MARK: - Class
@@ -126,6 +134,19 @@ public final class GalleryCollectionView: NSScrollView {
 
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+
+    public override func layout() {
+        super.layout()
+        updateScrollPocketVisibility()
+    }
+
+    public override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+
+        DispatchQueue.main.async { [weak self] in
+            self?.updateScrollPocketVisibility()
+        }
     }
 
     // MARK: - Setup
@@ -309,12 +330,14 @@ public final class GalleryCollectionView: NSScrollView {
         collectionView.visibleItems().forEach {
             updateTrackingAreas(view: $0.view)
         }
+        updateScrollPocketVisibility()
         updateFooterPin()
     }
     
     @objc
     private func scrollViewFrameDidChange(_ notification: Notification) {
         collectionLayout.invalidateLayout()
+        updateScrollPocketVisibility()
     }
     
     private func updateTrackingAreas(view: NSView) {
@@ -322,6 +345,36 @@ public final class GalleryCollectionView: NSScrollView {
             subview.updateTrackingAreas()
             updateTrackingAreas(view: subview)
         }
+    }
+
+    private func updateScrollPocketVisibility() {
+        guard #available(macOS 26.0, *) else {
+            return
+        }
+
+        subviews
+            .filter(isBottomScrollPocket)
+            .forEach { $0.isHidden = true }
+    }
+
+    private func isBottomScrollPocket(_ view: NSView) -> Bool {
+        guard isScrollPocket(view),
+              view.responds(to: ScrollPocket.edgeSelector),
+              let edge = view.value(forKey: ScrollPocket.edgeKey) as? NSNumber
+        else {
+            return false
+        }
+
+        return edge.intValue == ScrollPocket.bottomEdge
+    }
+
+    private func isScrollPocket(_ view: NSView) -> Bool {
+        if let scrollPocketClass = NSClassFromString(ScrollPocket.className),
+           view.isKind(of: scrollPocketClass) {
+            return true
+        }
+
+        return String(describing: type(of: view)) == ScrollPocket.className
     }
 }
 
