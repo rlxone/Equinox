@@ -5,7 +5,7 @@
 	<key>images</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@bilder@</string>
+		<string>%#@images@</string>
 		<key>images</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -21,7 +21,7 @@
 	<key>delete</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@löschen@</string>
+		<string>%#@delete@</string>
 		<key>delete</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
