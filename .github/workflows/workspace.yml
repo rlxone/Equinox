@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-27
+    runs-on: xcode-27
     steps:
       - uses: actions/checkout@master
       - uses: maxim-lobanov/setup-xcode@v1
