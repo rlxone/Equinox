@@ -51,6 +51,7 @@ final class TooltipPresenter {
     private weak var view: NSView?
     private var trackingArea: NSTrackingArea?
     private var tooltipWindow: TooltipWindow?
+    private var windowObservers: [NSObjectProtocol] = []
     private var isTooltipVisible = false
     private var isMouseEntered = false
     private var delayedShowTooltipTask: DispatchWorkItem?
@@ -67,12 +68,21 @@ final class TooltipPresenter {
             userInfo: nil
         )
         view.addTrackingArea(trackingArea)
+        self.trackingArea = trackingArea
+    }
+
+    deinit {
+        hideTooltip()
+        if let view, let trackingArea {
+            view.removeTrackingArea(trackingArea)
+        }
     }
     
     // MARK: - Life Cycle
     
     func updateTrackingAreas() {
         guard let view = view, let window = view.window else {
+            mouseExited()
             return
         }
         delayedShowTooltipTask?.cancel()
@@ -185,17 +195,48 @@ final class TooltipPresenter {
         )
         tooltipWindow.setWindowFrame(relativeTo: centerPoint)
 
-        window.addChildWindow(tooltipWindow, ordered: .above)
-        tooltipWindow.present(animated: true)
+        guard view.window === window, window.isVisible, !window.isMiniaturized else {
+            return
+        }
 
+        tooltipWindow.orderFront(nil)
         self.tooltipWindow = tooltipWindow
-
         isTooltipVisible = true
+        observeWindow(window)
+        tooltipWindow.present(animated: true)
     }
 
     private func hideTooltip() {
+        windowObservers.forEach(NotificationCenter.default.removeObserver)
+        windowObservers.removeAll()
         tooltipWindow?.close()
         tooltipWindow = nil
         isTooltipVisible = false
+    }
+
+    private func observeWindow(_ window: NSWindow) {
+        let names: [Notification.Name] = [
+            NSWindow.willCloseNotification,
+            NSWindow.didMoveNotification,
+            NSWindow.didResizeNotification,
+            NSWindow.didMiniaturizeNotification,
+            NSWindow.didResignKeyNotification
+        ]
+        for name in names {
+            windowObservers.append(NotificationCenter.default.addObserver(
+                forName: name,
+                object: window,
+                queue: .main
+            ) { [weak self] _ in
+                self?.hideTooltip()
+            })
+        }
+        windowObservers.append(NotificationCenter.default.addObserver(
+            forName: NSApplication.didResignActiveNotification,
+            object: NSApp,
+            queue: .main
+        ) { [weak self] _ in
+            self?.hideTooltip()
+        })
     }
 }
