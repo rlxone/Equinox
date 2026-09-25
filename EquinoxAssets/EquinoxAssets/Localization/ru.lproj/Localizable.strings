@@ -1,0 +1,182 @@
+"menu.main.about" = "Об %@";
+"menu.main.preferences" = "Предпочтения...";
+"menu.main.hide" = "Скрыть %@";
+"menu.main.hide.others" = "Скрыть остальные";
+"menu.main.show.all" = "Показать всё";
+"menu.main.quit" = "Выйти %@";
+
+"menu.file" = "Файл";
+"menu.file.new" = "Новый";
+
+"menu.edit" = "Редактировать";
+"menu.edit.undo" = "Отменить";
+"menu.edit.redo" = "Повторить";
+"menu.edit.cut" = "Вырезать";
+"menu.edit.copy" = "Скопировать";
+"menu.edit.paste" = "Вставить";
+"menu.edit.select.all" = "Выделить всё";
+"menu.edit.delete" = "Удалить";
+
+"menu.window" = "Окно";
+"menu.window.minimize" = "Минимизировать";
+"menu.window.zoom" = "Увеличить";
+"menu.window.show.all" = "Показать всё";
+
+"menu.help" = "Помощь";
+"menu.help.githubProject" = "Проект на GitHub";
+"menu.help.githubFAQ" = "Часто задаваемые вопросы";
+"menu.help.githubIssue" = "Сообщить о проблеме";
+"menu.help.equinoxWebsite" = "Сайт Equinox";
+"menu.help.macAppStoreReview" = "Оценить Equinox в Mac App Store";
+"menu.help.productHunt" = "Equinox на Product Hunt";
+
+"toolbar.more" = "Больше";
+
+"welcome.title" = "Добро пожаловать в Equinox";
+"welcome.welcome" = "Добро пожаловать в %@";
+"welcome.version" = "Версия %@";
+"welcome.github" = "GitHub";
+"welcome.support" = "Поддержка Equinox";
+"welcome.choose.type" = "Выберите тип";
+"welcome.choose.type.description" = "Выберите тип, который лучше всего подходит для ваших обоев";
+"welcome.types.solar" = "Солнечный";
+"welcome.types.solar.description" = "Создайте обои, основанные на расчетах положения солнца. Изображение на рабочем столе меняется в течение дня в зависимости от положения солнца на небе.";
+"welcome.types.time" = "Время";
+"welcome.types.time.description" = "Создайте обои на основе расчета времени. Изображение на рабочем столе меняется в течение дня в зависимости от выбранного Вами времени.";
+"welcome.types.appearance" = "Оформление";
+"welcome.types.appearance.description" = "Создайте обои на основе внешнего вида системы. Вам понадобятся два изображения: одно для светлого режима, другое для темного.";
+
+"wallpaper.main.solar" = "Солнечный";
+"wallpaper.main.time" = "Время";
+"wallpaper.main.appearance" = "Оформление";
+"wallpaper.main.calculator" = "Калькулятор";
+"wallpaper.main.create" = "Создать";
+"wallpaper.main.browse" = "Выберите файлы изображений";
+"wallpaper.main.validate" = "Пожалуйста, заполните все поля";
+
+"wallpaper.gallery.drag.title" = "Перетащите сюда Ваши изображения";
+"wallpaper.gallery.drag.supplementary" = "Файлы должны быть в формате PNG, JPEG, TIFF или HEIC.";
+"wallpaper.gallery.or" = "или";
+"wallpaper.gallery.browse" = "Выбрать";
+"wallpaper.gallery.azimuth" = "Азимут:";
+"wallpaper.gallery.azimuth.value" = "Значение";
+"wallpaper.gallery.altitude" = "Высота:";
+"wallpaper.gallery.altitude.value" = "Значение";
+"wallpaper.gallery.time" = "Время:";
+"wallpaper.gallery.tooltip.appearance.title" = "Оформление";
+"wallpaper.gallery.tooltip.appearance.description" = "Графический режим. Только для одного изображения можно задать светлое или темное оформление.";
+"wallpaper.gallery.tooltip.primary.title" = "Основной";
+"wallpaper.gallery.tooltip.primary.description" = "Основное изображение будет показано в виде миниатюры обоев.";
+"wallpaper.gallery.wrong.images.type" = "Некоторые файлы (%d) имеют неподдерживаемый тип изображения. Поддерживаются только PNG, JPEG, TIFF и HEIC.";
+
+"wallpaper.appearance.auto.title" = "Автоматически";
+"wallpaper.appearance.auto.description" = "Используйте фоновое изображение по умолчанию";
+"wallpaper.appearance.light.title" = "Светлый (неподвижный)";
+"wallpaper.appearance.light.description" = "Показать статичное изображение в светлом режиме";
+"wallpaper.appearance.dark.title" = "Темный (неподвижный)";
+"wallpaper.appearance.dark.description" = "Показать статичное изображение в темном режиме";
+
+"wallpaper.create.success" = "Успех";
+"wallpaper.create.success.description" = "Перетащите свои обои или сохраните их там, где Вы хотите";
+"wallpaper.create.failure" = "Ошибка";
+"wallpaper.create.failure.description" = "Упс! Что-то пошло не так.";
+"wallpaper.create.save" = "Сохранить";
+"wallpaper.create.set" = "Установить";
+"wallpaper.create.share" = "Поделиться";
+"wallpaper.create.new" = "Новый";
+"wallpaper.create.cancel" = "Отменить";
+"wallpaper.create.solar.based" = "Основаны на положении солнца";
+"wallpaper.create.time.based" = "Основаны на времени";
+"wallpaper.create.appearance.based" = "Основаны на внешнем виде";
+"wallpaper.create.file.saved" = "Обои сохранены";
+"wallpaper.create.new.title" = "Создать новые обои?";
+"wallpaper.create.new.description" = "Вы хотели бы создать новый тип обоев или повторить существующие?";
+"wallpaper.create.title" = "Создать";
+"wallpaper.create.repeat.title" = "Повторить";
+"wallpaper.create.set.error" = "Не удается установить обои.";
+"wallpaper.create.set.success" = "Обои успешно установлены";
+"wallpaper.create.cant.share" = "Не удаётся поделиться обоями.";
+
+"wallpaper.set.title" = "Перед установкой обоев";
+"wallpaper.set.description.title.old" = "Вам необходимо установить тип “Динамический” в настройках macOS “Рабочий стол и экранная заставка”, прежде чем Вы сможете установить обои.";
+"wallpaper.set.description.title" = "Вам необходимо установить тип “Динамический” в настройках macOS “Обои”, прежде чем Вы сможете установить обои.";
+"wallpaper.set.todo.old" = "1. Откройте настройки macOS “Рабочий стол и экранная заставка”.\n2. Выберите любые обои “Динамические обои” и установите для них тип “Динамический”.\n3. Нажмите “Продолжить”.";
+"wallpaper.set.todo" = "1. Откройте настройки “Обоев” для macOS.\n2. Выберите любые обои “Динамические обои” и установите для них тип “Динамический”.\n3. Нажмите “Продолжить”.";
+"wallpaper.set.todo.link.old" = "“Рабочий стол и экранная заставка”";
+"wallpaper.set.todo.link" = "“Обои”";
+"wallpaper.set.continue" = "Продолжить";
+"wallpaper.set.skip" = "Больше не показывать это сообщение";
+
+"solar.main.title" = "Солнечный калькулятор";
+"solar.main.location.header" = "Местоположение";
+"solar.main.date.header" = "Дата";
+"solar.main.result.header" = "Результат";
+"solar.main.latitude" = "Широта:";
+"solar.main.longitude" = "Долгота:";
+"solar.main.date" = "Дата:";
+"solar.main.altitude" = "Высота:";
+"solar.main.azimuth" = "Азимут:";
+"solar.main.value" = "Значение";
+"solar.main.copied" = "Скопировано";
+"solar.main.sun.timeline" = "График положения солнца";
+"solar.main.timezone" = "Часовые пояса";
+"solar.main.location.error" = "Упс! При определении вашего местоположения что-то пошло не так. Пожалуйста, попробуйте снова.";
+"solar.main.dst.title" = "Летнее время";
+"solar.main.dst.tooltip.title" = "Переход на летнее время";
+"solar.main.dst.tooltip.description" = "Весной часы переводятся на один час вперед, а осенью - на один час назад.";
+"solar.main.abbreviation.tooltip.title" = "Смещение по Гринвичу";
+"solar.main.abbreviation.tooltip.description" = "Разница во времени между средним временем по Гринвичу (GMT) и местным временем в конкретном месте, выраженная в часах и минутах";
+"solar.main.drag.and.drop.tooltip.title" = "Перетащите сюда";
+"solar.main.drag.and.drop.tooltip.description" = "Перетащите или скопируйте результат на свое изображение";
+
+"tip.tips" = "Советы";
+"tip.started" = "Начать";
+"tip.ok" = "Понятно";
+"tip.solar.title" = "Солнечные обои";
+"tip.solar.description" = "Главная особенность этого типа обоев в том, что они учитывают положение солнца. В зависимости от времени года Вы будете видеть на рабочем столе наиболее подходящее изображение.\nНе беспокойтесь о вычислениях. С помощью «Солнечного калькулятора» Вам нужно лишь знать, где и когда Вы сделали снимок.";
+"tip.time.title" = "Временные обои";
+"tip.time.description" = "Время – ключ этого типа обоев. Изображение на рабочем столе меняется в течение дня в зависимости от выбранного Вами времени.";
+"tip.appearance.title" = "Обои фформления";
+"tip.appearance.description" = "Это максимально простой тип обоев. Изображение рабочего стола меняется в течение дня в зависимости от изменений внешнего вида системы. Вам понадобятся два изображения: одно для светлого режима и одно для темного режима.";
+"tip.calculator.title" = "Солнечный калькулятор";
+"tip.calculator.description" = "Он поможет Вам рассчитать положение солнца на небе.\n1. Выберите место, дату и время на временной шкале солнца, когда Вы сделали фотографию. Если Вы не знаете точное время, используйте временную шкалу солнца, чтобы увидеть, насколько высоко или низко находится солнце на небе, и сопоставьте это с Вашими фотографиями.\n2. Перетащите или скопируйте результат на Ваше изображение.";
+
+"dock.new" = "Новые";
+
+"toolbar.new.label" = "Новые";
+"toolbar.new.palette" = "Новые";
+"toolbar.new.tooltip" = "Новые Обои";
+
+"toolbar.help.label" = "Помощь";
+"toolbar.help.palette" = "Помощь";
+"toolbar.help.tooltip" = "Помощь";
+
+"toolbar.calculator.label" = "Калькулятор";
+"toolbar.calculator.palette" = "Солнечный калькулятор";
+"toolbar.calculator.tooltip" = "Солнечный калькулятор";
+
+"wallpaper.toolbar.solar.title" = "Солнечные Обои";
+"wallpaper.toolbar.time.title" = "Временные Обои";
+"wallpaper.toolbar.appearance.title" = "Обои Оформления";
+
+"support.title" = "Поддержка Equinox";
+"support.localProduct.title" = "Пожертвование";
+"support.shared.title.thankYou" = "Благодарим за Вашу поддержку!";
+"support.shared.description.openSource" = "Equinox - это проект с открытым исходным кодом, который я поддерживаю уже более 5 лет.";
+"support.shared.close" = "Закрыть";
+"support.supported.description.first" = "Вы уже поддержали Equinox — Спасибо Вам!";
+"support.supported.description.third" = "Если Вы захотите поддержать проект еще раз, Вы можете оставить чаевые в любое время.";
+"support.unsupported.title" = "Нравится Equinox?";
+"support.unsupported.description.second" = "Если Вам нравится им пользоваться, Вы можете поддержать его будущее небольшими чаевыми.";
+"support.unsupported.description.third" = "Чаевые не открывают никаких новых функций — они просто поддерживают разработку.";
+"support.noProducts.title" = "Что-то пошло не так.";
+"support.noProducts.description.first" = "Не удалось загрузить варианты чаевых.";
+"support.noProducts.description.second" = "Пожалуйста, проверьте подключение или повторите попытку через некоторое время.";
+"support.noProducts.description.third" = "Спасибо за Вашу поддержку Equinox.";
+"support.purchaseSuccess.description.first" = "Ваша поддержка очень важна для меня. Equinox - это проект с открытым исходным кодом, который я поддерживаю уже более 5 лет.";
+"support.purchaseSuccess.description.second" = "Подобные чаевые помогают поддерживать работу приложения — исправлять ошибки, улучшать его и подготавливать новые обновления.";
+"support.purchaseSuccess.description.third" = "Данная покупка не открывает дополнительных возможностей — просто поддерживаете разработку.";
+"support.purchaseFailure.title" = "Не беспокойтесь";
+"support.purchaseFailure.description.first" = "Покупка была отменена.";
+"support.purchaseFailure.description.second" = "Вы можете поддержать Equinox в любое время, если пожелаете.";
+"support.purchaseFailure.description.third" = "Благодарим Вас за использование приложения!";
