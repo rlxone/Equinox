@@ -39,7 +39,6 @@ public enum Image {
     public static let solar = Bundler.current.bundle.image(forResource: "Solar")!
     public static let time = Bundler.current.bundle.image(forResource: "Time")!
     public static let appearance = Bundler.current.bundle.image(forResource: "Appearance")!
-    public static let back = Bundler.current.bundle.image(forResource: "Back")!
     public static let set = Bundler.current.bundle.image(forResource: "Set")!
     public static let file = Bundler.current.bundle.image(forResource: "File")!
     public static let cancel = Bundler.current.bundle.image(forResource: "Cancel")!
