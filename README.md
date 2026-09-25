@@ -128,7 +128,8 @@ The Solar calculator helps you determine the sun’s position in the sky.
   **A:** Open **Settings/Preferences → Date & Time**, then change the time to see the wallpaper update.
 
 ## Requirements
-- macOS 10.14 (Mojave) and later
+- Equinox 7.0 and later requires macOS 12.0 (Monterey) and later.
+- For macOS 10.14 (Mojave) or 10.15 (Catalina), download [Equinox 6.0](https://github.com/rlxone/Equinox/releases/tag/v6.0), the latest release compatible with those macOS versions.
 
 ## Libraries
 - **[SolarNOAA](https://github.com/rlxone/SolarNOAA)**
