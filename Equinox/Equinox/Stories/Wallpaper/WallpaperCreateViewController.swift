@@ -30,6 +30,7 @@ import AppKit
 import EquinoxAssets
 import EquinoxCore
 import EquinoxUI
+import UniformTypeIdentifiers
 
 // MARK: - Protocols
 
@@ -367,7 +368,7 @@ extension WallpaperCreateViewController: DragAnimatedImageViewDelegate {
         }
         
         imageProvider.loadImage(url: url, resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true)) { image in
-            let provider = NSFilePromiseProvider(fileType: kUTTypeImage as String, delegate: self)
+            let provider = NSFilePromiseProvider(fileType: UTType.image.identifier, delegate: self)
             let draggingItem = NSDraggingItem(pasteboardWriter: provider)
             draggingItem.setDraggingFrame(dragAnimatedImageView.bounds, contents: image)
             dragAnimatedImageView.beginDraggingSession(with: [draggingItem], event: event, source: self)
