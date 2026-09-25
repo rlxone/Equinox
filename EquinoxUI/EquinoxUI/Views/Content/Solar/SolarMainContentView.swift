@@ -123,7 +123,7 @@ public final class SolarMainContentView: VisualEffectView {
         mapView.showsCompass = true
         mapView.showsScale = true
         mapView.showsBuildings = true
-        mapView.showsPointsOfInterest = true
+        mapView.pointOfInterestFilter = .includingAll
         if #available(macOS 11, *) {
             mapView.showsPitchControl = true
         }

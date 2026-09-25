@@ -7,6 +7,11 @@ xcshareddata/
 */xcshareddata/*
 !*/xcshareddata/IDETemplateMacros.plist
 
+!Equinox/Equinox.xcodeproj/xcshareddata/
+!Equinox/Equinox.xcodeproj/xcshareddata/xcschemes/
+Equinox/Equinox.xcodeproj/xcshareddata/xcschemes/*
+!Equinox/Equinox.xcodeproj/xcshareddata/xcschemes/Equinox.xcscheme
+
 !EquinoxCore/EquinoxCore.xcodeproj/xcshareddata/
 !EquinoxCore/EquinoxCore.xcodeproj/xcshareddata/xcschemes/
 EquinoxCore/EquinoxCore.xcodeproj/xcshareddata/xcschemes/*
