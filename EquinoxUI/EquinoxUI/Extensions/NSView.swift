@@ -30,9 +30,6 @@ import AppKit
 
 extension NSView {
     func runWithEffectiveAppearance(changes: () -> Void) {
-        let oldAppearance = NSAppearance.current
-        NSAppearance.current = effectiveAppearance
-        changes()
-        NSAppearance.current = oldAppearance
+        effectiveAppearance.performAsCurrentDrawingAppearance(changes)
     }
 }
