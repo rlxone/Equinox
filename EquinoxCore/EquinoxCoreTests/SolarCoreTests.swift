@@ -63,9 +63,42 @@ class SolarCoreTests: XCTestCase {
         // Then
         XCTAssertEqual(altitude, result)
     }
+
+    func testLocalNoonUsesLocalTimeComponents() {
+        // Given
+        let longitude = -87.623177
+        let latitude = 41.881832
+        let date = getDate(
+            day: 28,
+            month: 9,
+            year: 2_021,
+            hour: 12,
+            minute: 0,
+            second: 0,
+            timezoneIdentifier: "America/Chicago"
+        )
+        let azimuthResult = 165.47055862775676
+        let altitudeResult = 44.867448682164884
+
+        // When
+        let azimuth = solarCore.azimuth(latitude: latitude, longitude: longitude, date: date, timezone: -5, dlstime: 0)
+        let altitude = solarCore.altitude(latitude: latitude, longitude: longitude, date: date, timezone: -5, dlstime: 0)
+
+        // Then
+        XCTAssertEqual(azimuth, azimuthResult)
+        XCTAssertEqual(altitude, altitudeResult)
+    }
     
-    private func getDate(day: Int, month: Int, year: Int, hour: Int, minute: Int, second: Int) -> Date {
-        let timeZone = TimeZone(abbreviation: "GMT") ?? .current
+    private func getDate(
+        day: Int,
+        month: Int,
+        year: Int,
+        hour: Int,
+        minute: Int,
+        second: Int,
+        timezoneIdentifier: String = "GMT"
+    ) -> Date {
+        let timeZone = TimeZone(identifier: timezoneIdentifier) ?? TimeZone(abbreviation: "GMT") ?? .current
         
         var dateComponents = DateComponents()
         dateComponents.timeZone = timeZone

@@ -26,6 +26,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import AppKit
+import CoreServices
 import EquinoxCore
 import XCTest
 
@@ -208,6 +210,28 @@ class MetadataCoreTests: XCTestCase {
         XCTAssertNotNil(metadata?.latitude)
         XCTAssertNotNil(metadata?.createDate)
     }
+
+    func testImageMetadataPreservesExifTimezone() throws {
+        guard #available(macOS 10.15, *) else {
+            throw XCTSkip("EXIF offset metadata requires macOS 10.15 or newer")
+        }
+
+        // Given
+        let timezone = try XCTUnwrap(TimeZone(secondsFromGMT: -(5 * 60 * 60)))
+        let url = try makeImage(
+            exifDictionary: [
+                kCGImagePropertyExifDateTimeOriginal as String: "2021:09:28 12:00:00",
+                kCGImagePropertyExifOffsetTimeOriginal as String: "-05:00"
+            ]
+        )
+
+        // When
+        let metadata = try metadataCore.getImageMetadata(for: url)
+
+        // Then
+        XCTAssertEqual(metadata.timezone?.secondsFromGMT(), timezone.secondsFromGMT())
+        XCTAssertEqual(metadata.createDate, makeDate(day: 28, month: 9, year: 2_021, hour: 12, minute: 0, second: 0, timezone: timezone))
+    }
     
     private func getTestMetadata(key: String) -> String? {
         // swiftlint:disable:next force_unwrapping
@@ -226,7 +250,10 @@ class MetadataCoreTests: XCTestCase {
     
     private func getDate(day: Int, month: Int, year: Int, hour: Int, minute: Int, second: Int) throws -> Date {
         let timezone = TimeZone(abbreviation: "GMT") ?? .current
-        
+        return makeDate(day: day, month: month, year: year, hour: hour, minute: minute, second: second, timezone: timezone)
+    }
+
+    private func makeDate(day: Int, month: Int, year: Int, hour: Int, minute: Int, second: Int, timezone: TimeZone) -> Date {
         var dateComponents = DateComponents()
         dateComponents.day = day
         dateComponents.month = month
@@ -242,5 +269,33 @@ class MetadataCoreTests: XCTestCase {
         // swiftlint:disable:next force_unwrapping
         let date = calendar.date(from: dateComponents)!
         return date
+    }
+
+    private func makeImage(exifDictionary: [String: Any]) throws -> URL {
+        let filename = UUID().uuidString + ".jpg"
+        let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(filename)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let context = try XCTUnwrap(
+            CGContext(
+                data: nil,
+                width: 1,
+                height: 1,
+                bitsPerComponent: 8,
+                bytesPerRow: 4,
+                space: colorSpace,
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            )
+        )
+        context.setFillColor(NSColor.white.cgColor)
+        context.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+
+        let image = try XCTUnwrap(context.makeImage())
+        let destination = try XCTUnwrap(
+            CGImageDestinationCreateWithURL(url as CFURL, kUTTypeJPEG, 1, nil)
+        )
+        let properties = [kCGImagePropertyExifDictionary as String: exifDictionary] as CFDictionary
+        CGImageDestinationAddImage(destination, image, properties)
+        XCTAssertTrue(CGImageDestinationFinalize(destination))
+        return url
     }
 }
