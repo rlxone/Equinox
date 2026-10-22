@@ -1,0 +1,182 @@
+"menu.main.about" = "دربارهٔ %@";
+"menu.main.preferences" = "تنظیمات...";
+"menu.main.hide" = "پنهان کردن %@";
+"menu.main.hide.others" = "پنهان کردن بقیه";
+"menu.main.show.all" = "نمایش همه";
+"menu.main.quit" = "خروج از %@";
+
+"menu.file" = "فایل";
+"menu.file.new" = "جدید";
+
+"menu.edit" = "ویرایش";
+"menu.edit.undo" = "واگرد";
+"menu.edit.redo" = "بازانجام";
+"menu.edit.cut" = "برش";
+"menu.edit.copy" = "کپی";
+"menu.edit.paste" = "چسباندن";
+"menu.edit.select.all" = "انتخاب همه";
+"menu.edit.delete" = "حذف";
+
+"menu.window" = "پنجره";
+"menu.window.minimize" = "کوچک کردن";
+"menu.window.zoom" = "بزرگ‌نمایی";
+"menu.window.show.all" = "نمایش همه";
+
+"menu.help" = "راهنما";
+"menu.help.githubProject" = "پروژهٔ GitHub";
+"menu.help.githubFAQ" = "پرسش‌های متداول";
+"menu.help.githubIssue" = "گزارش مشکل";
+"menu.help.equinoxWebsite" = "وب‌سایت Equinox";
+"menu.help.macAppStoreReview" = "امتیاز به Equinox در Mac App Store";
+"menu.help.productHunt" = "برنامهٔ Equinox در Product Hunt";
+
+"toolbar.more" = "بیشتر";
+
+"welcome.title" = "به Equinox خوش آمدید";
+"welcome.welcome" = "به %@ خوش آمدید";
+"welcome.version" = "نسخهٔ %@";
+"welcome.github" = "GitHub";
+"welcome.support" = "حمایت از Equinox";
+"welcome.choose.type" = "انتخاب نوع";
+"welcome.choose.type.description" = "نوعی را انتخاب کنید که بیشترین تناسب را با تصویر پس‌زمینهٔ شما دارد";
+"welcome.types.solar" = "خورشیدی";
+"welcome.types.solar.description" = "یک تصویر پس‌زمینه بر اساس محاسبات خورشیدی بسازید. تصویر دسکتاپ در طول روز بر اساس موقعیت خورشید در آسمان تغییر می‌کند.";
+"welcome.types.time" = "زمانی";
+"welcome.types.time.description" = "یک تصویر پس‌زمینه بر اساس محاسبات زمانی بسازید. تصویر دسکتاپ در طول روز بر اساس زمان انتخابی شما تغییر می‌کند.";
+"welcome.types.appearance" = "ظاهر";
+"welcome.types.appearance.description" = "یک تصویر پس‌زمینه بر اساس ظاهر سیستم بسازید. شما به دو تصویر نیاز دارید: یکی برای حالت روشن و یکی برای حالت تیره.";
+
+"wallpaper.main.solar" = "خورشیدی";
+"wallpaper.main.time" = "زمانی";
+"wallpaper.main.appearance" = "ظاهر";
+"wallpaper.main.calculator" = "ماشین‌حساب";
+"wallpaper.main.create" = "ساختن";
+"wallpaper.main.browse" = "مرور فایل‌های تصویر";
+"wallpaper.main.validate" = "لطفاً همهٔ فیلدها را پر کنید";
+
+"wallpaper.gallery.drag.title" = "تصاویر خود را بکشید و رها کنید";
+"wallpaper.gallery.drag.supplementary" = "فایل‌ها باید PNG، JPEG، TIFF یا HEIC باشند.";
+"wallpaper.gallery.or" = "یا";
+"wallpaper.gallery.browse" = "مرور";
+"wallpaper.gallery.azimuth" = "سمت:";
+"wallpaper.gallery.azimuth.value" = "مقدار";
+"wallpaper.gallery.altitude" = "ارتفاع:";
+"wallpaper.gallery.altitude.value" = "مقدار";
+"wallpaper.gallery.time" = "زمان:";
+"wallpaper.gallery.tooltip.appearance.title" = "ظاهر";
+"wallpaper.gallery.tooltip.appearance.description" = "حالت گرافیکی. فقط یک تصویر می‌تواند به عنوان ظاهر روشن یا تیره تنظیم شود.";
+"wallpaper.gallery.tooltip.primary.title" = "اصلی";
+"wallpaper.gallery.tooltip.primary.description" = "تصویر اصلی به عنوان بندانگشتی تصویر پس‌زمینه نمایش داده خواهد شد.";
+"wallpaper.gallery.wrong.images.type" = "برخی از فایل‌ها (%d) نوع تصویر پشتیبانی‌نشده‌ای دارند. فقط PNG، JPEG، TIFF و HEIC پشتیبانی می‌شوند.";
+
+"wallpaper.appearance.auto.title" = "خودکار";
+"wallpaper.appearance.auto.description" = "استفاده از تصویر پس‌زمینهٔ پیش‌فرض";
+"wallpaper.appearance.light.title" = "روشن (ثابت)";
+"wallpaper.appearance.light.description" = "نمایش یک تصویر ثابت در حالت روشن";
+"wallpaper.appearance.dark.title" = "تیره (ثابت)";
+"wallpaper.appearance.dark.description" = "نمایش یک تصویر ثابت در حالت تیره";
+
+"wallpaper.create.success" = "موفقیت";
+"wallpaper.create.success.description" = "تصویر پس‌زمینهٔ خود را به بیرون بکشید یا آن را در هر کجا که می‌خواهید ذخیره کنید";
+"wallpaper.create.failure" = "ناموفق";
+"wallpaper.create.failure.description" = "اوه! مشکلی پیش آمد.";
+"wallpaper.create.save" = "ذخیره";
+"wallpaper.create.set" = "تنظیم";
+"wallpaper.create.share" = "اشتراک‌گذاری";
+"wallpaper.create.new" = "جدید";
+"wallpaper.create.cancel" = "لغو";
+"wallpaper.create.solar.based" = "بر پایهٔ خورشیدی";
+"wallpaper.create.time.based" = "بر پایهٔ زمانی";
+"wallpaper.create.appearance.based" = "بر پایهٔ ظاهر";
+"wallpaper.create.file.saved" = "تصویر پس‌زمینه ذخیره شد";
+"wallpaper.create.new.title" = "ساخت تصویر پس‌زمینهٔ جدید؟";
+"wallpaper.create.new.description" = "آیا مایلید نوع جدیدی از تصویر پس‌زمینه بسازید یا همین نوع فعلی را تکرار کنید؟";
+"wallpaper.create.title" = "ساختن";
+"wallpaper.create.repeat.title" = "تکرار";
+"wallpaper.create.set.error" = "تنظیم تصویر پس‌زمینه امکان‌پذیر نیست.";
+"wallpaper.create.set.success" = "تصویر پس‌زمینه با موفقیت تنظیم شد";
+"wallpaper.create.cant.share" = "اشتراک‌گذاری تصویر پس‌زمینه امکان‌پذیر نیست.";
+
+"wallpaper.set.title" = "پیش از تنظیم تصویر پس‌زمینه";
+"wallpaper.set.description.title.old" = "پیش از تنظیم تصویر پس‌زمینه، باید در تنظیمات «Desktop & Screen Saver» در macOS نوع را روی «Dynamic» تنظیم کنید.";
+"wallpaper.set.description.title" = "پیش از تنظیم تصویر پس‌زمینه، باید در تنظیمات «Wallpaper» در macOS نوع را روی «Dynamic» تنظیم کنید.";
+"wallpaper.set.todo.old" = "1. تنظیمات «Desktop & Screen Saver» در macOS را باز کنید.\n2. یکی از تصاویر پس‌زمینهٔ «Dynamic Desktop» را انتخاب کرده و نوع آن را روی «Dynamic» قرار دهید.\n3. روی «ادامه» کلیک کنید.";
+"wallpaper.set.todo" = "1. تنظیمات «Wallpaper» در macOS را باز کنید.\n2. یکی از تصاویر پس‌زمینهٔ «Dynamic Desktop» را انتخاب کرده و نوع آن را روی «Dynamic» قرار دهید.\n3. روی «ادامه» کلیک کنید.";
+"wallpaper.set.todo.link.old" = "«Desktop & Screen Saver»";
+"wallpaper.set.todo.link" = "«Wallpaper»";
+"wallpaper.set.continue" = "ادامه";
+"wallpaper.set.skip" = "این پیام را دیگر نشان نده";
+
+"solar.main.title" = "ماشین‌حساب خورشیدی";
+"solar.main.location.header" = "موقعیت";
+"solar.main.date.header" = "تاریخ";
+"solar.main.result.header" = "نتیجه";
+"solar.main.latitude" = "عرض جغرافیایی:";
+"solar.main.longitude" = "طول جغرافیایی:";
+"solar.main.date" = "تاریخ:";
+"solar.main.altitude" = "ارتفاع:";
+"solar.main.azimuth" = "سمت:";
+"solar.main.value" = "مقدار";
+"solar.main.copied" = "کپی شد";
+"solar.main.sun.timeline" = "خط زمانی خورشید";
+"solar.main.timezone" = "منطقه‌های زمانی";
+"solar.main.location.error" = "اوه! هنگام دریافت موقعیت مکانی شما مشکلی پیش آمد. لطفاً دوباره تلاش کنید.";
+"solar.main.dst.title" = "ساعت تابستانی";
+"solar.main.dst.tooltip.title" = "ساعت تابستانی";
+"solar.main.dst.tooltip.description" = "ساعت‌ها در بهار یک ساعت به جلو و در پاییز یک ساعت به عقب کشیده می‌شوند.";
+"solar.main.abbreviation.tooltip.title" = "اختلاف زمانی با GMT";
+"solar.main.abbreviation.tooltip.description" = "اختلاف زمانی میان ساعت هماهنگ گرینویچ (GMT) و زمان محلی در یک موقعیت مکانی مشخص، که به ساعت و دقیقه بیان می‌شود";
+"solar.main.drag.and.drop.tooltip.title" = "کشیدن و رها کردن";
+"solar.main.drag.and.drop.tooltip.description" = "نتیجه را روی تصویر خود بکشید و رها کنید یا کپی نمایید";
+
+"tip.tips" = "نکات";
+"tip.started" = "شروع کنید";
+"tip.ok" = "متوجه شدم";
+"tip.solar.title" = "تصویر پس‌زمینهٔ خورشیدی";
+"tip.solar.description" = "ویژگی اصلی این نوع تصویر پس‌زمینه این است که موقعیت خورشید را در نظر می‌گیرد. بسته به زمان سال، مرتبط‌ترین تصویر را در دسکتاپ خود خواهید دید.\nنگران محاسبات نباشید. با کمک «ماشین‌حساب خورشیدی»، فقط کافی است بدانید عکس را کجا و چه زمانی گرفته‌اید.";
+"tip.time.title" = "تصویر پس‌زمینهٔ زمانی";
+"tip.time.description" = "زمان کلید این نوع تصویر پس‌زمینه است. تصویر دسکتاپ در طول روز، بر اساس زمان انتخابی شما تغییر می‌کند.";
+"tip.appearance.title" = "تصویر پس‌زمینهٔ ظاهر";
+"tip.appearance.description" = "این نوع تصویر پس‌زمینه بسیار ساده است. تصویر دسکتاپ در طول روز بر اساس تغییرات ظاهر سیستم تغییر می‌کند. شما به دو تصویر نیاز دارید: یکی برای حالت روشن و یکی برای حالت تیره.";
+"tip.calculator.title" = "ماشین‌حساب خورشیدی";
+"tip.calculator.description" = "این بخش به شما کمک می‌کند موقعیت خورشید در آسمان را محاسبه کنید.\n1. مکان، تاریخ و زمان گرفتن عکس را روی خط زمانی خورشید انتخاب کنید. اگر زمان دقیق را نمی‌دانید، از خط زمانی خورشید استفاده کنید تا ببینید خورشید چقدر در آسمان بالا یا پایین است و آن را با عکس‌هایتان مطابقت دهید.\n2. نتیجه را روی تصویر خود بکشید و رها کنید یا کپی نمایید.";
+
+"dock.new" = "جدید";
+
+"toolbar.new.label" = "جدید";
+"toolbar.new.palette" = "جدید";
+"toolbar.new.tooltip" = "تصویر پس‌زمینهٔ جدید";
+
+"toolbar.help.label" = "راهنما";
+"toolbar.help.palette" = "راهنما";
+"toolbar.help.tooltip" = "راهنما";
+
+"toolbar.calculator.label" = "ماشین‌حساب";
+"toolbar.calculator.palette" = "ماشین‌حساب خورشیدی";
+"toolbar.calculator.tooltip" = "ماشین‌حساب خورشیدی";
+
+"wallpaper.toolbar.solar.title" = "تصویر پس‌زمینهٔ خورشیدی";
+"wallpaper.toolbar.time.title" = "تصویر پس‌زمینهٔ زمانی";
+"wallpaper.toolbar.appearance.title" = "تصویر پس‌زمینهٔ ظاهر";
+
+"support.title" = "حمایت از Equinox";
+"support.localProduct.title" = "حمایت مالی";
+"support.shared.title.thankYou" = "از حمایت شما سپاسگزاریم!";
+"support.shared.description.openSource" = "برنامهٔ Equinox پروژه‌ای متن‌باز است که بیش از ۵ سال از آن نگهداری می‌کنم.";
+"support.shared.close" = "بستن";
+"support.supported.description.first" = "شما قبلاً از Equinox حمایت کرده‌اید - سپاسگزاریم!";
+"support.supported.description.third" = "اگر مایلید دوباره از پروژه حمایت کنید، می‌توانید در هر زمان کمک مالی دیگری ارسال کنید.";
+"support.unsupported.title" = "از Equinox لذت می‌برید؟";
+"support.unsupported.description.second" = "اگر از استفاده از آن لذت می‌برید، می‌توانید با یک کمک مالی کوچک از آیندهٔ آن حمایت کنید.";
+"support.unsupported.description.third" = "کمک‌های مالی قفل هیچ قابلیتی را باز نمی‌کنند - آن‌ها صرفاً از توسعهٔ برنامه حمایت می‌کنند.";
+"support.noProducts.title" = "مشکلی پیش آمد";
+"support.noProducts.description.first" = "گزینه‌های کمک مالی بارگیری نشدند.";
+"support.noProducts.description.second" = "لطفاً اتصال خود را بررسی کرده یا چند لحظه دیگر دوباره تلاش کنید.";
+"support.noProducts.description.third" = "از حمایت شما از Equinox سپاسگزاریم.";
+"support.purchaseSuccess.description.first" = "حمایت شما ارزش زیادی دارد. برنامهٔ Equinox پروژه‌ای متن‌باز است که بیش از ۵ سال از آن نگهداری می‌کنم.";
+"support.purchaseSuccess.description.second" = "کمک‌های مالی مانند این به زنده نگه‌داشتن برنامه کمک می‌کنند — رفع باگ‌ها، بهبود آن و ارائهٔ به‌روزرسانی‌های جدید.";
+"support.purchaseSuccess.description.third" = "این خرید قفل قابلیتی را باز نمی‌کند — صرفاً از توسعهٔ برنامه حمایت می‌کند.";
+"support.purchaseFailure.title" = "نگران نباشید";
+"support.purchaseFailure.description.first" = "خرید لغو شد.";
+"support.purchaseFailure.description.second" = "اگر مایل باشید می‌توانید هر زمان از Equinox حمایت کنید.";
+"support.purchaseFailure.description.third" = "از اینکه از برنامه استفاده می‌کنید سپاسگزاریم!";

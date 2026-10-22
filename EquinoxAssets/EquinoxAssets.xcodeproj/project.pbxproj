@@ -34,7 +34,9 @@
 		D99A54542C907D05007CC8FA /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D99A54552C907D05007CC8FA /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "es-419"; path = "es-419.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		E341F5482A9C8FCA007637CB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		84F5BAC0EBFF6897EE3D3DE1 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E341F5492A9C8FCA007637CB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = tr; path = tr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		0080CBC0FFE79EB2737E48AC /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fa; path = fa.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F360471D26ECE63E0009F725 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		F3765729267FBF8900AC4191 /* Bundler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundler.swift; sourceTree = "<group>"; };
 		F399A50C268780B800ED45EF /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				ko,
 				"es-419",
 				de,
+				fa,
 			);
 			mainGroup = F3C88A0A267F7FE800A51A1A;
 			productRefGroup = F3C88A15267F7FE800A51A1A /* Products */;
@@ -224,6 +227,7 @@
 				3D7BA8C82932AD2F00B501FF /* en */,
 				3D7BA8CA2932AD3300B501FF /* fr */,
 				E341F5492A9C8FCA007637CB /* tr */,
+				0080CBC0FFE79EB2737E48AC /* fa */,
 				128D6B832973A89A00FD5677 /* zh-Hans */,
 				F6048FE32BA9AC5000712EE5 /* zh-HK */,
 				54D640AD2BAC5DC3002761BF /* zh-Hant */,
@@ -240,6 +244,7 @@
 				3DD0F58D2895688600BE34A6 /* en */,
 				3DD0F58F2895688B00BE34A6 /* fr */,
 				E341F5482A9C8FCA007637CB /* tr */,
+				84F5BAC0EBFF6897EE3D3DE1 /* fa */,
 				128D6B822973A89900FD5677 /* zh-Hans */,
 				F6048FE22BA9AC5000712EE5 /* zh-HK */,
 				54D640AC2BAC5DC3002761BF /* zh-Hant */,
