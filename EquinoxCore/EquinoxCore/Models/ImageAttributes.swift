@@ -34,12 +34,21 @@ public struct ImageAttributes {
     public let primary: Bool
     public let imageType: ImageType
     public let appearanceType: AppearanceType?
+    public let sourceIndex: Int?
 
-    public init(url: URL, index: Int, primary: Bool, imageType: ImageType, appearanceType: AppearanceType?) {
+    public init(
+        url: URL,
+        index: Int,
+        primary: Bool,
+        imageType: ImageType,
+        appearanceType: AppearanceType?,
+        sourceIndex: Int? = nil
+    ) {
         self.url = url
         self.index = index
         self.primary = primary
         self.imageType = imageType
         self.appearanceType = appearanceType
+        self.sourceIndex = sourceIndex
     }
 }

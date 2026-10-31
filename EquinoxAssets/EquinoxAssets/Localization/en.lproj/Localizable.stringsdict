@@ -18,6 +18,22 @@
 			<string>%d images</string>
 		</dict>
 	</dict>
+	<key>wallpaper.gallery.menu.selected.items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@items@ selected</string>
+		<key>items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d item</string>
+			<key>other</key>
+			<string>%d items</string>
+		</dict>
+	</dict>
 	<key>delete</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -32,6 +48,22 @@
 			<string>Delete image</string>
 			<key>other</key>
 			<string>Delete images (%d items)</string>
+		</dict>
+	</dict>
+	<key>export</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@export@</string>
+		<key>export</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Export image…</string>
+			<key>other</key>
+			<string>Export images… (%d items)</string>
 		</dict>
 	</dict>
 </dict>

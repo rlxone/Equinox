@@ -45,8 +45,10 @@ extension WelcomeContentView {
         let welcomeStyle: StyledLabel.Style
         let versionStyle: StyledLabel.Style
         let githubStyle: StyledLabel.Style
+        let openStyle: StyledLabel.Style
         let supportStyle: StyledLabel.Style
         let githubContainerButtonStyle: ContainerButton.Style
+        let openContainerButtonStyle: ContainerButton.Style
         let supportContainerButtonStyle: ContainerButton.Style
         
         public init(
@@ -55,8 +57,10 @@ extension WelcomeContentView {
             welcomeStyle: StyledLabel.Style,
             versionStyle: StyledLabel.Style,
             githubStyle: StyledLabel.Style,
+            openStyle: StyledLabel.Style,
             supportStyle: StyledLabel.Style,
             githubContainerButtonStyle: ContainerButton.Style,
+            openContainerButtonStyle: ContainerButton.Style,
             supportContainerButtonStyle: ContainerButton.Style
         ) {
             self.ownStyle = ownStyle
@@ -64,8 +68,10 @@ extension WelcomeContentView {
             self.welcomeStyle = welcomeStyle
             self.versionStyle = versionStyle
             self.githubStyle = githubStyle
+            self.openStyle = openStyle
             self.supportStyle = supportStyle
             self.githubContainerButtonStyle = githubContainerButtonStyle
+            self.openContainerButtonStyle = openContainerButtonStyle
             self.supportContainerButtonStyle = supportContainerButtonStyle
         }
     }
@@ -97,6 +103,9 @@ public final class WelcomeContentView: View {
     
     private lazy var githubLabel = StyledLabel()
     private lazy var githubButton = ContainerButton()
+
+    private lazy var openLabel = StyledLabel()
+    private lazy var openButton = ContainerButton()
     
     private lazy var supportLabel = StyledLabel()
     private lazy var supportButton = ContainerButton()
@@ -119,6 +128,7 @@ public final class WelcomeContentView: View {
     
     private func setupView() {
         githubLabel.alignment = .center
+        openLabel.alignment = .center
         supportLabel.alignment = .center
         
         buttonsStackView.orientation = .vertical
@@ -132,10 +142,13 @@ public final class WelcomeContentView: View {
         welcomeVisualEffectView.contentView.addSubview(versionLabel)
         welcomeVisualEffectView.contentView.addSubview(buttonsStackView)
         githubButton.addSubview(githubLabel)
+        openButton.addSubview(openLabel)
         supportButton.addSubview(supportLabel)
+        githubButton.hoverCursor = .pointingHand
         
         addSubview(sidebarVisualEffectView)
         sidebarVisualEffectView.contentView.addSubview(typeView)
+        typeView.footerView = openButton
     }
     
     private func setupConstraints() {
@@ -168,6 +181,7 @@ public final class WelcomeContentView: View {
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         githubButton.translatesAutoresizingMaskIntoConstraints = false
         githubLabel.translatesAutoresizingMaskIntoConstraints = false
+        openLabel.translatesAutoresizingMaskIntoConstraints = false
         supportButton.translatesAutoresizingMaskIntoConstraints = false
         supportLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -185,7 +199,7 @@ public final class WelcomeContentView: View {
             
             buttonsStackView.centerXAnchor.constraint(equalTo: welcomeVisualEffectView.contentView.centerXAnchor),
             buttonsStackView.topAnchor.constraint(equalTo: versionLabel.bottomAnchor, constant: Constants.buttonsTopOffset),
-            
+
             githubLabel.leadingAnchor.constraint(equalTo: githubButton.leadingAnchor, constant: Constants.githubButtonLabelContainerOffset),
             githubLabel.trailingAnchor.constraint(equalTo: githubButton.trailingAnchor, constant: -Constants.githubButtonLabelContainerOffset),
             githubLabel.topAnchor.constraint(equalTo: githubButton.topAnchor, constant: Constants.githubButtonLabelContainerOffset),
@@ -211,9 +225,26 @@ public final class WelcomeContentView: View {
     }
     
     private func setupTypeConstraints() {
+        openLabel.translatesAutoresizingMaskIntoConstraints = false
         typeView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            openLabel.leadingAnchor.constraint(
+                equalTo: openButton.leadingAnchor,
+                constant: Constants.supportButtonLabelHorizontalOffset
+            ),
+            openLabel.trailingAnchor.constraint(
+                equalTo: openButton.trailingAnchor,
+                constant: -Constants.supportButtonLabelHorizontalOffset
+            ),
+            openLabel.topAnchor.constraint(
+                equalTo: openButton.topAnchor,
+                constant: Constants.supportButtonLabelVerticalOffset
+            ),
+            openLabel.bottomAnchor.constraint(
+                equalTo: openButton.bottomAnchor,
+                constant: -Constants.supportButtonLabelVerticalOffset
+            ),
             typeView.leadingAnchor.constraint(equalTo: sidebarVisualEffectView.contentView.leadingAnchor),
             typeView.trailingAnchor.constraint(equalTo: sidebarVisualEffectView.contentView.trailingAnchor),
             typeView.topAnchor.constraint(equalTo: sidebarVisualEffectView.contentView.topAnchor),
@@ -267,9 +298,22 @@ public final class WelcomeContentView: View {
         }
     }
     
-    public var typeHeaderText: String? {
+    public var typeHeadingText: String? {
         didSet {
-            typeView.headerText = typeHeaderText ?? String()
+            typeView.headerText = typeHeadingText ?? String()
+        }
+    }
+
+    public var openText: String? {
+        didSet {
+            openLabel.stringValue = openText ?? String()
+            openButton.setAccessibilityLabel(openText ?? String())
+        }
+    }
+
+    public var openAction: Button.Action? {
+        didSet {
+            openButton.onAction = openAction
         }
     }
     
@@ -311,8 +355,10 @@ public final class WelcomeContentView: View {
         welcomeLabel.style = style?.welcomeStyle
         versionLabel.style = style?.versionStyle
         githubLabel.style = style?.githubStyle
+        openLabel.style = style?.openStyle
         supportLabel.style = style?.supportStyle
         githubButton.style = style?.githubContainerButtonStyle
+        openButton.style = style?.openContainerButtonStyle
         supportButton.style = style?.supportContainerButtonStyle
     }
 }

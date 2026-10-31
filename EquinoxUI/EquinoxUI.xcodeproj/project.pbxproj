@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAEE00030000000000000001 /* GallerySelectionRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEE00020000000000000001 /* GallerySelectionRules.swift */; };
+		AABB00010000000000000001 /* GalleryDragOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB00010000000000000002 /* GalleryDragOperations.swift */; };
 		F30C86D226D6947100F93E60 /* ContainerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86D126D6947100F93E60 /* ContainerButton.swift */; };
 		F30C86DE26D6F84900F93E60 /* GalleryCollectionFooterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86DD26D6F84900F93E60 /* GalleryCollectionFooterItem.swift */; };
 		F30C86E026D701C600F93E60 /* GalleryCollectionInnerGapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C86DF26D701C600F93E60 /* GalleryCollectionInnerGapItem.swift */; };
@@ -101,6 +103,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AAEE00020000000000000001 /* GallerySelectionRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySelectionRules.swift; sourceTree = "<group>"; };
+		AABB00010000000000000002 /* GalleryDragOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDragOperations.swift; sourceTree = "<group>"; };
 		F30C86D126D6947100F93E60 /* ContainerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerButton.swift; sourceTree = "<group>"; };
 		F30C86DD26D6F84900F93E60 /* GalleryCollectionFooterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionFooterItem.swift; sourceTree = "<group>"; };
 		F30C86DF26D701C600F93E60 /* GalleryCollectionInnerGapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionInnerGapItem.swift; sourceTree = "<group>"; };
@@ -457,6 +461,8 @@
 			children = (
 				F3E7B05B26ADB06400287C60 /* GalleryContentView.swift */,
 				F34E06D0267B857400F004EF /* GalleryCollectionView.swift */,
+				AABB00010000000000000002 /* GalleryDragOperations.swift */,
+				AAEE00020000000000000001 /* GallerySelectionRules.swift */,
 				F3837F0C2698E87C00671585 /* GalleryInternalCollectionView.swift */,
 				F36AD5E526E576BE00314A02 /* GalleryCollectionDataSource.swift */,
 				F36AD5E326E530C900314A02 /* GalleryCollectionLayout.swift */,
@@ -642,6 +648,8 @@
 				F3CBF494267F940500087660 /* View.swift in Sources */,
 				F3EC93AF26C9D53E0032FA39 /* SolarResultView.swift in Sources */,
 				F34E06D1267B857400F004EF /* GalleryCollectionView.swift in Sources */,
+				AABB00010000000000000001 /* GalleryDragOperations.swift in Sources */,
+				AAEE00030000000000000001 /* GallerySelectionRules.swift in Sources */,
 				F32C64A026FD3E01002F5817 /* CreateBottomView.swift in Sources */,
 				F34E06DB267B890700F004EF /* BottomBarView.swift in Sources */,
 			);

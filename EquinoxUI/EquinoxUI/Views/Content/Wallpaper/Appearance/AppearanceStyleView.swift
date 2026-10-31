@@ -147,6 +147,10 @@ public final class AppearanceStyleView: View {
             case .dark:
                 outerGradientLayer.locations = Constants.leftLocation
                 innerGradientLayer.locations = Constants.leftLocation
+
+            case .both:
+                outerGradientLayer.locations = Constants.centerLocation
+                innerGradientLayer.locations = Constants.rightLocation
             }
 
             CATransaction.commit()

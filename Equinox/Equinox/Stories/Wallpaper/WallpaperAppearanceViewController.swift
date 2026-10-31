@@ -87,6 +87,12 @@ final class WallpaperAppearanceViewController: ViewController {
                     title: Localization.Wallpaper.Appearance.darkTitle,
                     description: Localization.Wallpaper.Appearance.darkDescription,
                     appearanceType: .dark
+                ),
+                .init(
+                    title: Localization.Wallpaper.Appearance.bothTitle,
+                    description:
+                        Localization.Wallpaper.Appearance.bothDescription,
+                    appearanceType: .both
                 )
             ]
             

@@ -1,3 +1,8 @@
+"unsaved.changes.title" = "放弃未保存的更改？";
+"unsaved.changes.close.description" = "如果关闭此窗口，您的更改将会丢失。";
+"unsaved.changes.quit.description" = "如果退出应用，您的更改将会丢失。";
+"unsaved.changes.discard" = "放弃更改";
+
 "menu.main.about" = "关于 %@";
 "menu.main.preferences" = "偏好设置...";
 "menu.main.hide" = "隐藏 %@";
@@ -7,6 +12,11 @@
 
 "menu.file" = "文件";
 "menu.file.new" = "新建";
+"menu.file.open" = "Open...";
+"menu.file.revert" = "Revert to Saved";
+"menu.file.save.as" = "Save As...";
+"menu.file.open.error.title" = "Cannot Open Wallpaper";
+"menu.file.open.error.description" = "Not a readable dynamic HEIF wallpaper.";
 
 "menu.edit" = "编辑";
 "menu.edit.undo" = "撤销";
@@ -33,10 +43,12 @@
 "toolbar.more" = "更多";
 
 "welcome.title" = "欢迎来到 Equinox";
+"welcome.create.title" = "创建新壁纸";
 "welcome.welcome" = "欢迎来到 %@";
 "welcome.version" = "版本 %@";
 "welcome.github" = "Github";
 "welcome.support" = "支持 Equinox";
+"welcome.open.existing" = "或者编辑...";
 "welcome.choose.type" = "选择类型";
 "welcome.choose.type.description" = "选择最适合你的墙纸类型";
 "welcome.types.solar" = "日照";
@@ -53,18 +65,25 @@
 "wallpaper.main.create" = "创建";
 "wallpaper.main.browse" = "浏览图像文件";
 "wallpaper.main.validate" = "请填写所有字段";
+"wallpaper.main.size.calculating" = "正在计算...";
+"wallpaper.main.size.unavailable" = "不可用";
+"wallpaper.main.compression.all.images" = "所有图像";
+"wallpaper.main.compression.all.but.heic" = "除 HEIC 外全部";
+"wallpaper.main.compression.lossy.but.heic" = "HEIC 以外的有损格式";
+"wallpaper.main.compression.none" = "没有图像";
 
 "wallpaper.gallery.drag.title" = "拖放你的图像";
 "wallpaper.gallery.drag.supplementary" = "支持这些格式：png, jpeg, tiff, heif.";
 "wallpaper.gallery.or" = "或者";
 "wallpaper.gallery.browse" = "浏览文件";
+"wallpaper.gallery.export" = "导出图像…";
 "wallpaper.gallery.azimuth" = "方位角:";
 "wallpaper.gallery.azimuth.value" = "值";
 "wallpaper.gallery.altitude" = "高度角:";
 "wallpaper.gallery.altitude.value" = "值";
 "wallpaper.gallery.time" = "时间:";
 "wallpaper.gallery.tooltip.appearance.title" = "外观";
-"wallpaper.gallery.tooltip.appearance.description" = "图形模式。只有一个图像可以是浅色或深色的外观。";
+"wallpaper.gallery.tooltip.appearance.description" = "浅色和深色圆形标记用于选择桌面图片。在 Solar 或 Time 壁纸中，未标记的图像仍会保留在序列中。";
 "wallpaper.gallery.tooltip.primary.title" = "主要图像";
 "wallpaper.gallery.tooltip.primary.description" = "主要图像将会作为墙纸的缩略图展示。";
 "wallpaper.gallery.wrong.images.type" = "一些文件（%d）具有错误的图像类型。仅支持png、jpeg、tiff和heic格式";
@@ -75,6 +94,8 @@
 "wallpaper.appearance.light.description" = "在静态浅色模式中展示图像";
 "wallpaper.appearance.dark.title" = "深色（静态）";
 "wallpaper.appearance.dark.description" = "在静态深色模式中展示图像";
+"wallpaper.appearance.both.title" = "浅色和深色（静态）";
+"wallpaper.appearance.both.description" = "在两种模式下使用此图像";
 
 "wallpaper.create.success" = "成功";
 "wallpaper.create.success.description" = "拖拽或保存你的墙纸——怎样都可以！";
@@ -180,3 +201,13 @@
 "support.purchaseFailure.description.first" = "购买已取消。";
 "support.purchaseFailure.description.second" = "如果你愿意，随时都可以支持 Equinox。";
 "support.purchaseFailure.description.third" = "感谢使用这款应用！";
+
+"wallpaper.gallery.tooltip.preview.title" = "预览";
+"wallpaper.gallery.tooltip.preview.description" = "选择在壁纸预览中显示的图像。这不会影响桌面图像。";
+"wallpaper.gallery.tooltip.light.title" = "浅色桌面";
+"wallpaper.gallery.tooltip.light.description" = "在浅色外观下将此图像用作桌面图片。在 Solar 或 Time 壁纸中，未标记的图像仍会保留在序列中。";
+"wallpaper.gallery.tooltip.dark.title" = "深色桌面";
+"wallpaper.gallery.tooltip.dark.description" = "在深色外观下将此图像用作桌面图片。在 Solar 或 Time 壁纸中，未标记的图像仍会保留在序列中。";
+
+"wallpaper.gallery.menu.export" = "导出图像…";
+"wallpaper.gallery.menu.delete" = "删除图像";

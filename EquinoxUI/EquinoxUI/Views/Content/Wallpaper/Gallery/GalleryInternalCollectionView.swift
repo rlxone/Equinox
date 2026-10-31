@@ -38,6 +38,8 @@ public protocol GalleryInternalCollectionViewDelegate: AnyObject {
 // MARK: - Class
 
 public final class GalleryInternalCollectionView: NSCollectionView {
+    private var dragStarted = false
+
     init() {
         super.init(frame: .zero)
         setup()
@@ -52,6 +54,41 @@ public final class GalleryInternalCollectionView: NSCollectionView {
     public override func draggingExited(_ sender: NSDraggingInfo?) {
         super.draggingExited(sender)
         internalDelegate?.didDraggingExited(sender)
+    }
+
+    public override func mouseDown(with event: NSEvent) {
+        let point = convert(event.locationInWindow, from: nil)
+        let indexPath = indexPathForItem(at: point)
+        let shouldDeselect = indexPath.map {
+            selectionIndexPaths.contains($0)
+                && event.modifierFlags.intersection([
+                    .command,
+                    .shift,
+                    .option,
+                    .control
+                ]).isEmpty
+        } ?? false
+
+        dragStarted = false
+        super.mouseDown(with: event)
+
+        if shouldDeselect, !dragStarted, let indexPath = indexPath {
+            deselectItems(at: [indexPath])
+        }
+    }
+
+    public override func draggingSession(
+        _ session: NSDraggingSession,
+        sourceOperationMaskFor context: NSDraggingContext
+    ) -> NSDragOperation {
+        switch context {
+        case .outsideApplication:
+            return .copy
+        case .withinApplication:
+            return [.move, .copy]
+        @unknown default:
+            return []
+        }
     }
 
     public override func deleteBackward(_ sender: Any?) {
@@ -74,6 +111,10 @@ public final class GalleryInternalCollectionView: NSCollectionView {
     }
 
     // MARK: Public
+
+    func noteDragStarted() {
+        dragStarted = true
+    }
 
     public weak var internalDelegate: GalleryInternalCollectionViewDelegate?
     

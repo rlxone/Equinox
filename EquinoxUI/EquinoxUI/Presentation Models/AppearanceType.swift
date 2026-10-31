@@ -30,4 +30,5 @@ public enum AppearanceType {
     case all
     case light
     case dark
+    case both
 }

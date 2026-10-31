@@ -32,7 +32,7 @@ import AppKit
 
 extension GalleryCollectionButtonsView {
     public typealias PrimaryChangeAction = (PrimaryButton) -> Void
-    public typealias AppearanceTypeChangeAction = (DynamicButton) -> Void
+    public typealias AppearanceTypeChangeAction = (AppearanceType) -> Void
 
     public enum Orientation {
         case vertical
@@ -95,20 +95,27 @@ extension GalleryCollectionButtonsView {
 // MARK: - Class
 
 public final class GalleryCollectionButtonsView: View {
-    private lazy var dynamicButton: DynamicButton = {
-        let button = DynamicButton()
-        button.showTooltip = true
-        button.tooltipPresentDelayMilliseconds = Constants.tooltipPresentDelayMilliseconds
-        button.tooltipIdentifier = GalleryContentView.TooltipIdentifier.appearance.rawValue
-        return button
-    }()
+    private lazy var lightButton = makeAppearanceButton(
+        identifier:
+            GalleryContentView.TooltipIdentifier.lightAppearance.rawValue
+    )
+    private lazy var darkButton = makeAppearanceButton(
+        identifier:
+            GalleryContentView.TooltipIdentifier.darkAppearance.rawValue
+    )
     private lazy var primaryButton: PrimaryButton = {
         let button = PrimaryButton()
         button.showTooltip = true
-        button.tooltipPresentDelayMilliseconds = Constants.tooltipPresentDelayMilliseconds
-        button.tooltipIdentifier = GalleryContentView.TooltipIdentifier.primary.rawValue
+        button.tooltipPresentDelayMilliseconds =
+            Constants.tooltipPresentDelayMilliseconds
+        button.tooltipIdentifier =
+            GalleryContentView.TooltipIdentifier.preview.rawValue
         return button
     }()
+
+    private lazy var lightIconView = makeSymbolView("sun.max.fill")
+    private lazy var darkIconView = makeSymbolView("moon.fill")
+    private lazy var previewIconView = makeSymbolView("magnifyingglass")
 
     private lazy var visualEffectView: VisualEffectView = {
         let visualEffectView = VisualEffectView(material: .toolTip, blendingMode: .withinWindow)
@@ -122,6 +129,7 @@ public final class GalleryCollectionButtonsView: View {
         stackView.wantsLayer = true
         stackView.layer?.cornerRadius = Constants.cornerRadius
         stackView.layer?.borderWidth = Constants.borderWidth
+        stackView.spacing = 0
         return stackView
     }()
     
@@ -179,14 +187,23 @@ public final class GalleryCollectionButtonsView: View {
         
         visualEffectView.isHidden = true
 
-        stackView.addView(dynamicButton, in: .center)
+        stackView.addView(lightButton, in: .center)
+        stackView.addView(darkButton, in: .center)
         stackView.addView(primaryButton, in: .center)
+
+        lightButton.addSubview(lightIconView)
+        darkButton.addSubview(darkIconView)
+        primaryButton.addSubview(previewIconView)
     }
 
     private func setupConstraints() {
         visualEffectView.translatesAutoresizingMaskIntoConstraints = false
         primaryButton.translatesAutoresizingMaskIntoConstraints = false
-        dynamicButton.translatesAutoresizingMaskIntoConstraints = false
+        lightButton.translatesAutoresizingMaskIntoConstraints = false
+        darkButton.translatesAutoresizingMaskIntoConstraints = false
+        lightIconView.translatesAutoresizingMaskIntoConstraints = false
+        darkIconView.translatesAutoresizingMaskIntoConstraints = false
+        previewIconView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -200,20 +217,62 @@ public final class GalleryCollectionButtonsView: View {
             visualEffectView.topAnchor.constraint(equalTo: topAnchor),
             visualEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            primaryButton.widthAnchor.constraint(equalToConstant: Constants.buttonSize),
-            primaryButton.heightAnchor.constraint(equalToConstant: Constants.buttonSize),
+            primaryButton.widthAnchor.constraint(
+                equalToConstant: Constants.buttonSize
+            ),
+            primaryButton.heightAnchor.constraint(
+                equalToConstant: Constants.buttonSize
+            ),
 
-            dynamicButton.widthAnchor.constraint(equalToConstant: Constants.buttonSize),
-            dynamicButton.heightAnchor.constraint(equalToConstant: Constants.buttonSize)
+            lightButton.widthAnchor.constraint(
+                equalToConstant: Constants.buttonSize
+            ),
+            lightButton.heightAnchor.constraint(
+                equalToConstant: Constants.buttonSize
+            ),
+
+            darkButton.widthAnchor.constraint(
+                equalToConstant: Constants.buttonSize
+            ),
+            darkButton.heightAnchor.constraint(
+                equalToConstant: Constants.buttonSize
+            ),
+
+            lightIconView.centerXAnchor.constraint(
+                equalTo: lightButton.centerXAnchor
+            ),
+            lightIconView.centerYAnchor.constraint(
+                equalTo: lightButton.centerYAnchor
+            ),
+            lightIconView.widthAnchor.constraint(equalToConstant: 16),
+            lightIconView.heightAnchor.constraint(equalToConstant: 16),
+
+            darkIconView.centerXAnchor.constraint(
+                equalTo: darkButton.centerXAnchor
+            ),
+            darkIconView.centerYAnchor.constraint(
+                equalTo: darkButton.centerYAnchor
+            ),
+            darkIconView.widthAnchor.constraint(equalToConstant: 16),
+            darkIconView.heightAnchor.constraint(equalToConstant: 16),
+
+            previewIconView.centerXAnchor.constraint(
+                equalTo: primaryButton.centerXAnchor
+            ),
+            previewIconView.centerYAnchor.constraint(
+                equalTo: primaryButton.centerYAnchor
+            ),
+            previewIconView.widthAnchor.constraint(equalToConstant: 16),
+            previewIconView.heightAnchor.constraint(equalToConstant: 16)
         ])
     }
 
     private func setupActions() {
-        dynamicButton.onAction = { [weak self] button in
-            guard let button = button as? DynamicButton else {
-                return
-            }
-            self?.onAppearanceTypeChange?(button)
+        lightButton.onAction = { [weak self] _ in
+            self?.toggleAppearance(.light)
+        }
+        darkButton.onAction = { [weak self] _ in
+            self?.toggleAppearance(.dark)
         }
         primaryButton.onAction = { [weak self] button in
             guard let button = button as? PrimaryButton else {
@@ -236,8 +295,8 @@ public final class GalleryCollectionButtonsView: View {
     public var orientation: Orientation = .vertical {
         didSet {
             switch orientation {
-            case .vertical:
-                stackView.orientation = .vertical
+        case .vertical:
+            stackView.orientation = .vertical
 
             case .horizontal:
                 stackView.orientation = .horizontal
@@ -263,7 +322,8 @@ public final class GalleryCollectionButtonsView: View {
 
     public weak override var tooltipDelegate: TooltipDelegate? {
         didSet {
-            dynamicButton.tooltipDelegate = tooltipDelegate
+            lightButton.tooltipDelegate = tooltipDelegate
+            darkButton.tooltipDelegate = tooltipDelegate
             primaryButton.tooltipDelegate = tooltipDelegate
         }
     }
@@ -274,15 +334,19 @@ public final class GalleryCollectionButtonsView: View {
         }
         set {
             primaryButton.isSelected = newValue
+            updateSymbol(
+                previewIconView,
+                name: "magnifyingglass",
+                selected: newValue
+            )
         }
     }
 
     public func setAppearanceType(_ appearanceType: AppearanceType, animated: Bool) {
-        dynamicButton.setType(appearanceType, animated: animated)
-    }
-
-    public func getAppearanceType() -> AppearanceType {
-        return dynamicButton.getType()
+        self.appearanceType = appearanceType
+        let hasLight = appearanceType == .light || appearanceType == .both
+        let hasDark = appearanceType == .dark || appearanceType == .both
+        updateAppearanceButtons(light: hasLight, dark: hasDark)
     }
 
     public var onPrimaryChange: GalleryCollectionButtonsView.PrimaryChangeAction?
@@ -292,9 +356,9 @@ public final class GalleryCollectionButtonsView: View {
     // MARK: - Private
     
     private func stylize() {
-        dynamicButton.style = style?.dynamicStyle
+        lightButton.style = style?.primaryStyle
+        darkButton.style = style?.primaryStyle
         primaryButton.style = style?.primaryStyle
-
         stackView.borderColor = style?.ownStyle.stackBorderColor
 
         switch viewAppearance {
@@ -304,5 +368,81 @@ public final class GalleryCollectionButtonsView: View {
         case .default:
             stackView.backgroundColor = style?.ownStyle.stackBackgroundColor
         }
+    }
+
+    private var appearanceType: AppearanceType = .all
+
+    private func makeAppearanceButton(identifier: String) -> PrimaryButton {
+        let button = PrimaryButton()
+        button.showTooltip = true
+        button.tooltipPresentDelayMilliseconds =
+            Constants.tooltipPresentDelayMilliseconds
+        button.tooltipIdentifier = identifier
+        return button
+    }
+
+    private func makeSymbolView(_ name: String) -> NSImageView {
+        let imageView = NSImageView()
+        let configuration = NSImage.SymbolConfiguration(
+            pointSize: 16,
+            weight: .regular
+        )
+        imageView.image = NSImage(
+            systemSymbolName: name,
+            accessibilityDescription: nil
+        )?.withSymbolConfiguration(configuration)
+        imageView.image?.isTemplate = true
+        imageView.contentTintColor = .tertiaryLabelColor
+        imageView.imageScaling = .scaleProportionallyDown
+        return imageView
+    }
+
+    private func toggleAppearance(_ selected: AppearanceType) {
+        let hasLight = appearanceType == .light || appearanceType == .both
+        let hasDark = appearanceType == .dark || appearanceType == .both
+        var light = hasLight
+        var dark = hasDark
+
+        if selected == .light {
+            light.toggle()
+        } else {
+            dark.toggle()
+        }
+
+        let newType: AppearanceType
+        switch (light, dark) {
+        case (false, false): newType = .all
+        case (true, false): newType = .light
+        case (false, true): newType = .dark
+        case (true, true): newType = .both
+        }
+
+        appearanceType = newType
+        updateAppearanceButtons(light: light, dark: dark)
+        onAppearanceTypeChange?(newType)
+    }
+
+    private func updateAppearanceButtons(light: Bool, dark: Bool) {
+        lightButton.isSelected = light
+        darkButton.isSelected = dark
+        updateSymbol(lightIconView, name: "sun.max.fill", selected: light)
+        updateSymbol(darkIconView, name: "moon.fill", selected: dark)
+    }
+
+    private func updateSymbol(
+        _ imageView: NSImageView,
+        name: String,
+        selected: Bool
+    ) {
+        let configuration = NSImage.SymbolConfiguration(
+            pointSize: 16,
+            weight: selected ? .bold : .regular
+        )
+        imageView.image = NSImage(
+            systemSymbolName: name,
+            accessibilityDescription: nil
+        )?.withSymbolConfiguration(configuration)
+        imageView.image?.isTemplate = true
+        imageView.contentTintColor = selected ? .white : .tertiaryLabelColor
     }
 }

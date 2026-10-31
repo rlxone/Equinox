@@ -34,10 +34,12 @@ public struct GalleryTextList {
     let altitudeText: String
     let altitudePlaceholder: String
     let timeText: String
-    let appearanceTooltipTitle: String
-    let appearanceTooltipDescription: String
-    let primaryTooltipTitle: String
-    let primaryTooltipDescription: String
+    let lightAppearanceTooltipTitle: String
+    let lightAppearanceTooltipDescription: String
+    let darkAppearanceTooltipTitle: String
+    let darkAppearanceTooltipDescription: String
+    let previewTooltipTitle: String
+    let previewTooltipDescription: String
 
     public init(
         azimuthText: String,
@@ -45,19 +47,25 @@ public struct GalleryTextList {
         altitudeText: String,
         altitudePlaceholder: String,
         timeText: String,
-        appearanceTooltipTitle: String,
-        appearanceTooltipDescription: String,
-        primaryTooltipTitle: String,
-        primaryTooltipDescription: String
+        lightAppearanceTooltipTitle: String,
+        lightAppearanceTooltipDescription: String,
+        darkAppearanceTooltipTitle: String,
+        darkAppearanceTooltipDescription: String,
+        previewTooltipTitle: String,
+        previewTooltipDescription: String
     ) {
         self.azimuthText = azimuthText
         self.azimuthPlaceholder = azimuthPlaceholder
         self.altitudeText = altitudeText
         self.altitudePlaceholder = altitudePlaceholder
         self.timeText = timeText
-        self.appearanceTooltipTitle = appearanceTooltipTitle
-        self.appearanceTooltipDescription = appearanceTooltipDescription
-        self.primaryTooltipTitle = primaryTooltipTitle
-        self.primaryTooltipDescription = primaryTooltipDescription
+        self.lightAppearanceTooltipTitle = lightAppearanceTooltipTitle
+        self.lightAppearanceTooltipDescription =
+            lightAppearanceTooltipDescription
+        self.darkAppearanceTooltipTitle = darkAppearanceTooltipTitle
+        self.darkAppearanceTooltipDescription =
+            darkAppearanceTooltipDescription
+        self.previewTooltipTitle = previewTooltipTitle
+        self.previewTooltipDescription = previewTooltipDescription
     }
 }

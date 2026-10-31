@@ -39,18 +39,16 @@ extension WallpaperGalleryDataController {
 
 final class WallpaperGalleryDataController {
     private let type: WallpaperType
-    private let fileService: FileService
     private let solarService: SolarService
     private let imageProvider: ImageProvider
     
     private var mutableData = GalleryData(items: [], info: String())
-    private var filesizeCache: [URL: UInt64] = [:]
+    private var outputSizeText = Localization.Wallpaper.Main.sizeCalculating
     
     // MARK: - Initializer
     
-    init(type: WallpaperType, fileService: FileService, solarService: SolarService, imageProvider: ImageProvider) {
+    init(type: WallpaperType, solarService: SolarService, imageProvider: ImageProvider) {
         self.type = type
-        self.fileService = fileService
         self.solarService = solarService
         self.imageProvider = imageProvider
     }
@@ -63,18 +61,12 @@ final class WallpaperGalleryDataController {
     
     func refreshData() {
         var containsPrimary = false
-        var totalSize: UInt64 = 0
         
         for (index, model) in mutableData.items.enumerated() {
             if model.primary {
                 containsPrimary = true
             }
             model.number = index + 1
-            if let filesize = filesizeCache[model.url] {
-                totalSize += filesize
-            } else {
-                totalSize += calculateFilesize(model.url) ?? 0
-            }
         }
         
         if !containsPrimary {
@@ -89,7 +81,7 @@ final class WallpaperGalleryDataController {
             break
         }
         
-        refreshInfo(totalSize: totalSize)
+        refreshInfo()
     }
     
     func make(_ urls: [URL], insertIndexPath: IndexPath) -> [(indexPath: IndexPath, model: GalleryModel)] {
@@ -132,6 +124,11 @@ final class WallpaperGalleryDataController {
     func insert(_ items: [GalleryModel], at index: Int) {
         mutableData.items.insert(contentsOf: items, at: index)
     }
+
+    func replace(with items: [GalleryModel]) {
+        mutableData.items = items
+        refreshData()
+    }
     
     func remove(at index: Int) {
         mutableData.items.remove(at: index)
@@ -155,10 +152,14 @@ final class WallpaperGalleryDataController {
         }
     }
     
-    private func refreshInfo(totalSize: UInt64) {
-        let formattedTotalSize = getFormattedFilesize(filesize: totalSize)
+    private func refreshInfo() {
         let images = Localization.Shared.images(param1: mutableData.items.count)
-        mutableData.info = "\(images) • \(formattedTotalSize)"
+        mutableData.info = "\(images) • \(outputSizeText)"
+    }
+
+    func setOutputSizeText(_ text: String) {
+        outputSizeText = text
+        refreshInfo()
     }
     
     private func calculateImageData(_ url: URL) -> (azimuth: Double, altitude: Double)? {
@@ -194,19 +195,6 @@ final class WallpaperGalleryDataController {
         let azimuth = roundDouble(solarAzimuth, places: 3)
         let altitude = roundDouble(solarAltitude, places: 3)
         return (azimuth, altitude)
-    }
-
-    private func calculateFilesize(_ url: URL) -> UInt64? {
-        do {
-            let filesize = try fileService.getFilesize(url)
-            return filesize
-        } catch {
-            return nil
-        }
-    }
-
-    private func getFormattedFilesize(filesize: UInt64) -> String {
-        return ByteCountFormatter.string(fromByteCount: Int64(filesize), countStyle: .file)
     }
 
     private func isPrimaryIndex(_ index: Int) -> Bool {

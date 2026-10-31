@@ -27,6 +27,7 @@
 // THE SOFTWARE.
 
 import AppKit
+import EquinoxAssets
 import EquinoxCore
 import EquinoxUI
 
@@ -36,6 +37,8 @@ import EquinoxUI
 protocol StoriesController {
     func start()
     func new()
+    func open(_ url: URL) throws
+    func shouldTerminate() -> Bool
 }
 
 // MARK: - Enums, Structs
@@ -61,12 +64,38 @@ final class StoriesControllerImpl: NSObject {
 // MARK: - StoriesController
 
 extension StoriesControllerImpl: StoriesController {
+    func shouldTerminate() -> Bool {
+        guard wallpaperWindowControllers.contains(where: {
+            $0.hasUnsavedChanges
+        }) else {
+            return true
+        }
+        return confirmDiscardingChanges(
+            description: Localization.UnsavedChanges.quitDescription
+        )
+    }
+
     func start() {
         presentWelcome()
     }
     
     func new() {
         presentWelcome()
+    }
+
+    func open(_ url: URL) throws {
+        let opened = try MetadataCoreImpl().readWallpaper(at: url)
+        let type: WallpaperType
+        switch opened.type {
+        case .solar: type = .solar
+        case .time: type = .time
+        case .appearance: type = .appearance
+        }
+        welcomeWindowController?.close()
+        welcomeWindowController = nil
+        presentWallpaper(selectedType: type,
+                         sourceURL: url,
+                         initialAttributes: opened.attributes)
     }
     
     private func presentWelcome() {
@@ -80,7 +109,11 @@ extension StoriesControllerImpl: StoriesController {
         }
     }
     
-    private func presentWallpaper(selectedType: WallpaperType) {
+    private func presentWallpaper(
+        selectedType: WallpaperType,
+        sourceURL: URL? = nil,
+        initialAttributes: [ImageAttributes]? = nil
+    ) {
         let imageCore = ImageCoreImpl()
         let imageCacheCore = ImageCacheCoreImpl(totalCostLimit: Constants.imageCacheLimit)
         let fileCore = FileCoreImpl()
@@ -105,7 +138,9 @@ extension StoriesControllerImpl: StoriesController {
                     imageCore: imageCore,
                     imageCacheCore: imageCacheCore
                 )
-            )
+            ),
+            sourceURL: sourceURL,
+            initialAttributes: initialAttributes
         )
         windowController.delegate = self
         windowController.window?.delegate = self
@@ -143,6 +178,12 @@ extension StoriesControllerImpl: NSWindowDelegate {
     func windowShouldClose(_ sender: NSWindow) -> Bool {
         let closeWindow = sender
         if let index = wallpaperWindowControllers.firstIndex(where: { $0.window === closeWindow }) {
+            guard !wallpaperWindowControllers[index].hasUnsavedChanges
+                || confirmDiscardingChanges(
+                    description: Localization.UnsavedChanges.closeDescription
+                ) else {
+                return false
+            }
             wallpaperWindowControllers.remove(at: index)
             if wallpaperWindowControllers.isEmpty {
                 NSApp.terminate(self)
@@ -159,6 +200,16 @@ extension StoriesControllerImpl: NSWindowDelegate {
         }
         return true
     }
+
+    private func confirmDiscardingChanges(description: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = Localization.UnsavedChanges.title
+        alert.informativeText = description
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: Localization.UnsavedChanges.discard)
+        alert.addButton(withTitle: Localization.Wallpaper.Create.cancel)
+        return alert.runModal() == .alertFirstButtonReturn
+    }
 }
 
 // MARK: - WelcomeWindowControllerDelegate
@@ -168,6 +219,10 @@ extension StoriesControllerImpl: WelcomeWindowControllerDelegate {
         welcomeWindowController?.close()
         welcomeWindowController = nil
         presentWallpaper(selectedType: type)
+    }
+
+    func welcomeWindowControllerOpenWasInteracted() {
+        (NSApp.delegate as? AppDelegate)?.applicationMenuOpen(nil)
     }
     
     func welcomeWindowControllerSupportWasInteracted() {

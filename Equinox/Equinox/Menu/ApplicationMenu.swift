@@ -33,6 +33,18 @@ import EquinoxAssets
 
 protocol ApplicationMenuDelegate: AnyObject {
     func applicationMenuNew(_ sender: Any?)
+    func applicationMenuOpen(_ sender: Any?)
+    func applicationMenuRevert(_ sender: Any?)
+    func applicationMenuCanRevert() -> Bool
+}
+
+extension ApplicationMenu: NSMenuItemValidation {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(revert(_:)) {
+            return applicationDelegate?.applicationMenuCanRevert() == true
+        }
+        return true
+    }
 }
 
 // MARK: - Class
@@ -129,6 +141,21 @@ final class ApplicationMenu: NSMenu {
                 keyEquivalent: "n",
                 keyModifier: .command,
                 action: #selector(ApplicationMenu.new(_:)),
+                target: self
+            ),
+            MenuItem(
+                title: Localization.Menu.File.open,
+                keyEquivalent: "o",
+                keyModifier: .command,
+                action: #selector(ApplicationMenu.open(_:)),
+                target: self
+            ),
+            MenuItem.separator(),
+            MenuItem(
+                title: Localization.Menu.File.revert,
+                keyEquivalent: String(),
+                keyModifier: .command,
+                action: #selector(ApplicationMenu.revert(_:)),
                 target: self
             )
         ]
@@ -235,6 +262,16 @@ final class ApplicationMenu: NSMenu {
     @objc
     private func new(_ sender: Any?) {
         applicationDelegate?.applicationMenuNew(sender)
+    }
+
+    @objc
+    private func open(_ sender: Any?) {
+        applicationDelegate?.applicationMenuOpen(sender)
+    }
+
+    @objc
+    private func revert(_ sender: Any?) {
+        applicationDelegate?.applicationMenuRevert(sender)
     }
     
     @objc

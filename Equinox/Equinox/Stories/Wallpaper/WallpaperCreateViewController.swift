@@ -40,6 +40,7 @@ protocol WallpaperCreateViewControllerDelegate: AnyObject {
     func createViewControllerSetWasInteracted()
     func createViewControllerRepeatWasInteracted()
     func createViewControllerShouldNotify(_ text: String)
+    func createViewControllerDidSave()
 }
 
 // MARK: - Enums, Structs
@@ -59,6 +60,9 @@ final class WallpaperCreateViewController: ViewController {
     private let imageAttributes: [ImageAttributes]
     private let wallpaperService: WallpaperService
     private let imageProvider: ImageProvider
+    private let exportSettings: ImageExportSettings
+    private let sourceURL: URL?
+    private let previewURL: URL?
     
     private let operationQueue: OperationQueue = {
         let queue = OperationQueue()
@@ -82,12 +86,18 @@ final class WallpaperCreateViewController: ViewController {
         type: WallpaperType,
         imageAttributes: [ImageAttributes],
         wallpaperService: WallpaperService,
-        imageProvider: ImageProvider
+        imageProvider: ImageProvider,
+        exportSettings: ImageExportSettings,
+        sourceURL: URL?,
+        previewURL: URL? = nil
     ) {
         self.type = type
         self.imageAttributes = imageAttributes
         self.wallpaperService = wallpaperService
         self.imageProvider = imageProvider
+        self.exportSettings = exportSettings
+        self.sourceURL = sourceURL
+        self.previewURL = previewURL
         super.init()
     }
 
@@ -100,7 +110,13 @@ final class WallpaperCreateViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        createWallpaper()
+        if let previewURL = previewURL,
+           let preview = try? Data(contentsOf: previewURL) {
+            createdImage = preview
+            completeWallpaperCreation()
+        } else {
+            createWallpaper()
+        }
     }
 
     // MARK: - Setup
@@ -111,7 +127,9 @@ final class WallpaperCreateViewController: ViewController {
     }
 
     private func setupView() {        
-        contentView.saveButtonTitle = Localization.Wallpaper.Create.save
+        contentView.saveButtonTitle = sourceURL == nil
+            ? Localization.Wallpaper.Create.save
+            : Localization.Menu.File.saveAs
         contentView.setButtonTitle = Localization.Wallpaper.Create.set
         contentView.shareButtonTitle = Localization.Wallpaper.Create.share
         contentView.createButtonTitle = Localization.Wallpaper.Create.new
@@ -167,7 +185,10 @@ final class WallpaperCreateViewController: ViewController {
                     return
                 }
                 do {
-                    self.createdImage = try self.wallpaperService.createWallpaper(self.imageAttributes) { step, steps in
+                    self.createdImage = try self.wallpaperService.createWallpaper(
+                        self.imageAttributes,
+                        settings: self.exportSettings
+                    ) { step, steps in
                         let progress = Float(step) / Float(steps)
                         DispatchQueue.main.async {
                             self.contentView.setProgress(progress, animated: true)
@@ -249,8 +270,14 @@ final class WallpaperCreateViewController: ViewController {
         }
 
         let savePanel = NSSavePanel()
+        savePanel.directoryURL = FilePanelDirectories.save
         savePanel.canCreateDirectories = true
-        savePanel.nameFieldStringValue = Constants.imageFilename
+        if let sourceURL = sourceURL {
+            let name = sourceURL.deletingPathExtension().lastPathComponent
+            savePanel.nameFieldStringValue = "\(name)-edited.heic"
+        } else {
+            savePanel.nameFieldStringValue = Constants.imageFilename
+        }
         if #available(macOS 11.0, *) {
             savePanel.allowedContentTypes = [.heic]
         }
@@ -272,7 +299,10 @@ final class WallpaperCreateViewController: ViewController {
                 : panelURL
 
             do {
-                try createdImage.write(to: finalURL, options: .atomic)
+                try WallpaperFileSaver().save(createdImage, to: finalURL) {
+                    self.delegate?.createViewControllerDidSave()
+                }
+                FilePanelDirectories.rememberSave(for: finalURL)
                 if notify {
                     self.delegate?.createViewControllerShouldNotify(Localization.Wallpaper.Create.fileSaved)
                 }
@@ -348,8 +378,13 @@ extension WallpaperCreateViewController: AnimatedImageViewDelegate {
     }
 
     func image(for index: Int, completion: @escaping (NSImage?) -> Void) {
-        let url = imageAttributes[index].url
-        imageProvider.loadImage(url: url, resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true)) { image in
+        let attribute = imageAttributes[index]
+        imageProvider.loadImage(
+            url: attribute.url,
+            sourceIndex: attribute.sourceIndex,
+            resizeMode: .resized(size: Constants.thumbnailSize,
+                                 respectAspect: true)
+        ) { image in
             completion(image)
         }
     }
@@ -363,11 +398,18 @@ extension WallpaperCreateViewController: DragAnimatedImageViewDelegate {
     }
 
     func beginDragginSession(for dragAnimatedImageView: DragAnimatedImageView, event: NSEvent) {
-        guard let url = imageAttributes.first(where: { $0.primary })?.url else {
+        guard let attribute = imageAttributes.first(where: {
+            $0.primary
+        }) else {
             return
         }
         
-        imageProvider.loadImage(url: url, resizeMode: .resized(size: Constants.thumbnailSize, respectAspect: true)) { image in
+        imageProvider.loadImage(
+            url: attribute.url,
+            sourceIndex: attribute.sourceIndex,
+            resizeMode: .resized(size: Constants.thumbnailSize,
+                                 respectAspect: true)
+        ) { image in
             let provider = NSFilePromiseProvider(fileType: UTType.image.identifier, delegate: self)
             let draggingItem = NSDraggingItem(pasteboardWriter: provider)
             draggingItem.setDraggingFrame(dragAnimatedImageView.bounds, contents: image)
@@ -404,10 +446,23 @@ extension WallpaperCreateViewController: NSFilePromiseProviderDelegate {
         return operationQueue
     }
 
-    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL, completionHandler: @escaping (Error?) -> Void) {
+    func filePromiseProvider(
+        _ filePromiseProvider: NSFilePromiseProvider,
+        writePromiseTo url: URL,
+        completionHandler: @escaping (Error?) -> Void )
+    {
+        guard let createdImage = createdImage else {
+            completionHandler(CocoaError(.fileWriteUnknown))
+            return
+        }
+
         do {
-            try createdImage?.write(to: url)
-            completionHandler(nil)
+            try WallpaperFileSaver().save(createdImage, to: url) {
+                DispatchQueue.main.async {
+                    self.delegate?.createViewControllerDidSave()
+                    completionHandler(nil)
+                }
+            }
         } catch let error {
             completionHandler(error)
         }

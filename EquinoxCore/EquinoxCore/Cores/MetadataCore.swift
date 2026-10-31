@@ -34,6 +34,12 @@ import ImageIO
 public protocol MetadataCore {
     func generate(from attributes: [ImageAttributes]) throws -> CGImageMetadata
     func getImageMetadata(for url: URL) throws -> ExifMetadata
+    func readWallpaper(at url: URL) throws -> OpenedWallpaper
+}
+
+public struct OpenedWallpaper {
+    public let type: ImageMetadataType
+    public let attributes: [ImageAttributes]
 }
 
 // MARK: - Class
@@ -51,6 +57,49 @@ public final class MetadataCoreImpl: MetadataCore {
         let encodedImageMetadata = try encodeImageMetadata(imageMetadata, type: imageMetadataType)
         try setupImageMetadata(metadata: metadata, encodedValue: encodedImageMetadata, type: imageMetadataType)
         return metadata
+    }
+
+    public func readWallpaper(at url: URL) throws -> OpenedWallpaper {
+        guard
+            let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+            let sourceType = CGImageSourceGetType(source) as String?,
+            sourceType == "public.heic" || sourceType == "public.heif",
+            let metadata = CGImageSourceCopyMetadataAtIndex(source, 0, nil)
+        else {
+            throw MetadataError.invalidDynamicWallpaper
+        }
+
+        let count = CGImageSourceGetCount(source)
+        let tags = CGImageMetadataCopyTags(metadata)
+            as? [CGImageMetadataTag] ?? []
+        let dynamicTags = tags.filter {
+            CGImageMetadataTagCopyPrefix($0) as String? == "apple_desktop"
+        }
+        guard dynamicTags.count == 1,
+              let tag = dynamicTags.first,
+              let name = CGImageMetadataTagCopyName(tag) as String?,
+              let type = ImageMetadataType(rawValue: name),
+              let value = CGImageMetadataTagCopyValue(tag) as? String,
+              let data = Data(base64Encoded: value)
+        else {
+            throw MetadataError.invalidDynamicWallpaper
+        }
+
+        let attributes = try decodeWallpaper(
+            data: data,
+            type: type,
+            url: url,
+            count: count
+        )
+
+        for index in 0..<count {
+            guard CGImageSourceCreateImageAtIndex(
+                source, index, nil
+            ) != nil else {
+                throw MetadataError.unreadableFrame
+            }
+        }
+        return OpenedWallpaper(type: type, attributes: attributes)
     }
 
     public func getImageMetadata(for url: URL) throws -> ExifMetadata {
@@ -90,6 +139,113 @@ public final class MetadataCoreImpl: MetadataCore {
     
     // MARK: - Private
 
+    private func decodeWallpaper(
+        data: Data,
+        type: ImageMetadataType,
+        url: URL,
+        count: Int
+    ) throws -> [ImageAttributes] {
+        guard count > 0 else {
+            throw MetadataError.invalidDynamicWallpaper
+        }
+        let decoder = PropertyListDecoder()
+        let metadata: ImageMetadata
+        do {
+            if type == .appearance {
+                let appearance = try decoder.decode(ApperanceMetadata.self,
+                                                    from: data)
+                metadata = ImageMetadata(solarMetadata: nil,
+                                         timeMetadata: nil,
+                                         appearanceMetadata: appearance)
+            } else {
+                metadata = try decoder.decode(ImageMetadata.self, from: data)
+            }
+        } catch {
+            throw MetadataError.invalidDynamicWallpaper
+        }
+
+        let appearance = metadata.appearanceMetadata
+        if let appearance = appearance {
+            guard
+                (0..<count).contains(appearance.lightIndex),
+                (0..<count).contains(appearance.darkIndex)
+            else {
+                throw MetadataError.invalidDynamicWallpaper
+            }
+        }
+
+        func appearanceType(_ index: Int) -> AppearanceType? {
+            if index == appearance?.lightIndex
+                && index == appearance?.darkIndex { return .both }
+            if index == appearance?.lightIndex { return .light }
+            if index == appearance?.darkIndex { return .dark }
+            return nil
+        }
+
+        switch type {
+        case .solar:
+            guard let frames = metadata.solarMetadata,
+                  frames.count == count,
+                  metadata.timeMetadata == nil,
+                  validIndexes(frames.map { $0.index }, count: count),
+                  frames.allSatisfy({ $0.altitude.isFinite
+                    && $0.azimuth.isFinite })
+            else {
+                throw MetadataError.invalidDynamicWallpaper
+            }
+            return frames.enumerated().map { order, frame in
+                ImageAttributes(url: url, index: order,
+                                primary: frame.index == 0,
+                                imageType: .solar(altitude: frame.altitude,
+                                                  azimuth: frame.azimuth),
+                                appearanceType: appearanceType(frame.index),
+                                sourceIndex: frame.index)
+            }
+
+        case .time:
+            guard let frames = metadata.timeMetadata,
+                  frames.count == count,
+                  metadata.solarMetadata == nil,
+                  validIndexes(frames.map { $0.index }, count: count),
+                  frames.allSatisfy({ $0.time.isFinite
+                    && (0..<1).contains($0.time) })
+            else {
+                throw MetadataError.invalidDynamicWallpaper
+            }
+            let start = getCurrentCalendar.startOfDay(for: Date())
+            return frames.enumerated().map { order, frame in
+                let date = start.addingTimeInterval(frame.time * 86_400)
+                return ImageAttributes(url: url, index: order,
+                                       primary: frame.index == 0,
+                                       imageType: .time(date: date),
+                                       appearanceType: appearanceType(
+                                        frame.index
+                                       ),
+                                       sourceIndex: frame.index)
+            }
+
+        case .appearance:
+            guard count == 2, appearance != nil,
+                  appearance?.lightIndex != appearance?.darkIndex,
+                  metadata.solarMetadata == nil,
+                  metadata.timeMetadata == nil
+            else {
+                throw MetadataError.invalidDynamicWallpaper
+            }
+            return (0..<count).map { index in
+                ImageAttributes(url: url, index: index,
+                                primary: index == 0,
+                                imageType: .appearance,
+                                appearanceType: appearanceType(index),
+                                sourceIndex: index)
+            }
+        }
+    }
+
+    private func validIndexes(_ indexes: [Int], count: Int) -> Bool {
+        return Set(indexes) == Set(0..<count)
+    }
+
     private func createImageMetadata(_ attributes: [ImageAttributes]) throws -> ImageMetadata {
         var solarMetadata: [SolarMetadata]?
         var timeMetadata: [TimeMetadata]?
@@ -125,6 +281,10 @@ public final class MetadataCoreImpl: MetadataCore {
                     appearanceMetadata?.lightIndex = attribute.index
 
                 case .dark:
+                    appearanceMetadata?.darkIndex = attribute.index
+
+                case .both:
+                    appearanceMetadata?.lightIndex = attribute.index
                     appearanceMetadata?.darkIndex = attribute.index
                 }
             }

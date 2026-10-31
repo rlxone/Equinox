@@ -45,8 +45,9 @@ extension GalleryContentView {
     }
     
     enum TooltipIdentifier: String {
-        case appearance
-        case primary
+        case lightAppearance
+        case darkAppearance
+        case preview
     }
 }
 

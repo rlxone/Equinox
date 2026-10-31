@@ -39,6 +39,7 @@ public final class GalleryModel {
 
     public var number: Int
     public let url: URL
+    public let sourceIndex: Int?
     public var appearance: AppearanceType
     public var primary: Bool
     public var azimuth: Double?
@@ -52,7 +53,8 @@ public final class GalleryModel {
         primary: Bool,
         azimuth: Double?,
         altitude: Double?,
-        time: Date?
+        time: Date?,
+        sourceIndex: Int? = nil
     ) {
         self.number = number
         self.url = url
@@ -61,6 +63,7 @@ public final class GalleryModel {
         self.azimuth = azimuth
         self.altitude = altitude
         self.time = time
+        self.sourceIndex = sourceIndex
     }
 }
 

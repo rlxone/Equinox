@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAFF00030000000000000001 /* WallpaperFileSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF00020000000000000001 /* WallpaperFileSaver.swift */; };
+		AADD00030000000000000004 /* WallpaperPreviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADD00020000000000000004 /* WallpaperPreviewCoordinator.swift */; };
+		AACC00030000000000000001 /* WallpaperEditingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC00020000000000000001 /* WallpaperEditingState.swift */; };
+		AACC00030000000000000003 /* SolarDragValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC00020000000000000003 /* SolarDragValues.swift */; };
 		3D8467CE2899BB0C00D19E32 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D8467CC2899BB0C00D19E32 /* InfoPlist.strings */; };
 		3D916CE428B1682700D29FFF /* HelpMenuLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D916CE328B1682700D29FFF /* HelpMenuLinks.swift */; };
 		F3003226213081F0008D1352 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3003225213081F0008D1352 /* AppDelegate.swift */; };
@@ -86,6 +90,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AAFF00020000000000000001 /* WallpaperFileSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperFileSaver.swift; sourceTree = "<group>"; };
+		AADD00020000000000000004 /* WallpaperPreviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperPreviewCoordinator.swift; sourceTree = "<group>"; };
+		AACC00020000000000000003 /* SolarDragValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarDragValues.swift; sourceTree = "<group>"; };
+		AACC00020000000000000001 /* WallpaperEditingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperEditingState.swift; sourceTree = "<group>"; };
 		0CB7DA3A2D5C4C4B00068B2F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		128D6B812973A88F00FD5677 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3D8467CD2899BB0C00D19E32 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -251,6 +259,10 @@
 				F36AD5D926E515C800314A02 /* WallpaperWindowController.swift */,
 				F3AC410D26D57AA1000A7253 /* WallpaperRootViewController.swift */,
 				F34E06D4267B86A700F004EF /* WallpaperMainViewController.swift */,
+				AACC00020000000000000001 /* WallpaperEditingState.swift */,
+				AAFF00020000000000000001 /* WallpaperFileSaver.swift */,
+				AADD00020000000000000004 /* WallpaperPreviewCoordinator.swift */,
+				AACC00020000000000000003 /* SolarDragValues.swift */,
 				F3E7B05826ADACC300287C60 /* WallpaperGalleryViewController.swift */,
 				F329B3DD26F6838500A31035 /* WallpaperGalleryDataController.swift */,
 				F3AC40FE26D15625000A7253 /* WallpaperGalleryDragController.swift */,
@@ -471,6 +483,10 @@
 				F329B3D426F53D0F00A31035 /* AppExtensions.swift in Sources */,
 				F3D2EE50267EE774009704C5 /* MenuItem.swift in Sources */,
 				F34E06D5267B86A700F004EF /* WallpaperMainViewController.swift in Sources */,
+				AACC00030000000000000001 /* WallpaperEditingState.swift in Sources */,
+				AAFF00030000000000000001 /* WallpaperFileSaver.swift in Sources */,
+				AADD00030000000000000004 /* WallpaperPreviewCoordinator.swift in Sources */,
+				AACC00030000000000000003 /* SolarDragValues.swift in Sources */,
 				F329B3CB26F1414B00A31035 /* WelcomeViewController.swift in Sources */,
 				F3E14A642742049400D986B6 /* DockMenu.swift in Sources */,
 				F3E7B04126A4EAB700287C60 /* WallpaperAppearanceViewController.swift in Sources */,

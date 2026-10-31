@@ -35,15 +35,18 @@ extension PrimaryButton {
         let backgroundColor: NSColor
         let alternativeColor: NSColor
         let borderColor: NSColor
+        let selectedBackgroundColor: NSColor?
 
         public init(
             backgroundColor: NSColor,
             alternativeColor: NSColor,
-            borderColor: NSColor
+            borderColor: NSColor,
+            selectedBackgroundColor: NSColor? = nil
         ) {
             self.backgroundColor = backgroundColor
             self.alternativeColor = alternativeColor
             self.borderColor = borderColor
+            self.selectedBackgroundColor = selectedBackgroundColor
         }
     }
     
@@ -103,7 +106,9 @@ public final class PrimaryButton: Button {
     
     private func stylize() {
         if isSelected {
-            if NSColor.currentControlTint == .graphiteControlTint {
+            if let selectedBackgroundColor = style?.selectedBackgroundColor {
+                layer?.backgroundColor = selectedBackgroundColor.cgColor
+            } else if NSColor.currentControlTint == .graphiteControlTint {
                 layer?.backgroundColor = style?.alternativeColor.cgColor
             } else {
                 layer?.backgroundColor = NSColor.controlAccentColor.cgColor

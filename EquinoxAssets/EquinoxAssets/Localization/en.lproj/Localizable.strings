@@ -1,3 +1,8 @@
+"unsaved.changes.title" = "Discard unsaved changes?";
+"unsaved.changes.close.description" = "Your changes will be lost if you close this window.";
+"unsaved.changes.quit.description" = "Your changes will be lost if you quit the app.";
+"unsaved.changes.discard" = "Discard Changes";
+
 "menu.main.about" = "About %@";
 "menu.main.preferences" = "Preferences...";
 "menu.main.hide" = "Hide %@";
@@ -7,6 +12,11 @@
 
 "menu.file" = "File";
 "menu.file.new" = "New";
+"menu.file.open" = "Open...";
+"menu.file.revert" = "Revert to Saved";
+"menu.file.save.as" = "Save As...";
+"menu.file.open.error.title" = "Cannot Open Wallpaper";
+"menu.file.open.error.description" = "Not a readable dynamic HEIF wallpaper.";
 
 "menu.edit" = "Edit";
 "menu.edit.undo" = "Undo";
@@ -30,13 +40,18 @@
 "menu.help.macAppStoreReview" = "Rate Equinox on the Mac App Store";
 "menu.help.productHunt" = "Equinox on Product Hunt";
 
+"wallpaper.gallery.menu.export" = "Export images…";
+"wallpaper.gallery.menu.delete" = "Delete images";
+
 "toolbar.more" = "More";
 
 "welcome.title" = "Welcome to Equinox";
+"welcome.create.title" = "Create a new wallpaper";
 "welcome.welcome" = "Welcome to %@";
 "welcome.version" = "Version %@";
 "welcome.github" = "GitHub";
 "welcome.support" = "Support Equinox";
+"welcome.open.existing" = "Or edit existing...";
 "welcome.choose.type" = "Choose a type";
 "welcome.choose.type.description" = "Select the type that best fits your wallpaper";
 "welcome.types.solar" = "Solar";
@@ -53,18 +68,25 @@
 "wallpaper.main.create" = "Create";
 "wallpaper.main.browse" = "Browse Image Files";
 "wallpaper.main.validate" = "Please fill in all fields";
+"wallpaper.main.size.calculating" = "Calculating...";
+"wallpaper.main.size.unavailable" = "Unavailable";
+"wallpaper.main.compression.all.images" = "All images";
+"wallpaper.main.compression.all.but.heic" = "All but HEIC";
+"wallpaper.main.compression.lossy.but.heic" = "Lossy formats but HEIC";
+"wallpaper.main.compression.none" = "No images";
 
 "wallpaper.gallery.drag.title" = "Drag and drop your images";
 "wallpaper.gallery.drag.supplementary" = "Files should be PNG, JPEG, TIFF, or HEIC.";
 "wallpaper.gallery.or" = "or";
 "wallpaper.gallery.browse" = "Browse";
+"wallpaper.gallery.export" = "Export image…";
 "wallpaper.gallery.azimuth" = "Azimuth:";
 "wallpaper.gallery.azimuth.value" = "Value";
 "wallpaper.gallery.altitude" = "Altitude:";
 "wallpaper.gallery.altitude.value" = "Value";
 "wallpaper.gallery.time" = "Time:";
 "wallpaper.gallery.tooltip.appearance.title" = "Appearance";
-"wallpaper.gallery.tooltip.appearance.description" = "Graphic mode. Only one image can be set as Light or Dark appearance.";
+"wallpaper.gallery.tooltip.appearance.description" = "The Light and Dark circles choose desktop pictures. In Solar or Time wallpapers, unmarked images remain in the sequence.";
 "wallpaper.gallery.tooltip.primary.title" = "Primary";
 "wallpaper.gallery.tooltip.primary.description" = "The primary image will be shown as a wallpaper thumbnail.";
 "wallpaper.gallery.wrong.images.type" = "Some files (%d) have an unsupported image type. Only PNG, JPEG, TIFF, and HEIC are supported.";
@@ -75,6 +97,8 @@
 "wallpaper.appearance.light.description" = "Show a static image in Light Mode";
 "wallpaper.appearance.dark.title" = "Dark (Still)";
 "wallpaper.appearance.dark.description" = "Show a static image in Dark Mode";
+"wallpaper.appearance.both.title" = "Light & Dark (Still)";
+"wallpaper.appearance.both.description" = "Use this image in both modes";
 
 "wallpaper.create.success" = "Success";
 "wallpaper.create.success.description" = "Drag your wallpaper out or save it wherever you want";
@@ -180,3 +204,10 @@
 "support.purchaseFailure.description.first" = "The purchase was cancelled.";
 "support.purchaseFailure.description.second" = "You can support Equinox anytime if you’d like.";
 "support.purchaseFailure.description.third" = "Thank you for using the app!";
+
+"wallpaper.gallery.tooltip.preview.title" = "Preview";
+"wallpaper.gallery.tooltip.preview.description" = "Choose the image shown in the wallpaper preview. This does not affect the desktop images.";
+"wallpaper.gallery.tooltip.light.title" = "Light desktop";
+"wallpaper.gallery.tooltip.light.description" = "Mark this image as the still picture for Light appearance when a still wallpaper is selected in System Settings.";
+"wallpaper.gallery.tooltip.dark.title" = "Dark desktop";
+"wallpaper.gallery.tooltip.dark.description" = "Mark this image as the still picture for Dark appearance when a still wallpaper is selected in System Settings.";

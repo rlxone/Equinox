@@ -119,9 +119,37 @@ extension GalleryCollectionButtonsView.Style {
                 borderColor: Color.wallpaperButtonBorder
             ),
             primaryStyle: .init(
-                backgroundColor: Color.wallpaperPrimaryBackground,
-                alternativeColor: Color.controlAccent,
-                borderColor: Color.wallpaperButtonBorder
+                backgroundColor: NSColor(
+                    name: nil,
+                    dynamicProvider: { appearance in
+                        let bestMatch = appearance.bestMatch(
+                            from: [.darkAqua, .aqua]
+                        )
+                        return bestMatch == .darkAqua
+                            ? .clear
+                            : Color.wallpaperPrimaryBackground
+                    }
+                ),
+                alternativeColor: Color.controlAccent.blended(
+                    withFraction: 0.25,
+                    of: .black
+                ) ?? Color.controlAccent,
+                borderColor: Color.wallpaperButtonBorder,
+                selectedBackgroundColor: NSColor(
+                    name: nil,
+                    dynamicProvider: { appearance in
+                        let bestMatch = appearance.bestMatch(
+                            from: [.darkAqua, .aqua]
+                        )
+                        let white: CGFloat = bestMatch == .darkAqua
+                            ? 0.36
+                            : 0.42
+                        return NSColor(
+                            calibratedWhite: white,
+                            alpha: 1
+                        )
+                    }
+                )
             )
         )
     }

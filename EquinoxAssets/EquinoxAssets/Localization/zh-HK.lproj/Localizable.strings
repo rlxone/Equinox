@@ -1,3 +1,8 @@
+"unsaved.changes.title" = "要捨棄未儲存的更改嗎？";
+"unsaved.changes.close.description" = "如果關閉此視窗，你的更改將會遺失。";
+"unsaved.changes.quit.description" = "如果結束應用程式，你的更改將會遺失。";
+"unsaved.changes.discard" = "捨棄更改";
+
 /* (No Comment) */
 "dock.new" = "新增";
 
@@ -30,6 +35,11 @@
 
 /* (No Comment) */
 "menu.file.new" = "新增";
+"menu.file.open" = "Open...";
+"menu.file.revert" = "Revert to Saved";
+"menu.file.save.as" = "Save As...";
+"menu.file.open.error.title" = "Cannot Open Wallpaper";
+"menu.file.open.error.description" = "Not a readable dynamic HEIF wallpaper.";
 
 /* (No Comment) */
 "menu.help" = "輔助說明";
@@ -189,6 +199,8 @@
 
 /* (No Comment) */
 "wallpaper.appearance.dark.description" = "在靜態深色模式顯示背景圖片";
+"wallpaper.appearance.both.title" = "淺色及深色（靜態）";
+"wallpaper.appearance.both.description" = "在兩種模式使用此圖片";
 
 /* (No Comment) */
 "wallpaper.appearance.dark.title" = "深色 (靜止)";
@@ -273,6 +285,7 @@
 
 /* (No Comment) */
 "wallpaper.gallery.browse" = "瀏覽";
+"wallpaper.gallery.export" = "匯出圖像…";
 
 /* (No Comment) */
 "wallpaper.gallery.drag.supplementary" = "檔案應該為 PNG、JPEG、TIFF 或 HEIF。";
@@ -287,7 +300,7 @@
 "wallpaper.gallery.time" = "時間：";
 
 /* (No Comment) */
-"wallpaper.gallery.tooltip.appearance.description" = "圖形模式。只有一張影像可以做為淺色或深色外觀。";
+"wallpaper.gallery.tooltip.appearance.description" = "淺色和深色圓形標記用來選擇桌面圖片。在 Solar 或 Time 背景圖片中，未標記的圖片仍會保留在序列內。";
 
 /* (No Comment) */
 "wallpaper.gallery.tooltip.appearance.title" = "外觀";
@@ -321,6 +334,12 @@
 
 /* (No Comment) */
 "wallpaper.main.validate" = "請填寫所有欄位";
+"wallpaper.main.size.calculating" = "正在計算...";
+"wallpaper.main.size.unavailable" = "無法使用";
+"wallpaper.main.compression.all.images" = "所有影像";
+"wallpaper.main.compression.all.but.heic" = "除 HEIC 外全部";
+"wallpaper.main.compression.lossy.but.heic" = "HEIC 以外的有損格式";
+"wallpaper.main.compression.none" = "沒有影像";
 
 /* (No Comment) */
 "wallpaper.set.continue" = "繼續";
@@ -360,9 +379,11 @@
 
 /* (No Comment) */
 "welcome.support" = "支持 Equinox";
+"welcome.open.existing" = "或者編輯...";
 
 /* (No Comment) */
 "welcome.title" = "歡迎使用 Equinox";
+"welcome.create.title" = "建立新背景圖片";
 
 /* (No Comment) */
 "welcome.types.appearance" = "外觀";
@@ -425,3 +446,13 @@
 "support.purchaseFailure.description.first" = "購買已取消。";
 "support.purchaseFailure.description.second" = "如果你願意，隨時都可以支持 Equinox。";
 "support.purchaseFailure.description.third" = "感謝你使用這個應用程式！";
+
+"wallpaper.gallery.tooltip.preview.title" = "預覽";
+"wallpaper.gallery.tooltip.preview.description" = "選擇在背景圖片預覽中顯示的圖片。這不會影響桌面圖片。";
+"wallpaper.gallery.tooltip.light.title" = "淺色桌面";
+"wallpaper.gallery.tooltip.light.description" = "在淺色外觀下將此圖片用作桌面圖片。在 Solar 或 Time 背景圖片中，未標記的圖片仍會保留在序列內。";
+"wallpaper.gallery.tooltip.dark.title" = "深色桌面";
+"wallpaper.gallery.tooltip.dark.description" = "在深色外觀下將此圖片用作桌面圖片。在 Solar 或 Time 背景圖片中，未標記的圖片仍會保留在序列內。";
+
+"wallpaper.gallery.menu.export" = "匯出影像…";
+"wallpaper.gallery.menu.delete" = "刪除影像";

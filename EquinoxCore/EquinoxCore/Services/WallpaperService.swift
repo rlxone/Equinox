@@ -28,10 +28,49 @@
 
 import Foundation
 
+public enum LossyCompressionScope: Equatable {
+    case allImages
+    case allButHEIC
+    case lossyFormatsButHEIC
+    case noImages
+}
+
+public struct ImageExportSettings {
+    public let lossyCompressionScope: LossyCompressionScope
+    public let imageQuality: Int
+
+    public init(
+        lossyCompressionScope: LossyCompressionScope = .lossyFormatsButHEIC,
+        imageQuality: Int = 80
+    ) {
+        self.lossyCompressionScope = lossyCompressionScope
+        self.imageQuality = min(max(imageQuality, 1), 99)
+    }
+
+    public static let `default` = ImageExportSettings()
+}
+
 // MARK: - Protocols
 
 public protocol WallpaperService {
-    func createWallpaper(_ attributes: [ImageAttributes], progressCallback: ProgressCallback?) throws -> Data
+    func createWallpaper(
+        _ attributes: [ImageAttributes],
+        settings: ImageExportSettings,
+        progressCallback: ProgressCallback?
+    ) throws -> Data
+}
+
+public extension WallpaperService {
+    func createWallpaper(
+        _ attributes: [ImageAttributes],
+        progressCallback: ProgressCallback?
+    ) throws -> Data {
+        try createWallpaper(
+            attributes,
+            settings: .default,
+            progressCallback: progressCallback
+        )
+    }
 }
 
 // MARK: - Class
@@ -49,10 +88,19 @@ public final class WallpaperServiceImpl: WallpaperService {
     
     // MARK: - Public
 
-    public func createWallpaper(_ attributes: [ImageAttributes], progressCallback: ProgressCallback?) throws -> Data {
+    public func createWallpaper(
+        _ attributes: [ImageAttributes],
+        settings: ImageExportSettings,
+        progressCallback: ProgressCallback?
+    ) throws -> Data {
         let preparedAttrubutes = prepareAttributes(attributes)
         let metadata = try metadataCore.generate(from: preparedAttrubutes)
-        let image = try imageCore.createImage(from: preparedAttrubutes, metadata: metadata, progressCallback: progressCallback)
+        let image = try imageCore.createImage(
+            from: preparedAttrubutes,
+            metadata: metadata,
+            settings: settings,
+            progressCallback: progressCallback
+        )
         return image
     }
     
@@ -80,7 +128,8 @@ public final class WallpaperServiceImpl: WallpaperService {
                     index: index,
                     primary: attribute.primary,
                     imageType: attribute.imageType,
-                    appearanceType: attribute.appearanceType
+                    appearanceType: attribute.appearanceType,
+                    sourceIndex: attribute.sourceIndex
                 )
             )
         }

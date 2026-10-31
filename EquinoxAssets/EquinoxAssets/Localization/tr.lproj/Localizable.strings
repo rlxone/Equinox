@@ -1,3 +1,8 @@
+"unsaved.changes.title" = "Kaydedilmemiş değişiklikler silinsin mi?";
+"unsaved.changes.close.description" = "Bu pencereyi kapatırsanız değişiklikleriniz kaybolur.";
+"unsaved.changes.quit.description" = "Uygulamadan çıkarsanız değişiklikleriniz kaybolur.";
+"unsaved.changes.discard" = "Değişiklikleri Sil";
+
 "menu.main.about" = "%@ Hakkında";
 "menu.main.preferences" = "Tercihler...";
 "menu.main.hide" = "%@ Gizle";
@@ -7,6 +12,11 @@
 
 "menu.file" = "Dosya";
 "menu.file.new" = "Yeni";
+"menu.file.open" = "Open...";
+"menu.file.revert" = "Revert to Saved";
+"menu.file.save.as" = "Save As...";
+"menu.file.open.error.title" = "Cannot Open Wallpaper";
+"menu.file.open.error.description" = "Not a readable dynamic HEIF wallpaper.";
 
 "menu.edit" = "Düzenle";
 "menu.edit.undo" = "Geri al";
@@ -33,10 +43,12 @@
 "toolbar.more" = "Daha Fazla";
 
 "welcome.title" = "Equinox'a Hoş Geldiniz";
+"welcome.create.title" = "Yeni bir duvar kağıdı oluştur";
 "welcome.welcome" = "%@'a Hoşgeldiniz";
 "welcome.version" = "Versiyon %@";
 "welcome.github" = "Github";
 "welcome.support" = "Equinox'u Destekle";
+"welcome.open.existing" = "Veya düzenle...";
 "welcome.choose.type" = "Tür Seçin";
 "welcome.choose.type.description" = "Duvar kağıdınız için uygun bir tür seçin";
 "welcome.types.solar" = "Güneş";
@@ -53,18 +65,25 @@
 "wallpaper.main.create" = "Oluştur";
 "wallpaper.main.browse" = "Görüntü dosyalarına göz atın";
 "wallpaper.main.validate" = "Lütfen tüm alanları doldurun";
+"wallpaper.main.size.calculating" = "Hesaplanıyor...";
+"wallpaper.main.size.unavailable" = "Kullanılamıyor";
+"wallpaper.main.compression.all.images" = "Tüm görüntüler";
+"wallpaper.main.compression.all.but.heic" = "HEIC hariç tümü";
+"wallpaper.main.compression.lossy.but.heic" = "HEIC hariç kayıplı biçimler";
+"wallpaper.main.compression.none" = "Görüntü yok";
 
 "wallpaper.gallery.drag.title" = "Fotoğraflarınızı sürükleyip bırakın";
 "wallpaper.gallery.drag.supplementary" = "Dosyalar png, jpeg, tiff veya heif formatında olmalıdır.";
 "wallpaper.gallery.or" = "veya";
 "wallpaper.gallery.browse" = "Gözat";
+"wallpaper.gallery.export" = "Görseli dışa aktar…";
 "wallpaper.gallery.azimuth" = "Güneş Açısı:";
 "wallpaper.gallery.azimuth.value" = "Değer";
 "wallpaper.gallery.altitude" = "Rakım:";
 "wallpaper.gallery.altitude.value" = "Değer";
 "wallpaper.gallery.time" = "Zaman:";
 "wallpaper.gallery.tooltip.appearance.title" = "Görünüş";
-"wallpaper.gallery.tooltip.appearance.description" = "Grafik modu. Yalnızca bir görüntü açık veya koyu bir görünüm olabilir.";
+"wallpaper.gallery.tooltip.appearance.description" = "Açık ve Koyu daireleri masaüstü resimlerini seçer. Solar veya Time duvar kağıtlarında işaretsiz görüntüler sırada kalır.";
 "wallpaper.gallery.tooltip.primary.title" = "Birincil";
 "wallpaper.gallery.tooltip.primary.description" = "Birincil görüntü bir duvar kağıdı küçük resmi olarak gösterilecektir.";
 "wallpaper.gallery.wrong.images.type" = "Bazı dosyalar (%d) yanlış resim türüne sahip. Yalnızca png, jpeg, tiff ve heic formatları desteklenmektedir";
@@ -75,6 +94,8 @@
 "wallpaper.appearance.light.description" = "Görüntüyü statik aydınlık modunda görüntüleme";
 "wallpaper.appearance.dark.title" = "Karanlık (Hareketsiz)";
 "wallpaper.appearance.dark.description" = "Görüntüyü statik karanlık modunda görüntüleme";
+"wallpaper.appearance.both.title" = "Açık ve Koyu (Sabit)";
+"wallpaper.appearance.both.description" = "İki modda da kullan";
 
 "wallpaper.create.success" = "Başarılı";
 "wallpaper.create.success.description" = "Duvar kağıdınızı istediğiniz gibi sürükleyin veya kaydedin.";
@@ -180,3 +201,13 @@
 "support.purchaseFailure.description.first" = "Satın alma iptal edildi.";
 "support.purchaseFailure.description.second" = "İsterseniz Equinox'u istediğiniz zaman destekleyebilirsiniz.";
 "support.purchaseFailure.description.third" = "Uygulamayı kullandığınız için teşekkürler!";
+
+"wallpaper.gallery.tooltip.preview.title" = "Önizleme";
+"wallpaper.gallery.tooltip.preview.description" = "Duvar kağıdı önizlemesinde gösterilecek görüntüyü seç. Masaüstü görüntülerini etkilemez.";
+"wallpaper.gallery.tooltip.light.title" = "Açık masaüstü";
+"wallpaper.gallery.tooltip.light.description" = "Bu görüntüyü açık görünümde masaüstü resmi olarak kullan. Solar veya Time duvar kağıtlarında işaretsiz görüntüler sırada kalır.";
+"wallpaper.gallery.tooltip.dark.title" = "Koyu masaüstü";
+"wallpaper.gallery.tooltip.dark.description" = "Bu görüntüyü koyu görünümde masaüstü resmi olarak kullan. Solar veya Time duvar kağıtlarında işaretsiz görüntüler sırada kalır.";
+
+"wallpaper.gallery.menu.export" = "Görselleri dışa aktar…";
+"wallpaper.gallery.menu.delete" = "Görselleri sil";

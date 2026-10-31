@@ -66,8 +66,9 @@ extension GalleryCollectionContentView {
     private enum Constants {
         static let defaultPadding: CGFloat = 10
         static let appearancePadding: CGFloat = 12
-        static let buttonStackWidth: CGFloat = 40
-        static let buttonStackHeight: CGFloat = 72
+        static let buttonStackWidth: CGFloat = 72
+        static let buttonStackHeight: CGFloat = 24
+        static let coordinateStackHeight: CGFloat = 72
         static let timeStackHeight: CGFloat = 40
     }
 }
@@ -137,7 +138,7 @@ public final class GalleryCollectionContentView: View {
     }
 
     private func setupSolarView() {
-        buttonsView.orientation = .vertical
+        buttonsView.orientation = .horizontal
         buttonsView.viewAppearance = .default
         imageView.size = .small
         imageView.position = .bottomLeft
@@ -157,7 +158,7 @@ public final class GalleryCollectionContentView: View {
     }
 
     private func setupAppearanceView() {
-        buttonsView.orientation = .vertical
+        buttonsView.orientation = .horizontal
         buttonsView.viewAppearance = .vibrant
         imageView.size = .normal
         imageView.position = .topLeft
@@ -200,7 +201,9 @@ public final class GalleryCollectionContentView: View {
                 dataView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Constants.defaultPadding),
                 dataView.leadingAnchor.constraint(equalTo: buttonsView.trailingAnchor, constant: Constants.defaultPadding),
                 dataView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                dataView.heightAnchor.constraint(equalToConstant: Constants.buttonStackHeight)
+                dataView.heightAnchor.constraint(
+                    equalToConstant: Constants.coordinateStackHeight
+                )
             ])
         }
     }
@@ -209,8 +212,12 @@ public final class GalleryCollectionContentView: View {
         NSLayoutConstraint.activate([
             buttonsView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Constants.defaultPadding),
             buttonsView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            buttonsView.widthAnchor.constraint(equalToConstant: Constants.buttonStackHeight),
-            buttonsView.heightAnchor.constraint(equalToConstant: Constants.buttonStackWidth)
+            buttonsView.widthAnchor.constraint(
+                equalToConstant: Constants.buttonStackWidth
+            ),
+            buttonsView.heightAnchor.constraint(
+                equalToConstant: Constants.buttonStackHeight
+            )
         ])
 
         if let dataView = dataView {
@@ -275,6 +282,15 @@ public final class GalleryCollectionContentView: View {
         }
     }
 
+    public var isSelected: Bool {
+        get {
+            return imageView.isSelected
+        }
+        set {
+            imageView.isSelected = newValue
+        }
+    }
+
     public var isPrimary: Bool {
         get {
             return buttonsView.isPrimary
@@ -288,6 +304,17 @@ public final class GalleryCollectionContentView: View {
         didSet {
             imageView.image = image
         }
+    }
+
+    public var draggingImageFrame: NSRect {
+        let frame = imageView.frame
+        guard isFlipped else { return frame }
+        return NSRect(
+            x: frame.minX,
+            y: bounds.height - frame.maxY,
+            width: frame.width,
+            height: frame.height
+        )
     }
     
     public func setAppearanceType(_ appearanceType: AppearanceType, animated: Bool) {
@@ -376,27 +403,44 @@ public final class GalleryCollectionContentView: View {
         }
     }
     
-    public var appearanceTooltipTitle: String? {
+    public var lightAppearanceTooltipTitle: String? {
         didSet {
-            tooltipHandler.appearanceTooltipTitle = appearanceTooltipTitle
+            tooltipHandler.lightAppearanceTooltipTitle =
+                lightAppearanceTooltipTitle
         }
     }
     
-    public var appearanceTooltipDescription: String? {
+    public var lightAppearanceTooltipDescription: String? {
         didSet {
-            tooltipHandler.appearanceTooltipDescription = appearanceTooltipDescription
+            tooltipHandler.lightAppearanceTooltipDescription =
+                lightAppearanceTooltipDescription
         }
     }
     
-    public var primaryTooltipTitle: String? {
+    public var darkAppearanceTooltipTitle: String? {
         didSet {
-            tooltipHandler.primaryTooltipTitle = primaryTooltipTitle
+            tooltipHandler.darkAppearanceTooltipTitle =
+                darkAppearanceTooltipTitle
         }
     }
     
-    public var primaryTooltipDescription: String? {
+    public var darkAppearanceTooltipDescription: String? {
         didSet {
-            tooltipHandler.primaryTooltipDescription = primaryTooltipDescription
+            tooltipHandler.darkAppearanceTooltipDescription =
+                darkAppearanceTooltipDescription
+        }
+    }
+
+    public var previewTooltipTitle: String? {
+        didSet {
+            tooltipHandler.previewTooltipTitle = previewTooltipTitle
+        }
+    }
+
+    public var previewTooltipDescription: String? {
+        didSet {
+            tooltipHandler.previewTooltipDescription =
+                previewTooltipDescription
         }
     }
     

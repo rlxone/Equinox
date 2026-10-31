@@ -1,3 +1,8 @@
+"unsaved.changes.title" = "Ungesicherte Änderungen verwerfen?";
+"unsaved.changes.close.description" = "Deine Änderungen gehen verloren, wenn du dieses Fenster schließt.";
+"unsaved.changes.quit.description" = "Deine Änderungen gehen verloren, wenn du die App beendest.";
+"unsaved.changes.discard" = "Änderungen verwerfen";
+
 "menu.main.about" = "Über %@";
 "menu.main.preferences" = "Einstellungen...";
 "menu.main.hide" = "%@ ausblenden";
@@ -7,6 +12,11 @@
 
 "menu.file" = "Ablage";
 "menu.file.new" = "Neu";
+"menu.file.open" = "Open...";
+"menu.file.revert" = "Revert to Saved";
+"menu.file.save.as" = "Save As...";
+"menu.file.open.error.title" = "Cannot Open Wallpaper";
+"menu.file.open.error.description" = "Not a readable dynamic HEIF wallpaper.";
 
 "menu.edit" = "Bearbeiten";
 "menu.edit.undo" = "Rückgängig";
@@ -31,10 +41,12 @@
 "menu.help.productHunt" = "Equinox auf Product Hunt";
 
 "welcome.title" = "Willkommen bei Equinox";
+"welcome.create.title" = "Ein neues Hintergrundbild erstellen";
 "welcome.welcome" = "Willkommen bei %@";
 "welcome.version" = "Version %@";
 "welcome.github" = "GitHub";
 "welcome.support" = "Equinox unterstützen";
+"welcome.open.existing" = "Oder Bestehendes bearbeiten...";
 "welcome.choose.type" = "Wähle den Typ";
 "welcome.choose.type.description" = "Wähle die Art von Hintergrundbild, die du erstellen willst";
 "welcome.types.solar" = "Sonnenabhängig";
@@ -51,18 +63,25 @@
 "wallpaper.main.create" = "Erstellen";
 "wallpaper.main.browse" = "Bilddateien durchsuchen";
 "wallpaper.main.validate" = "Bitte fülle alle Felder aus";
+"wallpaper.main.size.calculating" = "Wird berechnet...";
+"wallpaper.main.size.unavailable" = "Nicht verfügbar";
+"wallpaper.main.compression.all.images" = "Alle Bilder";
+"wallpaper.main.compression.all.but.heic" = "Alle außer HEIC";
+"wallpaper.main.compression.lossy.but.heic" = "Verlustbehaftete Formate außer HEIC";
+"wallpaper.main.compression.none" = "Keine Bilder";
 
 "wallpaper.gallery.drag.title" = "Ziehe deine Bilder hierher";
 "wallpaper.gallery.drag.supplementary" = "Erlaubte Dateiformate: PNG, JPEG, TIFF oder HEIC.";
 "wallpaper.gallery.or" = "oder";
 "wallpaper.gallery.browse" = "Durchsuchen";
+"wallpaper.gallery.export" = "Bild exportieren…";
 "wallpaper.gallery.azimuth" = "Azimut:";
 "wallpaper.gallery.azimuth.value" = "Wert";
 "wallpaper.gallery.altitude" = "Höhe:";
 "wallpaper.gallery.altitude.value" = "Wert";
 "wallpaper.gallery.time" = "Uhrzeit:";
 "wallpaper.gallery.tooltip.appearance.title" = "Erscheinungsbild";
-"wallpaper.gallery.tooltip.appearance.description" = "Grafikmodus. Nur ein Bild kann als helles oder dunkles Erscheinungsbild festgelegt werden.";
+"wallpaper.gallery.tooltip.appearance.description" = "Die Kreise für Hell und Dunkel legen Schreibtischbilder fest. In Solar- oder Zeit-Hintergrundbildern bleiben nicht markierte Bilder in der Sequenz.";
 "wallpaper.gallery.tooltip.primary.title" = "Primär";
 "wallpaper.gallery.tooltip.primary.description" = "Das primäre Bild wird als Hintergrundbild-Vorschau angezeigt.";
 "wallpaper.gallery.wrong.images.type" = "Einige Dateien (%d) haben einen nicht unterstützten Bildtyp. Unterstützt werden nur PNG, JPEG, TIFF und HEIC.";
@@ -73,6 +92,8 @@
 "wallpaper.appearance.light.description" = "Im Hellmodus ein statisches Bild anzeigen";
 "wallpaper.appearance.dark.title" = "Dunkel (Statisch)";
 "wallpaper.appearance.dark.description" = "Im Dunkelmodus ein statisches Bild anzeigen";
+"wallpaper.appearance.both.title" = "Hell & Dunkel (statisch)";
+"wallpaper.appearance.both.description" = "Bild in beiden Modi nutzen";
 
 "wallpaper.create.success" = "Erfolg";
 "wallpaper.create.success.description" = "Ziehe dein Hintergrundbild heraus oder speichere es, wo du möchtest";
@@ -176,3 +197,13 @@
 "wallpaper.toolbar.solar.title" = "Sonnenabhängiges Hintergrundbild";
 "wallpaper.toolbar.time.title" = "Zeitabhängiges Hintergrundbild ";
 "wallpaper.toolbar.appearance.title" = "Erscheinungsbildabhängiges Hintergrundbild";
+
+"wallpaper.gallery.tooltip.preview.title" = "Vorschau";
+"wallpaper.gallery.tooltip.preview.description" = "Wähle das Bild für die Hintergrundbildvorschau. Die Schreibtischbilder bleiben davon unberührt.";
+"wallpaper.gallery.tooltip.light.title" = "Heller Schreibtisch";
+"wallpaper.gallery.tooltip.light.description" = "Dieses Bild bei heller Erscheinung als Schreibtischbild verwenden. In Solar- oder Zeit-Hintergrundbildern bleiben nicht markierte Bilder in der Sequenz.";
+"wallpaper.gallery.tooltip.dark.title" = "Dunkler Schreibtisch";
+"wallpaper.gallery.tooltip.dark.description" = "Dieses Bild bei dunkler Erscheinung als Schreibtischbild verwenden. In Solar- oder Zeit-Hintergrundbildern bleiben nicht markierte Bilder in der Sequenz.";
+
+"wallpaper.gallery.menu.export" = "Bilder exportieren…";
+"wallpaper.gallery.menu.delete" = "Bilder löschen";

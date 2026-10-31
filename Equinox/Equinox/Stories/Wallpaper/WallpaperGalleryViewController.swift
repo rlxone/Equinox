@@ -30,14 +30,46 @@ import AppKit
 import EquinoxAssets
 import EquinoxCore
 import EquinoxUI
+import UniformTypeIdentifiers
+
+private final class SelectionCountMenuItemView: NSView {
+    private let titleField: NSTextField
+
+    init(title: String) {
+        titleField = NSTextField(labelWithString: title)
+        super.init(frame: .zero)
+
+        titleField.font = .systemFont(
+            ofSize: NSFont.systemFontSize,
+            weight: .semibold
+        )
+        titleField.textColor = .labelColor
+        titleField.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(titleField)
+
+        NSLayoutConstraint.activate([
+            titleField.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleField.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+    }
+
+    required init?(coder: NSCoder) {
+        return nil
+    }
+
+    override var intrinsicContentSize: NSSize {
+        return NSSize(
+            width: titleField.fittingSize.width + 44,
+            height: 24
+        )
+    }
+}
 
 // MARK: - Protocols
 
 protocol WallpaperGalleryViewControllerDelegate: AnyObject {
     func dataWasChanged()
     func openBrowseDialog()
-    func presentAppearancePopover(relativeTo view: NSView, selectedType: EquinoxUI.AppearanceType)
-    func closePopover()
     func notify(_ text: String)
 }
 
@@ -64,11 +96,9 @@ final class WallpaperGalleryViewController: ViewController {
     }()
     private lazy var dataController = WallpaperGalleryDataController(
         type: type,
-        fileService: fileService,
         solarService: solarService,
         imageProvider: imageProvider
     )
-    private weak var mutatingModel: GalleryModel?
     
     private lazy var contentView: GalleryContentView = {
         let view = GalleryContentView()
@@ -128,10 +158,18 @@ final class WallpaperGalleryViewController: ViewController {
             altitudeText: Localization.Wallpaper.Gallery.altitude,
             altitudePlaceholder: Localization.Wallpaper.Gallery.altitudeValue,
             timeText: Localization.Wallpaper.Gallery.time,
-            appearanceTooltipTitle: Localization.Wallpaper.Gallery.tooltipAppearanceTitle,
-            appearanceTooltipDescription: Localization.Wallpaper.Gallery.tooltipAppearanceDescription,
-            primaryTooltipTitle: Localization.Wallpaper.Gallery.tooltipPrimaryTitle,
-            primaryTooltipDescription: Localization.Wallpaper.Gallery.tooltipPrimaryDescription
+            lightAppearanceTooltipTitle:
+                Localization.Wallpaper.Gallery.tooltipLightTitle,
+            lightAppearanceTooltipDescription:
+                Localization.Wallpaper.Gallery.tooltipLightDescription,
+            darkAppearanceTooltipTitle:
+                Localization.Wallpaper.Gallery.tooltipDarkTitle,
+            darkAppearanceTooltipDescription:
+                Localization.Wallpaper.Gallery.tooltipDarkDescription,
+            previewTooltipTitle:
+                Localization.Wallpaper.Gallery.tooltipPreviewTitle,
+            previewTooltipDescription:
+                Localization.Wallpaper.Gallery.tooltipPreviewDescription
         )
     }
     
@@ -146,6 +184,52 @@ final class WallpaperGalleryViewController: ViewController {
     var data: GalleryData {
         return dataController.data
     }
+
+    var infoText: String {
+        return dataController.data.info
+    }
+
+    func setOutputSizeText(_ text: String) {
+        dataController.setOutputSizeText(text)
+        contentView.reloadCollection(dataController.data, type: .soft)
+    }
+
+    func replace(with attributes: [ImageAttributes]) {
+        let models = attributes.enumerated().map {
+            order, attribute -> GalleryModel in
+            let appearance: EquinoxUI.AppearanceType
+            switch attribute.appearanceType {
+            case .light: appearance = .light
+            case .dark: appearance = .dark
+            case .both: appearance = .both
+            case nil: appearance = .all
+            }
+            var altitude: Double?
+            var azimuth: Double?
+            var time: Date?
+            switch attribute.imageType {
+            case .solar(let frameAltitude, let frameAzimuth):
+                altitude = frameAltitude
+                azimuth = frameAzimuth
+            case .time(let date):
+                time = date
+            case .appearance:
+                break
+            }
+            return GalleryModel(number: order + 1,
+                                url: attribute.url,
+                                appearance: appearance,
+                                primary: attribute.primary,
+                                azimuth: azimuth,
+                                altitude: altitude,
+                                time: time,
+                                sourceIndex: attribute.sourceIndex)
+        }
+        dataController.replace(with: models)
+        contentView.reloadCollection(dataController.data, type: .hard)
+        refreshState()
+        delegate?.dataWasChanged()
+    }
     
     weak var delegate: WallpaperGalleryViewControllerDelegate?
     
@@ -158,47 +242,6 @@ final class WallpaperGalleryViewController: ViewController {
         }
     }
 
-    func didSelectAppearance(_ model: AppearanceContentView.Model) {
-        if let findedModel = dataController.data.items.first(where: { $0.appearance == model.appearanceType }),
-           mutatingModel?.number != findedModel.number {
-            let appearanceType: EquinoxUI.AppearanceType
-
-            switch type {
-            case .solar, .time:
-                appearanceType = .all
-
-            case .appearance:
-                switch model.appearanceType {
-                case .light:
-                    appearanceType = .dark
-
-                case .all, .dark:
-                    appearanceType = .light
-                }
-            }
-            
-            findedModel.appearance = appearanceType
-            contentView.updateItem(at: findedModel.number - 1, model: findedModel, animated: true)
-        }
-
-        if let mutatingModel = mutatingModel {
-            switch model.appearanceType {
-            case .all:
-                mutatingModel.appearance = .all
-
-            case .dark:
-                mutatingModel.appearance = .dark
-
-            case .light:
-                mutatingModel.appearance = .light
-            }
-
-            contentView.updateItem(at: mutatingModel.number - 1, model: mutatingModel, animated: true)
-        }
-        
-        contentView.reloadCollection(dataController.data, type: .soft)
-    }
-    
     func didBrowse(_ urls: [URL]) {
         let insertIndexPath = IndexPath(item: dataController.data.items.count, section: 0)
         processExternalCollectionItems(urls, insertIndexPath: insertIndexPath)
@@ -230,43 +273,146 @@ final class WallpaperGalleryViewController: ViewController {
     func collectionMenuDeleteItems(_ sender: Any) {
         deleteCollectionItems()
     }
+
+    @objc
+    func collectionMenuExportImage(_ sender: Any) {
+        let files = contentView.selectedIndexPaths
+            .sorted { $0.item < $1.item }
+            .compactMap { filePromiseDetails(at: $0) }
+        guard files.count == contentView.selectedIndexPaths.count,
+              !files.isEmpty,
+              let window = view.window else {
+            return
+        }
+
+        guard files.count > 1 else {
+            guard let file = files.first else { return }
+            exportImage(file, in: window)
+            return
+        }
+
+        let openPanel = NSOpenPanel()
+        openPanel.canChooseFiles = false
+        openPanel.canChooseDirectories = true
+        openPanel.allowsMultipleSelection = false
+        openPanel.directoryURL = FilePanelDirectories.save
+        openPanel.beginSheetModal(for: window) { [weak self] result in
+            guard result == .OK, let directoryURL = openPanel.url else {
+                return
+            }
+
+            do {
+                for file in files {
+                    let data = try self?.exportData(
+                        from: file.0,
+                        sourceIndex: file.1
+                    )
+                    guard let data = data else { return }
+                    let destinationURL = directoryURL.appendingPathComponent(
+                        file.2
+                    )
+                    try data.write(to: destinationURL, options: .atomic)
+                }
+                FilePanelDirectories.rememberSave(for: directoryURL)
+            } catch {
+                self?.delegate?.notify(error.localizedDescription)
+            }
+        }
+    }
+
+    private func exportImage(
+        _ file: (URL, Int?, String),
+        in window: NSWindow
+    ) {
+
+        let savePanel = NSSavePanel()
+        savePanel.directoryURL = FilePanelDirectories.save
+        savePanel.canCreateDirectories = true
+        savePanel.nameFieldStringValue = file.2
+        savePanel.canSelectHiddenExtension = true
+        savePanel.isExtensionHidden = false
+        let fileExtension = URL(fileURLWithPath: file.2).pathExtension
+        savePanel.allowedContentTypes = [
+            UTType(filenameExtension: fileExtension) ?? .data
+        ]
+
+        savePanel.beginSheetModal(for: window) { [weak self] result in
+            guard result == .OK, let destinationURL = savePanel.url else {
+                return
+            }
+
+            do {
+                let exportData = try self?.exportData(
+                    from: file.0,
+                    sourceIndex: file.1
+                )
+                guard let exportData = exportData else { return }
+                try exportData.write(to: destinationURL, options: .atomic)
+                FilePanelDirectories.rememberSave(for: destinationURL)
+            } catch {
+                self?.delegate?.notify(error.localizedDescription)
+            }
+        }
+    }
+
+    private func exportData(from sourceURL: URL, sourceIndex: Int?) throws -> Data {
+        let sourceData = try Data(contentsOf: sourceURL)
+        guard let sourceIndex = sourceIndex else {
+            return sourceData
+        }
+        return try ImageCoreImpl().extractHEICFrame(
+            from: sourceData,
+            at: sourceIndex
+        )
+    }
 }
 
 // MARK: - Drag and Drop
 
 extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate {
-    func processInternalCollectionItems(_ indexPaths: [IndexPath], insertIndexPath: IndexPath) {
-        var moveIndexPaths: [IndexPath] = []
-        var shift = 0
-        var values: [GalleryModel] = []
-
-        for (index, indexPath) in indexPaths.enumerated() {
-            if indexPath.item < insertIndexPath.item {
-                shift += 1
-            }
-            let shiftedIndex = indexPath.item - index
-            let model = dataController.data.items[shiftedIndex]
-            values.append(model)
-            dataController.remove(at: shiftedIndex)
-            moveIndexPaths.append(indexPath)
+    func filePromiseDetails(
+        at indexPath: IndexPath
+    ) -> (URL, Int?, String)? {
+        guard dataController.data.items.indices.contains(indexPath.item) else {
+            return nil
         }
+        let model = dataController.data.items[indexPath.item]
+        let sourceIndex = model.sourceIndex
+        let name = model.url.deletingPathExtension().lastPathComponent
+        let filename = sourceIndex.map { "\(name)-\($0 + 1).heic" }
+            ?? model.url.lastPathComponent
+        return (model.url, sourceIndex, filename)
+    }
 
-        let insertIndex = insertIndexPath.item - shift
-        dataController.insert(values, at: insertIndex)
+    func processInternalCollectionItems(
+        _ indexPaths: [IndexPath], insertIndexPath: IndexPath
+    ) {
+        guard let items = GalleryDragOperations.moved(
+            dataController.data.items,
+            indices: indexPaths.map { $0.item },
+            destination: insertIndexPath.item
+        ) else { return }
+        contentView.deselectCollectionItems(at: Set(indexPaths))
+        dataController.replace(with: items)
         refreshData()
+        contentView.reloadCollection(dataController.data, type: .hard)
+    }
 
-        contentView.performCollectionUpdates({ [weak self] in
-            for (index, indexPath) in moveIndexPaths.enumerated() {
-                let destinationIndexPath = IndexPath(item: insertIndex + index, section: indexPath.section)
-                self?.contentView.moveCollectionItem(at: indexPath, to: destinationIndexPath)
-            }
-            self?.contentView.deselectCollectionItems(at: Set(moveIndexPaths))
-        }, completion: { [weak self] _ in
-            guard let self = self else {
-                return
-            }
-            self.contentView.reloadCollection(self.dataController.data, type: .hard)
-        })
+    func copyInternalCollectionItems(
+        _ indexPaths: [IndexPath], insertIndexPath: IndexPath
+    ) {
+        let items = dataController.data.items
+        let limit = type == .appearance
+            ? max(0, Constants.maxAppearanceItemsCount - items.count)
+            : nil
+        let models = GalleryDragOperations.copies(
+            items, indices: indexPaths.map { $0.item }, limit: limit
+        )
+        guard !models.isEmpty else { return }
+        contentView.deselectCollectionItems(at: Set(indexPaths))
+        dataController.insert(models, at: insertIndexPath.item)
+        refreshData()
+        contentView.reloadCollection(dataController.data, type: .hard)
     }
 
     func processExternalCollectionItems(_ urls: [URL], insertIndexPath: IndexPath) {
@@ -292,21 +438,10 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
         
         let items = dataController.make(validatedUrls, insertIndexPath: insertIndexPath)
         let models = items.map { $0.model }
-        let indexPaths = items.map { $0.indexPath }
         
         dataController.insert(models, at: insertIndexPath.item)
         refreshData()
-        
-        contentView.performCollectionUpdates({ [weak self] in
-            let indexPathsSet = Set(indexPaths)
-            self?.contentView.insertCollectionItems(at: indexPathsSet)
-            self?.contentView.deselectCollectionItems(at: indexPathsSet)
-        }, completion: { [weak self] _ in
-            guard let self = self else {
-                return
-            }
-            self.contentView.reloadCollection(self.dataController.data, type: .hard)
-        })
+        contentView.reloadCollection(dataController.data, type: .hard)
     }
 
     func deleteCollectionItems() {
@@ -314,24 +449,15 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
             .selectedIndexPaths
             .sorted(by: >)
         
+        guard !indexPaths.isEmpty else { return }
+        contentView.deselectCollectionItems(at: Set(indexPaths))
         for indexPath in indexPaths {
             dataController.remove(at: indexPath.item)
         }
-        
         refreshData()
-        
-        contentView.performCollectionUpdates({ [weak self] in
-            let indexPathsSet = Set(indexPaths)
-            self?.contentView.deleteCollectionItems(at: indexPathsSet)
-            self?.contentView.deselectCollectionItems(at: indexPathsSet)
-        }, completion: { [weak self] _ in
-            guard let self = self else {
-                return
-            }
-            self.contentView.reloadCollection(self.dataController.data, type: .hard)
-        })
+        contentView.reloadCollection(dataController.data, type: .hard)
     }
-    
+
     func canValidateCollectionDrag() -> Bool {
         switch type {
         case .solar, .time:
@@ -342,6 +468,21 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
         }
     }
 
+    private func updateAppearance(
+        _ selected: EquinoxUI.AppearanceType,
+        for model: GalleryModel
+    ) {
+        let changed = GallerySelectionRules.setAppearance(
+            selected, for: model, in: dataController.data.items
+        )
+        for item in changed {
+            contentView.updateItem(
+                at: item.number - 1, model: item, animated: true
+            )
+        }
+        contentView.reloadCollection(dataController.data, type: .soft)
+    }
+
     func refreshCollectionData(_ index: Int, field: GalleryModel.MutateField, sender: Any?) {
         guard dataController.data.items.indices.contains(index) else {
             return
@@ -350,21 +491,19 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
         let model = dataController.data.items[index]
 
         switch field {
-        case .appearance:
-            guard let sender = sender as? NSView else {
-                return
-            }
-            mutatingModel = model
-            delegate?.presentAppearancePopover(relativeTo: sender, selectedType: model.appearance)
+        case .appearance(let selected):
+            updateAppearance(selected, for: model)
+            delegate?.dataWasChanged()
 
         case .primary:
-            if let primaryIndex = dataController.data.items.firstIndex(where: { $0.primary }) {
-                let primaryModel = dataController.data.items[primaryIndex]
-                primaryModel.primary = false
-                contentView.updateItem(at: primaryIndex, model: primaryModel, animated: true)
+            let changed = GallerySelectionRules.setPrimary(
+                model, in: dataController.data.items
+            )
+            for item in changed {
+                contentView.updateItem(
+                    at: item.number - 1, model: item, animated: true
+                )
             }
-            model.primary = true
-            contentView.updateItem(at: index, model: model, animated: true)
             contentView.reloadCollection(dataController.data, type: .soft)
 
         case .azimuth(let azimuth):
@@ -376,23 +515,57 @@ extension WallpaperGalleryViewController: WallpaperGalleryDragControllerDelegate
         case .time(let time):
             model.time = time
         }
+        if case .appearance = field { return }
+        delegate?.dataWasChanged()
     }
     
-    func loadImage(url: URL, completion: @escaping (NSImage?) -> Void) {
+    func loadImage(
+        model: GalleryModel,
+        completion: @escaping (NSImage?) -> Void
+    ) {
         let resizeMode = ImageResizeMode.resized(size: Constants.thumbnailSize, respectAspect: true)
-        imageProvider.loadImage(url: url, resizeMode: resizeMode, completion: completion)
+        imageProvider.loadImage(
+            url: model.url,
+            sourceIndex: model.sourceIndex,
+            resizeMode: resizeMode,
+            completion: completion
+        )
     }
 
-    func collectionDidScroll() {
-        delegate?.closePopover()
-    }
-    
     func collectionMenuNeedsUpdate(_ menu: NSMenu) {
         let count = contentView.selectedIndexPaths.count
         
         menu.removeAllItems()
+        if count > 1 {
+            let selectionTitle = Localization.Wallpaper.Gallery
+                .menuSelectedItems(param1: count)
+            let selectionItem = NSMenuItem()
+            let selectionView = SelectionCountMenuItemView(
+                title: selectionTitle
+            )
+            selectionView.frame.size = selectionView.intrinsicContentSize
+            selectionItem.view = selectionView
+            menu.addItem(selectionItem)
+            menu.addItem(.separator())
+        }
+        let exportableCount = contentView.selectedIndexPaths
+            .filter { filePromiseDetails(at: $0) != nil }
+            .count
+        if count > 0, exportableCount == count {
+            let exportItem = NSMenuItem(
+                title: Localization.Wallpaper.Gallery.menuExport(
+                    param1: count
+                ),
+                action: #selector(collectionMenuExportImage(_:)),
+                keyEquivalent: String()
+            )
+            exportItem.target = self
+            menu.addItem(exportItem)
+        }
         let item = NSMenuItem(
-            title: Localization.Wallpaper.Gallery.menuDelete(param1: count),
+            title: Localization.Wallpaper.Gallery.menuDelete(
+                param1: count
+            ),
             action: #selector(collectionMenuDeleteItems(_:)),
             keyEquivalent: String()
         )

@@ -33,11 +33,14 @@ extension MainContentView.Style {
     static var `default`: MainContentView.Style {
         return .init(
             bottomBarStyle: .init(
-                buttonStyle: .default,
-                lineStyle: .init(
-                    color: Color.separator
-                )
-            )
+                buttonStyle: .default
+            ),
+            compressionScopeTitles: [
+                Localization.Wallpaper.Main.compressionAllImages,
+                Localization.Wallpaper.Main.compressionAllButHEIC,
+                Localization.Wallpaper.Main.compressionLossyFormatsButHEIC,
+                Localization.Wallpaper.Main.compressionNone
+            ]
         )
     }
 }

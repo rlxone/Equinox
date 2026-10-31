@@ -34,6 +34,7 @@ import EquinoxUI
 
 protocol WelcomeViewControllerDelegate: AnyObject {
     func welcomeViewControllerTypeWasSelected(type: WallpaperType)
+    func welcomeViewControllerOpenWasInteracted()
     func welcomeViewControllerSupportWasInteracted()
 }
 
@@ -76,15 +77,16 @@ final class WelcomeViewController: ViewController {
         contentView.welcomeText = Localization.Welcome.welcome(param1: NSApplication.appName)
         contentView.versionText = Localization.Welcome.version(param1: NSApplication.appVersion)
         contentView.githubText = Localization.Welcome.github
+        contentView.openText = Localization.Welcome.openExisting
         contentView.supportText = Localization.Welcome.support
-        contentView.typeHeaderText = Localization.Welcome.choose
+        contentView.typeHeadingText = Localization.Welcome.create
         contentView.typeDescriptionText = Localization.Welcome.select
         
         contentView.types = WallpaperType.allCases.map {
             switch $0 {
             case .solar:
                 return TypeItemView.Item(
-                    image: Image.solar,
+                    image: solarSymbolImage(),
                     title: Localization.Welcome.solar,
                     description: Localization.Welcome.solarDescription
                 )
@@ -111,6 +113,17 @@ final class WelcomeViewController: ViewController {
         contentView.isSupportButtonHidden = isSupportButtonHidden
     }
 
+    private func solarSymbolImage() -> NSImage {
+        let configuration = NSImage.SymbolConfiguration(
+            pointSize: 28,
+            weight: .regular
+        )
+        return NSImage(
+            systemSymbolName: "sun.horizon.fill",
+            accessibilityDescription: nil
+        )?.withSymbolConfiguration(configuration) ?? Image.solar
+    }
+
     private func setupActions() {
         contentView.typeAction = { [weak self] selectedIndex in
             guard let type = WallpaperType(rawValue: selectedIndex) else {
@@ -123,6 +136,9 @@ final class WelcomeViewController: ViewController {
                 return
             }
             NSWorkspace.shared.open(url)
+        }
+        contentView.openAction = { [weak self] _ in
+            self?.delegate?.welcomeViewControllerOpenWasInteracted()
         }
         contentView.supportAction = { [weak self] _ in
             self?.delegate?.welcomeViewControllerSupportWasInteracted()

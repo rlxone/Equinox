@@ -31,10 +31,12 @@ import AppKit
 public final class GalleryCollectionTooltipHandler {
     public var style: TooltipWindow.Style?
     
-    public var appearanceTooltipTitle: String?
-    public var appearanceTooltipDescription: String?
-    public var primaryTooltipTitle: String?
-    public var primaryTooltipDescription: String?
+    public var lightAppearanceTooltipTitle: String?
+    public var lightAppearanceTooltipDescription: String?
+    public var darkAppearanceTooltipTitle: String?
+    public var darkAppearanceTooltipDescription: String?
+    public var previewTooltipTitle: String?
+    public var previewTooltipDescription: String?
 }
 
 // MARK: - TooltipDelegate
@@ -51,10 +53,12 @@ extension GalleryCollectionTooltipHandler: TooltipDelegate {
         let title: String?
         
         switch identifier {
-        case GalleryContentView.TooltipIdentifier.appearance.rawValue:
-            title = appearanceTooltipTitle
-        case GalleryContentView.TooltipIdentifier.primary.rawValue:
-            title = primaryTooltipTitle
+        case GalleryContentView.TooltipIdentifier.lightAppearance.rawValue:
+            title = lightAppearanceTooltipTitle
+        case GalleryContentView.TooltipIdentifier.darkAppearance.rawValue:
+            title = darkAppearanceTooltipTitle
+        case GalleryContentView.TooltipIdentifier.preview.rawValue:
+            title = previewTooltipTitle
         default:
             title = String()
         }
@@ -73,10 +77,12 @@ extension GalleryCollectionTooltipHandler: TooltipDelegate {
         let description: String?
         
         switch identifier {
-        case GalleryContentView.TooltipIdentifier.appearance.rawValue:
-            description = appearanceTooltipDescription
-        case GalleryContentView.TooltipIdentifier.primary.rawValue:
-            description = primaryTooltipDescription
+        case GalleryContentView.TooltipIdentifier.lightAppearance.rawValue:
+            description = lightAppearanceTooltipDescription
+        case GalleryContentView.TooltipIdentifier.darkAppearance.rawValue:
+            description = darkAppearanceTooltipDescription
+        case GalleryContentView.TooltipIdentifier.preview.rawValue:
+            description = previewTooltipDescription
         default:
             description = String()
         }

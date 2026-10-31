@@ -1,3 +1,8 @@
+"unsaved.changes.title" = "保存されていない変更を破棄しますか？";
+"unsaved.changes.close.description" = "このウインドウを閉じると、変更内容は失われます。";
+"unsaved.changes.quit.description" = "アプリを終了すると、変更内容は失われます。";
+"unsaved.changes.discard" = "変更を破棄";
+
 "menu.main.about" = "%@について";
 "menu.main.preferences" = "環境設定...";
 "menu.main.hide" = "%@を隠す";
@@ -7,6 +12,11 @@
 
 "menu.file" = "ファイル";
 "menu.file.new" = "新規";
+"menu.file.open" = "Open...";
+"menu.file.revert" = "Revert to Saved";
+"menu.file.save.as" = "Save As...";
+"menu.file.open.error.title" = "Cannot Open Wallpaper";
+"menu.file.open.error.description" = "Not a readable dynamic HEIF wallpaper.";
 
 "menu.edit" = "編集";
 "menu.edit.undo" = "取り消す";
@@ -33,10 +43,12 @@
 "toolbar.more" = "その他";
 
 "welcome.title" = "Equinoxへようこそ";
+"welcome.create.title" = "新しい壁紙を作成";
 "welcome.welcome" = "%@へようこそ";
 "welcome.version" = "バージョン %@";
 "welcome.github" = "GitHub";
 "welcome.support" = "Equinoxをサポート";
+"welcome.open.existing" = "または編集...";
 "welcome.choose.type" = "タイプを選択";
 "welcome.choose.type.description" = "壁紙に合ったタイプを選択してください";
 "welcome.types.solar" = "ソーラー";
@@ -53,18 +65,25 @@
 "wallpaper.main.create" = "作成";
 "wallpaper.main.browse" = "画像ファイルを参照";
 "wallpaper.main.validate" = "すべての項目を入力してください";
+"wallpaper.main.size.calculating" = "計算中...";
+"wallpaper.main.size.unavailable" = "利用できません";
+"wallpaper.main.compression.all.images" = "すべての画像";
+"wallpaper.main.compression.all.but.heic" = "HEIC以外すべて";
+"wallpaper.main.compression.lossy.but.heic" = "HEIC以外の非可逆形式";
+"wallpaper.main.compression.none" = "画像なし";
 
 "wallpaper.gallery.drag.title" = "画像をドラッグ＆ドロップ";
 "wallpaper.gallery.drag.supplementary" = "PNG、JPEG、TIFF、HEIC形式のファイルを使用してください。";
 "wallpaper.gallery.or" = "または";
 "wallpaper.gallery.browse" = "参照";
+"wallpaper.gallery.export" = "画像を書き出す…";
 "wallpaper.gallery.azimuth" = "方位角:";
 "wallpaper.gallery.azimuth.value" = "値";
 "wallpaper.gallery.altitude" = "高度:";
 "wallpaper.gallery.altitude.value" = "値";
 "wallpaper.gallery.time" = "時刻:";
 "wallpaper.gallery.tooltip.appearance.title" = "外観";
-"wallpaper.gallery.tooltip.appearance.description" = "グラフィックモード。ライト/ダークモード用の外観に設定できる画像は1枚のみです。";
+"wallpaper.gallery.tooltip.appearance.description" = "ライトとダークの丸印でデスクトップ画像を選びます。SolarまたはTime壁紙では、マークのない画像も切り替え順に含まれます。";
 "wallpaper.gallery.tooltip.primary.title" = "プライマリ";
 "wallpaper.gallery.tooltip.primary.description" = "プライマリ画像は壁紙のサムネイルとして表示されます。";
 "wallpaper.gallery.wrong.images.type" = "対応していない形式のファイルが %d 個あります。PNG、JPEG、TIFF、HEICのみ対応しています。";
@@ -75,6 +94,8 @@
 "wallpaper.appearance.light.description" = "ライトモードで静止画像を表示";
 "wallpaper.appearance.dark.title" = "ダーク（静止）";
 "wallpaper.appearance.dark.description" = "ダークモードで静止画像を表示";
+"wallpaper.appearance.both.title" = "ライトとダーク（静止画）";
+"wallpaper.appearance.both.description" = "両モードで使用";
 
 "wallpaper.create.success" = "成功";
 "wallpaper.create.success.description" = "壁紙をドラッグするか、好きな場所に保存してください";
@@ -180,3 +201,13 @@
 "support.purchaseFailure.description.first" = "購入はキャンセルされました。";
 "support.purchaseFailure.description.second" = "ご希望の際はいつでもEquinoxをサポートできます。";
 "support.purchaseFailure.description.third" = "アプリをご利用いただきありがとうございます！";
+
+"wallpaper.gallery.tooltip.preview.title" = "プレビュー";
+"wallpaper.gallery.tooltip.preview.description" = "壁紙のプレビューに表示する画像を選びます。デスクトップ画像の割り当てには影響しません。";
+"wallpaper.gallery.tooltip.light.title" = "ライトデスクトップ";
+"wallpaper.gallery.tooltip.light.description" = "ライトの外観でデスクトップ画像として使います。SolarまたはTime壁紙では、マークのない画像も切り替え順に含まれます。";
+"wallpaper.gallery.tooltip.dark.title" = "ダークデスクトップ";
+"wallpaper.gallery.tooltip.dark.description" = "ダークの外観でデスクトップ画像として使います。SolarまたはTime壁紙では、マークのない画像も切り替え順に含まれます。";
+
+"wallpaper.gallery.menu.export" = "画像を書き出す…";
+"wallpaper.gallery.menu.delete" = "画像を削除";

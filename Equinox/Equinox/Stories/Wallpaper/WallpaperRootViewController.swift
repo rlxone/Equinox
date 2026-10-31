@@ -37,6 +37,7 @@ protocol WallpaperRootViewControllerDelegate: AnyObject {
     func rootViewControllerNewWasInteracted()
     func rootViewControllerCalculatorWasInteracted()
     func rootViewControllerShouldNotify(_ text: String)
+    func rootViewControllerUnsavedChangesDidChange(_ hasChanges: Bool)
 }
 
 // MARK: - Class
@@ -48,10 +49,12 @@ final class WallpaperRootViewController: ViewController {
     private let solarService: SolarService
     private let settingsService: SettingsService
     private let imageProvider: ImageProvider
+    private let initialAttributes: [ImageAttributes]?
 
     private lazy var contentView = RootContentView()
     private weak var navigationController: NavigationController?
     private weak var createViewController: WallpaperCreateViewController?
+    private weak var mainViewController: WallpaperMainViewController?
     private weak var tipViewController: TipViewController?
     private weak var setViewController: WallpaperSetViewController?
     
@@ -63,7 +66,8 @@ final class WallpaperRootViewController: ViewController {
         wallpaperService: WallpaperService,
         solarService: SolarService,
         settingsService: SettingsService,
-        imageProvider: ImageProvider
+        imageProvider: ImageProvider,
+        initialAttributes: [ImageAttributes]?
     ) {
         self.type = type
         self.fileService = fileService
@@ -71,6 +75,7 @@ final class WallpaperRootViewController: ViewController {
         self.solarService = solarService
         self.settingsService = settingsService
         self.imageProvider = imageProvider
+        self.initialAttributes = initialAttributes
         super.init()
     }
     
@@ -89,12 +94,29 @@ final class WallpaperRootViewController: ViewController {
 
     private func setup() {
         presentMainController()
-        presentTipControllerIfNeeded(animated: false)
+        if initialAttributes == nil {
+            presentTipControllerIfNeeded(animated: false)
+        }
     }
     
     // MARK: - Public
 
     weak var delegate: WallpaperRootViewControllerDelegate?
+
+    var canRevert: Bool {
+        return initialAttributes != nil
+            && createViewController == nil
+            && mainViewController?.canRevert == true
+    }
+
+    var hasUnsavedChanges: Bool {
+        return mainViewController?.hasUnsavedChanges == true
+    }
+
+    func revert() {
+        guard canRevert else { return }
+        mainViewController?.revert()
+    }
     
     public func presentTipController(firstPresent: Bool, animated: Bool) {
         guard tipViewController == nil else {
@@ -146,9 +168,12 @@ final class WallpaperRootViewController: ViewController {
         let controller = WallpaperMainViewController(
             type: type,
             fileService: fileService,
+            wallpaperService: wallpaperService,
             solarService: solarService,
-            imageProvider: imageProvider
+            imageProvider: imageProvider,
+            initialAttributes: initialAttributes
         )
+        mainViewController = controller
         controller.delegate = self
         let navigationController = NavigationController(rootViewController: controller)
         self.navigationController = navigationController
@@ -181,7 +206,11 @@ final class WallpaperRootViewController: ViewController {
         self.navigationController?.present(controller, animated: true)
     }
 
-    private func presentCreateController(_ imageAttributes: [ImageAttributes]) {
+    private func presentCreateController(
+        _ imageAttributes: [ImageAttributes],
+        settings: ImageExportSettings,
+        previewURL: URL? = nil
+    ) {
         guard createViewController == nil else {
             return
         }
@@ -189,7 +218,10 @@ final class WallpaperRootViewController: ViewController {
             type: type,
             imageAttributes: imageAttributes,
             wallpaperService: wallpaperService,
-            imageProvider: imageProvider
+            imageProvider: imageProvider,
+            exportSettings: settings,
+            sourceURL: initialAttributes?.first?.url,
+            previewURL: previewURL
         )
         createViewController = controller
         controller.delegate = self
@@ -200,12 +232,24 @@ final class WallpaperRootViewController: ViewController {
 // MARK: - MainViewControllerDelegate
 
 extension WallpaperRootViewController: WallpaperMainViewControllerDelegate {
+    func mainViewControllerUnsavedChangesDidChange(_ hasChanges: Bool) {
+        delegate?.rootViewControllerUnsavedChangesDidChange(hasChanges)
+    }
+
     func mainViewControllerCalculatorWasInteracted() {
         delegate?.rootViewControllerCalculatorWasInteracted()
     }
 
-    func mainViewControllerCreateWasInteracted(_ imageAttributes: [ImageAttributes]) {
-        presentCreateController(imageAttributes)
+    func mainViewControllerCreateWasInteracted(
+        _ imageAttributes: [ImageAttributes],
+        settings: ImageExportSettings,
+        previewURL: URL?
+    ) {
+        presentCreateController(
+            imageAttributes,
+            settings: settings,
+            previewURL: previewURL
+        )
     }
 
     func mainViewControllerBackWasInteracted() {
@@ -250,6 +294,10 @@ extension WallpaperRootViewController: WallpaperCreateViewControllerDelegate {
 
     func createViewControllerShouldNotify(_ text: String) {
         delegate?.rootViewControllerShouldNotify(text)
+    }
+
+    func createViewControllerDidSave() {
+        mainViewController?.markSaved()
     }
 }
 

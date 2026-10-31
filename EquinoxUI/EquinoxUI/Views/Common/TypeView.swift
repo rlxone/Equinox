@@ -66,7 +66,9 @@ extension TypeView {
         static let descriptionLabelTopOffset: CGFloat = 2
         static let lineHeight: CGFloat = 1
         static let lineTopOffset: CGFloat = 14
-        static let stackViewOffset: CGFloat = 10
+        static let stackViewOffset: CGFloat = 18
+        static let footerTopOffset: CGFloat = 24
+        static let footerBottomOffset: CGFloat = 24
     }
 }
 
@@ -112,19 +114,28 @@ public final class TypeView: View {
         
         NSLayoutConstraint.activate([
             headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.headerLabelLeadingOffset),
-            headerLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.headerLabelTopOffset),
+            headerLabel.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: Constants.headerLabelTopOffset
+            ),
             
             descriptionLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: Constants.descriptionLabelTopOffset),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.descriptionLabelLeadingOffset),
+
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.stackViewOffset),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.stackViewOffset),
+            stackView.topAnchor.constraint(
+                equalTo: descriptionLabel.bottomAnchor,
+                constant: Constants.stackViewOffset
+            ),
             
             lineView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
             lineView.leadingAnchor.constraint(equalTo: leadingAnchor),
             lineView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            lineView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Constants.lineTopOffset),
-            
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.stackViewOffset),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.stackViewOffset),
-            stackView.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: Constants.stackViewOffset)
+            lineView.topAnchor.constraint(
+                equalTo: stackView.bottomAnchor,
+                constant: Constants.lineTopOffset
+            )
         ])
     }
     
@@ -135,6 +146,28 @@ public final class TypeView: View {
             runWithEffectiveAppearance {
                 stylize()
             }
+        }
+    }
+
+    public var footerView: NSView? {
+        didSet {
+            oldValue?.removeFromSuperview()
+            guard let footerView = footerView else {
+                return
+            }
+            addSubview(footerView)
+            footerView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                footerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+                footerView.topAnchor.constraint(
+                    equalTo: lineView.bottomAnchor,
+                    constant: Constants.footerTopOffset
+                ),
+                footerView.bottomAnchor.constraint(
+                    equalTo: bottomAnchor,
+                    constant: -Constants.footerBottomOffset
+                )
+            ])
         }
     }
 
@@ -162,7 +195,7 @@ public final class TypeView: View {
             headerLabel.stringValue = headerText ?? String()
         }
     }
-    
+
     public var descriptionText: String? {
         didSet {
             descriptionLabel.stringValue = descriptionText ?? String()

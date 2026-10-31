@@ -27,6 +27,44 @@
 // THE SOFTWARE.
 
 import AppKit
+import EquinoxAssets
+import EquinoxCore
+
+enum FilePanelDirectories {
+    private static let openKey = "openPanelLastDirectory"
+    private static let saveKey = "savePanelLastDirectory"
+
+    static var open: URL? {
+        return directory(forKey: openKey)
+    }
+
+    static var save: URL? {
+        return directory(forKey: saveKey)
+    }
+
+    static func rememberOpen(for fileURL: URL) {
+        remember(fileURL, forKey: openKey)
+    }
+
+    static func rememberSave(for fileURL: URL) {
+        remember(fileURL, forKey: saveKey)
+    }
+
+    private static func directory(forKey key: String) -> URL? {
+        guard let path = UserDefaults.standard.string(forKey: key) else {
+            return nil
+        }
+
+        return URL(fileURLWithPath: path, isDirectory: true)
+    }
+
+    private static func remember(_ fileURL: URL, forKey key: String) {
+        UserDefaults.standard.set(
+            fileURL.deletingLastPathComponent().path,
+            forKey: key
+        )
+    }
+}
 
 final class AppDelegate: NSObject {
     let storiesController: StoriesController = StoriesControllerImpl()
@@ -35,6 +73,14 @@ final class AppDelegate: NSObject {
 // MARK: - NSApplicationDelegate
 
 extension AppDelegate: NSApplicationDelegate {
+    func applicationShouldTerminate(
+        _ sender: NSApplication
+    ) -> NSApplication.TerminateReply {
+        return storiesController.shouldTerminate()
+            ? .terminateNow
+            : .terminateCancel
+    }
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setupMenu()
         storiesController.start()
@@ -49,6 +95,13 @@ extension AppDelegate: NSApplicationDelegate {
         dock.dockDelegate = self
         return dock
     }
+
+    func application(
+        _ sender: NSApplication,
+        openFile filename: String
+    ) -> Bool {
+        return openWallpaper(URL(fileURLWithPath: filename))
+    }
     
     // MARK: - Private
     
@@ -56,6 +109,22 @@ extension AppDelegate: NSApplicationDelegate {
         let applicationMenu = ApplicationMenu(title: NSApplication.appName)
         applicationMenu.applicationDelegate = self
         NSApplication.shared.mainMenu = applicationMenu
+    }
+
+    private func openWallpaper(_ url: URL) -> Bool {
+        do {
+            try storiesController.open(url)
+            return true
+        } catch {
+            let alert = NSAlert()
+            alert.messageText = Localization.Menu.File.openErrorTitle
+            alert.informativeText = error is MetadataError
+                ? Localization.Menu.File.openErrorDescription
+                : error.localizedDescription
+            alert.alertStyle = .warning
+            alert.runModal()
+            return false
+        }
     }
 }
 
@@ -65,6 +134,34 @@ extension AppDelegate: ApplicationMenuDelegate {
     @objc
     func applicationMenuNew(_ sender: Any?) {
         storiesController.new()
+    }
+
+    func applicationMenuOpen(_ sender: Any?) {
+        let panel = NSOpenPanel()
+        panel.directoryURL = FilePanelDirectories.open
+        panel.title = Localization.Menu.File.open
+        panel.canChooseDirectories = false
+        panel.allowsMultipleSelection = false
+        if #available(macOS 11.0, *) {
+            panel.allowedContentTypes = [.heic, .heif]
+        }
+        panel.begin { [weak self] result in
+            guard result == .OK, let url = panel.url else { return }
+            FilePanelDirectories.rememberOpen(for: url)
+            _ = self?.openWallpaper(url)
+        }
+    }
+
+    func applicationMenuRevert(_ sender: Any?) {
+        let controller = NSApp.keyWindow?.windowController
+            as? WallpaperWindowController
+        controller?.revert()
+    }
+
+    func applicationMenuCanRevert() -> Bool {
+        let controller = NSApp.keyWindow?.windowController
+            as? WallpaperWindowController
+        return controller?.canRevert == true
     }
 }
 

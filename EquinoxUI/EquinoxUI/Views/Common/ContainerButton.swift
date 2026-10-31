@@ -70,6 +70,13 @@ public final class ContainerButton: Button {
     public override func hitTest(_ point: NSPoint) -> NSView? {
         return isInteractionsEnabled ? super.hitTest(point) : nil
     }
+
+    public override func resetCursorRects() {
+        super.resetCursorRects()
+        if let hoverCursor = hoverCursor {
+            addCursorRect(bounds, cursor: hoverCursor)
+        }
+    }
     
     public override func layout() {
         super.layout()
@@ -97,6 +104,12 @@ public final class ContainerButton: Button {
     // MARK: - Public
     
     public var isInteractionsEnabled = true
+
+    public var hoverCursor: NSCursor? {
+        didSet {
+            window?.invalidateCursorRects(for: self)
+        }
+    }
     
     public var style: Style? {
         didSet {

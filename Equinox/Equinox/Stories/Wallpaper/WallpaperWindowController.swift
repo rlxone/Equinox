@@ -56,6 +56,8 @@ final class WallpaperWindowController: WindowController {
     private let solarService: SolarService
     private let settingsService: SettingsService
     private let imageProvider: ImageProvider
+    private let sourceURL: URL?
+    private let initialAttributes: [ImageAttributes]?
 
     private var contentWindow: Window?
     private var contentController: WindowViewController?
@@ -68,7 +70,9 @@ final class WallpaperWindowController: WindowController {
         wallpaperService: WallpaperService,
         solarService: SolarService,
         settingsService: SettingsService,
-        imageProvider: ImageProvider
+        imageProvider: ImageProvider,
+        sourceURL: URL? = nil,
+        initialAttributes: [ImageAttributes]? = nil
     ) {
         self.type = type
         self.fileService = fileService
@@ -76,6 +80,8 @@ final class WallpaperWindowController: WindowController {
         self.solarService = solarService
         self.settingsService = settingsService
         self.imageProvider = imageProvider
+        self.sourceURL = sourceURL
+        self.initialAttributes = initialAttributes
         super.init(window: nil)
         setupWindow()
     }
@@ -89,7 +95,8 @@ final class WallpaperWindowController: WindowController {
             wallpaperService: wallpaperService,
             solarService: solarService,
             settingsService: settingsService,
-            imageProvider: imageProvider
+            imageProvider: imageProvider,
+            initialAttributes: initialAttributes
         )
         controller.delegate = self
         wallpaperRootViewController = controller
@@ -111,6 +118,7 @@ final class WallpaperWindowController: WindowController {
         }
 
         window = contentWindow
+        window?.isDocumentEdited = hasUnsavedChanges
         window?.setContentSize(Constants.regularSize)
         setWindowTitle()
         window?.makeKeyAndOrderFront(self)
@@ -119,6 +127,12 @@ final class WallpaperWindowController: WindowController {
     
     private func setWindowTitle() {
         let appName = NSApplication.appName
+        if let sourceURL = sourceURL {
+            let title = "\(appName) - \(sourceURL.lastPathComponent)"
+            window?.title = title
+            window?.miniwindowTitle = title
+            return
+        }
         var title: String
         
         switch type {
@@ -139,6 +153,18 @@ final class WallpaperWindowController: WindowController {
     // MARK: - Public
     
     weak var delegate: WallpaperWindowControllerDelegate?
+
+    var canRevert: Bool {
+        return wallpaperRootViewController?.canRevert == true
+    }
+
+    var hasUnsavedChanges: Bool {
+        return wallpaperRootViewController?.hasUnsavedChanges == true
+    }
+
+    func revert() {
+        wallpaperRootViewController?.revert()
+    }
 }
 
 // MARK: - WallpaperRootViewControllerDelegate
@@ -154,6 +180,10 @@ extension WallpaperWindowController: WallpaperRootViewControllerDelegate {
 
     func rootViewControllerShouldNotify(_ text: String) {
         contentController?.notify(text)
+    }
+
+    func rootViewControllerUnsavedChangesDidChange(_ hasChanges: Bool) {
+        window?.isDocumentEdited = hasChanges
     }
 }
 

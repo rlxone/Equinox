@@ -2,6 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>wallpaper.gallery.menu.selected.items</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@items@ 선택됨</string>
+        <key>items</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>d</string>
+            <key>other</key>
+            <string>%d개 항목</string>
+        </dict>
+    </dict>
     <key>images</key>
     <dict>
         <key>NSStringLocalizedFormatKey</key>
@@ -33,6 +47,22 @@
             <string>이미지 삭제</string>
             <key>other</key>
             <string>이미지 %d개 삭제</string>
+        </dict>
+    </dict>
+    <key>export</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@export@</string>
+        <key>export</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>d</string>
+            <key>one</key>
+            <string>이미지 내보내기…</string>
+            <key>other</key>
+            <string>이미지 %d개 내보내기…</string>
         </dict>
     </dict>
 </dict>

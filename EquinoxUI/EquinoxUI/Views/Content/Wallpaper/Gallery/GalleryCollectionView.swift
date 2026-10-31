@@ -45,6 +45,8 @@ public protocol GalleryCollectionViewDelegate: GalleryCollectionViewItemDelegate
         indexPath: IndexPath,
         dropOperation: NSCollectionView.DropOperation
     ) -> Bool
+    func draggingSessionBegan(at indexPaths: Set<IndexPath>)
+    func draggingSessionEnded()
     func draggingExited(_ sender: NSDraggingInfo?)
     func didDeleteBackward(for collectionView: NSCollectionView)
     func didScroll(_ scrollView: NSScrollView)
@@ -86,10 +88,7 @@ extension GalleryCollectionView {
     }
 
     private enum Constants {
-        static let footerHeight: CGFloat = 72
-        static let pinFooterOffset: CGFloat = 20
         static let visibilityAnimationDuration: TimeInterval = 0.2
-        static let footerAnimationDelay: TimeInterval = 1
     }
 
     // macOS 26 scroll edge effects are backed by this AppKit internal view.
@@ -112,6 +111,12 @@ public final class GalleryCollectionView: NSScrollView {
         return collectionView
     }()
     private lazy var collectionLayout = GalleryCollectionLayout()
+    private var dragSnapshots: [IndexPath: NSImageView] = [:]
+    private var dragFlagsMonitor: Any?
+    private var dragItemFrames: [NSRect] = []
+    private var copyInsertIndex: Int?
+    private let copyInsertIndicator = GalleryCollectionInnerGapItem()
+
     
     private lazy var dataSource: GalleryCollectionDataSource = {
         let dataSource = GalleryCollectionDataSource(collectionView: collectionView)
@@ -119,8 +124,6 @@ public final class GalleryCollectionView: NSScrollView {
         return dataSource
     }()
     
-    private var footerHideWorkItem: DispatchWorkItem?
-
     // MARK: - Initializer
 
     public init() {
@@ -134,11 +137,13 @@ public final class GalleryCollectionView: NSScrollView {
 
     deinit {
         NotificationCenter.default.removeObserver(self)
+        if let monitor = dragFlagsMonitor { NSEvent.removeMonitor(monitor) }
     }
 
     public override func layout() {
         super.layout()
         updateScrollPocketVisibility()
+        updateDragSnapshots()
     }
 
     public override func viewDidMoveToWindow() {
@@ -194,6 +199,7 @@ public final class GalleryCollectionView: NSScrollView {
     public var style: Style? {
         didSet {
             dataSource.style = style
+            copyInsertIndicator.style = style?.galleryCollectionGapStyle
         }
     }
 
@@ -246,18 +252,10 @@ public final class GalleryCollectionView: NSScrollView {
     public func reload(_ data: GalleryData, type: ReloadType) {
         dataSource.reload(data, type: type)
 
-        switch type {
-        case .hard, .visible:
-            updateFooterPin()
-
-        case .soft:
-            break
-        }
     }
 
     public func performUpdates(_ updates: PerformUpdateAction, completion: PerformUpdateCompletionAction?) {
         dataSource.performUpdates(updates, completion: completion)
-        updateFooterPin()
     }
 
     public func insertItems(at indexPaths: Set<IndexPath>) {
@@ -291,39 +289,6 @@ public final class GalleryCollectionView: NSScrollView {
 
     // MARK: - Private
 
-    private func updateFooterPin() {
-        let views: [NSView] = collectionView.visibleSupplementaryViews(ofKind: NSCollectionView.elementKindSectionFooter)
-        guard let footerView = views.first as? GalleryCollectionFooterItem else {
-            return
-        }
-        updateFooterPin(footerView: footerView)
-    }
-
-    private func updateFooterPin(footerView: GalleryCollectionFooterItem) {
-        let offset = documentVisibleRect.origin.y + frame.height
-        let shouldAutoHide = offset < collectionLayout.collectionViewContentSize.height - Constants.pinFooterOffset
-        
-        footerView.animate(isHidden: false)
-        
-        footerHideWorkItem?.cancel()
-        footerHideWorkItem = nil
-        
-        guard shouldAutoHide else {
-            return
-        }
-        
-        let work = DispatchWorkItem { [weak footerView] in
-            footerView?.animate(isHidden: true)
-        }
-        
-        footerHideWorkItem = work
-        
-        DispatchQueue.main.asyncAfter(
-            deadline: .now() + Constants.footerAnimationDelay,
-            execute: work
-        )
-    }
-    
     @objc
     private func scrollViewBoundsDidChange(_ notification: Notification) {
         delegate?.didScroll(self)
@@ -331,7 +296,6 @@ public final class GalleryCollectionView: NSScrollView {
             updateTrackingAreas(view: $0.view)
         }
         updateScrollPocketVisibility()
-        updateFooterPin()
     }
     
     @objc
@@ -340,6 +304,61 @@ public final class GalleryCollectionView: NSScrollView {
         updateScrollPocketVisibility()
     }
     
+    private func captureDragSnapshot(at indexPath: IndexPath) {
+        guard dragSnapshots[indexPath] == nil,
+              let view = collectionView.item(at: indexPath)?.view,
+              let bitmap = view.bitmapImageRepForCachingDisplay(in: view.bounds)
+        else { return }
+        view.cacheDisplay(in: view.bounds, to: bitmap)
+        let image = NSImage(size: view.bounds.size)
+        image.addRepresentation(bitmap)
+        let snapshot = NSImageView(frame: view.frame)
+        snapshot.image = image
+        snapshot.isHidden = true
+        collectionView.addSubview(snapshot)
+        dragSnapshots[indexPath] = snapshot
+    }
+
+    private func updateDragSnapshots(
+        flags: NSEvent.ModifierFlags = NSEvent.modifierFlags
+    ) {
+        let show = flags.contains(.option)
+        for (indexPath, snapshot) in dragSnapshots {
+            if let attributes = collectionView.layoutAttributesForItem(
+                at: indexPath
+            ) {
+                snapshot.frame = attributes.frame
+            }
+            snapshot.isHidden = !show
+        }
+    }
+
+    private func clearCopyInsertIndicator() {
+        copyInsertIndex = nil
+        copyInsertIndicator.removeFromSuperview()
+    }
+
+    private func updateCopyInsertIndicator(at point: NSPoint) -> Int? {
+        guard let insertion = GalleryDragOperations.insertion(
+            at: point, frames: dragItemFrames
+        ) else { return nil }
+        copyInsertIndicator.frame = insertion.marker
+        if copyInsertIndicator.superview == nil {
+            collectionView.addSubview(copyInsertIndicator)
+        }
+        copyInsertIndex = insertion.index
+        return insertion.target
+    }
+
+    private func clearDragSnapshots() {
+        clearCopyInsertIndicator()
+        dragItemFrames = []
+        if let monitor = dragFlagsMonitor { NSEvent.removeMonitor(monitor) }
+        dragFlagsMonitor = nil
+        dragSnapshots.values.forEach { $0.removeFromSuperview() }
+        dragSnapshots.removeAll()
+    }
+
     private func updateTrackingAreas(view: NSView) {
         for subview in view.subviews {
             subview.updateTrackingAreas()
@@ -390,25 +409,55 @@ extension GalleryCollectionView: NSCollectionViewDelegate {
         guard numberOfItems > 0 else {
             return .zero
         }
-        return .init(width: 0, height: Constants.footerHeight)
+        return .zero
+    }
+
+    public func collectionView(_ collectionView: NSCollectionView, pasteboardWriterForItemAt indexPath: IndexPath) -> NSPasteboardWriting? {
+        let writer = delegate?.pasteboardWriter(
+            for: collectionView, indexPath: indexPath
+        )
+        if writer != nil { captureDragSnapshot(at: indexPath) }
+        return writer
     }
 
     public func collectionView(
         _ collectionView: NSCollectionView,
-        willDisplaySupplementaryView view: NSView,
-        forElementKind elementKind: NSCollectionView.SupplementaryElementKind,
-        at indexPath: IndexPath
+        draggingSession session: NSDraggingSession,
+        willBeginAt screenPoint: NSPoint,
+        forItemsAt indexPaths: Set<IndexPath>
     ) {
-        if elementKind == NSCollectionView.elementKindSectionFooter {
-            guard let footerView = view as? GalleryCollectionFooterItem else {
-                return
+        self.collectionView.noteDragStarted()
+        delegate?.draggingSessionBegan(at: indexPaths)
+        dragItemFrames = (0..<collectionView.numberOfItems(inSection: 0))
+            .compactMap { index in
+                collectionView.layoutAttributesForItem(
+                    at: IndexPath(item: index, section: 0)
+                )?.frame
             }
-            updateFooterPin(footerView: footerView)
+        if dragItemFrames.count != collectionView.numberOfItems(inSection: 0) {
+            dragItemFrames = []
+        }
+        for indexPath in Array(dragSnapshots.keys)
+            where !indexPaths.contains(indexPath) {
+            dragSnapshots.removeValue(forKey: indexPath)?.removeFromSuperview()
+        }
+        updateDragSnapshots()
+        dragFlagsMonitor = NSEvent.addLocalMonitorForEvents(
+            matching: .flagsChanged
+        ) { [weak self] event in
+            self?.updateDragSnapshots(flags: event.modifierFlags)
+            return event
         }
     }
 
-    public func collectionView(_ collectionView: NSCollectionView, pasteboardWriterForItemAt indexPath: IndexPath) -> NSPasteboardWriting? {
-        return delegate?.pasteboardWriter(for: collectionView, indexPath: indexPath)
+    public func collectionView(
+        _ collectionView: NSCollectionView,
+        draggingSession session: NSDraggingSession,
+        endedAt screenPoint: NSPoint,
+        dragOperation operation: NSDragOperation
+    ) {
+        clearDragSnapshots()
+        delegate?.draggingSessionEnded()
     }
 
     public func collectionView(
@@ -417,12 +466,39 @@ extension GalleryCollectionView: NSCollectionViewDelegate {
         proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath>,
         dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionView.DropOperation>
     ) -> NSDragOperation {
-        return delegate?.validateDrop(
+        updateDragSnapshots()
+        let operation = delegate?.validateDrop(
             collectionView,
             validateDrop: draggingInfo,
             proposedIndexPath: proposedDropIndexPath,
             dropOperation: proposedDropOperation
         ) ?? []
+        if operation == .copy,
+           draggingInfo.draggingSource as? NSCollectionView == collectionView {
+            let point = collectionView.convert(
+                draggingInfo.draggingLocation, from: nil
+            )
+            if let target = updateCopyInsertIndicator(at: point) {
+                proposedDropIndexPath.pointee = IndexPath(
+                    item: target, section: 0
+                ) as NSIndexPath
+                proposedDropOperation.pointee = .on
+            }
+        } else {
+            clearCopyInsertIndicator()
+        }
+        return operation
+    }
+
+    public func collectionView(
+        _ collectionView: NSCollectionView,
+        shouldChangeItemsAt indexPaths: Set<IndexPath>,
+        to highlightState: NSCollectionViewItem.HighlightState
+    ) -> Set<IndexPath> {
+        if highlightState == .asDropTarget, copyInsertIndex != nil {
+            return []
+        }
+        return indexPaths
     }
 
     public func collectionView(
@@ -431,10 +507,14 @@ extension GalleryCollectionView: NSCollectionViewDelegate {
         indexPath: IndexPath,
         dropOperation: NSCollectionView.DropOperation
     ) -> Bool {
+        let destination = copyInsertIndex.map {
+            IndexPath(item: $0, section: 0)
+        } ?? indexPath
+        clearCopyInsertIndicator()
         return delegate?.acceptDrop(
             collectionView,
             acceptDrop: draggingInfo,
-            indexPath: indexPath,
+            indexPath: destination,
             dropOperation: dropOperation
         ) ?? false
     }
@@ -444,6 +524,7 @@ extension GalleryCollectionView: NSCollectionViewDelegate {
 
 extension GalleryCollectionView: GalleryInternalCollectionViewDelegate {
     public func didDraggingExited(_ sender: NSDraggingInfo?) {
+        clearCopyInsertIndicator()
         delegate?.draggingExited(sender)
     }
 
@@ -452,7 +533,7 @@ extension GalleryCollectionView: GalleryInternalCollectionViewDelegate {
     }
 
     public func pinFooterOffset(_ collectionView: NSCollectionView) -> CGFloat {
-        return Constants.pinFooterOffset
+        return 0
     }
 }
 
@@ -472,7 +553,6 @@ extension GalleryCollectionView: NSCollectionViewDelegateFlowLayout {
 
 extension GalleryCollectionView: GalleryCollectionDataSourceDelegate {
     public func updateFooter() {
-        updateFooterPin()
     }
 }
 

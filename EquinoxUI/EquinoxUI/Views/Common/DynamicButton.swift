@@ -164,6 +164,10 @@ public final class DynamicButton: Button {
             case .dark:
                 outerGradientLayer.locations = Constants.leftLocation
                 innerGradientLayer.locations = Constants.leftLocation
+
+            case .both:
+                outerGradientLayer.locations = Constants.centerLocation
+                innerGradientLayer.locations = Constants.rightLocation
             }
 
             CATransaction.commit()
@@ -199,9 +203,20 @@ public final class DynamicButton: Button {
 
         case .dark:
             animation.toValue = Constants.leftLocation
+
+        case .both:
+            animation.toValue = Constants.centerLocation
         }
 
         outerGradientLayer.add(animation, forKey: nil)
-        innerGradientLayer.add(animation, forKey: nil)
+        if type == .both {
+            let innerAnimation = CASpringAnimation(keyPath: "locations")
+            innerAnimation.fromValue = innerGradientLayer.locations
+            innerAnimation.toValue = Constants.rightLocation
+            innerAnimation.duration = Constants.animationDuration
+            innerGradientLayer.add(innerAnimation, forKey: nil)
+        } else {
+            innerGradientLayer.add(animation, forKey: nil)
+        }
     }
 }

@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>wallpaper.gallery.menu.selected.items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@items@ sélectionnés</string>
+		<key>items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d élément</string>
+			<key>other</key>
+			<string>%d éléments</string>
+		</dict>
+	</dict>
 	<key>images</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -32,6 +48,22 @@
 			<string>Supprimer image</string>
 			<key>other</key>
 			<string>Supprimer images (%d éléments)</string>
+		</dict>
+	</dict>
+	<key>export</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@export@</string>
+		<key>export</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Exporter l’image…</string>
+			<key>other</key>
+			<string>Exporter les images… (%d éléments)</string>
 		</dict>
 	</dict>
 </dict>

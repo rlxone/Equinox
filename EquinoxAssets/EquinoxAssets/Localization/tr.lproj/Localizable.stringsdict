@@ -2,6 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>wallpaper.gallery.menu.selected.items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@items@ seçildi</string>
+		<key>items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d öğe</string>
+		</dict>
+	</dict>
 	<key>images</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -32,6 +46,22 @@
 			<string>Fotoğrafı sil</string>
 			<key>other</key>
 			<string>Fotoğrafı sil (%d öğe)</string>
+		</dict>
+	</dict>
+	<key>export</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@export@</string>
+		<key>export</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Görseli dışa aktar…</string>
+			<key>other</key>
+			<string>Görselleri dışa aktar… (%d öğe)</string>
 		</dict>
 	</dict>
 </dict>

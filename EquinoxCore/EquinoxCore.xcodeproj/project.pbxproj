@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1100030000000000000001 /* ../Equinox/Equinox/Stories/Common/ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100020000000000000001 /* ../Equinox/Equinox/Stories/Common/ImageProvider.swift */; };
+		AA1100030000000000000002 /* ImageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100020000000000000002 /* ImageProviderTests.swift */; };
+		AABB00030000000000000001 /* GalleryDragOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB00020000000000000001 /* GalleryDragOperationsTests.swift */; };
+		AABB00030000000000000002 /* ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GalleryDragOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB00020000000000000002 /* ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GalleryDragOperations.swift */; };
+		AABB00030000000000000003 /* ../EquinoxUI/EquinoxUI/Presentation Models/GalleryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB00020000000000000003 /* ../EquinoxUI/EquinoxUI/Presentation Models/GalleryModel.swift */; };
+		AABB00030000000000000004 /* ../EquinoxUI/EquinoxUI/Presentation Models/AppearanceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB00020000000000000004 /* ../EquinoxUI/EquinoxUI/Presentation Models/AppearanceType.swift */; };
+		AACC00030000000000000001 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperEditingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC00020000000000000001 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperEditingState.swift */; };
+		AACC00030000000000000002 /* WallpaperEditingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC00020000000000000002 /* WallpaperEditingStateTests.swift */; };
+		AACC00030000000000000003 /* ../Equinox/Equinox/Stories/Wallpaper/SolarDragValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC00020000000000000003 /* ../Equinox/Equinox/Stories/Wallpaper/SolarDragValues.swift */; };
+		AADD00030000000000000004 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperPreviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADD00020000000000000004 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperPreviewCoordinator.swift */; };
+		AADD00030000000000000005 /* WallpaperPreviewCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADD00020000000000000005 /* WallpaperPreviewCoordinatorTests.swift */; };
+		AAEE00030000000000000001 /* ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GallerySelectionRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEE00020000000000000001 /* ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GallerySelectionRules.swift */; };
+		AAFF00030000000000000001 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperFileSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFF00020000000000000001 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperFileSaver.swift */; };
+		EC8A7A08309588C80085DABD /* gradients.heic in Resources */ = {isa = PBXBuildFile; fileRef = EC8A7A07309588C80085DABD /* gradients.heic */; };
+		EC8A7A0A309589DC0085DABD /* grid-12mp-512px-tiles.heic in Resources */ = {isa = PBXBuildFile; fileRef = EC8A7A09309589DC0085DABD /* grid-12mp-512px-tiles.heic */; };
 		F32C64AB27028479002F5817 /* EquinoxCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B334CD267DC5B90025AB04 /* EquinoxCore.framework */; };
 		F32C64B427028505002F5817 /* ImageCacheCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32C64B327028505002F5817 /* ImageCacheCoreTests.swift */; };
 		F3348F54270296AF00695C8A /* SolarCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3348F53270296AF00695C8A /* SolarCoreTests.swift */; };
@@ -49,6 +64,7 @@
 		F3EC93B126CC0C3A0032FA39 /* ExifMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC93B026CC0C3A0032FA39 /* ExifMetadata.swift */; };
 		F3EC93B526CC147D0032FA39 /* WallpaperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC93B426CC147D0032FA39 /* WallpaperService.swift */; };
 		F3EC93B926CC153D0032FA39 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC93B826CC153D0032FA39 /* ImageService.swift */; };
+		F42A000126A0000000000001 /* HEIFMuxer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A000226A0000000000001 /* HEIFMuxer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +78,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA1100020000000000000001 /* ../Equinox/Equinox/Stories/Common/ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ../Equinox/Equinox/Stories/Common/ImageProvider.swift; sourceTree = SOURCE_ROOT; };
+		AA1100020000000000000002 /* ImageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProviderTests.swift; sourceTree = "<group>"; };
+		AABB00020000000000000001 /* GalleryDragOperationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDragOperationsTests.swift; sourceTree = "<group>"; };
+		AABB00020000000000000002 /* ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GalleryDragOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GalleryDragOperations.swift; sourceTree = SOURCE_ROOT; };
+		AABB00020000000000000003 /* ../EquinoxUI/EquinoxUI/Presentation Models/GalleryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "../EquinoxUI/EquinoxUI/Presentation Models/GalleryModel.swift"; sourceTree = SOURCE_ROOT; };
+		AABB00020000000000000004 /* ../EquinoxUI/EquinoxUI/Presentation Models/AppearanceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "../EquinoxUI/EquinoxUI/Presentation Models/AppearanceType.swift"; sourceTree = SOURCE_ROOT; };
+		AACC00020000000000000001 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperEditingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ../Equinox/Equinox/Stories/Wallpaper/WallpaperEditingState.swift; sourceTree = SOURCE_ROOT; };
+		AACC00020000000000000002 /* WallpaperEditingStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperEditingStateTests.swift; sourceTree = "<group>"; };
+		AACC00020000000000000003 /* ../Equinox/Equinox/Stories/Wallpaper/SolarDragValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ../Equinox/Equinox/Stories/Wallpaper/SolarDragValues.swift; sourceTree = SOURCE_ROOT; };
+		AADD00020000000000000004 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperPreviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ../Equinox/Equinox/Stories/Wallpaper/WallpaperPreviewCoordinator.swift; sourceTree = SOURCE_ROOT; };
+		AADD00020000000000000005 /* WallpaperPreviewCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperPreviewCoordinatorTests.swift; sourceTree = "<group>"; };
+		AAEE00020000000000000001 /* ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GallerySelectionRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GallerySelectionRules.swift; sourceTree = SOURCE_ROOT; };
+		AAFF00020000000000000001 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperFileSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ../Equinox/Equinox/Stories/Wallpaper/WallpaperFileSaver.swift; sourceTree = SOURCE_ROOT; };
+		EC8A7A07309588C80085DABD /* gradients.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = gradients.heic; sourceTree = "<group>"; };
+		EC8A7A09309589DC0085DABD /* grid-12mp-512px-tiles.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = "grid-12mp-512px-tiles.heic"; sourceTree = "<group>"; };
 		F32C64A727028479002F5817 /* EquinoxCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EquinoxCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32C64B327028505002F5817 /* ImageCacheCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheCoreTests.swift; sourceTree = "<group>"; };
 		F3348F53270296AF00695C8A /* SolarCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarCoreTests.swift; sourceTree = "<group>"; };
@@ -105,6 +136,7 @@
 		F3EC93B026CC0C3A0032FA39 /* ExifMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExifMetadata.swift; sourceTree = "<group>"; };
 		F3EC93B426CC147D0032FA39 /* WallpaperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperService.swift; sourceTree = "<group>"; };
 		F3EC93B826CC153D0032FA39 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		F42A000226A0000000000001 /* HEIFMuxer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HEIFMuxer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +162,19 @@
 		F32C64A827028479002F5817 /* EquinoxCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				AABB00020000000000000004 /* ../EquinoxUI/EquinoxUI/Presentation Models/AppearanceType.swift */,
+				AABB00020000000000000003 /* ../EquinoxUI/EquinoxUI/Presentation Models/GalleryModel.swift */,
+				AABB00020000000000000002 /* ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GalleryDragOperations.swift */,
+				AAEE00020000000000000001 /* ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GallerySelectionRules.swift */,
+				AABB00020000000000000001 /* GalleryDragOperationsTests.swift */,
+				AACC00020000000000000001 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperEditingState.swift */,
+				AA1100020000000000000002 /* ImageProviderTests.swift */,
+				AA1100020000000000000001 /* ../Equinox/Equinox/Stories/Common/ImageProvider.swift */,
+				AAFF00020000000000000001 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperFileSaver.swift */,
+				AADD00020000000000000005 /* WallpaperPreviewCoordinatorTests.swift */,
+				AADD00020000000000000004 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperPreviewCoordinator.swift */,
+				AACC00020000000000000003 /* ../Equinox/Equinox/Stories/Wallpaper/SolarDragValues.swift */,
+				AACC00020000000000000002 /* WallpaperEditingStateTests.swift */,
 				F374BA4F292E7D2300CE69FF /* Mocks */,
 				F3348F5F2702B09600695C8A /* Resources */,
 				F32C64B327028505002F5817 /* ImageCacheCoreTests.swift */,
@@ -145,6 +190,8 @@
 		F3348F5F2702B09600695C8A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EC8A7A09309589DC0085DABD /* grid-12mp-512px-tiles.heic */,
+				EC8A7A07309588C80085DABD /* gradients.heic */,
 				F3348F602702B0B400695C8A /* image.heic */,
 				F3D01413274354DD00065404 /* image.png */,
 				F374BA4D292E69E100CE69FF /* metadata.json */,
@@ -203,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D2EDEC267DCD9C009704C5 /* ImageCore.swift */,
+				F42A000226A0000000000001 /* HEIFMuxer.swift */,
 				F3D2EDEE267DCD9C009704C5 /* FileCore.swift */,
 				F3D2EDED267DCD9C009704C5 /* MetadataCore.swift */,
 				F399A512268B553500ED45EF /* ImageCacheCore.swift */,
@@ -363,6 +411,8 @@
 			files = (
 				F3348F612702B13700695C8A /* image.heic in Resources */,
 				F3D01414274354DD00065404 /* image.png in Resources */,
+				EC8A7A0A309589DC0085DABD /* grid-12mp-512px-tiles.heic in Resources */,
+				EC8A7A08309588C80085DABD /* gradients.heic in Resources */,
 				F374BA4E292E69E100CE69FF /* metadata.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,6 +431,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AABB00030000000000000004 /* ../EquinoxUI/EquinoxUI/Presentation Models/AppearanceType.swift in Sources */,
+				AABB00030000000000000003 /* ../EquinoxUI/EquinoxUI/Presentation Models/GalleryModel.swift in Sources */,
+				AABB00030000000000000002 /* ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GalleryDragOperations.swift in Sources */,
+				AAEE00030000000000000001 /* ../EquinoxUI/EquinoxUI/Views/Content/Wallpaper/Gallery/GallerySelectionRules.swift in Sources */,
+				AABB00030000000000000001 /* GalleryDragOperationsTests.swift in Sources */,
+				AACC00030000000000000001 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperEditingState.swift in Sources */,
+				AA1100030000000000000002 /* ImageProviderTests.swift in Sources */,
+				AA1100030000000000000001 /* ../Equinox/Equinox/Stories/Common/ImageProvider.swift in Sources */,
+				AAFF00030000000000000001 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperFileSaver.swift in Sources */,
+				AADD00030000000000000005 /* WallpaperPreviewCoordinatorTests.swift in Sources */,
+				AADD00030000000000000004 /* ../Equinox/Equinox/Stories/Wallpaper/WallpaperPreviewCoordinator.swift in Sources */,
+				AACC00030000000000000003 /* ../Equinox/Equinox/Stories/Wallpaper/SolarDragValues.swift in Sources */,
+				AACC00030000000000000002 /* WallpaperEditingStateTests.swift in Sources */,
 				F38D5B142741B0950065E13D /* StorageCoreTests.swift in Sources */,
 				F32C64B427028505002F5817 /* ImageCacheCoreTests.swift in Sources */,
 				F3348F652702B5A000695C8A /* ImageCoreTests.swift in Sources */,
@@ -405,6 +468,7 @@
 				F376FEAD2F5C8A4B001DBB99 /* StoreError.swift in Sources */,
 				F3D2EE08267DCD9C009704C5 /* ImageError.swift in Sources */,
 				F3D2EE04267DCD9C009704C5 /* ImageCore.swift in Sources */,
+				F42A000126A0000000000001 /* HEIFMuxer.swift in Sources */,
 				F356C8C12736F1B800E915C6 /* SettingsService.swift in Sources */,
 				F3D2EE05267DCD9C009704C5 /* MetadataCore.swift in Sources */,
 				F3D2EE06267DCD9C009704C5 /* FileCore.swift in Sources */,

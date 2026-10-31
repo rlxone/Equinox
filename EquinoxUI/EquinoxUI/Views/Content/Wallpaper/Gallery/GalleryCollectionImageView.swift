@@ -233,6 +233,14 @@ public final class GalleryCollectionImageView: DashedView {
         }
     }
 
+    public var isSelected = false {
+        didSet {
+            layer?.borderColor = isSelected ? NSColor.controlAccentColor.cgColor : nil
+            layer?.borderWidth = isSelected ? 7 : 0
+            needsDisplay = true
+        }
+    }
+
     // MARK: - Private
 
     private func stylize() {

@@ -34,4 +34,6 @@ public enum MetadataError: Error {
     case tagNotSet
     case wrongMetadataType
     case wrongTimezone
+    case invalidDynamicWallpaper
+    case unreadableFrame
 }

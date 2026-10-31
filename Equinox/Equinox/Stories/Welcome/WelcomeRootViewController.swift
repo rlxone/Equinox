@@ -33,6 +33,7 @@ import EquinoxUI
 
 protocol WelcomeRootViewControllerDelegate: AnyObject {
     func rootViewControllerTypeWasSelected(type: WallpaperType)
+    func rootViewControllerOpenWasInteracted()
     func rootViewControllerSupportWasInteracted()
 }
 
@@ -74,6 +75,10 @@ final class WelcomeRootViewController: ViewController {
 extension WelcomeRootViewController: WelcomeViewControllerDelegate {
     func welcomeViewControllerTypeWasSelected(type: WallpaperType) {
         delegate?.rootViewControllerTypeWasSelected(type: type)
+    }
+
+    func welcomeViewControllerOpenWasInteracted() {
+        delegate?.rootViewControllerOpenWasInteracted()
     }
     
     func welcomeViewControllerSupportWasInteracted() {

@@ -1,3 +1,8 @@
+"unsaved.changes.title" = "Ignorer les modifications non enregistrées ?";
+"unsaved.changes.close.description" = "Vos modifications seront perdues si vous fermez cette fenêtre.";
+"unsaved.changes.quit.description" = "Vos modifications seront perdues si vous quittez l'application.";
+"unsaved.changes.discard" = "Ignorer les modifications";
+
 "menu.main.about" = "À propos %@";
 "menu.main.preferences" = "Préférences...";
 "menu.main.hide" = "Masquer %@";
@@ -7,6 +12,11 @@
 
 "menu.file" = "Fichier";
 "menu.file.new" = "Nouveau";
+"menu.file.open" = "Open...";
+"menu.file.revert" = "Revert to Saved";
+"menu.file.save.as" = "Save As...";
+"menu.file.open.error.title" = "Cannot Open Wallpaper";
+"menu.file.open.error.description" = "Not a readable dynamic HEIF wallpaper.";
 
 "menu.edit" = "Édition";
 "menu.edit.undo" = "Annuler";
@@ -33,10 +43,12 @@
 "toolbar.more" = "Plus";
 
 "welcome.title" = "Bienvenue dans Equinox";
+"welcome.create.title" = "Créer un nouveau fond d'écran";
 "welcome.welcome" = "Bienvenue dans %@";
 "welcome.version" = "Version %@";
 "welcome.github" = "Github";
 "welcome.support" = "Soutenir Equinox";
+"welcome.open.existing" = "Ou modifier...";
 "welcome.choose.type" = "Chosir type";
 "welcome.choose.type.description" = "Selectionnez le type de fond d'écran";
 "welcome.types.solar" = "Solaire";
@@ -53,18 +65,25 @@
 "wallpaper.main.create" = "Créer";
 "wallpaper.main.browse" = "Parcourir images";
 "wallpaper.main.validate" = "Merci de remplir tous les champs";
+"wallpaper.main.size.calculating" = "Calcul en cours...";
+"wallpaper.main.size.unavailable" = "Indisponible";
+"wallpaper.main.compression.all.images" = "Toutes les images";
+"wallpaper.main.compression.all.but.heic" = "Toutes sauf HEIC";
+"wallpaper.main.compression.lossy.but.heic" = "Formats avec perte sauf HEIC";
+"wallpaper.main.compression.none" = "Aucune image";
 
 "wallpaper.gallery.drag.title" = "Glisser et déposer vos images";
 "wallpaper.gallery.drag.supplementary" = "Les fichiers doivent être au format png, jpeg, tiff ou heif";
 "wallpaper.gallery.or" = "ou";
 "wallpaper.gallery.browse" = "Parcourir";
+"wallpaper.gallery.export" = "Exporter l’image…";
 "wallpaper.gallery.azimuth" = "Azimut:";
 "wallpaper.gallery.azimuth.value" = "Valeur";
 "wallpaper.gallery.altitude" = "Altitude:";
 "wallpaper.gallery.altitude.value" = "Valeur";
 "wallpaper.gallery.time" = "Temps :";
 "wallpaper.gallery.tooltip.appearance.title" = "Apparence";
-"wallpaper.gallery.tooltip.appearance.description" = "Mode graphique. Seulement une image peut avoir l'apparence clair ou sombre.";
+"wallpaper.gallery.tooltip.appearance.description" = "Les cercles Clair et Sombre choisissent les fonds du bureau. Dans les fonds Solaires ou Horaires, les images sans marqueur restent dans la séquence.";
 "wallpaper.gallery.tooltip.primary.title" = "Principal";
 "wallpaper.gallery.tooltip.primary.description" = "La minature du fond d'écran sera l'image principal.";
 "wallpaper.gallery.wrong.images.type" = "Certains fichiers (%d) n'ont pas le bon type d'image. Seuls les formats png, jpeg, tiff et heic sont pris en charge.";
@@ -75,6 +94,8 @@
 "wallpaper.appearance.light.description" = "Afficher l'image en mode clair statique";
 "wallpaper.appearance.dark.title" = "Sombre (Fixe)";
 "wallpaper.appearance.dark.description" = "Afficher l'image en mode sombre statique";
+"wallpaper.appearance.both.title" = "Clair et sombre (fixe)";
+"wallpaper.appearance.both.description" = "Même image dans les deux modes";
 
 "wallpaper.create.success" = "Succès";
 "wallpaper.create.success.description" = "Glisser ou sauvegarder votre fond d'écran où vous voulez";
@@ -180,3 +201,13 @@
 "support.purchaseFailure.description.first" = "L'achat a été annulé.";
 "support.purchaseFailure.description.second" = "Vous pouvez soutenir Equinox à tout moment si vous le souhaitez.";
 "support.purchaseFailure.description.third" = "Merci d'utiliser l'app !";
+
+"wallpaper.gallery.tooltip.preview.title" = "Aperçu";
+"wallpaper.gallery.tooltip.preview.description" = "Choisir l'image de l'aperçu du fond d'écran. Cela ne modifie pas les images du bureau.";
+"wallpaper.gallery.tooltip.light.title" = "Bureau clair";
+"wallpaper.gallery.tooltip.light.description" = "Utiliser cette image comme fond en apparence claire. Dans les fonds Solaires ou Horaires, les images sans marqueur restent dans la séquence.";
+"wallpaper.gallery.tooltip.dark.title" = "Bureau sombre";
+"wallpaper.gallery.tooltip.dark.description" = "Utiliser cette image comme fond en apparence sombre. Dans les fonds Solaires ou Horaires, les images sans marqueur restent dans la séquence.";
+
+"wallpaper.gallery.menu.export" = "Exporter les images…";
+"wallpaper.gallery.menu.delete" = "Supprimer les images";

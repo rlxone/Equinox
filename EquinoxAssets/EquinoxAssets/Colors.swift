@@ -36,6 +36,7 @@ public enum Color {
     public static let tertiaryLabel = NSColor.tertiaryLabelColor
     public static let clear = NSColor.clear
     public static let controlAccent = NSColor.controlAccentColor
+    public static let link = NSColor.linkColor
 
     public static let separator = bundleColor(named: "Separator")
     public static let appearanceSeparator = bundleColor(named: "AppearanceSeparator")

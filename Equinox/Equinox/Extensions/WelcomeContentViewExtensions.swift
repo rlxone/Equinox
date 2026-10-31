@@ -37,7 +37,7 @@ extension WelcomeContentView.Style {
             ),
             typeStyle: .init(
                 headerStyle: .init(
-                    font: Font.title2(.bold),
+                    font: Font.title3(.bold),
                     color: Color.label
                 ),
                 descriptionStyle: .init(
@@ -73,7 +73,11 @@ extension WelcomeContentView.Style {
             ),
             githubStyle: .init(
                 font: Font.title3(.medium),
-                color: Color.secondaryLabel
+                color: Color.link
+            ),
+            openStyle: .init(
+                font: Font.title3(.medium),
+                color: Color.label
             ),
             supportStyle: .init(
                 font: Font.title3(.medium),
@@ -81,6 +85,9 @@ extension WelcomeContentView.Style {
             ),
             githubContainerButtonStyle: .init(
                 backgroundColor: Color.clear
+            ),
+            openContainerButtonStyle: .init(
+                backgroundColor: Color.containerButtonBackground
             ),
             supportContainerButtonStyle: .init(
                 backgroundColor: Color.containerButtonBackground

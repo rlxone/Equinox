@@ -1,3 +1,8 @@
+"unsaved.changes.title" = "¿Descartar los cambios sin guardar?";
+"unsaved.changes.close.description" = "Los cambios se perderán si cierras esta ventana.";
+"unsaved.changes.quit.description" = "Los cambios se perderán si sales de la aplicación.";
+"unsaved.changes.discard" = "Descartar cambios";
+
 "menu.main.about" = "Acerca de %@";
 "menu.main.preferences" = "Configuración...";
 "menu.main.hide" = "Ocultar %@";
@@ -7,6 +12,11 @@
 
 "menu.file" = "Archivo";
 "menu.file.new" = "Nuevo";
+"menu.file.open" = "Open...";
+"menu.file.revert" = "Revert to Saved";
+"menu.file.save.as" = "Save As...";
+"menu.file.open.error.title" = "Cannot Open Wallpaper";
+"menu.file.open.error.description" = "Not a readable dynamic HEIF wallpaper.";
 
 "menu.edit" = "Edición";
 "menu.edit.undo" = "Deshacer";
@@ -30,13 +40,18 @@
 "menu.help.macAppStoreReview" = "Califica Equinox en la Mac App Store";
 "menu.help.productHunt" = "Equinox en Product Hunt";
 
+"wallpaper.gallery.menu.export" = "Exportar imágenes…";
+"wallpaper.gallery.menu.delete" = "Eliminar imágenes";
+
 "toolbar.more" = "Más";
 
 "welcome.title" = "Bienvenido a Equinox";
+"welcome.create.title" = "Crear un nuevo fondo de pantalla";
 "welcome.welcome" = "Bienvenido a %@";
 "welcome.version" = "Versión %@";
 "welcome.github" = "GitHub";
 "welcome.support" = "Apoyar Equinox";
+"welcome.open.existing" = "O editar...";
 "welcome.choose.type" = "Elegir tipo";
 "welcome.choose.type.description" = "Seleccione un tipo adecuado para su fondo de pantalla";
 "welcome.types.solar" = "Solar";
@@ -53,18 +68,25 @@
 "wallpaper.main.create" = "Crear";
 "wallpaper.main.browse" = "Explorar archivos de imagen";
 "wallpaper.main.validate" = "Por favor, rellene todos los campos";
+"wallpaper.main.size.calculating" = "Calculando...";
+"wallpaper.main.size.unavailable" = "No disponible";
+"wallpaper.main.compression.all.images" = "Todas las imágenes";
+"wallpaper.main.compression.all.but.heic" = "Todas excepto HEIC";
+"wallpaper.main.compression.lossy.but.heic" = "Formatos con pérdida excepto HEIC";
+"wallpaper.main.compression.none" = "Ninguna imagen";
 
 "wallpaper.gallery.drag.title" = "Arrastrar y soltar sus imágenes";
 "wallpaper.gallery.drag.supplementary" = "Los archivos deben ser png, jpeg, tiff o heif.";
 "wallpaper.gallery.or" = "o";
 "wallpaper.gallery.browse" = "Explorar";
+"wallpaper.gallery.export" = "Exportar imagen…";
 "wallpaper.gallery.azimuth" = "Acimut:";
 "wallpaper.gallery.azimuth.value" = "Valor";
 "wallpaper.gallery.altitude" = "Altitud:";
 "wallpaper.gallery.altitude.value" = "Valor";
 "wallpaper.gallery.time" = "Tiempo:";
 "wallpaper.gallery.tooltip.appearance.title" = "Aparencia";
-"wallpaper.gallery.tooltip.appearance.description" = "Modo gráfico. Sólo una imagen puede tener una apariencia clara o oscura.";
+"wallpaper.gallery.tooltip.appearance.description" = "Los círculos Claro y Oscuro eligen los fondos del escritorio. En fondos Solar o Tiempo, las imágenes sin marca permanecen en la secuencia.";
 "wallpaper.gallery.tooltip.primary.title" = "Primario";
 "wallpaper.gallery.tooltip.primary.description" = "La imagen principal se mostrará como una miniatura de fondo de pantalla.";
 "wallpaper.gallery.wrong.images.type" = "Algunos archivos (%d) tienen el tipo de imagen incorrecto. Sólo png, jpeg, tiff, y heic son soportados";
@@ -75,6 +97,8 @@
 "wallpaper.appearance.light.description" = "Imagen de visualización en modo claro estática";
 "wallpaper.appearance.dark.title" = "Oscuro (Quieto)";
 "wallpaper.appearance.dark.description" = "Image de visualización en modo oscuro estática";
+"wallpaper.appearance.both.title" = "Claro y oscuro (fijo)";
+"wallpaper.appearance.both.description" = "Usar esta imagen en ambos modos";
 
 "wallpaper.create.success" = "Éxito";
 "wallpaper.create.success.description" = "Arrastrar o guardar el fondo de pantalla donde quieras";
@@ -180,3 +204,10 @@
 "support.purchaseFailure.description.first" = "La compra fue cancelada.";
 "support.purchaseFailure.description.second" = "Puedes apoyar Equinox cuando quieras.";
 "support.purchaseFailure.description.third" = "¡Gracias por usar la app!";
+
+"wallpaper.gallery.tooltip.preview.title" = "Vista previa";
+"wallpaper.gallery.tooltip.preview.description" = "Elige la imagen de vista previa del fondo. Esto no afecta las imágenes del escritorio.";
+"wallpaper.gallery.tooltip.light.title" = "Escritorio claro";
+"wallpaper.gallery.tooltip.light.description" = "Usa esta imagen como fondo en apariencia clara. En fondos Solar o Tiempo, las imágenes sin marca permanecen en la secuencia.";
+"wallpaper.gallery.tooltip.dark.title" = "Escritorio oscuro";
+"wallpaper.gallery.tooltip.dark.description" = "Usa esta imagen como fondo en apariencia oscura. En fondos Solar o Tiempo, las imágenes sin marca permanecen en la secuencia.";

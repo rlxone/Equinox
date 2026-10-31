@@ -31,4 +31,5 @@ import Foundation
 public enum AppearanceType {
     case light
     case dark
+    case both
 }
